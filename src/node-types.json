@@ -523,10 +523,6 @@
         {
           "type": "_statement",
           "named": true
-        },
-        {
-          "type": "labeled_statement",
-          "named": true
         }
       ]
     }
@@ -1364,10 +1360,6 @@
           "named": true
         },
         {
-          "type": "identifier",
-          "named": true
-        },
-        {
           "type": "range",
           "named": true
         }
@@ -1474,7 +1466,7 @@
     },
     "children": {
       "multiple": false,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "_statement",
@@ -1724,10 +1716,6 @@
       "types": [
         {
           "type": "_statement",
-          "named": true
-        },
-        {
-          "type": "labeled_statement",
           "named": true
         }
       ]
