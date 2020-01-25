@@ -72,7 +72,7 @@
         "named": true
       },
       {
-        "type": "nil",
+        "type": "none",
         "named": true
       },
       {
@@ -540,6 +540,67 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "c_flag_clause",
+    "named": true,
+    "fields": {
+      "platform": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "darwin",
+            "named": false
+          },
+          {
+            "type": "linux",
+            "named": false
+          },
+          {
+            "type": "windows",
+            "named": false
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": false,
+        "types": []
+      }
+    }
+  },
+  {
+    "type": "c_include_clause",
+    "named": true,
+    "fields": {
+      "path": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": ".",
+            "named": false
+          },
+          {
+            "type": "<",
+            "named": false
+          },
+          {
+            "type": ">",
+            "named": false
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "interpreted_string_literal",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -1885,7 +1946,21 @@
   {
     "type": "raw_string_literal",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "escape_sequence",
+          "named": true
+        },
+        {
+          "type": "string_interpolation",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "return_statement",
@@ -2002,6 +2077,14 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "c_flag_clause",
+          "named": true
+        },
+        {
+          "type": "c_include_clause",
+          "named": true
+        },
         {
           "type": "const_declaration",
           "named": true
@@ -2299,6 +2382,10 @@
     "named": false
   },
   {
+    "type": "#",
+    "named": false
+  },
+  {
     "type": "$",
     "named": false
   },
@@ -2507,6 +2594,10 @@
     "named": false
   },
   {
+    "type": "darwin",
+    "named": false
+  },
+  {
     "type": "defer",
     "named": false
   },
@@ -2533,6 +2624,10 @@
   {
     "type": "field_identifier",
     "named": true
+  },
+  {
+    "type": "flag",
+    "named": false
   },
   {
     "type": "float_literal",
@@ -2575,6 +2670,10 @@
     "named": false
   },
   {
+    "type": "include",
+    "named": false
+  },
+  {
     "type": "inline",
     "named": false
   },
@@ -2589,6 +2688,10 @@
   {
     "type": "label_name",
     "named": true
+  },
+  {
+    "type": "linux",
+    "named": false
   },
   {
     "type": "map",
@@ -2615,7 +2718,7 @@
     "named": false
   },
   {
-    "type": "nil",
+    "type": "none",
     "named": true
   },
   {
@@ -2660,6 +2763,10 @@
   },
   {
     "type": "typedef",
+    "named": false
+  },
+  {
+    "type": "windows",
     "named": false
   },
   {

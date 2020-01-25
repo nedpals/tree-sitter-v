@@ -22,7 +22,7 @@ const
   letter = choice(unicodeLetter, '_'),
 
   newline = '\n',
-  terminator = choice(newline, ';'),
+  terminator = newline,
 
   hexDigit = /[0-9a-fA-F]/,
   octalDigit = /[0-7]/,
@@ -110,10 +110,35 @@ module.exports = grammar({
         $.function_declaration,
         $.method_declaration,
         $.import_declaration,
+        $._c_directive,
         $._declaration
       ),
       optional(terminator)
     )),
+
+    _c_directive: $ => seq(
+      '#',
+      choice(
+        $.c_include_clause,
+        $.c_flag_clause
+      )
+    ),
+
+    c_include_clause: $ => seq(
+      'include',
+      field('path', choice(
+        $.interpreted_string_literal,
+        seq('<', $.identifier, '.', $.identifier, '>')
+      ))
+    ),
+
+    c_flag_clause: $ => seq(
+      'flag',
+      optional(field('platform', choice('linux', 'darwin', 'windows'))),
+      field('value', choice(
+        token(seq(choice('-', letter, '@'), repeat(choice('-', letter, unicodeDigit, / /, '@')))),
+      ))
+    ),
 
     module_clause: $ => seq(
       'module',
@@ -577,7 +602,7 @@ module.exports = grammar({
       $.in_operator,
       $.imaginary_literal,
       $.rune_literal,
-      $.nil,
+      $.none,
       $.true,
       $.false,
       $.parenthesized_expression,
@@ -585,8 +610,6 @@ module.exports = grammar({
     ),
 
     range: $ => prec.right(24, seq(field('start', optional($._expression)), '..', field('end', optional($._expression)))),
-
-    
 
     parenthesized_expression: $ => seq(
       '(',
@@ -774,7 +797,11 @@ module.exports = grammar({
 
     raw_string_literal: $ => seq(
       'r\'',
-      repeat(token.immediate(prec(1, /[^']/))),
+      repeat(choice(
+        token.immediate(prec(1, /[^$"'\n\\]/)),
+        $.string_interpolation,
+        $.escape_sequence,
+      )),
       '\''
     ),
 
@@ -801,16 +828,22 @@ module.exports = grammar({
       optional('}')
     ),
 
-    escape_sequence: $ => token.immediate(seq(
-      '\\',
-      choice(
-        /[^xuU]/,
-        /\d{2,3}/,
-        /x[0-9a-fA-F]{2,}/,
-        /u[0-9a-fA-F]{4}/,
-        /U[0-9a-fA-F]{8}/
+    escape_sequence: $ => token(
+      prec(
+        1,
+        seq(
+          "\\",
+          choice(
+            /u[a-fA-F\d]{4}/,
+            /U[a-fA-F\d]{8}/,
+            /x[a-fA-F\d]{2}/,
+            /\d{3}/,
+            /\r?\n/,
+            /['"abfrntv\\]/
+          )
+        )
       )
-    )),
+    ),
 
     int_literal: $ => token(intLiteral),
 
@@ -836,7 +869,7 @@ module.exports = grammar({
       "`"
     )),
 
-    nil: $ => 'nil',
+    none: $ => 'none',
     true: $ => 'true',
     false: $ => 'false',
 
