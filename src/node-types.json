@@ -543,6 +543,21 @@
     }
   },
   {
+    "type": "c_define_clause",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "c_flag_clause",
     "named": true,
     "fields": {
@@ -2078,6 +2093,10 @@
       "required": false,
       "types": [
         {
+          "type": "c_define_clause",
+          "named": true
+        },
+        {
           "type": "c_flag_clause",
           "named": true
         },
@@ -2599,6 +2618,10 @@
   },
   {
     "type": "defer",
+    "named": false
+  },
+  {
+    "type": "define",
     "named": false
   },
   {

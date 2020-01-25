@@ -120,7 +120,8 @@ module.exports = grammar({
       '#',
       choice(
         $.c_include_clause,
-        $.c_flag_clause
+        $.c_flag_clause,
+        $.c_define_clause
       )
     ),
 
@@ -138,6 +139,12 @@ module.exports = grammar({
       field('value', choice(
         token(seq(choice('-', letter, '@'), repeat(choice('-', letter, unicodeDigit, / /, '@')))),
       ))
+    ),
+
+    c_define_clause: $ => seq(
+      'define',
+      $.identifier,
+      optional($.identifier)
     ),
 
     module_clause: $ => seq(
