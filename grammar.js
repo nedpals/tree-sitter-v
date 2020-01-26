@@ -206,7 +206,7 @@ module.exports = grammar({
       'fn',
       field('name', $.identifier),
       field('parameters', $.parameter_list),
-      field('result', optional(choice($.parameter_list, $._simple_type, $.optional_type))),
+      field('result', optional(choice($.parameter_list, $._simple_type, $.option_type))),
       field('body', optional($.block))
     )),
 
@@ -217,7 +217,7 @@ module.exports = grammar({
       field('receiver', $.parameter_list),
       field('name', $._field_identifier),
       field('parameters', $.parameter_list),
-      field('result', optional(choice($.parameter_list, $._simple_type, $.optional_type))),
+      field('result', optional(choice($.parameter_list, $._simple_type, $.option_type))),
       field('body', optional($.block))
     )),
 
@@ -275,12 +275,12 @@ module.exports = grammar({
     expression_list: $ => commaSep1($._expression),
 
     _type: $ => choice(
-      $.optional_type,
+      $.option_type,
       $._simple_type,
       $.parenthesized_type
     ),
 
-    optional_type: $ => seq('?', $._type),
+    option_type: $ => seq('?', $._type),
 
     parenthesized_type: $ => seq('(', $._type, ')'),
 
@@ -417,7 +417,7 @@ module.exports = grammar({
     method_spec: $ => seq(
       field('name', $._field_identifier),
       field('parameters', $.parameter_list),
-      field('result', optional(choice($.parameter_list, $._simple_type, $.optional_type)))
+      field('result', optional(choice($.parameter_list, $._simple_type, $.option_type)))
     ),
 
     map_type: $ => seq(
@@ -432,7 +432,7 @@ module.exports = grammar({
       optional(field('attribute', $.fn_attribute)),
       'fn',
       field('parameters', $.parameter_list),
-      field('result', optional(choice($.parameter_list, $._simple_type, $.optional_type)))
+      field('result', optional(choice($.parameter_list, $._simple_type, $.option_type)))
     ),
 
     block: $ => seq(
@@ -539,13 +539,11 @@ module.exports = grammar({
     defer_statement: $ => seq('defer', $._expression),
 
     if_statement: $ => seq(
-      optional('$'),
-      'if',
+      compTime('if'),
       field('condition', $._expression),
       field('consequence', $.block),
       optional(seq(
-        optional('$'),
-        'else',
+        compTime('else'),
         field('alternative', choice($.block, $.if_statement))
       ))
     ),
@@ -747,7 +745,7 @@ module.exports = grammar({
       optional(field('attribute', $.fn_attribute)),
       'fn',
       field('parameters', $.parameter_list),
-      field('result', optional(choice($.parameter_list, $._simple_type, $.optional_type))),
+      field('result', optional(choice($.parameter_list, $._simple_type, $.option_type))),
       field('body', $.block)
     ),
 
@@ -781,6 +779,7 @@ module.exports = grammar({
     ),
 
     identifier: $ => token(seq(
+      optional(seq('C', '.')),
       letter,
       repeat(choice(letter, unicodeDigit)),
       optional(seq(
@@ -791,9 +790,8 @@ module.exports = grammar({
       ))
     )),
 
-    _compile_time_identifier: $ => alias(seq('$', $.identifier), $.compile_time_identifier),
     _type_identifier: $ => alias($.identifier, $.type_identifier),
-    _field_identifier: $ => alias($.identifier, $.field_identifier),
+    _field_identifier: $ => alias(compTime($.identifier), $.field_identifier),
     _module_identifier: $ => alias($.identifier, $.module_identifier),
 
     _string_literal: $ => choice(
@@ -898,4 +896,8 @@ function commaSep1(rule) {
 
 function commaSep(rule) {
   return optional(commaSep1(rule))
+}
+
+function compTime(rule) {
+  return seq(optional('$'), rule)
 }
