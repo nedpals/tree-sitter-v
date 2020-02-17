@@ -88,6 +88,7 @@ module.exports = grammar({
     [$._statement, $._expression],
     [$.array_type, $._expression],
     [$.array_type],
+    [$.map_type],
     [$._simple_type, $._expression],
     [$.qualified_type, $._expression],
     [$.fn_literal, $.function_type],
@@ -115,6 +116,8 @@ module.exports = grammar({
       ),
       optional(terminator)
     )),
+
+    pub_keyword: $ => token('pub'),
 
     _c_directive: $ => seq(
       '#',
@@ -157,13 +160,11 @@ module.exports = grammar({
       $.import_spec
     ),
 
+    import_path: $ => seq($.identifier, repeat(seq('.', $.identifier))),
+
     import_spec: $ => seq(
-      field('path', $.identifier),
-      optional('as'),
-      optional(field('name', choice(
-        $.blank_identifier,
-        $._module_identifier
-      )))
+      field('path', $.import_path),
+      optional(seq('as', field('name', $._module_identifier)))
     ),
     blank_identifier: $ => '_',
 
@@ -176,7 +177,7 @@ module.exports = grammar({
     ),
 
     const_declaration: $ => seq(
-      optional('pub'),
+      optional($.pub_keyword),
       'const',
       seq(
         '(',
@@ -202,7 +203,7 @@ module.exports = grammar({
 
     function_declaration: $ => prec.right(seq(
       optional(field('attribute', $.fn_attribute)),
-      optional('pub'),
+      optional($.pub_keyword),
       'fn',
       field('name', $.identifier),
       field('parameters', $.parameter_list),
@@ -212,13 +213,13 @@ module.exports = grammar({
 
     method_declaration: $ => prec.right(seq(
       optional(field('attribute', $.fn_attribute)),
-      optional('pub'),
+      optional($.pub_keyword),
       'fn',
       field('receiver', $.parameter_list),
       field('name', $._field_identifier),
       field('parameters', $.parameter_list),
       field('result', optional(choice($.parameter_list, $._simple_type, $.option_type))),
-      field('body', optional($.block))
+      optional(field('body', $.block))
     )),
 
     parameter_list: $ => seq(
@@ -231,8 +232,8 @@ module.exports = grammar({
     ),
 
     parameter_declaration: $ => seq(
-      field('name', commaSep($.identifier)),
-      optional('mut'),
+      optional(field('name', commaSep($.identifier))),
+      optional($.mut_keyword),
       field('type', $._type)
     ),
 
@@ -252,7 +253,7 @@ module.exports = grammar({
     ),
 
     type_declaration: $ => seq(
-      optional('pub'),
+      optional($.pub_keyword),
       'type',
       choice(
         $.type_spec,
@@ -312,7 +313,7 @@ module.exports = grammar({
     // ),
 
     struct_declaration: $ => seq(
-      optional('pub'),
+      optional($.pub_keyword),
       'struct',
       prec.dynamic(-1, $._type_identifier),
       $.field_declaration_list
@@ -325,7 +326,7 @@ module.exports = grammar({
     ),
 
     enum_declaration: $ => seq(
-      optional('pub'),
+      optional($.pub_keyword),
       'enum',
       prec.dynamic(-1, $._type_identifier),
       $.enum_declaration_list
@@ -355,7 +356,7 @@ module.exports = grammar({
       ))
     ),
 
-    field_scopes: $ => choice('mut:', 'pub mut:', '__global:'),
+    field_scopes: $ => seq(choice(seq(optional($.pub_keyword), optional($.mut_keyword)), '__global'), ':'),
 
     field_declaration_list: $ => seq(
       '{',
@@ -379,7 +380,11 @@ module.exports = grammar({
                 $.identifier,
               ']'
             ))
-          )
+          ),
+          optional(seq(
+            '=',
+            field('value', $._expression)
+          ))
         ),
         seq(
           optional('*'),
@@ -425,7 +430,20 @@ module.exports = grammar({
       '[',
       field('key', $._type),
       ']',
-      field('value', $._type)
+      field('value', $._type),
+      optional(
+        seq(
+          '{',
+            commaSep1($.map_entry_declaration),
+          '}'
+        )
+      )
+    ),
+
+    map_entry_declaration: $ => seq(
+      field('key', $._expression),
+      ':',
+      field('value', $._expression)
     ),
 
     function_type: $ => seq(
@@ -445,12 +463,8 @@ module.exports = grammar({
       seq(
         $._statement,
         repeat(seq(terminator, $._statement)),
-        optional(seq(
-          terminator,
-          optional(alias($.empty_labeled_statement, $.labeled_statement))
-        ))
-      ),
-      alias($.empty_labeled_statement, $.labeled_statement)
+        optional(terminator)
+      )
     ),
 
     _statement: $ => choice(
@@ -462,10 +476,8 @@ module.exports = grammar({
       $.if_statement,
       $.for_statement,
       $.match_statement,
-      $.labeled_statement,
       $.break_statement,
       $.continue_statement,
-      $.goto_statement,
       $.block,
       $.empty_statement
     ),
@@ -507,30 +519,15 @@ module.exports = grammar({
     short_var_declaration: $ => seq(
       // TODO: this should really only allow identifier lists, but that causes
       // conflicts between identifiers as expressions vs identifiers here.
-      field('left', choice(
-        $.expression_list,
-        seq('mut', $.expression_list)
-      )),
+      optional($.mut_keyword),
+      field('left', $.expression_list),
       ':=',
       field('right', $._expression)
-    ),
-
-    labeled_statement: $ => seq(
-      field('label', alias($.identifier, $.label_name)),
-      ':',
-      $._statement
-    ),
-
-    empty_labeled_statement: $ => seq(
-      field('label', alias($.identifier, $.label_name)),
-      ':'
     ),
 
     break_statement: $ => seq('break', optional(alias($.identifier, $.label_name))),
 
     continue_statement: $ => seq('continue', optional(alias($.identifier, $.label_name))),
-
-    goto_statement: $ => seq('goto', alias($.identifier, $.label_name)),
 
     return_statement: $ => seq('return', optional($.expression_list)),
 
@@ -550,11 +547,11 @@ module.exports = grammar({
 
     for_statement: $ => seq(
       'for',
-      optional(choice($._expression, $.for_clause, $.range)),
+      optional(choice($._expression, $.forloop_clause, $.range)),
       field('body', $.block)
     ),
 
-    for_clause: $ => seq(
+    forloop_clause: $ => seq(
       field('initializer', optional($._simple_statement)),
       ';',
       field('condition', optional($._expression)),
@@ -614,6 +611,8 @@ module.exports = grammar({
       $.casting_expression
     ),
 
+    mut_keyword: $ => token('mut'),
+
     range: $ => prec.right(24, seq(field('start', optional($._expression)), '..', field('end', optional($._expression)))),
 
     parenthesized_expression: $ => seq(
@@ -656,7 +655,7 @@ module.exports = grammar({
     special_argument_list: $ => seq(
       '(',
       $._type,
-      optional('mut'),
+      optional($.mut_keyword),
       repeat(seq(',', $._expression)),
       optional(','),
       ')'
@@ -665,9 +664,9 @@ module.exports = grammar({
     argument_list: $ => seq(
       '(',
       optional(seq(
-        optional('mut'),
+        optional($.mut_keyword),
         choice($._expression, $.variadic_argument, $.range),
-        repeat(seq(',', optional('mut'), choice($._expression, $.variadic_argument, $.range))),
+        repeat(seq(',', optional($.mut_keyword), choice($._expression, $.variadic_argument, $.range))),
         optional(',')
       )),
       ')'
