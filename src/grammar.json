@@ -2716,7 +2716,7 @@
                 },
                 {
                   "type": "SYMBOL",
-                  "name": "for_clause"
+                  "name": "forloop_clause"
                 },
                 {
                   "type": "SYMBOL",
@@ -2739,7 +2739,7 @@
         }
       ]
     },
-    "for_clause": {
+    "forloop_clause": {
       "type": "SEQ",
       "members": [
         {
