@@ -173,6 +173,7 @@ module.exports = grammar({
       $.const_declaration,
       $.type_declaration,
       $.struct_declaration,
+      $.interface_declaration,
       $.enum_declaration
     ),
 
@@ -243,7 +244,7 @@ module.exports = grammar({
       field('type', $._type)
     ),
 
-    type_alias: $ => seq(
+    sum_type_alias: $ => seq(
       field('name', $._type_identifier),
       '=',
       field('type', seq(
@@ -257,10 +258,10 @@ module.exports = grammar({
       'type',
       choice(
         $.type_spec,
-        $.type_alias,
+        $.sum_type_alias,
         seq(
           '(',
-          repeat(seq(choice($.type_spec, $.type_alias), terminator)),
+          repeat(seq(choice($.type_spec, $.sum_type_alias), terminator)),
           ')'
         )
       )
@@ -404,6 +405,13 @@ module.exports = grammar({
     )),
 
     interface_type: $ => seq(
+      'interface',
+      prec.dynamic(-1, $._type_identifier),
+      $.method_spec_list
+    ),
+
+    interface_declaration: $ => seq(
+      optional($.pub_keyword),
       'interface',
       prec.dynamic(-1, $._type_identifier),
       $.method_spec_list
@@ -707,6 +715,7 @@ module.exports = grammar({
         $.map_type,
         $.struct_type,
         $.enum_type,
+        $.interface_type,
         $._type_identifier,
         $.qualified_type
       )),

@@ -384,6 +384,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "interface_declaration"
+        },
+        {
+          "type": "SYMBOL",
           "name": "enum_declaration"
         }
       ]
@@ -955,7 +959,7 @@
         }
       ]
     },
-    "type_alias": {
+    "sum_type_alias": {
       "type": "SEQ",
       "members": [
         {
@@ -1029,7 +1033,7 @@
             },
             {
               "type": "SYMBOL",
-              "name": "type_alias"
+              "name": "sum_type_alias"
             },
             {
               "type": "SEQ",
@@ -1052,7 +1056,7 @@
                           },
                           {
                             "type": "SYMBOL",
-                            "name": "type_alias"
+                            "name": "sum_type_alias"
                           }
                         ]
                       },
@@ -1850,6 +1854,39 @@
     "interface_type": {
       "type": "SEQ",
       "members": [
+        {
+          "type": "STRING",
+          "value": "interface"
+        },
+        {
+          "type": "PREC_DYNAMIC",
+          "value": -1,
+          "content": {
+            "type": "SYMBOL",
+            "name": "_type_identifier"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "method_spec_list"
+        }
+      ]
+    },
+    "interface_declaration": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "pub_keyword"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
         {
           "type": "STRING",
           "value": "interface"
@@ -3615,6 +3652,10 @@
                 {
                   "type": "SYMBOL",
                   "name": "enum_type"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "interface_type"
                 },
                 {
                   "type": "SYMBOL",

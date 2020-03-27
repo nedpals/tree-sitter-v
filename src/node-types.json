@@ -214,6 +214,10 @@
         "named": true
       },
       {
+        "type": "interface_declaration",
+        "named": true
+      },
+      {
         "type": "match_statement",
         "named": true
       },
@@ -701,6 +705,10 @@
         "types": [
           {
             "type": "enum_type",
+            "named": true
+          },
+          {
+            "type": "interface_type",
             "named": true
           },
           {
@@ -1518,6 +1526,48 @@
     }
   },
   {
+    "type": "interface_declaration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "method_spec_list",
+          "named": true
+        },
+        {
+          "type": "pub_keyword",
+          "named": true
+        },
+        {
+          "type": "type_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "interface_type",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "method_spec_list",
+          "named": true
+        },
+        {
+          "type": "type_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "interpreted_string_literal",
     "named": true,
     "fields": {},
@@ -2191,6 +2241,10 @@
           "named": true
         },
         {
+          "type": "interface_declaration",
+          "named": true
+        },
+        {
           "type": "method_declaration",
           "named": true
         },
@@ -2267,7 +2321,7 @@
     }
   },
   {
-    "type": "type_alias",
+    "type": "sum_type_alias",
     "named": true,
     "fields": {
       "name": {
@@ -2335,7 +2389,7 @@
           "named": true
         },
         {
-          "type": "type_alias",
+          "type": "sum_type_alias",
           "named": true
         },
         {

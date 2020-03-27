@@ -1,12 +1,34 @@
 module main
 
-import json
+type Expr = BinaryExpr | UnaryExpr | IfExpr 
 
-fn (f mut hello.Foo) add(gay &Hello) ?string {
-    mut hello := [1,2,3,4]
+struct Dog {}
+struct Cat {}
+
+const (
+	pi    = 3.14
+	world = '世界'
+)
+
+interface Speaker {
+	speak() string
+}
+
+fn (d Dog) speak() string {
+	return 'woof'
+}
+
+fn (c Cat) speak() string {
+	return 'meow' 
+}
+
+fn perform(s Speaker) {
+	println(s.speak())
 }
 
 fn main() {
-    mut foo := Foo{}
-    println(foo.add(Hello))
+    dog := Dog{}
+    cat := Cat{}
+    perform(dog) // "woof" 
+    perform(cat) // "meow"
 }
