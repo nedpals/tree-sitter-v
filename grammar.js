@@ -198,7 +198,7 @@ module.exports = grammar({
 
     fn_attribute: $ => seq(
       '[',
-      choice('if', 'deprecated', 'inline', 'typedef',),
+      field('name', $.identifier),
       ']'
     ),
 
