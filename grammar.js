@@ -353,8 +353,9 @@ module.exports = grammar({
       field('name', commaSep1($.identifier)),
       optional(seq(
         '=',
-        field('value', $.expression_list)
-      ))
+        field('value', $.int_literal)
+      )),
+      optional(',')
     ),
 
     field_scopes: $ => seq(choice(seq(optional($.pub_keyword), optional($.mut_keyword)), '__global'), ':'),
