@@ -138,7 +138,7 @@ module.exports = grammar({
 
     c_flag_clause: $ => seq(
       'flag',
-      optional(field('platform', choice('linux', 'darwin', 'windows'))),
+      optional(field('platform', $.identifier)),
       field('value', choice(
         token(seq(choice('-', letter, '@'), repeat(choice('-', letter, unicodeDigit, / /, '@')))),
       ))
