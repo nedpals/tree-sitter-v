@@ -636,17 +636,10 @@ module.exports = grammar({
       field('type', $._type)
     ),
 
-    call_expression: $ => prec(1, choice(
-      seq(
-        field('function', $._expression),
-        field('arguments', alias($.special_argument_list, $.argument_list)),
-        field('optional_body', optional($.optional_block))
-      ),
-      seq(
-        field('function', $._expression),
-        field('arguments', $.argument_list),
-        field('optional_body', optional($.optional_block))
-      )
+    call_expression: $ => prec(1, seq(
+      field('function', $._expression),
+      field('arguments', $.argument_list),
+      field('optional_body', optional($.optional_block))
     )),
 
     optional_block: $ => prec.right(seq(
