@@ -169,7 +169,6 @@ module.exports = grammar({
     blank_identifier: $ => '_',
 
     _declaration: $ => choice(
-      // $.receive_statement,
       $.const_declaration,
       $.type_declaration,
       $.struct_declaration,
@@ -307,12 +306,6 @@ module.exports = grammar({
       optional(field('element', $._type))
     ),
 
-    // array_initializer: $ => seq(
-    //   '[',
-    //   field('item', repeat(seq(',', $._expression))),
-    //   ']',
-    // ),
-
     struct_declaration: $ => seq(
       optional($.pub_keyword),
       'struct',
@@ -320,20 +313,8 @@ module.exports = grammar({
       $.field_declaration_list
     ),
 
-    struct_type: $ => seq(
-      'struct',
-      prec.dynamic(-1, $._type_identifier),
-      $.field_declaration_list
-    ),
-
     enum_declaration: $ => seq(
       optional($.pub_keyword),
-      'enum',
-      prec.dynamic(-1, $._type_identifier),
-      $.enum_declaration_list
-    ),
-
-    enum_type: $ => seq(
       'enum',
       prec.dynamic(-1, $._type_identifier),
       $.enum_declaration_list
@@ -405,12 +386,6 @@ module.exports = grammar({
       ),
     )),
 
-    interface_type: $ => seq(
-      'interface',
-      prec.dynamic(-1, $._type_identifier),
-      $.method_spec_list
-    ),
-
     interface_declaration: $ => seq(
       optional($.pub_keyword),
       'interface',
@@ -456,7 +431,6 @@ module.exports = grammar({
     ),
 
     function_type: $ => seq(
-      optional(field('attribute', $.fn_attribute)),
       'fn',
       field('parameters', $.parameter_list),
       field('result', optional(choice($.parameter_list, $._simple_type, $.option_type)))
@@ -526,8 +500,6 @@ module.exports = grammar({
     ),
 
     short_var_declaration: $ => seq(
-      // TODO: this should really only allow identifier lists, but that causes
-      // conflicts between identifiers as expressions vs identifiers here.
       optional($.mut_keyword),
       field('left', $.expression_list),
       ':=',
@@ -654,15 +626,6 @@ module.exports = grammar({
       '...'
     )),
 
-    special_argument_list: $ => seq(
-      '(',
-      $._type,
-      optional($.mut_keyword),
-      repeat(seq(',', $._expression)),
-      optional(','),
-      ')'
-    ),
-
     argument_list: $ => seq(
       '(',
       optional(seq(
@@ -707,9 +670,6 @@ module.exports = grammar({
     composite_literal: $ => prec(PREC.composite_literal, seq(
       field('type', choice(
         $.map_type,
-        $.struct_type,
-        $.enum_type,
-        $.interface_type,
         $._type_identifier,
         $.qualified_type
       )),
@@ -744,7 +704,6 @@ module.exports = grammar({
     ),
 
     fn_literal: $ => seq(
-      optional(field('attribute', $.fn_attribute)),
       'fn',
       field('parameters', $.parameter_list),
       field('result', optional(choice($.parameter_list, $._simple_type, $.option_type))),
