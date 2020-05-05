@@ -81,7 +81,7 @@ module.exports = grammar({
   conflicts: $ => [
     [$._simple_type, $.in_operator, $._expression],
     [$.in_operator, $._expression],
-    [$.in_operator, $.casting_expression],
+    [$.in_operator, $.sum_type_casting_expression],
     [$.function_type, $._simple_type],
     [$._simple_type, $.qualified_type],
     [$.if_statement],
@@ -164,7 +164,7 @@ module.exports = grammar({
 
     import_spec: $ => seq(
       field('path', $.import_path),
-      optional(seq('as', field('name', $._module_identifier)))
+      optional(seq('as', field('alias', $._module_identifier)))
     ),
     blank_identifier: $ => '_',
 
@@ -232,8 +232,10 @@ module.exports = grammar({
     ),
 
     parameter_declaration: $ => seq(
-      optional(field('name', commaSep($.identifier))),
-      optional($.mut_keyword),
+      choice(
+        seq(optional($.mut_keyword), optional(field('name', commaSep($.identifier)))),
+        seq(optional(field('name', commaSep($.identifier))), optional($.mut_keyword))
+      ),
       field('type', $._type)
     ),
 
@@ -243,24 +245,14 @@ module.exports = grammar({
       field('type', $._type)
     ),
 
-    sum_type_alias: $ => seq(
-      field('name', $._type_identifier),
-      '=',
-      field('type', seq(
-        $._type,
-        repeat(seq('|', $._type))
-      ))
-    ),
-
     type_declaration: $ => seq(
       optional($.pub_keyword),
       'type',
       choice(
         $.type_spec,
-        $.sum_type_alias,
         seq(
           '(',
-          repeat(seq(choice($.type_spec, $.sum_type_alias), terminator)),
+          repeat(seq($.type_spec, terminator)),
           ')'
         )
       )
@@ -268,12 +260,16 @@ module.exports = grammar({
 
     type_spec: $ => seq(
       field('name', $._type_identifier),
-      field('type', $._type)
+      optional('='),
+      field('type', seq(
+        $._type,
+        repeat(seq('|', $._type))
+      ))
     ),
 
     field_name_list: $ => commaSep1($._field_identifier),
 
-    expression_list: $ => commaSep1($._expression),
+    expression_list: $ => commaSep1(seq(optional($.mut_keyword), $._expression)),
 
     _type: $ => choice(
       $.option_type,
@@ -335,8 +331,12 @@ module.exports = grammar({
       optional(seq(
         '=',
         field('value', $.int_literal)
-      )),
-      optional(',')
+      ))
+    ),
+
+    enum_identifier: $ => seq(
+      '.',
+      field('field_name', $.identifier)
     ),
 
     field_scopes: $ => seq(choice(seq(optional($.pub_keyword), optional($.mut_keyword)), '__global'), ':'),
@@ -500,7 +500,6 @@ module.exports = grammar({
     ),
 
     short_var_declaration: $ => seq(
-      optional($.mut_keyword),
       field('left', $.expression_list),
       ':=',
       field('right', $._expression)
@@ -515,6 +514,8 @@ module.exports = grammar({
     go_statement: $ => seq('go', $._expression),
 
     defer_statement: $ => seq('defer', $._expression),
+
+    unsafe_statement: $ => seq('unsafe', $._expression),
 
     if_statement: $ => seq(
       compTime('if'),
@@ -573,11 +574,12 @@ module.exports = grammar({
       $.slice_expression,
       $.index_expression,
       $.call_expression,
-      $.type_conversion_expression,
       $.identifier,
+      $.enum_identifier,
       $.composite_literal,
       $._string_literal,
       $.match_statement,
+      $.unsafe_statement,
       $.if_statement,
       $.fn_literal,
       $.int_literal,
@@ -589,7 +591,8 @@ module.exports = grammar({
       $.true,
       $.false,
       $.parenthesized_expression,
-      $.casting_expression
+      $.casting_expression,
+      $.sum_type_casting_expression
     ),
 
     mut_keyword: $ => token('mut'),
@@ -602,11 +605,18 @@ module.exports = grammar({
       ')'
     ),
 
-    casting_expression: $ => seq(
+    casting_expression: $ => prec.dynamic(-1, seq(
+      field('type', $._type),
+      '(',
+      field('operand', $._expression),
+      ')'
+    )),
+
+    sum_type_casting_expression: $ => prec.dynamic(-1, seq(
       field('expr', $._expression),
       'as',
       field('type', $._type)
-    ),
+    )),
 
     call_expression: $ => prec(1, seq(
       field('function', $._expression),
@@ -631,8 +641,7 @@ module.exports = grammar({
       optional(seq(
         optional($.mut_keyword),
         choice($._expression, $.variadic_argument, $.range),
-        repeat(seq(',', optional($.mut_keyword), choice($._expression, $.variadic_argument, $.range))),
-        optional(',')
+        repeat(seq(',', optional($.mut_keyword), choice($._expression, $.variadic_argument, $.range)))
       )),
       ')'
     ),
@@ -659,16 +668,9 @@ module.exports = grammar({
       ']'
     )),
 
-    type_conversion_expression: $ => prec.dynamic(-1, seq(
-      field('type', $._type),
-      '(',
-      field('operand', $._expression),
-      optional(','),
-      ')'
-    )),
-
     composite_literal: $ => prec(PREC.composite_literal, seq(
       field('type', choice(
+        $.array_type,
         $.map_type,
         $._type_identifier,
         $.qualified_type

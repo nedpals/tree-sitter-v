@@ -28,6 +28,10 @@
         "named": true
       },
       {
+        "type": "enum_identifier",
+        "named": true
+      },
+      {
         "type": "false",
         "named": true
       },
@@ -96,11 +100,11 @@
         "named": true
       },
       {
-        "type": "true",
+        "type": "sum_type_casting_expression",
         "named": true
       },
       {
-        "type": "type_conversion_expression",
+        "type": "true",
         "named": true
       },
       {
@@ -651,7 +655,7 @@
     "type": "casting_expression",
     "named": true,
     "fields": {
-      "expr": {
+      "operand": {
         "multiple": false,
         "required": true,
         "types": [
@@ -691,6 +695,10 @@
         "multiple": false,
         "required": true,
         "types": [
+          {
+            "type": "array_type",
+            "named": true
+          },
           {
             "type": "map_type",
             "named": true
@@ -920,6 +928,22 @@
     }
   },
   {
+    "type": "enum_identifier",
+    "named": true,
+    "fields": {
+      "field_name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "expression_case",
     "named": true,
     "fields": {
@@ -955,6 +979,10 @@
       "types": [
         {
           "type": "_expression",
+          "named": true
+        },
+        {
+          "type": "mut_keyword",
           "named": true
         }
       ]
@@ -2085,16 +2113,6 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "mut_keyword",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -2231,40 +2249,10 @@
     }
   },
   {
-    "type": "sum_type_alias",
+    "type": "sum_type_casting_expression",
     "named": true,
     "fields": {
-      "name": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "type_identifier",
-            "named": true
-          }
-        ]
-      },
-      "type": {
-        "multiple": true,
-        "required": true,
-        "types": [
-          {
-            "type": "_type",
-            "named": true
-          },
-          {
-            "type": "|",
-            "named": false
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "type_conversion_expression",
-    "named": true,
-    "fields": {
-      "operand": {
+      "expr": {
         "multiple": false,
         "required": true,
         "types": [
@@ -2299,10 +2287,6 @@
           "named": true
         },
         {
-          "type": "sum_type_alias",
-          "named": true
-        },
-        {
           "type": "type_spec",
           "named": true
         }
@@ -2324,12 +2308,16 @@
         ]
       },
       "type": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
           {
             "type": "_type",
             "named": true
+          },
+          {
+            "type": "|",
+            "named": false
           }
         ]
       }
