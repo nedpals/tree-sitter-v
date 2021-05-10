@@ -1,0 +1,22 @@
+===
+Map Initializer
+===
+
+fn main() {
+  test := {'hello': 'world'}
+}
+
+---
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameter_list)
+    (block
+      (short_var_declaration
+        (expression_list (identifier))
+        (map_initializer 
+          (keyed_literal_value
+            (type_keyed_element 
+              (interpreted_string_literal) 
+              (interpreted_string_literal))))))))

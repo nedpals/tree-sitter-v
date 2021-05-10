@@ -1,0 +1,10 @@
+===
+C Defines Clause
+===
+
+#define Expr_123 'test'
+
+---
+
+(source_file
+  (c_define_clause (identifier) (c_define_value)))

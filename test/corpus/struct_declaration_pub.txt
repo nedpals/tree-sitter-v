@@ -1,0 +1,13 @@
+===
+Public struct declaration
+===
+
+pub struct Hello {}
+
+---
+
+(source_file
+  (struct_declaration
+    (pub_keyword)
+    (type_identifier)
+    (struct_field_declaration_list)))

@@ -1,0 +1,23 @@
+===
+Array Initializer
+===
+
+fn main() {
+  test := []int{len: 10, cap: 10, init: 1}
+}
+
+---
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameter_list)
+    (block
+      (short_var_declaration
+        (expression_list (identifier))
+        (array_initializer 
+          (array_type (builtin_type))
+          (keyed_literal_value
+            (type_keyed_element (identifier) (int_literal))
+            (type_keyed_element (identifier) (int_literal))
+            (type_keyed_element (identifier) (int_literal))))))))

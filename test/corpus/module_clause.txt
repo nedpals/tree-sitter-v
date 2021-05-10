@@ -1,0 +1,11 @@
+=============
+Module clause
+=============
+
+module main_123
+
+---
+
+(source_file
+  (module_clause
+    (module_identifier)))

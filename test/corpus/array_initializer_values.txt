@@ -1,0 +1,20 @@
+===
+Array Initializer with Values
+===
+
+fn main() {
+  test := ['hello', 'world!']
+}
+
+---
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameter_list)
+    (block
+      (short_var_declaration
+        (expression_list (identifier))
+        (array_initializer
+          (interpreted_string_literal)
+          (interpreted_string_literal))))))

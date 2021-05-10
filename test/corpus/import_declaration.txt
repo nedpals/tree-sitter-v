@@ -1,0 +1,12 @@
+===
+Import declaration
+===
+
+import v.ast
+
+---
+
+(source_file
+  (import_declaration
+    (import_spec
+      (import_path (identifier) (identifier)))))

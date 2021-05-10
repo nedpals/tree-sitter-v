@@ -1,0 +1,11 @@
+===
+Type declaration
+===
+
+type Text = string
+
+---
+
+(source_file
+  (type_declaration 
+    (type_spec (type_identifier) (builtin_type))))

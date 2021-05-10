@@ -1,0 +1,18 @@
+===
+Fixed Array Initializer
+===
+
+fn main() {
+  fixed := [1]!
+}
+
+---
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameter_list)
+    (block
+      (short_var_declaration
+        (expression_list (identifier))
+        (array_initializer (int_literal) (fixed_array_indicator))))))

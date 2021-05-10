@@ -1,0 +1,22 @@
+===
+Function Declaration
+===
+
+fn hello_world(mut s []string, i int, words ...Text) ? {}
+
+---
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameter_list
+      (parameter_declaration 
+        (mut_keyword) 
+        (identifier) 
+        (array_type (builtin_type)))
+      (parameter_declaration (identifier) (builtin_type))
+      (parameter_declaration 
+        (identifier) 
+        (variadic_type (type_identifier))))
+    (option_void_type)
+    (block)))

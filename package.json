@@ -1,17 +1,20 @@
 {
   "name": "tree-sitter-v",
-  "version": "1.0.6",
-  "main": "index.js",
+  "version": "1.0.7-pre",
+  "main": "bindings/node",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/nedpals/tree-sitter-v.git"
+  },
+  "scripts": {
+    "test": "tree-sitter test"
   },
   "homepage": "https://github.com/nedpals/tree-sitter-v#readme",
   "dependencies": {
     "nan": "^2.14.0"
   },
   "devDependencies": {
-    "tree-sitter-cli": "^0.15.14"
+    "tree-sitter-cli": "^0.19.4"
   }
 }

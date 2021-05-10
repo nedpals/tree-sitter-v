@@ -1,0 +1,22 @@
+===
+Unsafe Statement
+===
+
+fn main() {
+  unsafe {
+    something.free()
+  }
+}
+
+---
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameter_list)
+    (block
+      (unsafe_statement
+        (block
+          (call_expression 
+            (selector_expression (identifier) (identifier)) 
+            (argument_list)))))))
