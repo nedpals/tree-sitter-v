@@ -29,108 +29,108 @@ TODO
 
 ## Node Support (Checked means already been verified and tested)
 - [x] AliasTypeDecl (`type_declaration`)
-- [] AnonFn
-- [] ArrayDecompose
+- [ ] AnonFn
+- [ ] ArrayDecompose
 - [x] ArrayFixed (`array_initializer`)
 - [x] ArrayInit (`array_initializer`)
 - [x] AsCast (`as_type_cast_expression`)
-- [] AsmAddressing
-- [] AsmAlias
-- [] AsmClobbered
-- [] AsmDisp
-- [] AsmIO
-- [] AsmRegister
-- [] AsmStmt
-- [] AsmTemplate
-- [] AssertStmt
-- [] AssignStmt
-- [] Assoc
-- [] AtExpr
-- [] Attr
+- [ ] AsmAddressing
+- [ ] AsmAlias
+- [ ] AsmClobbered
+- [ ] AsmDisp
+- [ ] AsmIO
+- [ ] AsmRegister
+- [ ] AsmStmt
+- [ ] AsmTemplate
+- [ ] AssertStmt
+- [ ] AssignStmt
+- [ ] Assoc
+- [ ] AtExpr
+- [ ] Attr
 - [x] Block (`block`)
 - [x] BoolLiteral (`true` / `false`)
-- [] BranchStmt
-- [] CallArg
-- [] CallExpr
+- [ ] BranchStmt
+- [ ] CallArg
+- [ ] CallExpr
 - [x] CastExpr (`type_cast_expression`)
-- [] Chan
-- [] ChanInit
-- [] CharLiteral
-- [] Comment
-- [] CompFor
-- [] ComptimeCall
-- [] ComptimeSelector
-- [] ConcatExpr
+- [ ] Chan
+- [ ] ChanInit
+- [ ] CharLiteral
+- [ ] Comment
+- [ ] CompFor
+- [ ] ComptimeCall
+- [ ] ComptimeSelector
+- [ ] ConcatExpr
 - [x] ConstDecl (`const_declaration`)
 - [x] ConstField (`const_spec`)
 - [x] DeferStmt (`defer_statement`)
-- [] DumpExpr
-- [] Embed
-- [] EmbeddedFile
+- [ ] DumpExpr
+- [ ] Embed
+- [ ] EmbeddedFile
 - [x] EnumDecl (`enum_declaration`)
 - [x] EnumField (`enum_member`)
-- [] EnumVal
-- [] ExprStmt
-- [] FloatLiteral
+- [ ] EnumVal
+- [ ] ExprStmt
+- [ ] FloatLiteral
 - [x] FnDecl (`function_declaration`)
-- [] FnTypeDecl
-- [] ForCStmt
-- [] ForInStmt
-- [] ForStmt
-- [] GenericStructInst
-- [] GlobalDecl
-- [] GlobalField
-- [] GoExpr
-- [] GotoLabel
-- [] GotoStmt
-- [] HashStmt (Currently supported: `c_include_clause`, `c_flag_clause`,  `c_define_clause`)
+- [ ] FnTypeDecl
+- [ ] ForCStmt
+- [ ] ForInStmt
+- [ ] ForStmt
+- [ ] GenericStructInst
+- [ ] GlobalDecl
+- [ ] GlobalField
+- [ ] GoExpr
+- [ ] GotoLabel
+- [ ] GotoStmt
+- [ ] HashStmt (Currently supported: `c_include_clause`, `c_flag_clause`,  `c_define_clause`)
 - [x] Ident (`identifier`)
-- [] IdentFn
-- [] IdentVar
-- [] IfBranch
-- [] IfExpr
-- [] IfGuardExpr
+- [ ] IdentFn
+- [ ] IdentVar
+- [ ] IfBranch
+- [ ] IfExpr
+- [ ] IfGuardExpr
 - [x] Import (`import_declaration`)
 - [x] ImportSymbol (`import_symbol`)
-- [] IndexExpr
-- [] InfixExpr
+- [ ] IndexExpr
+- [ ] InfixExpr
 - [x] IntegerLiteral (`int_literal`)
-- [] Interface
-- [] InterfaceDecl
-- [] InterfaceEmbedding
-- [] Likely
-- [] LockExpr
+- [ ] Interface
+- [ ] InterfaceDecl
+- [ ] InterfaceEmbedding
+- [ ] Likely
+- [ ] LockExpr
 - [x] MapInit (`map_initializer`)
-- [] MatchBranch
-- [] MatchExpr
+- [ ] MatchBranch
+- [ ] MatchExpr
 - [x] Module (`module_clause`)
-- [] MultiReturn
+- [ ] MultiReturn
 - [x] NodeError (`[ERROR]`)
 - [x] None (`none`)
-- [] OffsetOf
-- [] OrExpr
-- [] Param
-- [] ParExpr
-- [] PostfixExpr
-- [] PrefixExpr
-- [] RangeExpr
-- [] Return
-- [] SelectBranch
-- [] SelectExpr
-- [] SelectorExpr
-- [] SizeOf
-- [] SqlExpr
-- [] SqlStmt
-- [] SqlStmtLine
-- [] StringInterLiteral
-- [] StringLiteral
+- [ ] OffsetOf
+- [ ] OrExpr
+- [ ] Param
+- [ ] ParExpr
+- [ ] PostfixExpr
+- [ ] PrefixExpr
+- [ ] RangeExpr
+- [ ] Return
+- [ ] SelectBranch
+- [ ] SelectExpr
+- [ ] SelectorExpr
+- [ ] SizeOf
+- [ ] SqlExpr
+- [ ] SqlStmt
+- [ ] SqlStmtLine
+- [ ] StringInterLiteral
+- [ ] StringLiteral
 - [x] StructDecl (`struct_declaration`)
 - [x] StructField (`struct_field_declaration`)
-- [] StructInit
-- [] StructInitEmbed
-- [] StructInitField
+- [ ] StructInit
+- [ ] StructInitEmbed
+- [ ] StructInitField
 - [x] SumTypeDecl (`type_declaration`)
 - [x] TypeNode (`type_identifier`)
-- [] TypeOf
-- [] TypeSymbol
+- [ ] TypeOf
+- [ ] TypeSymbol
 - [x] UnsafeExpr (`unsafe_statement` (name not finalized))
