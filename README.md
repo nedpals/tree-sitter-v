@@ -1,5 +1,6 @@
 # tree-sitter-v
 V language grammar for [tree-sitter](https://github.com/tree-sitter/tree-sitter)
+
 [![build/test](https://github.com/nedpals/tree-sitter-v/actions/workflows/ci.yml/badge.svg)](https://github.com/nedpals/tree-sitter-v/actions/workflows/ci.yml)
 
 ## Existing grammars
