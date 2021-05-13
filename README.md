@@ -24,8 +24,17 @@ const parser = new Parser();
 parser.setLanguage(V);
 ```
 
-## Usage with V
-TODO 
+## Usage with V [v-tree-sitter (soon)]
+```v
+// TODO:
+import treesitter
+import tree_sitter_v.bindings.v
+
+fn main() {
+  mut parser := treesitter.new_parser()
+  parser.set_language(v.language)
+}
+```
 
 ## Node Support (Checked means already been verified and tested)
 - [x] AliasTypeDecl (`type_declaration`)
