@@ -667,10 +667,10 @@ module.exports = grammar({
 
     option_propagator: $ => prec.right(choice(
       token('?'),
-      $.or_expression
+      $.or_block
     )),
 
-    or_expression: $ => seq(
+    or_block: $ => seq(
       'or',
       $.block
     ),
