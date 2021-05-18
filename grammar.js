@@ -88,23 +88,16 @@ module.exports = grammar({
   conflicts: $ => [
     [$._simple_type, $._expression],
     [$.in_operator, $._expression],
-    // [$.function_type, $._simple_type],
     [$._simple_type, $.qualified_type],
-    [$.map_type, $.type_identifier],
-    [$._statement, $._expression],
-    [$.array_type, $._expression],
-    [$._simple_type, $._expression],
     [$.qualified_type, $._expression],
-    [$.binded_type, $._expression],
     // [$.fn_literal, $.function_type],
     [$.parameter_declaration, $._simple_type],
     [$.fixed_array_type, $._expression],
     // TODO:
+    [$.array],
     [$.call_expression],
     [$.index_expression],
-    [$.array_initializer],
-    [$.block, $.keyed_literal_value],
-    [$.literal_value, $.keyed_literal_value]
+    [$.block, $.literal_value],
   ],
 
   supertypes: $ => [
