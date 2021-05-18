@@ -10,7 +10,6 @@ pub enum Color {
 
 (source_file
   (enum_declaration
-    (pub_keyword)
     (type_identifier)
     (enum_member_declaration_list
       (enum_member (identifier)))))

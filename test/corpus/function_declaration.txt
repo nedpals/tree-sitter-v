@@ -10,8 +10,7 @@ fn hello_world(mut s []string, i int, words ...Text) ? {}
   (function_declaration
     (identifier)
     (parameter_list
-      (parameter_declaration 
-        (mut_keyword) 
+      (parameter_declaration
         (identifier) 
         (array_type (builtin_type)))
       (parameter_declaration (identifier) (builtin_type))

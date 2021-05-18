@@ -1,9 +1,9 @@
 ===
-Fixed Array Initializer
+Empty map Initializer
 ===
 
 fn main() {
-  fixed := [1]!
+  test := map[string]int{}
 }
 
 ---
@@ -15,4 +15,6 @@ fn main() {
     (block
       (short_var_declaration
         (expression_list (identifier))
-        (array_initializer (int_literal) (fixed_array_indicator))))))
+        (type_initializer 
+          (map_type (builtin_type) (builtin_type))
+          (literal_value))))))

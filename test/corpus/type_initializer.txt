@@ -16,5 +16,6 @@ fn main() {
       (short_var_declaration
         (expression_list (identifier))
         (type_initializer 
-          (keyed_literal_value
-            (type_keyed_element (identifier) (interpreted_string_literal))))))))
+          (type_identifier)
+          (literal_value
+            (keyed_element (field_identifier) (interpreted_string_literal))))))))

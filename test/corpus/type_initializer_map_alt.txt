@@ -1,9 +1,9 @@
 ===
-Map Initializer
+Map Initializer with alt syntax
 ===
 
 fn main() {
-  test := {'hello': 'world'}
+  test := map{'hello': 'world'}
 }
 
 ---
@@ -15,8 +15,9 @@ fn main() {
     (block
       (short_var_declaration
         (expression_list (identifier))
-        (map_initializer 
-          (keyed_literal_value
-            (type_keyed_element 
+        (type_initializer
+          (type_identifier)
+          (literal_value
+            (keyed_element 
               (interpreted_string_literal) 
               (interpreted_string_literal))))))))

@@ -7,4 +7,4 @@ C Defines Clause
 ---
 
 (source_file
-  (c_define_clause (identifier) (c_define_value)))
+  (c_define_clause (identifier)))

@@ -7,4 +7,4 @@ C Flag Clause
 ---
 
 (source_file
-  (c_flag_clause))
+  (c_flag_clause (identifier)))
