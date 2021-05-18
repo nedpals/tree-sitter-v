@@ -676,7 +676,7 @@ module.exports = grammar({
       $.block
     ),
 
-    decompose_expression: $ => prec.right(seq(
+    decomposed_element: $ => prec.right(seq(
       '...',
       $._expression,
     )),
@@ -685,6 +685,7 @@ module.exports = grammar({
       '(',
       optional(commaSep1(seq(
         optional(mut_keyword),
+        choice($._expression, $.decomposed_element),
       ))),
       ')'
     ),
