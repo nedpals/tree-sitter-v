@@ -60,7 +60,7 @@ const
 
   imaginaryLiteral = seq(choice(decimalDigits, intLiteral, floatLiteral), 'i'),
 
-  builtinTypes = ['string', 'int', 'byte', 'bool', 'float', 'chan', 'char', 'f32', 'f64', 'i64', 'i32', 'i8', 'u16', 'u32', 'u64', 'voidptr', 'array', 'map', 'ustring', 'size_t', 'float_literal', 'int_literal', 'thread', 'any']
+  builtinTypes = ['string', 'int', 'byte', 'bool', 'float', 'chan', 'char', 'f32', 'f64', 'i64', 'i32', 'i8', 'u16', 'u32', 'u64', 'voidptr', 'ustring', 'size_t', 'float_literal', 'int_literal', 'thread', 'any']
 
 module.exports = grammar({
   name: 'v',
@@ -74,6 +74,7 @@ module.exports = grammar({
     $._type,
     $._module_identifier,
     $._field_identifier,
+    $._type_identifier,
     $._string_literal,
   ],
 
@@ -265,7 +266,7 @@ module.exports = grammar({
     ),
 
     type_spec: $ => seq(
-      field('name', $.type_identifier),
+      field('name', $._type_identifier),
       '=',
       field('type', seq(
         $._type,
@@ -285,7 +286,7 @@ module.exports = grammar({
     multi_return_type: $ => seq('(', commaSep1($._simple_type), ')'),
 
     _simple_type: $ => choice(
-      prec.dynamic(-1, $.type_identifier),
+      prec.dynamic(-1, $._type_identifier),
       $.builtin_type,
       $.binded_type,
       $.qualified_type,
@@ -299,7 +300,7 @@ module.exports = grammar({
     binded_type: $ => seq(
       field('language', choice('C', 'JS')),
       '.',
-      field('name', alias($.identifier, $.binded_type_identifier))
+      field('name', $._type_identifier)
     ),
 
     pointer_type: $ => prec(PREC.unary, seq('&', $._simple_type)),
@@ -327,7 +328,7 @@ module.exports = grammar({
     enum_declaration: $ => seq(
       optional($.pub_keyword),
       'enum',
-      prec.dynamic(-1, $.type_identifier),
+      prec.dynamic(-1, $._type_identifier),
       $.enum_member_declaration_list
     ),
 
@@ -363,7 +364,7 @@ module.exports = grammar({
     struct_declaration: $ => seq(
       optional($.pub_keyword),
       'struct',
-      prec.dynamic(-1, choice($.binded_type, $.type_identifier)),
+      prec.dynamic(-1, choice($.binded_type, $._type_identifier)),
       $.struct_field_declaration_list,
     ),
 
@@ -379,7 +380,7 @@ module.exports = grammar({
     struct_field_declaration_list: $ => seq(
       '{',
       optional(repeat(seq(
-        choice($.type_identifier, $.qualified_type),
+        choice($._type_identifier, $.qualified_type),
         optional(terminator)
       ))),
       optional(repeat(seq(
@@ -405,14 +406,14 @@ module.exports = grammar({
     interface_declaration: $ => seq(
       optional($.pub_keyword),
       'interface',
-      prec.dynamic(-1, $.type_identifier),
+      prec.dynamic(-1, $._type_identifier),
       $.interface_spec_list
     ),
 
     interface_spec_list: $ => seq(
       '{',
       optional(seq(
-        choice($.type_identifier, $.qualified_type),
+        choice($._type_identifier, $.qualified_type),
         optional(terminator)
       )),
       optional(seq(
@@ -625,9 +626,8 @@ module.exports = grammar({
       // $.match_statement,
       // $.if_statement,
       // $.fn_literal,
-      $.array_initializer,
+      $.array,
       $.type_initializer,
-      $.map_initializer,
       $.int_literal,
       $.float_literal,
       $.imaginary_literal,
@@ -712,68 +712,57 @@ module.exports = grammar({
       ']'
     )),
 
-    array_initializer: $ => prec(-1, choice(
-      seq(
-        '[',
-        field('values', repeat(seq(
-          $._expression,
-          optional(',')
-        ))),
-        ']',
-        optional(alias('!', $.fixed_array_indicator))
-      ),
-      seq(
-        $.array_type,
-        $.keyed_literal_value
-      )
-    )),
-
-    map_initializer: $ => prec(-1, choice(
-      seq(
-        $.map_type,
-        '{}'
-      ),
-      seq(
-        optional('map'),
-        $.keyed_literal_value
-      )
+    array: $ => prec(-1, seq(
+      '[',
+      field('values', repeat(seq(
+        $._expression,
+        optional(',')
+      ))),
+      ']',
+      optional(alias('!', $.fixed_array_indicator))
     )),
 
     type_initializer: $ => prec(-1, seq(
-      field('type', choice($.type_identifier, $.qualified_type)),
-      field('body', choice($.literal_value, $.keyed_literal_value))
+      field('type', choice(
+        alias('map', $.type_identifier),
+        $._type_identifier,
+        $.builtin_type,
+        $.binded_type,
+        $.qualified_type,
+        $.pointer_type,
+        $.array_type,
+        $.fixed_array_type,
+        $.map_type
+      )),
+      field('body', $.literal_value)
     )),
 
     literal_value: $ => seq(
       '{',
-      optional(seq(
-        alias($._expression, $.type_element),
-        repeat(seq(',', alias($._expression, $.type_element))),
-        optional(',')
+      optional(
+        repeat(seq(
+          choice($.element, $.keyed_element, $.decomposed_element),
+          optional(choice(',', terminator))
+        )
       )),
       '}'
     ),
 
-    keyed_literal_value: $ => seq(
-      '{',
-      optional(seq(
-        $.type_keyed_element,
-        repeat(seq(choice(',', terminator), $.type_keyed_element)),
-        optional(choice(',', terminator))
-      )),
-      '}'
-    ),
-
-    type_keyed_element: $ => prec.left(seq(
+    keyed_element: $ => seq(
       choice(
         seq($._expression, ':'),
-        prec(1, seq($.identifier, ':'))
+        prec(1, seq($._field_identifier, ':'))
       ),
       choice(
         $._expression,
         $.literal_value
       )
-    )),
+    ),
+
+    element: $ => choice(
+      $._expression,
+      $.literal_value
+    ),
 
     // fn_literal: $ => seq(
     //   'fn',
@@ -808,7 +797,7 @@ module.exports = grammar({
     qualified_type: $ => seq(
       field('module', $._module_identifier),
       '.',
-      field('name', $.type_identifier)
+      field('name', $._type_identifier)
     ),
 
     builtin_type: $ => token(choice(
@@ -821,20 +810,9 @@ module.exports = grammar({
     )),
 
     blank_identifier: $ => '_',
-
-    type_identifier: $ => token(seq(
-      choice(/[A-ZΑ-Ωµ]/, '_'),
-      repeat(choice(letter, unicodeDigit)),
-    )),
-
-    lowercased_identifier: $ => token(seq(
-      choice(/[a-zα-ω]/, '_'),
-      repeat(choice(choice(/[a-zα-ω]/, '_'), unicodeDigit)),
-    )),
-
-    _module_identifier: $ => alias($.lowercased_identifier, $.module_identifier),
-
-    _field_identifier: $ => alias($.lowercased_identifier, $.field_identifier),
+    _type_identifier: $ => alias($.identifier, $.type_identifier),
+    _module_identifier: $ => alias($.identifier, $.module_identifier),
+    _field_identifier: $ => alias($.identifier, $.field_identifier),
 
     // String/int/float literals
     _string_literal: $ => choice(
