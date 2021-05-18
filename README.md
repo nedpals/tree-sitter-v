@@ -36,6 +36,11 @@ fn main() {
 }
 ```
 
+## Limitations
+- Statements outside functions (aka `vsh`/`script` mode) are not yet supported.
+- It does not support deprecated/outdated syntax to avoid any ambiguities and enforce the one-way philosophy as much as possible.
+- Assembly/SQL code in ASM/SQL nodes will not be checked for now.
+
 ## Node Support (Checked means already been verified and tested)
 - [x] AliasTypeDecl (`type_declaration`)
 - [ ] AnonFn
