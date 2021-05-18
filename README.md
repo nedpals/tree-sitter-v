@@ -39,9 +39,9 @@ fn main() {
 ## Node Support (Checked means already been verified and tested)
 - [x] AliasTypeDecl (`type_declaration`)
 - [ ] AnonFn
-- [ ] ArrayDecompose
+- [x] ArrayDecompose (`decomposed_element`)
 - [x] ArrayFixed (`array_initializer`)
-- [x] ArrayInit (`array_initializer`)
+- [x] ArrayInit (`array` / `type_initializer`)
 - [x] AsCast (`as_type_cast_expression`)
 - [ ] AsmAddressing
 - [ ] AsmAlias
@@ -52,20 +52,20 @@ fn main() {
 - [ ] AsmStmt
 - [ ] AsmTemplate
 - [ ] AssertStmt
-- [ ] AssignStmt
+- [x] AssignStmt (`assignment_statement`, `short_var_declaration`)
 - [ ] Assoc
 - [ ] AtExpr
-- [ ] Attr
+- [ ] Attr (`attribute_declaration`)
 - [x] Block (`block`)
 - [x] BoolLiteral (`true` / `false`)
 - [ ] BranchStmt
-- [ ] CallArg
-- [ ] CallExpr
+- [ ] CallArg (`argument_list`)
+- [ ] CallExpr (`call_expression`)
 - [x] CastExpr (`type_cast_expression`)
 - [ ] Chan
 - [ ] ChanInit
-- [ ] CharLiteral
-- [ ] Comment
+- [ ] CharLiteral (`rune_literal`)
+- [x] Comment (`comment`)
 - [ ] CompFor
 - [ ] ComptimeCall
 - [ ] ComptimeSelector
@@ -73,29 +73,25 @@ fn main() {
 - [x] ConstDecl (`const_declaration`)
 - [x] ConstField (`const_spec`)
 - [x] DeferStmt (`defer_statement`)
-- [ ] DumpExpr
-- [ ] Embed
+- [ ] DumpExpr (`call_expression`)
 - [ ] EmbeddedFile
 - [x] EnumDecl (`enum_declaration`)
 - [x] EnumField (`enum_member`)
 - [ ] EnumVal
 - [ ] ExprStmt
-- [ ] FloatLiteral
+- [x] FloatLiteral (`float_literal`)
 - [x] FnDecl (`function_declaration`)
 - [ ] FnTypeDecl
-- [ ] ForCStmt
-- [ ] ForInStmt
-- [ ] ForStmt
-- [ ] GenericStructInst
+- [ ] ForCStmt (`for_statement`: `cstyle_for_clause`)
+- [ ] ForInStmt (`for_statement`: `in_operator`)
+- [ ] ForStmt (`for_statement`)
 - [ ] GlobalDecl
 - [ ] GlobalField
-- [ ] GoExpr
+- [ ] GoExpr (`go_expression`)
 - [ ] GotoLabel
 - [ ] GotoStmt
 - [ ] HashStmt (Currently supported: `c_include_clause`, `c_flag_clause`,  `c_define_clause`)
 - [x] Ident (`identifier`)
-- [ ] IdentFn
-- [ ] IdentVar
 - [ ] IfBranch
 - [ ] IfExpr
 - [ ] IfGuardExpr
@@ -104,22 +100,21 @@ fn main() {
 - [ ] IndexExpr
 - [ ] InfixExpr
 - [x] IntegerLiteral (`int_literal`)
-- [ ] Interface
-- [ ] InterfaceDecl
+- [ ] InterfaceDecl (`interface_declaration`)
 - [ ] InterfaceEmbedding
 - [ ] Likely
 - [ ] LockExpr
-- [x] MapInit (`map_initializer`)
+- [x] MapInit (`type_initializer`)
 - [ ] MatchBranch
 - [ ] MatchExpr
 - [x] Module (`module_clause`)
-- [ ] MultiReturn
+- [ ] MultiReturn (`multi_return_type`)
 - [x] NodeError (`[ERROR]`)
 - [x] None (`none`)
 - [ ] OffsetOf
-- [ ] OrExpr
-- [ ] Param
-- [ ] ParExpr
+- [ ] OrExpr (`or_block`)
+- [x] Param (`parameter_declaration`)
+- [x] ParExpr (`parenthesized_expression`)
 - [ ] PostfixExpr
 - [ ] PrefixExpr
 - [ ] RangeExpr
@@ -127,19 +122,18 @@ fn main() {
 - [ ] SelectBranch
 - [ ] SelectExpr
 - [ ] SelectorExpr
-- [ ] SizeOf
+- [ ] SizeOf (`call_expression`)
 - [ ] SqlExpr
 - [ ] SqlStmt
 - [ ] SqlStmtLine
-- [ ] StringInterLiteral
-- [ ] StringLiteral
+- [x] StringInterLiteral (`interpreted_string_literal`)
+- [x] StringLiteral (`_string_literal`)
 - [x] StructDecl (`struct_declaration`)
 - [x] StructField (`struct_field_declaration`)
-- [ ] StructInit
-- [ ] StructInitEmbed
-- [ ] StructInitField
+- [x] StructInit (`type_initializer`)
+- [x] StructInitEmbed (`decomposed_element`)
+- [x] StructInitField (`literal_value`)
 - [x] SumTypeDecl (`type_declaration`)
 - [x] TypeNode (`type_identifier`)
-- [ ] TypeOf
-- [ ] TypeSymbol
+- [ ] TypeOf (`call_expression`)
 - [x] UnsafeExpr (`unsafe_statement` (name not finalized))
