@@ -565,8 +565,7 @@ module.exports = grammar({
       optional(choice(
         $._expression, 
         $.in_operator, 
-        $.cstyle_for_clause, 
-        $.range
+        $.cstyle_for_clause
       )),
       field('body', $.block)
     ),
@@ -707,9 +706,7 @@ module.exports = grammar({
     slice_expression: $ => prec(PREC.primary, seq(
       field('operand', $._expression),
       '[',
-      field('start', optional($._expression)), 
-      '..', 
-      field('end', optional($._expression)),
+      $.range,
       ']'
     )),
 
