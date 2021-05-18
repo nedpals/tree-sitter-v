@@ -310,7 +310,10 @@ module.exports = grammar({
       $._simple_type
     ),
     
-    expression_list: $ => commaSep1($._expression),
+    expression_list: $ => commaSep1(seq(
+      optional(mut_keyword),
+      $._expression,
+    )),
 
     // Enum
     enum_declaration: $ => seq(
