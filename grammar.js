@@ -823,30 +823,18 @@ module.exports = grammar({
 
     raw_string_literal: $ => seq(
       'r',
-      choice('\'', '"'),
-      repeat(choice(
-        token.immediate(prec(1, /[^$"'\n\\]/)),
-        $.escape_sequence,
-      )),
-      choice('\'', '"')
+      stringQuotes1($)
     ),
 
     c_string_literal: $ => seq(
       'c',
-      choice('\'', '"'),
-      repeat(token.immediate(prec(1, /[^$"'\n\\]/))),
-      choice('\'', '"')
+      choice(
+        seq('\'', repeat(token.immediate(prec(1, /[^$'\\]+/))), '\''),
+        seq('"', repeat(token.immediate(prec(1, /[^$"\\]+/))), '"')
+      )
     ),
 
-    interpreted_string_literal: $ => seq(
-      choice('\'', '"'),
-      repeat(choice(
-        token.immediate(prec(1, /[^$"'\n\\]/)),
-        $.string_interpolation,
-        $.escape_sequence,
-      )),
-      choice('\'', '"')
-    ),
+    interpreted_string_literal: $ => stringQuotes($, $.string_interpolation),
 
     string_interpolation: $ => seq(
       '$',
@@ -922,4 +910,48 @@ function commaSep(rule) {
 
 function compTime(rule) {
   return seq(optional('$'), rule)
+}
+
+function stringQuotes1($) {
+  return choice(
+    seq(
+      '\'',
+      repeat(choice(
+        token.immediate(prec(1, /[^$'\\]+/)),
+        $.escape_sequence,
+      )),
+      '\''
+    ),
+    seq(
+      '"',
+      repeat(choice(
+        token.immediate(prec(1, /[^$"\\]+/)),
+        $.escape_sequence,
+      )),
+      '"'
+    )
+  )
+}
+
+function stringQuotes($, rule) {
+  return choice(
+    seq(
+      '\'',
+      repeat(choice(
+        token.immediate(prec(1, /[^$'\\]+/)),
+        $.escape_sequence,
+        rule,
+      )),
+      '\''
+    ),
+    seq(
+      '"',
+      repeat(choice(
+        token.immediate(prec(1, /[^$"\\]+/)),
+        $.escape_sequence,
+        rule
+      )),
+      '"'
+    )
+  )
 }
