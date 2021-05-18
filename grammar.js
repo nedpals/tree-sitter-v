@@ -62,6 +62,11 @@ const
 
   builtinTypes = ['string', 'int', 'byte', 'bool', 'float', 'chan', 'char', 'f32', 'f64', 'i64', 'i32', 'i8', 'u16', 'u32', 'u64', 'voidptr', 'ustring', 'size_t', 'float_literal', 'int_literal', 'thread', 'any']
 
+  pub_keyword = 'pub',
+  mut_keyword = 'mut',
+  global_keyword = '__global',
+  scopes = [pub_keyword, mut_keyword, global_keyword]
+
 module.exports = grammar({
   name: 'v',
 
@@ -119,10 +124,6 @@ module.exports = grammar({
       ),
       optional(terminator)
     )),
-
-    pub_keyword: $ => token('pub'),
-    mut_keyword: $ => token('mut'),
-    global_keyword: $ => token('__global'),
 
     // C Directives (include/flag/define)
     _c_directive: $ => choice(
@@ -192,7 +193,7 @@ module.exports = grammar({
 
     // Consts
     const_declaration: $ => seq(
-      optional($.pub_keyword),
+      optional(pub_keyword),
       'const',
       choice(
         $.const_spec,
@@ -232,7 +233,7 @@ module.exports = grammar({
     // Function / Method
     function_declaration: $ => prec.right(seq(
       // optional(field('attribute', $.attribute_declaration)),
-      optional($.pub_keyword),
+      optional(pub_keyword),
       'fn',
       optional(field('receiver', $.parameter_list)),
       field('name', $.identifier),
@@ -251,14 +252,14 @@ module.exports = grammar({
     ),
 
     parameter_declaration: $ => seq(
-      optional($.mut_keyword),
+      optional(mut_keyword),
       field('name', $.identifier),
       field('type', choice($._type, $.variadic_type))
     ),
 
     // Type Declaration
     type_declaration: $ => seq(
-      optional($.pub_keyword),
+      optional(pub_keyword),
       'type',
       choice(
         $.type_spec,
@@ -326,7 +327,7 @@ module.exports = grammar({
 
     // Enum
     enum_declaration: $ => seq(
-      optional($.pub_keyword),
+      optional(pub_keyword),
       'enum',
       prec.dynamic(-1, $._type_identifier),
       $.enum_member_declaration_list
@@ -362,7 +363,7 @@ module.exports = grammar({
 
     // Struct
     struct_declaration: $ => seq(
-      optional($.pub_keyword),
+      optional(pub_keyword),
       'struct',
       prec.dynamic(-1, choice($.binded_type, $._type_identifier)),
       $.struct_field_declaration_list,
@@ -370,9 +371,9 @@ module.exports = grammar({
 
     struct_field_scope: $ => seq(
       choice(
-        $.pub_keyword,
-        seq($.pub_keyword, $.mut_keyword),
-        $.global_keyword
+        pub_keyword,
+        seq(pub_keyword, mut_keyword),
+        global_keyword
       ), 
       ':'
     ),
@@ -404,7 +405,7 @@ module.exports = grammar({
     )),
 
     interface_declaration: $ => seq(
-      optional($.pub_keyword),
+      optional(pub_keyword),
       'interface',
       prec.dynamic(-1, $._type_identifier),
       $.interface_spec_list
@@ -424,7 +425,7 @@ module.exports = grammar({
       '}'
     ),
 
-    interface_field_scope: $ => seq($.mut_keyword, ':'),
+    interface_field_scope: $ => seq(mut_keyword + ':'),
 
     interface_spec: $ => seq(
       field('name', $._field_identifier),
@@ -683,8 +684,7 @@ module.exports = grammar({
     argument_list: $ => seq(
       '(',
       optional(commaSep1(seq(
-        optional($.mut_keyword),
-        choice($._expression, $.decompose_expression),
+        optional(mut_keyword),
       ))),
       ')'
     ),
