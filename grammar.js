@@ -119,7 +119,6 @@ module.exports = grammar({
     source_file: $ => repeat(seq(
       choice(
         $.module_clause,
-        $._c_directive,
         $._top_level_declaration,
       ),
       optional(terminator)
@@ -153,19 +152,14 @@ module.exports = grammar({
       '#flag',
       optional(field('platform', $.identifier)),
       field('flag', optional(seq('-', letter))),
-      field('value', token(repeat(
-        choice('-', letter, unicodeDigit, / /, '@', '$')
-      )))
+      field('value', token(prec(-1, repeat1(/.|\\\r?\n/))))
     ),
 
     c_define_clause: $ => seq(
       '#define',
-      $.identifier,
-      / /,
-      $.c_define_value
+      field('name', $.identifier),
+      field('value', token(prec(-1, repeat1(/.|\\\r?\n/))))
     ),
-    
-    c_define_value: $ => token(repeat(/[^\n]/)),
 
     // Module
     module_clause: $ => seq(
@@ -462,6 +456,7 @@ module.exports = grammar({
     ),
 
     _top_level_declaration: $ => choice(
+      $._c_directive,
       $.import_declaration,
       $.const_declaration,
       $.type_declaration,
