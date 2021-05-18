@@ -28,6 +28,10 @@
         "named": true
       },
       {
+        "type": "enum_identifier",
+        "named": true
+      },
+      {
         "type": "false",
         "named": true
       },
@@ -994,6 +998,22 @@
     }
   },
   {
+    "type": "enum_identifier",
+    "named": true,
+    "fields": {
+      "field_name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "enum_member",
     "named": true,
     "fields": {
@@ -1450,15 +1470,11 @@
         "required": false,
         "types": [
           {
-            "type": "_simple_type",
+            "type": "_type",
             "named": true
           },
           {
             "type": "multi_return_type",
-            "named": true
-          },
-          {
-            "type": "option_type",
             "named": true
           },
           {

@@ -416,7 +416,7 @@ module.exports = grammar({
     interface_spec: $ => seq(
       field('name', $._field_identifier),
       field('parameters', $.parameter_list),
-      field('result', optional(choice($.multi_return_type, $._simple_type, $.option_type, $.option_void_type)))
+      field('result', optional(choice($.multi_return_type, $._type, $.option_void_type)))
     ),
 
     map_type: $ => seq(

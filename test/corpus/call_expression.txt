@@ -1,0 +1,43 @@
+===
+Call Expression
+===
+
+fn main() {
+  _likely_(false)
+  _unlikely_(10)
+  typeof('hello')
+  foo(Foo{})
+  dump(a)
+  sizeof(Foo)
+  __offsetof(Foo, breed)
+}
+
+---
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameter_list)
+    (block
+      (call_expression 
+        (identifier)
+        (argument_list (false)))
+      (call_expression
+        (identifier)
+        (argument_list (int_literal)))
+      (call_expression
+        (identifier)
+        (argument_list (interpreted_string_literal)))
+      (call_expression
+        (identifier)
+        (argument_list 
+          (type_initializer (type_identifier) (literal_value))))
+      (call_expression 
+        (identifier) 
+        (argument_list (identifier)))
+      (call_expression
+        (identifier)
+        (argument_list (identifier)))
+      (call_expression
+        (identifier)
+        (argument_list (identifier) (identifier))))))

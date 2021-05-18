@@ -59,12 +59,12 @@ fn main() {
 - [x] Block (`block`)
 - [x] BoolLiteral (`true` / `false`)
 - [ ] BranchStmt
-- [ ] CallArg (`argument_list`)
-- [ ] CallExpr (`call_expression`)
+- [x] CallArg (`argument_list`)
+- [x] CallExpr (`call_expression`)
 - [x] CastExpr (`type_cast_expression`)
 - [ ] Chan
 - [ ] ChanInit
-- [ ] CharLiteral (`rune_literal`)
+- [x] CharLiteral (`rune_literal`)
 - [x] Comment (`comment`)
 - [ ] CompFor
 - [ ] ComptimeCall
@@ -73,11 +73,11 @@ fn main() {
 - [x] ConstDecl (`const_declaration`)
 - [x] ConstField (`const_spec`)
 - [x] DeferStmt (`defer_statement`)
-- [ ] DumpExpr (`call_expression`)
+- [x] DumpExpr (`call_expression`)
 - [ ] EmbeddedFile
 - [x] EnumDecl (`enum_declaration`)
 - [x] EnumField (`enum_member`)
-- [ ] EnumVal
+- [x] EnumVal (`enum_identifier`)
 - [ ] ExprStmt
 - [x] FloatLiteral (`float_literal`)
 - [x] FnDecl (`function_declaration`)
@@ -87,7 +87,7 @@ fn main() {
 - [ ] ForStmt (`for_statement`)
 - [ ] GlobalDecl
 - [ ] GlobalField
-- [ ] GoExpr (`go_expression`)
+- [x] GoExpr (`go_statement`)
 - [ ] GotoLabel
 - [ ] GotoStmt
 - [ ] HashStmt (Currently supported: `c_include_clause`, `c_flag_clause`,  `c_define_clause`)
@@ -97,12 +97,12 @@ fn main() {
 - [ ] IfGuardExpr
 - [x] Import (`import_declaration`)
 - [x] ImportSymbol (`import_symbol`)
-- [ ] IndexExpr
+- [ ] IndexExpr (`index_expression`)
 - [ ] InfixExpr
 - [x] IntegerLiteral (`int_literal`)
-- [ ] InterfaceDecl (`interface_declaration`)
-- [ ] InterfaceEmbedding
-- [ ] Likely
+- [x] InterfaceDecl (`interface_declaration`)
+- [x] InterfaceEmbedding (`interface_declaration` -> `type_identifier`)
+- [x] Likely (`call_expression`)
 - [ ] LockExpr
 - [x] MapInit (`type_initializer`)
 - [ ] MatchBranch
@@ -111,7 +111,7 @@ fn main() {
 - [ ] MultiReturn (`multi_return_type`)
 - [x] NodeError (`[ERROR]`)
 - [x] None (`none`)
-- [ ] OffsetOf
+- [x] OffsetOf (`call_expression`)
 - [ ] OrExpr (`or_block`)
 - [x] Param (`parameter_declaration`)
 - [x] ParExpr (`parenthesized_expression`)
@@ -121,8 +121,8 @@ fn main() {
 - [ ] Return
 - [ ] SelectBranch
 - [ ] SelectExpr
-- [ ] SelectorExpr
-- [ ] SizeOf (`call_expression`)
+- [x] SelectorExpr (`selector_expression`)
+- [x] SizeOf (`call_expression`)
 - [ ] SqlExpr
 - [ ] SqlStmt
 - [ ] SqlStmtLine
@@ -135,5 +135,5 @@ fn main() {
 - [x] StructInitField (`literal_value`)
 - [x] SumTypeDecl (`type_declaration`)
 - [x] TypeNode (`type_identifier`)
-- [ ] TypeOf (`call_expression`)
+- [x] TypeOf (`call_expression`)
 - [x] UnsafeExpr (`unsafe_statement` (name not finalized))

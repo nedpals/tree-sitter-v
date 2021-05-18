@@ -1,0 +1,12 @@
+===
+Rune Literal
+===
+
+const a = `h`
+
+---
+
+(source_file
+  (const_declaration
+    (const_spec
+      (identifier) (rune_literal))))

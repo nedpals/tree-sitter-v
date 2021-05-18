@@ -1,0 +1,22 @@
+===
+Selector Expression
+===
+
+fn main() {
+  test.foo
+  hello := world.bar
+}
+
+---
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameter_list)
+    (block
+      (selector_expression
+        (identifier) (identifier))
+      (short_var_declaration
+        (expression_list (identifier))
+        (selector_expression
+          (identifier) (identifier))))))
