@@ -339,14 +339,10 @@ module.exports = grammar({
       ))
     ),
 
-    // enum_identifier: $ => prec.right(seq(
-    //   optional(choice(
-    //     $._module_identifier,
-    //     $.qualified_type
-    //   )),
-    //   '.',
-    //   field('field_name', $.identifier)
-    // )),
+    enum_identifier: $ => seq(
+      '.',
+      field('field_name', $.identifier)
+    ),
 
     // Struct
     struct_declaration: $ => seq(
@@ -608,8 +604,7 @@ module.exports = grammar({
       $.index_expression,
       $.call_expression,
       $.identifier,
-      // $.enum_identifier,
-      // $.composite_literal,
+      $.enum_identifier,
       $._string_literal,
       // $.match_statement,
       // $.if_statement,
