@@ -87,7 +87,6 @@ module.exports = grammar({
 
   conflicts: $ => [
     [$._simple_type, $._expression],
-    [$.in_operator, $._expression],
     [$._simple_type, $.qualified_type],
     [$.qualified_type, $._expression],
     // [$.fn_literal, $.function_type],
@@ -96,8 +95,7 @@ module.exports = grammar({
     // TODO:
     [$.array],
     [$.call_expression],
-    [$.index_expression],
-    [$.block, $.literal_value],
+    [$.index_expression]
   ],
 
   supertypes: $ => [
@@ -464,7 +462,6 @@ module.exports = grammar({
       $.return_statement,
       $.go_statement,
       $.defer_statement,
-      $.unsafe_statement,
       $.if_statement,
       $.comptime_if_statement,
       $.for_statement,
@@ -526,7 +523,7 @@ module.exports = grammar({
 
     defer_statement: $ => seq('defer', $.block),
 
-    unsafe_statement: $ => seq('unsafe', $.block),
+    unsafe_expression: $ => seq('unsafe', $.block),
 
     if_statement: $ => seq(
       'if',
@@ -609,7 +606,6 @@ module.exports = grammar({
       $.unary_expression,
       $.binary_expression,
       $.selector_expression,
-      $.array_type,
       $.slice_expression,
       $.index_expression,
       $.call_expression,
@@ -629,6 +625,7 @@ module.exports = grammar({
       $.true,
       $.false,
       $.parenthesized_expression,
+      $.unsafe_expression,
     ),
 
     range: $ => prec.right(24, seq(field('start', optional($._expression)), '..', field('end', optional($._expression)))),

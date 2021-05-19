@@ -6,6 +6,8 @@ fn main() {
   unsafe {
     something.free()
   }
+
+  test := unsafe { 1 }
 }
 
 ---
@@ -15,8 +17,12 @@ fn main() {
     (identifier)
     (parameter_list)
     (block
-      (unsafe_statement
+      (unsafe_expression
         (block
           (call_expression 
             (selector_expression (identifier) (identifier)) 
-            (argument_list)))))))
+            (argument_list))))
+      (short_var_declaration
+        (expression_list (identifier))
+        (unsafe_expression
+          (block (int_literal)))))))

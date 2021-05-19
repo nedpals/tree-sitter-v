@@ -1868,10 +1868,6 @@
         },
         {
           "type": "SYMBOL",
-          "name": "unsafe_statement"
-        },
-        {
-          "type": "SYMBOL",
           "name": "if_statement"
         },
         {
@@ -2165,7 +2161,7 @@
         }
       ]
     },
-    "unsafe_statement": {
+    "unsafe_expression": {
       "type": "SEQ",
       "members": [
         {
@@ -2580,10 +2576,6 @@
         },
         {
           "type": "SYMBOL",
-          "name": "array_type"
-        },
-        {
-          "type": "SYMBOL",
           "name": "slice_expression"
         },
         {
@@ -2645,6 +2637,10 @@
         {
           "type": "SYMBOL",
           "name": "parenthesized_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "unsafe_expression"
         }
       ]
     },
@@ -6411,10 +6407,6 @@
       "_expression"
     ],
     [
-      "in_operator",
-      "_expression"
-    ],
-    [
       "_simple_type",
       "qualified_type"
     ],
@@ -6435,13 +6427,6 @@
     ],
     [
       "call_expression"
-    ],
-    [
-      "index_expression"
-    ],
-    [
-      "block",
-      "literal_value"
     ]
   ],
   "precedences": [],

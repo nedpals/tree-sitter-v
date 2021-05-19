@@ -142,4 +142,4 @@ fn main() {
 - [x] SumTypeDecl (`type_declaration`)
 - [x] TypeNode (`type_identifier`)
 - [x] TypeOf (`call_expression`)
-- [x] UnsafeExpr (`unsafe_statement` (name not finalized))
+- [x] UnsafeExpr (`unsafe_expression` (name not finalized))

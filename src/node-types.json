@@ -8,10 +8,6 @@
         "named": true
       },
       {
-        "type": "array_type",
-        "named": true
-      },
-      {
         "type": "as_type_cast_expression",
         "named": true
       },
@@ -97,6 +93,10 @@
       },
       {
         "type": "unary_expression",
+        "named": true
+      },
+      {
+        "type": "unsafe_expression",
         "named": true
       }
     ]
@@ -219,10 +219,6 @@
       },
       {
         "type": "return_statement",
-        "named": true
-      },
-      {
-        "type": "unsafe_statement",
         "named": true
       }
     ]
@@ -2368,7 +2364,7 @@
     }
   },
   {
-    "type": "unsafe_statement",
+    "type": "unsafe_expression",
     "named": true,
     "fields": {},
     "children": {
