@@ -38,8 +38,9 @@ fn main() {
 
 ## Limitations
 - Statements outside functions (aka `vsh`/`script` mode) are not yet supported.
-- It does not support deprecated/outdated syntax to avoid any ambiguities and enforce the one-way philosophy as much as possible.
-- Assembly/SQL code in ASM/SQL nodes will not be checked for now.
+- It does not support all deprecated/outdated syntaxes to avoid any ambiguities and to enforce the one-way philosophy as much as possible.
+- Assembly/SQL code in ASM/SQL block nodes are loosely checked and parsed immediately regardless of the content.
+- Syntaxes related to generics support (e.g template) are not yet implemented.
 
 ## Node Support (Checked means already been verified and tested)
 - [x] AliasTypeDecl (`type_declaration`)
@@ -87,22 +88,22 @@ fn main() {
 - [x] FloatLiteral (`float_literal`)
 - [x] FnDecl (`function_declaration`)
 - [ ] FnTypeDecl
-- [ ] ForCStmt (`for_statement`: `cstyle_for_clause`)
-- [ ] ForInStmt (`for_statement`: `in_operator`)
-- [ ] ForStmt (`for_statement`)
+- [x] ForCStmt (`for_statement`: `cstyle_for_clause`)
+- [x] ForInStmt (`for_statement`: `in_operator`)
+- [x] ForStmt (`for_statement`)
 - [ ] GlobalDecl
 - [ ] GlobalField
 - [x] GoExpr (`go_statement`)
 - [ ] GotoLabel
 - [ ] GotoStmt
-- [ ] HashStmt (Currently supported: `c_include_clause`, `c_flag_clause`,  `c_define_clause`)
+- [x] HashStmt (Currently supported: `c_include_clause`, `c_flag_clause`,  `c_define_clause`)
 - [x] Ident (`identifier`)
-- [ ] IfBranch
-- [ ] IfExpr
-- [ ] IfGuardExpr
+- [x] IfBranch (`if_statement`, TODO: as an expr)
+- [x] IfExpr (`if_statement`, TODO: as an expr)
+- [x] IfGuardExpr (`if statement`: `is_expression`)
 - [x] Import (`import_declaration`)
 - [x] ImportSymbol (`import_symbol`)
-- [ ] IndexExpr (`index_expression`)
+- [x] IndexExpr (`index_expression`)
 - [ ] InfixExpr
 - [x] IntegerLiteral (`int_literal`)
 - [x] InterfaceDecl (`interface_declaration`)
@@ -110,20 +111,20 @@ fn main() {
 - [x] Likely (`call_expression`)
 - [ ] LockExpr
 - [x] MapInit (`type_initializer`)
-- [ ] MatchBranch
-- [ ] MatchExpr
+- [x] MatchBranch (`expression_case`)
+- [x] MatchExpr (`match_statement`, TODO: make it expr)
 - [x] Module (`module_clause`)
 - [ ] MultiReturn (`multi_return_type`)
 - [x] NodeError (`[ERROR]`)
 - [x] None (`none`)
 - [x] OffsetOf (`call_expression`)
-- [ ] OrExpr (`or_block`)
+- [x] OrExpr (`or_block`)
 - [x] Param (`parameter_declaration`)
 - [x] ParExpr (`parenthesized_expression`)
-- [ ] PostfixExpr
+- [x] PostfixExpr (`inc_statement`, `dec_statement`)
 - [ ] PrefixExpr
-- [ ] RangeExpr
-- [ ] Return
+- [x] RangeExpr (`range`)
+- [x] Return (`return_statement`)
 - [ ] SelectBranch
 - [ ] SelectExpr
 - [x] SelectorExpr (`selector_expression`)

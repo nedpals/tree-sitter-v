@@ -1,0 +1,15 @@
+===
+Interpreted String Literal with Interpolation
+===
+
+const a = 'Hello $world! ${hello.hey}'
+
+---
+
+(source_file
+  (const_declaration
+    (const_spec 
+      (identifier) 
+      (interpreted_string_literal
+        (string_interpolation (identifier))
+        (string_interpolation (identifier))))))

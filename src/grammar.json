@@ -1884,6 +1884,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "match_statement"
+        },
+        {
+          "type": "SYMBOL",
           "name": "break_statement"
         },
         {
@@ -2181,8 +2185,17 @@
           "type": "FIELD",
           "name": "condition",
           "content": {
-            "type": "SYMBOL",
-            "name": "_expression"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "_expression"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "is_expression"
+              }
+            ]
           }
         },
         {
@@ -2226,6 +2239,23 @@
               "type": "BLANK"
             }
           ]
+        }
+      ]
+    },
+    "is_expression": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_expression"
+        },
+        {
+          "type": "STRING",
+          "value": "is"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_simple_type"
         }
       ]
     },
@@ -2399,29 +2429,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "identifier"
-            },
-            {
-              "type": "REPEAT",
-              "content": {
-                "type": "SEQ",
-                "members": [
-                  {
-                    "type": "STRING",
-                    "value": ","
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "identifier"
-                  }
-                ]
-              }
-            }
-          ]
+          "type": "SYMBOL",
+          "name": "expression_list"
         },
         {
           "type": "STRING",
@@ -2460,6 +2469,47 @@
             "type": "SYMBOL",
             "name": "block"
           }
+        }
+      ]
+    },
+    "match_statement": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "match"
+        },
+        {
+          "type": "FIELD",
+          "name": "condition",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_expression"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "{"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "expression_case"
+              }
+            ]
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "default_case"
+        },
+        {
+          "type": "STRING",
+          "value": "}"
         }
       ]
     },

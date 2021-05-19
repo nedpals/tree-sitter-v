@@ -1,0 +1,23 @@
+===
+If Expression
+===
+
+fn main() {
+  if true {
+  } else if !true {
+  } else {
+  }
+}
+
+---
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameter_list)
+    (block
+      (if_statement 
+        (true) (block)
+        (if_statement
+          (unary_expression (true)) (block)
+          (block))))))

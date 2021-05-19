@@ -214,6 +214,10 @@
         "named": true
       },
       {
+        "type": "match_statement",
+        "named": true
+      },
+      {
         "type": "return_statement",
         "named": true
       },
@@ -940,6 +944,22 @@
     }
   },
   {
+    "type": "default_case",
+    "named": true,
+    "fields": {
+      "consequence": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "block",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "defer_statement",
     "named": true,
     "fields": {},
@@ -1052,6 +1072,32 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "expression_case",
+    "named": true,
+    "fields": {
+      "consequence": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "block",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expression_list",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -1241,6 +1287,10 @@
           {
             "type": "_expression",
             "named": true
+          },
+          {
+            "type": "is_expression",
+            "named": true
           }
         ]
       },
@@ -1357,6 +1407,10 @@
       "types": [
         {
           "type": "_expression",
+          "named": true
+        },
+        {
+          "type": "expression_list",
           "named": true
         },
         {
@@ -1532,6 +1586,25 @@
     }
   },
   {
+    "type": "is_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "_expression",
+          "named": true
+        },
+        {
+          "type": "_simple_type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "keyed_element",
     "named": true,
     "fields": {},
@@ -1601,6 +1674,36 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "match_statement",
+    "named": true,
+    "fields": {
+      "condition": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "_expression",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "default_case",
+          "named": true
+        },
+        {
+          "type": "expression_case",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -2631,11 +2734,19 @@
     "named": false
   },
   {
+    "type": "is",
+    "named": false
+  },
+  {
     "type": "label_name",
     "named": true
   },
   {
     "type": "map",
+    "named": false
+  },
+  {
+    "type": "match",
     "named": false
   },
   {
