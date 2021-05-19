@@ -96,7 +96,8 @@ module.exports = grammar({
     [$.fixed_array_type, $._expression],
     [$.array],
     [$.call_expression],
-    [$.index_expression]
+    [$.index_expression],
+    [$.struct_field_declaration]
   ],
 
   supertypes: $ => [
@@ -361,28 +362,33 @@ module.exports = grammar({
     struct_field_declaration_list: $ => seq(
       '{',
       optional(repeat(seq(
-        choice($._type_identifier, $.qualified_type),
-        optional(terminator)
-      ))),
-      optional(repeat(seq(
         choice(
+          $.struct_field_scope, 
         $.struct_field_scope, 
-        $.struct_field_declaration
+          $.struct_field_scope, 
+          $.struct_field_declaration
         ), 
         optional(terminator),
       ))),
       '}'
     ),
 
-    struct_field_declaration: $ => prec(1, seq(
-      field('name', $._field_identifier),
-      field('type', $._type),
-      optional(field('attributes', $.attribute_declaration)),
-      optional(seq(
-        '=',
-        field('default_value', $._expression)
-      ))
-    )),
+    struct_field_declaration: $ => choice(
+      seq(
+        field('name', $._field_identifier),
+        field('type', $._type),
+        optional(field('attributes', $.attribute_declaration)),
+        optional(seq(
+          '=',
+          field('default_value', $._expression)
+        ))
+      ),
+      field(
+        'type',
+        choice($._type_identifier, $.qualified_type),
+        optional(terminator)
+      )
+    ),
 
     interface_declaration: $ => seq(
       optional(pub_keyword),
