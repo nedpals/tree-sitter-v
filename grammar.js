@@ -91,10 +91,9 @@ module.exports = grammar({
     [$.qualified_type, $._expression],
     [$.function_type],
     [$.option_type],
-    // [$.fn_literal, $.function_type],
+    [$.fn_literal, $.function_type],
     [$.parameter_declaration, $._simple_type],
     [$.fixed_array_type, $._expression],
-    // TODO:
     [$.array],
     [$.call_expression],
     [$.index_expression]
@@ -614,7 +613,7 @@ module.exports = grammar({
       $._string_literal,
       // $.match_statement,
       // $.if_statement,
-      // $.fn_literal,
+      $.fn_literal,
       $.array,
       $.type_initializer,
       $.int_literal,
@@ -752,12 +751,12 @@ module.exports = grammar({
       $.literal_value
     ),
 
-    // fn_literal: $ => seq(
-    //   'fn',
-    //   field('parameters', $.parameter_list),
-    //   field('result', optional(choice($.parameter_list, $._simple_type, $.option_type))),
-    //   field('body', $.block)
-    // ),
+    fn_literal: $ => seq(
+      'fn',
+      field('parameters', $.parameter_list),
+      field('result', optional($._type)),
+      field('body', $.block)
+    ),
 
     unary_expression: $ => prec(PREC.unary, seq(
       field('operator', choice('+', '-', '!', '^', '*', '&', '<-')),

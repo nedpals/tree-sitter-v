@@ -1,0 +1,29 @@
+===
+Function Literal
+===
+
+fn main() {
+  app.handle(fn (req &Req, res Res) ? {
+    return
+  })
+}
+
+---
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameter_list)
+    (block
+      (call_expression
+        (selector_expression (identifier) (identifier))
+        (argument_list
+          (fn_literal
+            (parameter_list
+              (parameter_declaration
+                (identifier)
+                (pointer_type (type_identifier)))
+              (parameter_declaration
+                (identifier) (type_identifier)))
+            (option_type)
+            (block (return_statement))))))))

@@ -44,7 +44,7 @@ fn main() {
 
 ## Node Support (Checked means already been verified and tested)
 - [x] AliasTypeDecl (`type_declaration`)
-- [ ] AnonFn
+- [x] AnonFn (`fn_literal`)
 - [x] ArrayDecompose (`decomposed_element`)
 - [x] ArrayFixed (`array_initializer`)
 - [x] ArrayInit (`array` / `type_initializer`)
