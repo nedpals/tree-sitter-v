@@ -572,7 +572,7 @@ module.exports = grammar({
     )),
 
     in_operator: $ => seq(
-      commaSep1($.identifier), 
+      $.expression_list, 
       'in',
       choice($._expression, $.range)
     ),
