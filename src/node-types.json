@@ -236,6 +236,10 @@
         "named": true
       },
       {
+        "type": "multi_return_type",
+        "named": true
+      },
+      {
         "type": "option_type",
         "named": true
       }
@@ -1525,10 +1529,6 @@
         "types": [
           {
             "type": "_type",
-            "named": true
-          },
-          {
-            "type": "multi_return_type",
             "named": true
           },
           {

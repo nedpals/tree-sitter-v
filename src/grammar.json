@@ -844,6 +844,10 @@
         {
           "type": "SYMBOL",
           "name": "_simple_type"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "multi_return_type"
         }
       ]
     },

@@ -103,7 +103,7 @@ fn main() {
 - [x] IfGuardExpr (`if statement`: `is_expression`)
 - [x] Import (`import_declaration`)
 - [x] ImportSymbol (`import_symbol`)
-- [x] IndexExpr (`index_expression`)
+- [x] IndexExpr (`index_expression` / `slice_expression`)
 - [ ] InfixExpr
 - [x] IntegerLiteral (`int_literal`)
 - [x] InterfaceDecl (`interface_declaration`)
@@ -114,7 +114,7 @@ fn main() {
 - [x] MatchBranch (`expression_case`)
 - [x] MatchExpr (`match_statement`, TODO: make it expr)
 - [x] Module (`module_clause`)
-- [ ] MultiReturn (`multi_return_type`)
+- [x] MultiReturn (`multi_return_type`) (NOTE: shouldn't be used in arguments)
 - [x] NodeError (`[ERROR]`)
 - [x] None (`none`)
 - [x] OffsetOf (`call_expression`)

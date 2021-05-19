@@ -265,6 +265,7 @@ module.exports = grammar({
     _type: $ => choice(
       $.option_type,
       $._simple_type,
+      $.multi_return_type
     ),
 
     option_type: $ => seq('?', $._type),
