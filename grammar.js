@@ -468,7 +468,7 @@ module.exports = grammar({
       $.comptime_if_statement,
       $.for_statement,
       $.comptime_for_statement,
-      // $.match_statement,
+      $.match_statement,
       $.break_statement,
       $.continue_statement,
       $.block,
@@ -583,14 +583,14 @@ module.exports = grammar({
       field('body', $.block)
     ),
 
-    // match_statement: $ => seq(
-    //   'match',
-    //   field('condition', $._expression),
-    //   '{',
-    //   repeat(choice($.expression_case)),
-    //   $.default_case,
-    //   '}'
-    // ),
+    match_statement: $ => seq(
+      'match',
+      field('condition', $._expression),
+      '{',
+      repeat(choice($.expression_case)),
+      $.default_case,
+      '}'
+    ),
 
     expression_case: $ => seq(
       field('value', $.expression_list),
