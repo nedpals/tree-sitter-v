@@ -8,17 +8,8 @@
         "type": "SEQ",
         "members": [
           {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "module_clause"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "_top_level_declaration"
-              }
-            ]
+            "type": "SYMBOL",
+            "name": "_top_level_declaration"
           },
           {
             "type": "CHOICE",
@@ -1824,6 +1815,10 @@
     "_top_level_declaration": {
       "type": "CHOICE",
       "members": [
+        {
+          "type": "SYMBOL",
+          "name": "module_clause"
+        },
         {
           "type": "SYMBOL",
           "name": "_c_directive"

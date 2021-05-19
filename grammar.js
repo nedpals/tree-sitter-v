@@ -109,10 +109,7 @@ module.exports = grammar({
 
   rules: {
     source_file: $ => repeat(seq(
-      choice(
-        $.module_clause,
-        $._top_level_declaration,
-      ),
+      $._top_level_declaration,
       optional(terminator)
     )),
 
@@ -446,6 +443,7 @@ module.exports = grammar({
     ),
 
     _top_level_declaration: $ => choice(
+      $.module_clause,
       $._c_directive,
       $.import_declaration,
       $.const_declaration,
