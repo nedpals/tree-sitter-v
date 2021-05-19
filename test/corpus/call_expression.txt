@@ -10,6 +10,9 @@ fn main() {
   dump(a)
   sizeof(Foo)
   __offsetof(Foo, breed)
+  opt(1) or {
+    return
+  }
 }
 
 ---
@@ -40,4 +43,10 @@ fn main() {
         (argument_list (identifier)))
       (call_expression
         (identifier)
-        (argument_list (identifier) (identifier))))))
+        (argument_list (identifier) (identifier)))
+      (call_expression
+        (identifier)
+        (argument_list (int_literal))
+        (option_propagator
+          (or_block
+            (block (return_statement))))))))
