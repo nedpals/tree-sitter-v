@@ -2189,7 +2189,7 @@
       },
       "name": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "field_identifier",
@@ -2203,6 +2203,14 @@
         "types": [
           {
             "type": "_type",
+            "named": true
+          },
+          {
+            "type": "qualified_type",
+            "named": true
+          },
+          {
+            "type": "type_identifier",
             "named": true
           }
         ]
@@ -2218,19 +2226,11 @@
       "required": false,
       "types": [
         {
-          "type": "qualified_type",
-          "named": true
-        },
-        {
           "type": "struct_field_declaration",
           "named": true
         },
         {
           "type": "struct_field_scope",
-          "named": true
-        },
-        {
-          "type": "type_identifier",
           "named": true
         }
       ]

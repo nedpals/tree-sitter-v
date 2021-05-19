@@ -353,6 +353,7 @@ module.exports = grammar({
     struct_field_scope: $ => seq(
       choice(
         pub_keyword,
+        mut_keyword,
         seq(pub_keyword, mut_keyword),
         global_keyword
       ), 
@@ -363,8 +364,6 @@ module.exports = grammar({
       '{',
       optional(repeat(seq(
         choice(
-          $.struct_field_scope, 
-        $.struct_field_scope, 
           $.struct_field_scope, 
           $.struct_field_declaration
         ), 
