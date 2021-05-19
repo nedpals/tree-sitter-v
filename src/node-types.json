@@ -2075,6 +2075,10 @@
       "required": false,
       "types": [
         {
+          "type": "attribute_declaration",
+          "named": true
+        },
+        {
           "type": "c_define_clause",
           "named": true
         },

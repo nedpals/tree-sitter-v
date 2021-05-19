@@ -215,7 +215,6 @@ module.exports = grammar({
 
     // Function / Method
     function_declaration: $ => prec.right(seq(
-      // optional(field('attribute', $.attribute_declaration)),
       optional(pub_keyword),
       'fn',
       optional(field('receiver', $.parameter_list)),
@@ -451,7 +450,8 @@ module.exports = grammar({
       $.struct_declaration,
       $.interface_declaration,
       $.enum_declaration,
-      $.function_declaration
+      $.function_declaration,
+      $.attribute_declaration
     ),
 
     _statement: $ => choice(

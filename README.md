@@ -61,7 +61,7 @@ fn main() {
 - [x] AssignStmt (`assignment_statement`, `short_var_declaration`)
 - [ ] Assoc
 - [ ] AtExpr
-- [ ] Attr (`attribute_declaration`)
+- [x] Attr (`attribute_declaration`)
 - [x] Block (`block`)
 - [x] BoolLiteral (`true` / `false`)
 - [ ] BranchStmt
