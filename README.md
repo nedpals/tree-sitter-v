@@ -87,7 +87,7 @@ fn main() {
 - [ ] ExprStmt
 - [x] FloatLiteral (`float_literal`)
 - [x] FnDecl (`function_declaration`)
-- [ ] FnTypeDecl
+- [x] FnTypeDecl (`function_type`)
 - [x] ForCStmt (`for_statement`: `cstyle_for_clause`)
 - [x] ForInStmt (`for_statement`: `in_operator`)
 - [x] ForStmt (`for_statement`)

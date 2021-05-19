@@ -17,5 +17,5 @@ fn hello_world(mut s []string, i int, words ...Text) ? {}
       (parameter_declaration 
         (identifier) 
         (variadic_type (type_identifier))))
-    (option_void_type)
+    (option_type)
     (block)))

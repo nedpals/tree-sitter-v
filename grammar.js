@@ -89,6 +89,8 @@ module.exports = grammar({
     [$._simple_type, $._expression],
     [$._simple_type, $.qualified_type],
     [$.qualified_type, $._expression],
+    [$.function_type],
+    [$.option_type],
     // [$.fn_literal, $.function_type],
     [$.parameter_declaration, $._simple_type],
     [$.fixed_array_type, $._expression],
@@ -223,7 +225,7 @@ module.exports = grammar({
       optional(field('receiver', $.parameter_list)),
       field('name', $.identifier),
       field('parameters', $.parameter_list),
-      field('result', optional(choice($._simple_type, $.option_type, $.option_void_type, $.multi_return_type))),
+      field('result', optional($._type)),
       field('body', optional($.block))
     )),
 
@@ -266,9 +268,7 @@ module.exports = grammar({
       $.multi_return_type
     ),
 
-    option_type: $ => seq('?', $._type),
-
-    option_void_type: $ => token('?'),
+    option_type: $ => seq(token('?'), optional($._type)),
 
     multi_return_type: $ => seq('(', commaSep1($._simple_type), ')'),
 
@@ -281,7 +281,7 @@ module.exports = grammar({
       $.array_type,
       $.fixed_array_type,
       $.map_type,
-      // $.function_type
+      $.function_type
     ),
     
     binded_type: $ => seq(
@@ -415,7 +415,7 @@ module.exports = grammar({
     interface_spec: $ => seq(
       field('name', $._field_identifier),
       field('parameters', $.parameter_list),
-      field('result', optional(choice($.multi_return_type, $._type, $.option_void_type)))
+      field('result', optional($._type))
     ),
 
     map_type: $ => seq(
@@ -426,11 +426,11 @@ module.exports = grammar({
       field('value', $._type),
     ),
 
-    // function_type: $ => seq(
-    //   'fn',
-    //   field('parameters', $.parameter_list),
-    //   field('result', optional(choice($.parameter_list, $._simple_type, $.option_type)))
-    // ),
+    function_type: $ => seq(
+      'fn',
+      field('parameters', $.parameter_list),
+      field('result', optional($._type))
+    ),
 
     block: $ => seq(
       '{',

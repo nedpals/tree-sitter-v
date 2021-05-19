@@ -148,6 +148,10 @@
         "named": true
       },
       {
+        "type": "function_type",
+        "named": true
+      },
+      {
         "type": "map_type",
         "named": true
       },
@@ -1228,19 +1232,33 @@
         "required": false,
         "types": [
           {
-            "type": "_simple_type",
+            "type": "_type",
             "named": true
-          },
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "function_type",
+    "named": true,
+    "fields": {
+      "parameters": {
+        "multiple": false,
+        "required": true,
+        "types": [
           {
-            "type": "multi_return_type",
+            "type": "parameter_list",
             "named": true
-          },
+          }
+        ]
+      },
+      "result": {
+        "multiple": false,
+        "required": false,
+        "types": [
           {
-            "type": "option_type",
-            "named": true
-          },
-          {
-            "type": "option_void_type",
+            "type": "_type",
             "named": true
           }
         ]
@@ -1526,10 +1544,6 @@
           {
             "type": "_type",
             "named": true
-          },
-          {
-            "type": "option_void_type",
-            "named": true
           }
         ]
       }
@@ -1753,7 +1767,7 @@
     "fields": {},
     "children": {
       "multiple": false,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "_type",
@@ -1761,11 +1775,6 @@
         }
       ]
     }
-  },
-  {
-    "type": "option_void_type",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "or_block",
