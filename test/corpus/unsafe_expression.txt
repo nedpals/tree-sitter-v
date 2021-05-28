@@ -24,5 +24,6 @@ fn main() {
             (argument_list))))
       (short_var_declaration
         (expression_list (identifier))
-        (unsafe_expression
-          (block (int_literal)))))))
+        (expression_list
+          (unsafe_expression
+            (block (int_literal))))))))

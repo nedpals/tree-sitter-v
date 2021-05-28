@@ -18,5 +18,6 @@ fn main() {
         (identifier) (identifier))
       (short_var_declaration
         (expression_list (identifier))
-        (selector_expression
-          (identifier) (identifier))))))
+        (expression_list
+          (selector_expression
+            (identifier) (identifier)))))))

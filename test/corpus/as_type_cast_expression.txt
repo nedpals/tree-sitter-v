@@ -15,6 +15,7 @@ fn main() {
     (block
       (short_var_declaration
         (expression_list (identifier))
-        (as_type_cast_expression
-          (identifier)
-          (qualified_type (module_identifier) (type_identifier)))))))
+        (expression_list
+          (as_type_cast_expression
+            (identifier)
+            (qualified_type (module_identifier) (type_identifier))))))))

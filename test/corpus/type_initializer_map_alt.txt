@@ -15,9 +15,10 @@ fn main() {
     (block
       (short_var_declaration
         (expression_list (identifier))
-        (type_initializer
-          (type_identifier)
-          (literal_value
-            (keyed_element 
-              (interpreted_string_literal) 
-              (interpreted_string_literal))))))))
+        (expression_list
+          (type_initializer
+            (type_identifier)
+            (literal_value
+              (keyed_element 
+                (interpreted_string_literal) 
+                (interpreted_string_literal)))))))))

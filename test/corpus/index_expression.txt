@@ -19,19 +19,22 @@ fn main() {
     (block
       (short_var_declaration
         (expression_list (identifier))
-        (index_expression (identifier) (int_literal)))
+        (expression_list 
+          (index_expression (identifier) (int_literal))))
       (short_var_declaration
         (expression_list (identifier))
-        (index_expression 
-          (identifier)
-          (int_literal)
-          (option_propagator)))
+        (expression_list
+          (index_expression 
+            (identifier)
+            (int_literal)
+            (option_propagator))))
       (short_var_declaration
         (expression_list (identifier))
-        (index_expression 
-          (identifier)
-          (identifier)
-          (option_propagator 
-            (or_block
-              (block
-                (return_statement)))))))))
+        (expression_list
+          (index_expression 
+            (identifier)
+            (identifier)
+            (option_propagator 
+              (or_block
+                (block
+                  (return_statement))))))))))

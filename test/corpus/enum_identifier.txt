@@ -22,16 +22,19 @@ fn main() {
           (enum_identifier (identifier))))
       (short_var_declaration
         (expression_list (identifier))
-        (type_initializer
-          (type_identifier)
-          (literal_value
-            (keyed_element
-              (field_identifier) 
-                (enum_identifier (identifier))))))
+        (expression_list
+          (type_initializer
+            (type_identifier)
+            (literal_value
+              (keyed_element
+                (field_identifier) 
+                  (enum_identifier (identifier)))))))
       (short_var_declaration
         (expression_list (identifier))
-        (selector_expression
-          (identifier) (identifier)))
+        (expression_list
+          (selector_expression
+            (identifier) (identifier))))
       (assignment_statement
         (expression_list (identifier))
-        (enum_identifier (identifier))))))
+        (expression_list
+          (enum_identifier (identifier)))))))
