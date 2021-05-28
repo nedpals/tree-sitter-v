@@ -97,7 +97,8 @@ module.exports = grammar({
     [$.array],
     [$.call_expression],
     [$.index_expression],
-    [$.struct_field_declaration]
+    [$.struct_field_declaration],
+    [$.interface_spec]
   ],
 
   supertypes: $ => [
@@ -167,12 +168,12 @@ module.exports = grammar({
 
     import_symbols: $ => seq('{', commaSep1($.identifier),'}'),
 
-    import_alias: $ => seq('as', field('alias', $._module_identifier)),
+    import_alias: $ => seq('as', field('name', $._module_identifier)),
 
     import_spec: $ => seq(
       field('path', $.import_path),
-      optional($.import_alias),
-      optional($.import_symbols)
+      optional(field('alias', $.import_alias)),
+      optional(field('symbols', $.import_symbols))
     ),
 
     // Consts
@@ -244,12 +245,6 @@ module.exports = grammar({
     type_declaration: $ => seq(
       optional(pub_keyword),
       'type',
-      choice(
-        $.type_spec,
-      )
-    ),
-
-    type_spec: $ => seq(
       field('name', $._type_identifier),
       '=',
       field('type', seq(
@@ -398,17 +393,26 @@ module.exports = grammar({
 
     interface_spec_list: $ => seq(
       '{',
-      optional(seq(
-        choice($._type_identifier, $.qualified_type),
-        optional(terminator)
-      )),
-      optional(seq(
-        choice($.interface_spec, $.interface_field_scope),
-        repeat(seq(terminator, choice($.interface_spec, $.interface_field_scope))),
-        optional(terminator)
-      )),
+      optional(repeat(seq(
+        choice(
+          $.struct_field_declaration, 
+          $.interface_spec, 
+          $.interface_field_scope
+        ),
+        optional(terminator),
+      ))),
       '}'
     ),
+
+    // '{',
+    // optional(repeat(seq(
+    //   choice(
+    //     $.struct_field_scope, 
+    //     $.struct_field_declaration
+    //   ), 
+    //   optional(terminator),
+    // ))),
+    // '}'
 
     interface_field_scope: $ => seq(mut_keyword + ':'),
 
@@ -506,13 +510,13 @@ module.exports = grammar({
     assignment_statement: $ => seq(
       field('left', $.expression_list),
       field('operator', choice(...assignment_operators)),
-      field('right', $._expression)
+      field('right', $.expression_list)
     ),
 
     short_var_declaration: $ => seq(
       field('left', $.expression_list),
       ':=',
-      field('right', $._expression)
+      field('right', $.expression_list)
     ),
 
     break_statement: $ => seq('break', optional(alias($.identifier, $.label_name))),
