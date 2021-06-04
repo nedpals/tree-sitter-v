@@ -168,6 +168,10 @@
         "named": true
       },
       {
+        "type": "channel_type",
+        "named": true
+      },
+      {
         "type": "fixed_array_type",
         "named": true
       },
@@ -259,6 +263,10 @@
       },
       {
         "type": "return_statement",
+        "named": true
+      },
+      {
+        "type": "send_statement",
         "named": true
       }
     ]
@@ -841,6 +849,22 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "channel_type",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "_simple_type",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -2311,6 +2335,32 @@
     }
   },
   {
+    "type": "send_statement",
+    "named": true,
+    "fields": {
+      "channel": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "_expression",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "_expression",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "short_var_declaration",
     "named": true,
     "fields": {
@@ -2648,6 +2698,10 @@
           },
           {
             "type": "builtin_type",
+            "named": true
+          },
+          {
+            "type": "channel_type",
             "named": true
           },
           {
@@ -3035,6 +3089,10 @@
   },
   {
     "type": "c",
+    "named": false
+  },
+  {
+    "type": "chan",
     "named": false
   },
   {

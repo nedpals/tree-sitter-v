@@ -68,8 +68,8 @@ fn main() {
 - [x] CallArg (`argument_list`)
 - [x] CallExpr (`call_expression`)
 - [x] CastExpr (`type_cast_expression`)
-- [ ] Chan
-- [ ] ChanInit
+- [x] Chan (`channel_type`)
+- [x] ChanInit (`type_initializer`)
 - [x] CharLiteral (`rune_literal`)
 - [x] Comment (`comment`)
 - [x] CompFor (`comptime_for_statement`)

@@ -60,7 +60,7 @@ const
 
   imaginaryLiteral = seq(choice(decimalDigits, intLiteral, floatLiteral), 'i'),
 
-  builtinTypes = ['string', 'int', 'byte', 'bool', 'float', 'chan', 'char', 'f32', 'f64', 'i64', 'i32', 'i8', 'u16', 'u32', 'u64', 'voidptr', 'ustring', 'size_t', 'float_literal', 'int_literal', 'thread', 'any']
+  builtinTypes = ['string', 'int', 'byte', 'bool', 'float', 'char', 'f32', 'f64', 'i64', 'i32', 'i8', 'u16', 'u32', 'u64', 'voidptr', 'ustring', 'size_t', 'float_literal', 'int_literal', 'thread', 'any']
 
   pub_keyword = 'pub',
   mut_keyword = 'mut',
@@ -310,7 +310,8 @@ module.exports = grammar({
       $.fixed_array_type,
       $.map_type,
       $.function_type,
-      $.generic_type
+      $.generic_type,
+      $.channel_type
     ),
 
     type_parameters: $ => prec(1, seq(
@@ -318,6 +319,8 @@ module.exports = grammar({
       commaSep1($._type),
       '>'
     )),
+
+    channel_type: $ => seq('chan', field('value', $._simple_type)),
     
     generic_type: $ => seq(
       choice($.qualified_type, $._type_identifier),
@@ -453,16 +456,6 @@ module.exports = grammar({
       '}'
     ),
 
-    // '{',
-    // optional(repeat(seq(
-    //   choice(
-    //     $.struct_field_scope, 
-    //     $.struct_field_declaration
-    //   ), 
-    //   optional(terminator),
-    // ))),
-    // '}'
-
     interface_field_scope: $ => seq(mut_keyword + ':'),
 
     interface_spec: $ => seq(
@@ -528,7 +521,8 @@ module.exports = grammar({
       $.assert_statement,
       $.goto_statement,
       $.labeled_statement,
-      $.empty_labeled_statement
+      $.empty_labeled_statement,
+      $.send_statement
     ),
 
     asm_statement: $ => seq(
@@ -547,14 +541,6 @@ module.exports = grammar({
       $.short_var_declaration,
     ),
 
-    // receive_statement: $ => seq(
-    //   optional(seq(
-    //     field('left', $.expression_list),
-    //     choice(token('='), token(':='))
-    //   )),
-    //   field('right', $._expression)
-    // ),
-
     inc_statement: $ => seq(
       $._expression,
       '++'
@@ -564,6 +550,12 @@ module.exports = grammar({
       $._expression,
       '--'
     ),
+
+    send_statement: $ => prec(PREC.unary, seq(
+      field('channel', $._expression),
+      '<-',
+      field('value', $._expression)
+    )),
 
     assignment_statement: $ => seq(
       field('left', $.expression_list),
@@ -687,7 +679,7 @@ module.exports = grammar({
       $._content_block
     ),
 
-    // TODO: loosely check sql block for now
+    // TODO: loosely check sql/asm block for now
     _content_block: $ => seq('{', token.immediate(prec(1, /[^{}]+/)), '}'),
 
     _expression: $ => choice(
@@ -718,7 +710,7 @@ module.exports = grammar({
       $.match_expression,
       $.comptime_if_expression,
       $.pseudo_comptime_identifier,
-      $.sql_expression
+      $.sql_expression,
     ),
 
     range: $ => prec.right(24, seq(field('start', optional($._expression)), '..', field('end', optional($._expression)))),
@@ -822,7 +814,8 @@ module.exports = grammar({
         $.array_type,
         $.fixed_array_type,
         $.map_type,
-        $.generic_type
+        $.generic_type,
+        $.channel_type
       )),
       field('body', $.literal_value)
     )),
