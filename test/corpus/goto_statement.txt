@@ -1,0 +1,10 @@
+===
+Goto Statement
+===
+
+goto Foo 
+
+---
+
+(source_file 
+  (goto_statement (label_name)))

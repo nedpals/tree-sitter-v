@@ -106,7 +106,8 @@ module.exports = grammar({
     [$.struct_field_declaration],
     [$.interface_spec],
     [$.import_path],
-    [$.import_declaration]
+    [$.import_declaration],
+    [$.labeled_statement, $.empty_labeled_statement]
   ],
 
   supertypes: $ => [
@@ -523,7 +524,11 @@ module.exports = grammar({
       $.continue_statement,
       $.block,
       $.empty_statement,
-      $.asm_statement
+      $.asm_statement,
+      $.assert_statement,
+      $.goto_statement,
+      $.labeled_statement,
+      $.empty_labeled_statement
     ),
 
     asm_statement: $ => seq(
@@ -581,8 +586,23 @@ module.exports = grammar({
     go_statement: $ => seq('go', $._expression),
 
     defer_statement: $ => seq('defer', $.block),
+    
+    assert_statement: $ => seq('assert', choice($._expression, $.is_expression)),
 
     unsafe_expression: $ => seq('unsafe', $.block),
+
+    goto_statement: $ => seq('goto', alias($.identifier, $.label_name)),
+
+    labeled_statement: $ => seq(
+      field('label', alias($.identifier, $.label_name)),
+      ':',
+      $._statement
+    ),
+
+    empty_labeled_statement: $ => seq(
+      field('label', alias($.identifier, $.label_name)),
+      ':'
+    ),
 
     if_expression: $ => seq(
       'if',

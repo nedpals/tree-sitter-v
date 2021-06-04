@@ -57,7 +57,7 @@ fn main() {
 - [ ] AsmRegister
 - [x] AsmStmt (`asm_statement`. See Limitations[1])
 - [ ] AsmTemplate
-- [ ] AssertStmt
+- [x] AssertStmt (`assert_statement`)
 - [x] AssignStmt (`assignment_statement`, `short_var_declaration`)
 - [ ] Assoc
 - [x] AtExpr (`pseudo_comptime_expression`)
@@ -94,8 +94,8 @@ fn main() {
 - [x] GlobalDecl (`global_var_declaration`)
 - [x] GlobalField (`global_var_declaration` -> `global_var_type_initializer`)
 - [x] GoExpr (`go_statement`)
-- [ ] GotoLabel
-- [ ] GotoStmt
+- [x] GotoLabel (`labeled_statement`, `empty_labeled_statement`)
+- [x] GotoStmt (`goto_statement`)
 - [x] HashStmt (Currently supported: `c_include_clause`, `c_flag_clause`,  `c_define_clause`)
 - [x] Ident (`identifier`)
 - [x] IfBranch (`if_expression`)
