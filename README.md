@@ -40,7 +40,7 @@ fn main() {
 - Statements outside functions (aka `vsh`/`script` mode) are not yet supported.
 - It does not support all deprecated/outdated syntaxes to avoid any ambiguities and to enforce the one-way philosophy as much as possible.
 - Assembly/SQL code in ASM/SQL block nodes are loosely checked and parsed immediately regardless of the content.
-- Syntaxes related to generics support (e.g template) are not yet implemented.
+- ~~Syntaxes related to generics support (e.g template) are not yet implemented.~~
 
 ## Node Support (Checked means already been verified and tested)
 - [x] AliasTypeDecl (`type_declaration`)

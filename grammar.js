@@ -88,17 +88,22 @@ module.exports = grammar({
   conflicts: $ => [
     [$._simple_type, $._expression],
     [$._simple_type, $.qualified_type],
+    [$._simple_type, $.generic_type],
     [$.qualified_type, $._expression],
+    [$.generic_type, $._expression],
     [$.function_type],
     [$.option_type],
     [$.fn_literal, $.function_type],
+    [$.call_expression, $.unary_expression],
+    [$.call_expression, $.binary_expression],
+    [$.call_expression, $.unary_expression, $.binary_expression],
     [$.parameter_declaration, $._simple_type],
     [$.fixed_array_type, $._expression],
     [$.array],
     [$.call_expression],
     [$.index_expression],
     [$.struct_field_declaration],
-    [$.interface_spec]
+    [$.interface_spec],
   ],
 
   supertypes: $ => [
@@ -141,7 +146,7 @@ module.exports = grammar({
 
     c_flag_clause: $ => seq(
       '#flag',
-      optional(field('platform', $.identifier)),
+      field('platform', optional($.identifier)),
       field('flag', optional(seq('-', letter))),
       field('value', token(prec(-1, repeat1(/.|\\\r?\n/))))
     ),
@@ -172,8 +177,8 @@ module.exports = grammar({
 
     import_spec: $ => seq(
       field('path', $.import_path),
-      optional(field('alias', $.import_alias)),
-      optional(field('symbols', $.import_symbols))
+      field('alias', optional($.import_alias)),
+      field('symbols', optional($.import_symbols))
     ),
 
     // Consts
@@ -219,8 +224,9 @@ module.exports = grammar({
     function_declaration: $ => prec.right(seq(
       optional(pub_keyword),
       'fn',
-      optional(field('receiver', $.parameter_list)),
+      field('receiver', optional($.parameter_list)),
       field('name', $.identifier),
+      field('type_parameters', optional($.type_parameters)),
       field('parameters', $.parameter_list),
       field('result', optional($._type)),
       field('body', optional($.block))
@@ -272,9 +278,21 @@ module.exports = grammar({
       $.array_type,
       $.fixed_array_type,
       $.map_type,
-      $.function_type
+      $.function_type,
+      $.generic_type
     ),
+
+    type_parameters: $ => prec(1, seq(
+      '<',
+      commaSep1($._type),
+      '>'
+    )),
     
+    generic_type: $ => seq(
+      choice($.qualified_type, $._type_identifier),
+      $.type_parameters
+    ),
+
     binded_type: $ => seq(
       field('language', choice('C', 'JS')),
       '.',
@@ -341,7 +359,7 @@ module.exports = grammar({
     struct_declaration: $ => seq(
       optional(pub_keyword),
       'struct',
-      prec.dynamic(-1, choice($.binded_type, $._type_identifier)),
+      prec.dynamic(-1, choice($.binded_type, $._type_identifier, $.generic_type)),
       $.struct_field_declaration_list,
     ),
 
@@ -371,7 +389,7 @@ module.exports = grammar({
       seq(
         field('name', $._field_identifier),
         field('type', $._type),
-        optional(field('attributes', $.attribute_declaration)),
+        field('attributes', optional($.attribute_declaration)),
         optional(seq(
           '=',
           field('default_value', $._expression)
@@ -657,6 +675,7 @@ module.exports = grammar({
 
     call_expression: $ => prec(PREC.primary, seq(
       field('function', $._expression),
+      field('type_parameters', optional($.type_parameters)),
       field('arguments', $.argument_list),
       optional($.option_propagator)
     )),
@@ -726,7 +745,8 @@ module.exports = grammar({
         $.pointer_type,
         $.array_type,
         $.fixed_array_type,
-        $.map_type
+        $.map_type,
+        $.generic_type
       )),
       field('body', $.literal_value)
     )),

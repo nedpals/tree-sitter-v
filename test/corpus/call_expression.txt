@@ -13,6 +13,7 @@ fn main() {
   opt(1) or {
     return
   }
+  generic<string>('test')
 }
 
 ---
@@ -49,4 +50,8 @@ fn main() {
         (argument_list (int_literal))
         (option_propagator
           (or_block
-            (block (return_statement))))))))
+            (block (return_statement)))))
+      (call_expression
+        (identifier)
+        (type_parameters (builtin_type))
+        (argument_list (interpreted_string_literal))))))
