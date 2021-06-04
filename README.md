@@ -125,8 +125,8 @@ fn main() {
 - [ ] PrefixExpr
 - [x] RangeExpr (`range`)
 - [x] Return (`return_statement`)
-- [ ] SelectBranch
-- [ ] SelectExpr
+- [x] SelectBranch (`select_branch`, `select_default_branch`)
+- [x] SelectExpr (`select_expression`, TODO support for `if` and `for`)
 - [x] SelectorExpr (`selector_expression`)
 - [x] SizeOf (`call_expression`)
 - [x] SqlExpr (`sql_expression`. See Limitations[3])

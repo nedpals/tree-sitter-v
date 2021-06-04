@@ -656,7 +656,7 @@ module.exports = grammar({
       'match',
       field('condition', $._expression),
       '{',
-      repeat(choice($.expression_case)),
+      repeat($.expression_case),
       $.default_case,
       '}'
     ),
@@ -669,6 +669,24 @@ module.exports = grammar({
     default_case: $ => seq(
       'else',
       field('consequence', $.block)
+    ),
+
+    select_expression: $ => seq(
+      'select',
+      '{',
+        repeat($.select_branch),
+        $.select_default_branch,
+      '}'
+    ),
+
+    select_branch: $ => seq($._statement, $.block),
+
+    select_default_branch: $ => seq(
+      choice(
+        prec(PREC.unary, seq('>', $._expression)),
+        'else'
+      ),
+      $.block
     ),
 
     // NOTE: this should be put into a separate grammar
@@ -711,6 +729,7 @@ module.exports = grammar({
       $.comptime_if_expression,
       $.pseudo_comptime_identifier,
       $.sql_expression,
+      $.select_expression
     ),
 
     range: $ => prec.right(24, seq(field('start', optional($._expression)), '..', field('end', optional($._expression)))),

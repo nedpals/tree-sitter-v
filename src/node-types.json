@@ -92,6 +92,10 @@
         "named": true
       },
       {
+        "type": "select_expression",
+        "named": true
+      },
+      {
         "type": "selector_expression",
         "named": true
       },
@@ -2301,6 +2305,59 @@
     }
   },
   {
+    "type": "select_branch",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "_statement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "select_default_branch",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "_expression",
+          "named": true
+        },
+        {
+          "type": "block",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "select_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "select_branch",
+          "named": true
+        },
+        {
+          "type": "select_default_branch",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "selector_expression",
     "named": true,
     "fields": {
@@ -3238,6 +3295,10 @@
   {
     "type": "rune_literal",
     "named": true
+  },
+  {
+    "type": "select",
+    "named": false
   },
   {
     "type": "sql",
