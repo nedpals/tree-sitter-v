@@ -2682,6 +2682,10 @@
         {
           "type": "SYMBOL",
           "name": "comptime_if_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "pseudo_comptime_identifier"
         }
       ]
     },
@@ -2819,8 +2823,17 @@
             "type": "FIELD",
             "name": "function",
             "content": {
-              "type": "SYMBOL",
-              "name": "_expression"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "_expression"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "comptime_identifier"
+                }
+              ]
             }
           },
           {
@@ -3032,12 +3045,64 @@
             "type": "FIELD",
             "name": "field",
             "content": {
-              "type": "SYMBOL",
-              "name": "identifier"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "identifier"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "comptime_identifier"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "comptime_selector_expression"
+                }
+              ]
             }
           }
         ]
       }
+    },
+    "comptime_identifier": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "$"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        }
+      ]
+    },
+    "comptime_selector_expression": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "$"
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "("
+            },
+            {
+              "type": "SYMBOL",
+              "name": "selector_expression"
+            },
+            {
+              "type": "STRING",
+              "value": ")"
+            }
+          ]
+        }
+      ]
     },
     "index_expression": {
       "type": "PREC",
@@ -3881,6 +3946,19 @@
           }
         ]
       }
+    },
+    "pseudo_comptime_identifier": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "@"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        }
+      ]
     },
     "blank_identifier": {
       "type": "STRING",

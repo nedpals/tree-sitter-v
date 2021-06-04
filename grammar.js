@@ -651,7 +651,8 @@ module.exports = grammar({
       $.unsafe_expression,
       $.if_expression,
       $.match_expression,
-      $.comptime_if_expression
+      $.comptime_if_expression,
+      $.pseudo_comptime_identifier
     ),
 
     range: $ => prec.right(24, seq(field('start', optional($._expression)), '..', field('end', optional($._expression)))),
@@ -676,7 +677,7 @@ module.exports = grammar({
     )),
 
     call_expression: $ => prec(PREC.primary, seq(
-      field('function', $._expression),
+      field('function', choice($._expression, $.comptime_identifier)),
       field('type_parameters', optional($.type_parameters)),
       field('arguments', $.argument_list),
       optional($.option_propagator)
@@ -709,9 +710,16 @@ module.exports = grammar({
     selector_expression: $ => prec(PREC.primary, seq(
       field('operand', $._expression),
       '.',
-      field('field', $.identifier)
+      field('field', choice(
+        $.identifier, 
+        $.comptime_identifier, 
+        $.comptime_selector_expression
+      ))
     )),
-
+      
+    comptime_identifier: $ => compTime($.identifier),
+    comptime_selector_expression: $ => compTime(seq('(', $.selector_expression,')')),
+  
     index_expression: $ => prec(PREC.primary, seq(
       field('operand', $._expression),
       '[',
@@ -825,6 +833,7 @@ module.exports = grammar({
       repeat(choice(letter, unicodeDigit)),
     )),
 
+    pseudo_comptime_identifier: $ => seq('@', $.identifier),
     blank_identifier: $ => '_',
     _type_identifier: $ => alias($.identifier, $.type_identifier),
     _module_identifier: $ => alias($.identifier, $.module_identifier),
@@ -925,7 +934,7 @@ function commaSep(rule) {
 }
 
 function compTime(rule) {
-  return seq(optional('$'), rule)
+  return seq('$', rule)
 }
 
 function stringQuotes1($) {

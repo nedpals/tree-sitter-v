@@ -60,7 +60,7 @@ fn main() {
 - [ ] AssertStmt
 - [x] AssignStmt (`assignment_statement`, `short_var_declaration`)
 - [ ] Assoc
-- [ ] AtExpr
+- [x] AtExpr (`pseudo_comptime_expression`)
 - [x] Attr (`attribute_declaration`)
 - [x] Block (`block`)
 - [x] BoolLiteral (`true` / `false`)
@@ -73,18 +73,18 @@ fn main() {
 - [x] CharLiteral (`rune_literal`)
 - [x] Comment (`comment`)
 - [x] CompFor (`comptime_for_statement`)
-- [ ] ComptimeCall
-- [ ] ComptimeSelector
+- [x] ComptimeCall (`call_expression` -> `comptime_identifier` as field)
+- [x] ComptimeSelector(`selector_expression` -> `comptime_selector_expression` as field)
 - [ ] ConcatExpr
 - [x] ConstDecl (`const_declaration`)
 - [x] ConstField (`const_spec`)
 - [x] DeferStmt (`defer_statement`)
 - [x] DumpExpr (`call_expression`)
-- [ ] EmbeddedFile
+- [x] EmbeddedFile (`call_expression` -> `comptime_identifier` as name)
 - [x] EnumDecl (`enum_declaration`)
 - [x] EnumField (`enum_member`)
 - [x] EnumVal (`enum_identifier`)
-- [ ] ExprStmt
+- [x] ExprStmt
 - [x] FloatLiteral (`float_literal`)
 - [x] FnDecl (`function_declaration`)
 - [x] FnTypeDecl (`function_type`)
