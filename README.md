@@ -55,7 +55,7 @@ fn main() {
 - [ ] AsmDisp
 - [ ] AsmIO
 - [ ] AsmRegister
-- [x] AsmStmt (`asm_statement`. See Limitations[1])
+- [x] AsmStmt (`asm_statement`. See Limitations[3])
 - [ ] AsmTemplate
 - [x] AssertStmt (`assert_statement`)
 - [x] AssignStmt (`assignment_statement`, `short_var_declaration`)
@@ -129,9 +129,9 @@ fn main() {
 - [ ] SelectExpr
 - [x] SelectorExpr (`selector_expression`)
 - [x] SizeOf (`call_expression`)
-- [x] SqlExpr (`sql_expression`. See Limitations[1])
-- [x] SqlStmt (`sql_expression`. See Limitations[1])
-- [x] SqlStmtLine (`sql_expression`. See Limitations[1])
+- [x] SqlExpr (`sql_expression`. See Limitations[3])
+- [x] SqlStmt (`sql_expression`. See Limitations[3])
+- [x] SqlStmtLine (`sql_expression`. See Limitations[3])
 - [x] StringInterLiteral (`interpreted_string_literal`)
 - [x] StringLiteral (`_string_literal`)
 - [x] StructDecl (`struct_declaration`)
