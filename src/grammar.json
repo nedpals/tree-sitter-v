@@ -1893,23 +1893,11 @@
         },
         {
           "type": "SYMBOL",
-          "name": "if_statement"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "comptime_if_statement"
-        },
-        {
-          "type": "SYMBOL",
           "name": "for_statement"
         },
         {
           "type": "SYMBOL",
           "name": "comptime_for_statement"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "match_statement"
         },
         {
           "type": "SYMBOL",
@@ -2211,7 +2199,7 @@
         }
       ]
     },
-    "if_statement": {
+    "if_expression": {
       "type": "SEQ",
       "members": [
         {
@@ -2265,7 +2253,7 @@
                       },
                       {
                         "type": "SYMBOL",
-                        "name": "if_statement"
+                        "name": "if_expression"
                       }
                     ]
                   }
@@ -2296,7 +2284,7 @@
         }
       ]
     },
-    "comptime_if_statement": {
+    "comptime_if_expression": {
       "type": "SEQ",
       "members": [
         {
@@ -2341,7 +2329,7 @@
                       },
                       {
                         "type": "SYMBOL",
-                        "name": "comptime_if_statement"
+                        "name": "comptime_if_expression"
                       }
                     ]
                   }
@@ -2509,7 +2497,7 @@
         }
       ]
     },
-    "match_statement": {
+    "match_expression": {
       "type": "SEQ",
       "members": [
         {
@@ -2682,6 +2670,18 @@
         {
           "type": "SYMBOL",
           "name": "unsafe_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "if_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "match_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "comptime_if_expression"
         }
       ]
     },

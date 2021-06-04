@@ -1,5 +1,5 @@
 ===
-If statement is guard
+If Expression is guard
 ===
 
 fn main() {
@@ -15,6 +15,6 @@ fn main() {
     (identifier)
     (parameter_list)
     (block
-      (if_statement
+      (if_expression
         (is_expression (identifier) (builtin_type))
         (block (comment))))))

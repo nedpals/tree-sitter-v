@@ -24,6 +24,10 @@
         "named": true
       },
       {
+        "type": "comptime_if_expression",
+        "named": true
+      },
+      {
         "type": "enum_identifier",
         "named": true
       },
@@ -44,6 +48,10 @@
         "named": true
       },
       {
+        "type": "if_expression",
+        "named": true
+      },
+      {
         "type": "imaginary_literal",
         "named": true
       },
@@ -57,6 +65,10 @@
       },
       {
         "type": "interpreted_string_literal",
+        "named": true
+      },
+      {
+        "type": "match_expression",
         "named": true
       },
       {
@@ -198,10 +210,6 @@
         "named": true
       },
       {
-        "type": "comptime_if_statement",
-        "named": true
-      },
-      {
         "type": "continue_statement",
         "named": true
       },
@@ -219,14 +227,6 @@
       },
       {
         "type": "go_statement",
-        "named": true
-      },
-      {
-        "type": "if_statement",
-        "named": true
-      },
-      {
-        "type": "match_statement",
         "named": true
       },
       {
@@ -804,7 +804,7 @@
     }
   },
   {
-    "type": "comptime_if_statement",
+    "type": "comptime_if_expression",
     "named": true,
     "fields": {
       "alternative": {
@@ -816,7 +816,7 @@
             "named": true
           },
           {
-            "type": "comptime_if_statement",
+            "type": "comptime_if_expression",
             "named": true
           }
         ]
@@ -1368,7 +1368,7 @@
     }
   },
   {
-    "type": "if_statement",
+    "type": "if_expression",
     "named": true,
     "fields": {
       "alternative": {
@@ -1380,7 +1380,7 @@
             "named": true
           },
           {
-            "type": "if_statement",
+            "type": "if_expression",
             "named": true
           }
         ]
@@ -1776,7 +1776,7 @@
     }
   },
   {
-    "type": "match_statement",
+    "type": "match_expression",
     "named": true,
     "fields": {
       "condition": {

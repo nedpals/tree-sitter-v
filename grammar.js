@@ -490,11 +490,8 @@ module.exports = grammar({
       $.return_statement,
       $.go_statement,
       $.defer_statement,
-      $.if_statement,
-      $.comptime_if_statement,
       $.for_statement,
       $.comptime_for_statement,
-      $.match_statement,
       $.break_statement,
       $.continue_statement,
       $.block,
@@ -553,13 +550,13 @@ module.exports = grammar({
 
     unsafe_expression: $ => seq('unsafe', $.block),
 
-    if_statement: $ => seq(
+    if_expression: $ => seq(
       'if',
       field('condition', choice($._expression, $.is_expression)),
       field('consequence', $.block),
       optional(seq(
         'else',
-        field('alternative', choice($.block, $.if_statement))
+        field('alternative', choice($.block, $.if_expression))
       ))
     ),
 
@@ -569,13 +566,13 @@ module.exports = grammar({
       $._simple_type
     ),
 
-    comptime_if_statement: $ => seq(
+    comptime_if_expression: $ => seq(
       '$if',
       field('condition', $._expression),
       field('consequence', $.block),
       optional(seq(
         '$else',
-        field('alternative', choice($.block, $.comptime_if_statement))
+        field('alternative', choice($.block, $.comptime_if_expression))
       ))
     ),
 
@@ -609,7 +606,7 @@ module.exports = grammar({
       field('body', $.block)
     ),
 
-    match_statement: $ => seq(
+    match_expression: $ => seq(
       'match',
       field('condition', $._expression),
       '{',
@@ -640,8 +637,6 @@ module.exports = grammar({
       $.identifier,
       $.enum_identifier,
       $._string_literal,
-      // $.match_statement,
-      // $.if_statement,
       $.fn_literal,
       $.array,
       $.type_initializer,
@@ -654,6 +649,9 @@ module.exports = grammar({
       $.false,
       $.parenthesized_expression,
       $.unsafe_expression,
+      $.if_expression,
+      $.match_expression,
+      $.comptime_if_expression
     ),
 
     range: $ => prec.right(24, seq(field('start', optional($._expression)), '..', field('end', optional($._expression)))),

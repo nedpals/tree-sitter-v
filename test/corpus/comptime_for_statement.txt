@@ -1,0 +1,19 @@
+===
+Comptime For Statement
+===
+
+$for field in App.fields {
+  println(field)
+}
+
+---
+
+(source_file
+  (comptime_for_statement
+    (in_operator
+      (expression_list (identifier))
+      (selector_expression (identifier) (identifier)))
+    (block
+      (call_expression
+        (identifier)
+        (argument_list (identifier))))))

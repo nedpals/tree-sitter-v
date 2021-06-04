@@ -72,7 +72,7 @@ fn main() {
 - [ ] ChanInit
 - [x] CharLiteral (`rune_literal`)
 - [x] Comment (`comment`)
-- [ ] CompFor
+- [x] CompFor (`comptime_for_statement`)
 - [ ] ComptimeCall
 - [ ] ComptimeSelector
 - [ ] ConcatExpr
@@ -98,8 +98,8 @@ fn main() {
 - [ ] GotoStmt
 - [x] HashStmt (Currently supported: `c_include_clause`, `c_flag_clause`,  `c_define_clause`)
 - [x] Ident (`identifier`)
-- [x] IfBranch (`if_statement`, TODO: as an expr)
-- [x] IfExpr (`if_statement`, TODO: as an expr)
+- [x] IfBranch (`if_expression`)
+- [x] IfExpr (`if_expression`)
 - [x] IfGuardExpr (`if statement`: `is_expression`)
 - [x] Import (`import_declaration`)
 - [x] ImportSymbol (`import_symbol`)
@@ -112,7 +112,7 @@ fn main() {
 - [ ] LockExpr
 - [x] MapInit (`type_initializer`)
 - [x] MatchBranch (`expression_case`)
-- [x] MatchExpr (`match_statement`, TODO: make it expr)
+- [x] MatchExpr (`match_expression`)
 - [x] Module (`module_clause`)
 - [x] MultiReturn (`multi_return_type`) (NOTE: shouldn't be used in arguments)
 - [x] NodeError (`[ERROR]`)
@@ -142,4 +142,4 @@ fn main() {
 - [x] SumTypeDecl (`type_declaration`)
 - [x] TypeNode (`type_identifier`)
 - [x] TypeOf (`call_expression`)
-- [x] UnsafeExpr (`unsafe_expression` (name not finalized))
+- [x] UnsafeExpr (`unsafe_expression`)
