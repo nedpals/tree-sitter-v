@@ -1,5 +1,5 @@
 ===
-Generic type Initializer
+Generic type initializer
 ===
 
 fn main() {

@@ -8,9 +8,9 @@ import json { decode, encode, Any }
 
 (source_file
   (import_declaration
-    (import_spec
       (import_path (identifier))
       (import_symbols 
-        (identifier) 
-        (identifier) 
-        (identifier)))))
+        (import_symbols_list
+          (identifier) 
+          (identifier) 
+          (identifier)))))

@@ -85,6 +85,7 @@ module.exports = grammar({
 
   word: $ => $.identifier,
 
+  // NOTE: Reduce conflicts as much as possible
   conflicts: $ => [
     [$._simple_type, $._expression],
     [$._simple_type, $.qualified_type],
@@ -104,6 +105,8 @@ module.exports = grammar({
     [$.index_expression],
     [$.struct_field_declaration],
     [$.interface_spec],
+    [$.import_path],
+    [$.import_declaration]
   ],
 
   supertypes: $ => [
@@ -116,7 +119,10 @@ module.exports = grammar({
 
   rules: {
     source_file: $ => repeat(seq(
-      $._top_level_declaration,
+      choice(
+        $._top_level_declaration,
+        $._statement
+      ),
       optional(terminator)
     )),
 
@@ -166,20 +172,18 @@ module.exports = grammar({
     // Import
     import_declaration: $ => seq(
       'import',
-      $.import_spec
-    ),
-
-    import_path: $ => seq($.identifier, repeat(seq('.', $.identifier))),
-
-    import_symbols: $ => seq('{', commaSep1($.identifier),'}'),
-
-    import_alias: $ => seq('as', field('name', $._module_identifier)),
-
-    import_spec: $ => seq(
       field('path', $.import_path),
       field('alias', optional($.import_alias)),
       field('symbols', optional($.import_symbols))
     ),
+
+    import_path: $ => seq($.identifier, repeat(seq('.', $.identifier))),
+
+    import_symbols: $ => seq('{', $.import_symbols_list,'}'),
+
+    import_symbols_list: $ => commaSep1($.identifier),
+
+    import_alias: $ => seq('as', field('name', $._module_identifier)),
 
     // Consts
     const_declaration: $ => seq(
@@ -202,14 +206,14 @@ module.exports = grammar({
     )),
 
     // Attributes
-    attribute_spec: $ => choice(
+    attribute_spec: $ => prec(8, choice(
       $.identifier,
       seq(
         field('name', $.identifier),
         ':',
         field('value', choice($._string_literal, $.identifier))
       )
-    ),
+    )),
 
     attribute_declaration: $ => seq(
       '[',
@@ -221,7 +225,7 @@ module.exports = grammar({
     ),
 
     // Function / Method
-    function_declaration: $ => prec.right(seq(
+    function_declaration: $ => prec.right(1, seq(
       optional(pub_keyword),
       'fn',
       field('receiver', optional($.parameter_list)),
@@ -537,11 +541,11 @@ module.exports = grammar({
       field('right', $.expression_list)
     ),
 
-    break_statement: $ => seq('break', optional(alias($.identifier, $.label_name))),
+    break_statement: $ => prec.left(seq('break', optional(alias($.identifier, $.label_name)))),
 
-    continue_statement: $ => seq('continue', optional(alias($.identifier, $.label_name))),
+    continue_statement: $ => prec.left(seq('continue', optional(alias($.identifier, $.label_name)))),
 
-    return_statement: $ => seq('return', optional($.expression_list)),
+    return_statement: $ => prec.left(seq('return', optional($.expression_list))),
 
     go_statement: $ => seq('go', $._expression),
 

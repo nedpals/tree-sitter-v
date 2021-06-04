@@ -8,6 +8,5 @@ import x.json2 as json
 
 (source_file
   (import_declaration
-    (import_spec 
       (import_path (identifier) (identifier))
-      (import_alias (module_identifier)))))
+      (import_alias (module_identifier))))
