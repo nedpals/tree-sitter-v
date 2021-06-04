@@ -522,7 +522,14 @@ module.exports = grammar({
       $.break_statement,
       $.continue_statement,
       $.block,
-      $.empty_statement
+      $.empty_statement,
+      $.asm_statement
+    ),
+
+    asm_statement: $ => seq(
+      'asm',
+      $.identifier,
+      $._content_block
     ),
 
     empty_statement: $ => ';',
@@ -652,6 +659,17 @@ module.exports = grammar({
       field('consequence', $.block)
     ),
 
+    // NOTE: this should be put into a separate grammar
+    // to avoid any "noise" (i guess)
+    sql_expression: $ => seq(
+      'sql',
+      choice($._expression),
+      $._content_block
+    ),
+
+    // TODO: loosely check sql block for now
+    _content_block: $ => seq('{', token.immediate(prec(1, /[^{}]+/)), '}'),
+
     _expression: $ => choice(
       $.type_cast_expression,
       $.as_type_cast_expression,
@@ -679,7 +697,8 @@ module.exports = grammar({
       $.if_expression,
       $.match_expression,
       $.comptime_if_expression,
-      $.pseudo_comptime_identifier
+      $.pseudo_comptime_identifier,
+      $.sql_expression
     ),
 
     range: $ => prec.right(24, seq(field('start', optional($._expression)), '..', field('end', optional($._expression)))),

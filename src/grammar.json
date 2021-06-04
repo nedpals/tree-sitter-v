@@ -2008,6 +2008,27 @@
         {
           "type": "SYMBOL",
           "name": "empty_statement"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "asm_statement"
+        }
+      ]
+    },
+    "asm_statement": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "asm"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_content_block"
         }
       ]
     },
@@ -2670,6 +2691,52 @@
         }
       ]
     },
+    "sql_expression": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "sql"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_expression"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_content_block"
+        }
+      ]
+    },
+    "_content_block": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "{"
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "PREC",
+            "value": 1,
+            "content": {
+              "type": "PATTERN",
+              "value": "[^{}]+"
+            }
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "}"
+        }
+      ]
+    },
     "_expression": {
       "type": "CHOICE",
       "members": [
@@ -2780,6 +2847,10 @@
         {
           "type": "SYMBOL",
           "name": "pseudo_comptime_identifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "sql_expression"
         }
       ]
     },

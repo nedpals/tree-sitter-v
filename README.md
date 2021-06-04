@@ -37,10 +37,10 @@ fn main() {
 ```
 
 ## Limitations
-- ~~Statements outside functions (aka `vsh`/`script` mode) are not yet supported.~~
-- It does not support all deprecated/outdated syntaxes to avoid any ambiguities and to enforce the one-way philosophy as much as possible.
-- Assembly/SQL code in ASM/SQL block nodes are loosely checked and parsed immediately regardless of the content.
-- ~~Syntaxes related to generics support (e.g template) are not yet implemented.~~
+1. ~~Statements outside functions (aka `vsh`/`script` mode) are not yet supported.~~
+2. It does not support all deprecated/outdated syntaxes to avoid any ambiguities and to enforce the one-way philosophy as much as possible.
+3. Assembly/SQL code in ASM/SQL block nodes are loosely checked and parsed immediately regardless of the content.
+4. ~~Syntaxes related to generics support (e.g template) are not yet implemented.~~
 
 ## Node Support (Checked means already been verified and tested)
 - [x] AliasTypeDecl (`type_declaration`)
@@ -55,7 +55,7 @@ fn main() {
 - [ ] AsmDisp
 - [ ] AsmIO
 - [ ] AsmRegister
-- [ ] AsmStmt
+- [x] AsmStmt (`asm_statement`. See Limitations[1])
 - [ ] AsmTemplate
 - [ ] AssertStmt
 - [x] AssignStmt (`assignment_statement`, `short_var_declaration`)
@@ -129,9 +129,9 @@ fn main() {
 - [ ] SelectExpr
 - [x] SelectorExpr (`selector_expression`)
 - [x] SizeOf (`call_expression`)
-- [ ] SqlExpr
-- [ ] SqlStmt
-- [ ] SqlStmtLine
+- [x] SqlExpr (`sql_expression`. See Limitations[1])
+- [x] SqlStmt (`sql_expression`. See Limitations[1])
+- [x] SqlStmtLine (`sql_expression`. See Limitations[1])
 - [x] StringInterLiteral (`interpreted_string_literal`)
 - [x] StringLiteral (`_string_literal`)
 - [x] StructDecl (`struct_declaration`)
