@@ -91,8 +91,8 @@ fn main() {
 - [x] ForCStmt (`for_statement`: `cstyle_for_clause`)
 - [x] ForInStmt (`for_statement`: `in_operator`)
 - [x] ForStmt (`for_statement`)
-- [ ] GlobalDecl
-- [ ] GlobalField
+- [x] GlobalDecl (`global_var_declaration`)
+- [x] GlobalField (`global_var_declaration` -> `global_var_type_initializer`)
 - [x] GoExpr (`go_statement`)
 - [ ] GotoLabel
 - [ ] GotoStmt

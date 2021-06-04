@@ -185,6 +185,32 @@ module.exports = grammar({
 
     import_alias: $ => seq('as', field('name', $._module_identifier)),
 
+    // Globals
+    global_var_declaration: $ => seq(
+      global_keyword,
+      choice(
+        $._global_var_spec,
+        $.global_var_type_initializer,
+        seq(
+          '(',
+          repeat(seq(
+            choice(
+              $._global_var_spec, 
+              $.global_var_type_initializer,
+            ),
+            terminator)),
+          ')'
+        )
+      ),
+    ),
+
+    _global_var_spec: $ => alias($.const_spec, $.global_var_spec),
+
+    global_var_type_initializer: $ => seq(
+      field('name', $.identifier),
+      field('type', $._type)
+    ),
+
     // Consts
     const_declaration: $ => seq(
       optional(pub_keyword),
@@ -482,7 +508,8 @@ module.exports = grammar({
       $.interface_declaration,
       $.enum_declaration,
       $.function_declaration,
-      $.attribute_declaration
+      $.attribute_declaration,
+      $.global_var_declaration
     ),
 
     _statement: $ => choice(
