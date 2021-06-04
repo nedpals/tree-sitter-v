@@ -64,7 +64,7 @@ fn main() {
 - [x] Attr (`attribute_declaration`)
 - [x] Block (`block`)
 - [x] BoolLiteral (`true` / `false`)
-- [ ] BranchStmt
+- [x] BranchStmt (`block` for if / `expression_case` for match)
 - [x] CallArg (`argument_list`)
 - [x] CallExpr (`call_expression`)
 - [x] CastExpr (`type_cast_expression`)
