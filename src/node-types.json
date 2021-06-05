@@ -3137,6 +3137,10 @@
     "named": false
   },
   {
+    "type": "atomic",
+    "named": false
+  },
+  {
     "type": "break",
     "named": false
   },
@@ -3298,6 +3302,10 @@
   },
   {
     "type": "select",
+    "named": false
+  },
+  {
+    "type": "shared",
     "named": false
   },
   {
