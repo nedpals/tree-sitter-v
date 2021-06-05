@@ -64,8 +64,10 @@ const
 
   pub_keyword = 'pub',
   mut_keyword = 'mut',
+  shared_keyword = 'shared',
+  atomic_keyword = 'atomic',
   global_keyword = '__global',
-  scopes = [pub_keyword, mut_keyword, global_keyword]
+  scopes = [pub_keyword, mut_keyword, global_keyword, shared_keyword, atomic_keyword]
 
 module.exports = grammar({
   name: 'v',
@@ -353,7 +355,11 @@ module.exports = grammar({
     ),
     
     expression_list: $ => commaSep1(seq(
-      optional(mut_keyword),
+      optional(choice(
+        mut_keyword,
+        shared_keyword,
+        atomic_keyword
+      )),
       $._expression,
     )),
 
@@ -401,7 +407,11 @@ module.exports = grammar({
       choice(
         pub_keyword,
         mut_keyword,
+        shared_keyword,
+        atomic_keyword,
         seq(pub_keyword, mut_keyword),
+        seq(pub_keyword, shared_keyword),
+        seq(pub_keyword, atomic_keyword),
         global_keyword
       ), 
       ':'
@@ -729,7 +739,8 @@ module.exports = grammar({
       $.comptime_if_expression,
       $.pseudo_comptime_identifier,
       $.sql_expression,
-      $.select_expression
+      $.select_expression,
+      // $.lock_expression,
     ),
 
     range: $ => prec.right(24, seq(field('start', optional($._expression)), '..', field('end', optional($._expression)))),

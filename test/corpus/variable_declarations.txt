@@ -1,0 +1,30 @@
+===
+Default, mut, shared, atomic variable declarations
+===
+
+fn main() {
+  a := 23
+  mut b := 45
+  shared c := 201
+  atomic d := 130
+}
+
+---
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameter_list)
+    (block
+      (short_var_declaration
+        (expression_list (identifier))
+        (expression_list (int_literal)))
+      (short_var_declaration
+        (expression_list (identifier))
+        (expression_list (int_literal)))
+      (short_var_declaration
+        (expression_list (identifier))
+        (expression_list (int_literal)))
+      (short_var_declaration
+        (expression_list (identifier))
+        (expression_list (int_literal))))))

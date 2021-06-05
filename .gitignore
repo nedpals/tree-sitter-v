@@ -3,3 +3,5 @@ node_modules/
 build/
 hello.v
 src/binding.v
+.vscode/
+package-lock.json
