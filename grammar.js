@@ -174,8 +174,10 @@ module.exports = grammar({
     import_declaration: $ => seq(
       'import',
       field('path', $.import_path),
-      field('alias', optional($.import_alias)),
-      field('symbols', optional($.import_symbols))
+      optional(choice(
+        field('alias', $.import_alias),
+        field('symbols', $.import_symbols)
+      )),
     ),
 
     import_path: $ => seq($.identifier, repeat(seq('.', $.identifier))),
