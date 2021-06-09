@@ -1,0 +1,14 @@
+=============
+C Function Call
+=============
+
+C.abc(123)
+
+---
+
+(source_file
+  (call_expression
+    (language_spec)
+    (identifier)
+    (argument_list
+    	(int_literal))))

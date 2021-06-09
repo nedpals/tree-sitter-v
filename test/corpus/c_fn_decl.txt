@@ -1,0 +1,13 @@
+=============
+C Function Definition
+=============
+
+fn C.abc()
+
+---
+
+(source_file
+  (function_declaration
+    (language_spec)
+    (identifier)
+    (parameter_list)))

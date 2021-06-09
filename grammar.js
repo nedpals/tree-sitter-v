@@ -258,6 +258,7 @@ module.exports = grammar({
       optional(pub_keyword),
       'fn',
       field('receiver', optional($.parameter_list)),
+      field('language', optional($.language_spec)),
       field('name', $.identifier),
       field('type_parameters', optional($.type_parameters)),
       field('parameters', $.parameter_list),
@@ -302,7 +303,7 @@ module.exports = grammar({
 
     multi_return_type: $ => seq('(', commaSep1($._simple_type), ')'),
 
-    _simple_type: $ => choice(
+    _simple_type: $ => prec.left(-1, choice(
       prec.dynamic(-1, $._type_identifier),
       $.builtin_type,
       $.binded_type,
@@ -314,7 +315,7 @@ module.exports = grammar({
       $.function_type,
       $.generic_type,
       $.channel_type
-    ),
+    )),
 
     type_parameters: $ => prec(1, seq(
       '<',
@@ -329,10 +330,14 @@ module.exports = grammar({
       $.type_parameters
     ),
 
-    binded_type: $ => seq(
-      field('language', choice('C', 'JS')),
-      '.',
+    binded_type: $ => prec.right(-1, seq(
+      field('language', $.language_spec),
       field('name', $._type_identifier)
+    )),
+
+    language_spec: $ => seq(
+      choice('C', 'JS'),
+      '.'
     ),
 
     pointer_type: $ => prec(PREC.unary, seq('&', $._simple_type)),
@@ -756,6 +761,7 @@ module.exports = grammar({
     )),
 
     call_expression: $ => prec(PREC.primary, seq(
+      field('language', optional($.language_spec)),
       field('function', choice($._expression, $.comptime_identifier)),
       field('type_parameters', optional($.type_parameters)),
       field('arguments', $.argument_list),
