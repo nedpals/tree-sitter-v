@@ -51,4 +51,15 @@ x := rlock a, b { a + b }
 ---
 
 (source_file
-  assignment_staement)
+  (short_var_declaration
+    (expression_list
+      (identifier))
+    (expression_list
+      (lock_expression
+        (expression_list
+	  (identifier)
+	  (identifier))
+	(block
+	  (binary_expression
+	    (identifier)
+	    (identifier)))))))
