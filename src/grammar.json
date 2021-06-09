@@ -3114,6 +3114,10 @@
         {
           "type": "SYMBOL",
           "name": "select_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "lock_expression"
         }
       ]
     },
@@ -3161,6 +3165,40 @@
           }
         ]
       }
+    },
+    "lock_expression": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "lock"
+            },
+            {
+              "type": "STRING",
+              "value": "rlock"
+            }
+          ]
+        },
+        {
+          "type": "FIELD",
+          "name": "locked_variables",
+          "content": {
+            "type": "SYMBOL",
+            "name": "expression_list"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "body",
+          "content": {
+            "type": "SYMBOL",
+            "name": "block"
+          }
+        }
+      ]
     },
     "parenthesized_expression": {
       "type": "SEQ",

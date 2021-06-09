@@ -591,7 +591,7 @@ module.exports = grammar({
     unsafe_expression: $ => seq('unsafe', $.block),
 
     goto_statement: $ => seq('goto', alias($.identifier, $.label_name)),
-
+    
     labeled_statement: $ => seq(
       field('label', alias($.identifier, $.label_name)),
       ':',
@@ -736,10 +736,17 @@ module.exports = grammar({
       $.comptime_if_expression,
       $.pseudo_comptime_identifier,
       $.sql_expression,
-      $.select_expression
+      $.select_expression,
+      $.lock_expression
     ),
 
     range: $ => prec.right(24, seq(field('start', optional($._expression)), '..', field('end', optional($._expression)))),
+
+    lock_expression: $ => seq(
+      choice('lock', 'rlock'),
+      field('locked_variables', $.expression_list),
+      field('body', $.block)
+    ),
 
     parenthesized_expression: $ => seq(
       '(',
