@@ -678,12 +678,8 @@
         "required": true,
         "types": [
           {
-            "type": "C",
-            "named": false
-          },
-          {
-            "type": "JS",
-            "named": false
+            "type": "language_spec",
+            "named": true
           }
         ]
       },
@@ -829,6 +825,16 @@
           },
           {
             "type": "comptime_identifier",
+            "named": true
+          }
+        ]
+      },
+      "language": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "language_spec",
             "named": true
           }
         ]
@@ -1387,6 +1393,16 @@
         "types": [
           {
             "type": "block",
+            "named": true
+          }
+        ]
+      },
+      "language": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "language_spec",
             "named": true
           }
         ]
@@ -1977,6 +1993,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "language_spec",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "literal_value",

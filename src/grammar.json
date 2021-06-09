@@ -673,6 +673,22 @@
           },
           {
             "type": "FIELD",
+            "name": "language",
+            "content": {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "language_spec"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            }
+          },
+          {
+            "type": "FIELD",
             "name": "name",
             "content": {
               "type": "SYMBOL",
@@ -993,57 +1009,61 @@
       ]
     },
     "_simple_type": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "PREC_DYNAMIC",
-          "value": -1,
-          "content": {
+      "type": "PREC_LEFT",
+      "value": -1,
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "PREC_DYNAMIC",
+            "value": -1,
+            "content": {
+              "type": "SYMBOL",
+              "name": "_type_identifier"
+            }
+          },
+          {
             "type": "SYMBOL",
-            "name": "_type_identifier"
+            "name": "builtin_type"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "binded_type"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "qualified_type"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "pointer_type"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "array_type"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "fixed_array_type"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "map_type"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "function_type"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "generic_type"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "channel_type"
           }
-        },
-        {
-          "type": "SYMBOL",
-          "name": "builtin_type"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "binded_type"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "qualified_type"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "pointer_type"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "array_type"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "fixed_array_type"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "map_type"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "function_type"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "generic_type"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "channel_type"
-        }
-      ]
+        ]
+      }
     },
     "type_parameters": {
       "type": "PREC",
@@ -1127,36 +1147,49 @@
       ]
     },
     "binded_type": {
+      "type": "PREC_RIGHT",
+      "value": -1,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "FIELD",
+            "name": "language",
+            "content": {
+              "type": "SYMBOL",
+              "name": "language_spec"
+            }
+          },
+          {
+            "type": "FIELD",
+            "name": "name",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_type_identifier"
+            }
+          }
+        ]
+      }
+    },
+    "language_spec": {
       "type": "SEQ",
       "members": [
         {
-          "type": "FIELD",
-          "name": "language",
-          "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "STRING",
-                "value": "C"
-              },
-              {
-                "type": "STRING",
-                "value": "JS"
-              }
-            ]
-          }
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "C"
+            },
+            {
+              "type": "STRING",
+              "value": "JS"
+            }
+          ]
         },
         {
           "type": "STRING",
           "value": "."
-        },
-        {
-          "type": "FIELD",
-          "name": "name",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_type_identifier"
-          }
         }
       ]
     },
@@ -3214,6 +3247,22 @@
       "content": {
         "type": "SEQ",
         "members": [
+          {
+            "type": "FIELD",
+            "name": "language",
+            "content": {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "language_spec"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            }
+          },
           {
             "type": "FIELD",
             "name": "function",
