@@ -68,6 +68,10 @@
         "named": true
       },
       {
+        "type": "lock_expression",
+        "named": true
+      },
+      {
         "type": "match_expression",
         "named": true
       },
@@ -2023,6 +2027,32 @@
     }
   },
   {
+    "type": "lock_expression",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "block",
+            "named": true
+          }
+        ]
+      },
+      "locked_variables": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expression_list",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "map_type",
     "named": true,
     "fields": {
@@ -3274,6 +3304,10 @@
     "named": true
   },
   {
+    "type": "lock",
+    "named": false
+  },
+  {
     "type": "map",
     "named": false
   },
@@ -3315,6 +3349,10 @@
   },
   {
     "type": "return",
+    "named": false
+  },
+  {
+    "type": "rlock",
     "named": false
   },
   {
