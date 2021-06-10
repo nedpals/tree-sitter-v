@@ -109,7 +109,7 @@ fn main() {
 - [x] InterfaceDecl (`interface_declaration`)
 - [x] InterfaceEmbedding (`interface_declaration` -> `type_identifier`)
 - [x] Likely (`call_expression`)
-- [ ] LockExpr
+- [x] LockExpr
 - [x] MapInit (`type_initializer`)
 - [x] MatchBranch (`expression_case`)
 - [x] MatchExpr (`match_expression`)
