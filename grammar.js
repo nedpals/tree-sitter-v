@@ -605,7 +605,10 @@ module.exports = grammar({
 
     if_expression: $ => seq(
       'if',
-      field('condition', choice($._expression, $.is_expression)),
+      choice(
+        field('condition', choice($._expression, $.is_expression)),
+        field('initializer', $.short_var_declaration)
+      ),
       field('consequence', $.block),
       optional(seq(
         'else',

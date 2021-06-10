@@ -1633,7 +1633,7 @@
       },
       "condition": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "_expression",
@@ -1651,6 +1651,16 @@
         "types": [
           {
             "type": "block",
+            "named": true
+          }
+        ]
+      },
+      "initializer": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "short_var_declaration",
             "named": true
           }
         ]

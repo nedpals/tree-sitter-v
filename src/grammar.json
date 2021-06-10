@@ -2510,21 +2510,34 @@
           "value": "if"
         },
         {
-          "type": "FIELD",
-          "name": "condition",
-          "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "_expression"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "is_expression"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "condition",
+              "content": {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "_expression"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "is_expression"
+                  }
+                ]
               }
-            ]
-          }
+            },
+            {
+              "type": "FIELD",
+              "name": "initializer",
+              "content": {
+                "type": "SYMBOL",
+                "name": "short_var_declaration"
+              }
+            }
+          ]
         },
         {
           "type": "FIELD",
