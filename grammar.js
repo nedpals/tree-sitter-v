@@ -363,7 +363,7 @@ module.exports = grammar({
     
     expression_list: $ => commaSep1($._expression),
 
-    identifier_list: $ => prec(PREC.primary, commaSep1(choice(
+    identifier_list: $ => prec.right(1, commaSep1(choice(
       $.imaginary_literal,
       $._mutable_identifier,
       $.identifier,
