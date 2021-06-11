@@ -78,6 +78,7 @@ module.exports = grammar({
     $._field_identifier,
     $._type_identifier,
     $._string_literal,
+    $._expression_with_blocks
   ],
 
   word: $ => $.identifier,
@@ -740,16 +741,20 @@ module.exports = grammar({
       $.true,
       $.false,
       $.parenthesized_expression,
-      $.unsafe_expression,
-      $.if_expression,
-      $.match_expression,
-      $.comptime_if_expression,
       $.pseudo_comptime_identifier,
-      $.sql_expression,
-      $.select_expression,
-      $.lock_expression,
       $.relational_operator,
       $.binded_identifier,
+      $._expression_with_blocks
+    ),
+
+    _expression_with_blocks: $ => choice(
+      $.if_expression,
+      $.comptime_if_expression,
+      $.match_expression,
+      $.sql_expression,
+      $.unsafe_expression,
+      $.select_expression,
+      $.lock_expression
     ),
 
     binded_identifier: $ => seq($.language_spec, $.identifier),

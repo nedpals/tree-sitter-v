@@ -2354,8 +2354,57 @@
           "type": "FIELD",
           "name": "operator",
           "content": {
-            "type": "STRING",
-            "value": "="
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "*="
+              },
+              {
+                "type": "STRING",
+                "value": "/="
+              },
+              {
+                "type": "STRING",
+                "value": "%="
+              },
+              {
+                "type": "STRING",
+                "value": "<<="
+              },
+              {
+                "type": "STRING",
+                "value": ">>="
+              },
+              {
+                "type": "STRING",
+                "value": "&="
+              },
+              {
+                "type": "STRING",
+                "value": "&^="
+              },
+              {
+                "type": "STRING",
+                "value": "+="
+              },
+              {
+                "type": "STRING",
+                "value": "-="
+              },
+              {
+                "type": "STRING",
+                "value": "|="
+              },
+              {
+                "type": "STRING",
+                "value": "^="
+              },
+              {
+                "type": "STRING",
+                "value": "="
+              }
+            ]
           }
         },
         {
@@ -3213,35 +3262,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "unsafe_expression"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "if_expression"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "match_expression"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "comptime_if_expression"
-        },
-        {
-          "type": "SYMBOL",
           "name": "pseudo_comptime_identifier"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "sql_expression"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "select_expression"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "lock_expression"
         },
         {
           "type": "SYMBOL",
@@ -3250,6 +3271,43 @@
         {
           "type": "SYMBOL",
           "name": "binded_identifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_expression_with_blocks"
+        }
+      ]
+    },
+    "_expression_with_blocks": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "if_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "comptime_if_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "match_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "sql_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "unsafe_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "select_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "lock_expression"
         }
       ]
     },
@@ -7203,7 +7261,8 @@
     "_module_identifier",
     "_field_identifier",
     "_type_identifier",
-    "_string_literal"
+    "_string_literal",
+    "_expression_with_blocks"
   ],
   "supertypes": [
     "_expression",
