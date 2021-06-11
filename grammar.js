@@ -225,9 +225,15 @@ module.exports = grammar({
 
     // Attributes
     attribute_spec: $ => prec(8, choice(
-      $.identifier,
+      choice(
+        alias('unsafe', $.identifier),
+        $.identifier,
+      ),
       seq(
-        field('name', $.identifier),
+        field('name', choice(
+          alias('unsafe', $.identifier),
+          $.identifier,
+        )),
         ':',
         field('value', choice($._string_literal, $.identifier))
       )
@@ -242,8 +248,14 @@ module.exports = grammar({
       ']'
     ),
 
+    _attribute_list: $ => repeat1(seq(
+      $.attribute_declaration,
+      optional(terminator)
+    )),
+
     // Function / Method
     function_declaration: $ => prec.right(1, seq(
+      optional($._attribute_list),
       optional(pub_keyword),
       'fn',
       field('receiver', optional($.parameter_list)),
@@ -359,6 +371,7 @@ module.exports = grammar({
 
     // Enum
     enum_declaration: $ => seq(
+      optional($._attribute_list),
       optional(pub_keyword),
       'enum',
       prec.dynamic(-1, $._type_identifier),
@@ -391,6 +404,7 @@ module.exports = grammar({
 
     // Struct
     struct_declaration: $ => seq(
+      optional($._attribute_list),
       optional(pub_keyword),
       'struct',
       prec.dynamic(-1, choice($.binded_type, $._type_identifier, $.generic_type)),
@@ -438,6 +452,7 @@ module.exports = grammar({
     )),
 
     interface_declaration: $ => seq(
+      optional($._attribute_list),
       optional(pub_keyword),
       'interface',
       prec.dynamic(-1, $._type_identifier),
@@ -502,7 +517,6 @@ module.exports = grammar({
       $.interface_declaration,
       $.enum_declaration,
       $.function_declaration,
-      $.attribute_declaration,
       $.global_var_declaration
     ),
 
