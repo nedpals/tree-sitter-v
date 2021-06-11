@@ -9,10 +9,10 @@ ch <- n
 
 (source_file 
   (short_var_declaration 
-    (expression_list (identifier)) 
+    (identifier_list (identifier)) 
     (expression_list 
       (type_initializer 
-        (channel_type (builtin_type)) 
+        (channel_type (type_identifier)) 
         (literal_value 
           (keyed_element 
             (field_identifier) (int_literal))))))

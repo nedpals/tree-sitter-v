@@ -20,19 +20,19 @@ __global:
     (type_identifier)
     (struct_field_declaration_list
       (struct_field_declaration
-        (field_identifier) (builtin_type))
+        (field_identifier) (type_identifier))
       (struct_field_scope)
       (struct_field_declaration
         (field_identifier) 
-        (builtin_type)
+        (type_identifier)
         (attribute_declaration
           (attribute_spec (identifier) (interpreted_string_literal)))
         (interpreted_string_literal))
       (struct_field_declaration
-        (field_identifier) (builtin_type) (int_literal))
+        (field_identifier) (type_identifier) (int_literal))
       (struct_field_scope)
       (struct_field_declaration
-        (field_identifier) (builtin_type))
+        (field_identifier) (type_identifier))
       (struct_field_scope)
       (struct_field_declaration
-        (field_identifier) (builtin_type)))))
+        (field_identifier) (type_identifier)))))

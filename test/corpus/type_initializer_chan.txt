@@ -14,8 +14,8 @@ fn main() {
     (parameter_list)
     (block
       (short_var_declaration
-        (expression_list (identifier))
+        (identifier_list (identifier))
         (expression_list
           (type_initializer 
-            (channel_type (builtin_type))
+            (channel_type (type_identifier))
             (literal_value)))))))

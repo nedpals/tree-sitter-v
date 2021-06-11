@@ -23,7 +23,7 @@ fn main() {
             (selector_expression (identifier) (identifier)) 
             (argument_list))))
       (short_var_declaration
-        (expression_list (identifier))
+        (identifier_list (identifier))
         (expression_list
           (unsafe_expression
             (block (int_literal))))))))

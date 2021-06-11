@@ -15,17 +15,17 @@ fn main() {
     (parameter_list)
     (block
       (for_statement
-        (in_operator
-          (expression_list (identifier))
+        (for_in_operator
+          (identifier_list (identifier))
           (identifier))
         (block))
       (for_statement
-        (in_operator
-          (expression_list (identifier) (identifier))
+        (for_in_operator
+          (identifier_list (identifier) (identifier))
           (identifier))
           (block))
       (for_statement
-        (in_operator
-          (expression_list (identifier))
+        (for_in_operator
+          (identifier_list (identifier))
           (range (int_literal) (int_literal)))
         (block)))))

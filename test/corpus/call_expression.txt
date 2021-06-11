@@ -53,5 +53,5 @@ fn main() {
             (block (return_statement)))))
       (call_expression
         (identifier)
-        (type_parameters (builtin_type))
+        (type_parameters (type_identifier))
         (argument_list (interpreted_string_literal))))))

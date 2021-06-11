@@ -12,4 +12,4 @@ interface Speaker {
   (interface_declaration
     (type_identifier)
     (interface_spec_list 
-      (struct_field_declaration (field_identifier) (builtin_type)))))
+      (struct_field_declaration (field_identifier) (type_identifier)))))

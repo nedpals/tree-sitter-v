@@ -21,7 +21,7 @@ fn main() {
         (argument_list 
           (enum_identifier (identifier))))
       (short_var_declaration
-        (expression_list (identifier))
+        (identifier_list (identifier))
         (expression_list
           (type_initializer
             (type_identifier)
@@ -30,7 +30,7 @@ fn main() {
                 (field_identifier) 
                   (enum_identifier (identifier)))))))
       (short_var_declaration
-        (expression_list (identifier))
+        (identifier_list (identifier))
         (expression_list
           (selector_expression
             (identifier) (identifier))))

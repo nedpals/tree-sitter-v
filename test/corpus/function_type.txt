@@ -16,4 +16,4 @@ type Handler = fn (req Req, res &Res) ?string
         (parameter_declaration
           (identifier)
           (pointer_type (type_identifier))))
-      (option_type (builtin_type)))))
+      (option_type (type_identifier)))))

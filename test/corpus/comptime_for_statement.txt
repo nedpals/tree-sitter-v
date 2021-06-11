@@ -10,8 +10,8 @@ $for field in App.fields {
 
 (source_file
   (comptime_for_statement
-    (in_operator
-      (expression_list (identifier))
+    (for_in_operator
+      (identifier_list (identifier))
       (selector_expression (identifier) (identifier)))
     (block
       (call_expression

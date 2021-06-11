@@ -18,13 +18,13 @@ fn main() {
     (block
       (slice_expression 
         (identifier) 
-        (range (int_literal) (int_literal)))
+        (int_literal) 
+        (int_literal))
+      (slice_expression 
+        (identifier) (int_literal))
+      (slice_expression 
+        (identifier) (int_literal))
       (slice_expression 
         (identifier) 
-        (range (int_literal)))
-      (slice_expression 
-        (identifier) 
-        (range (int_literal)))
-      (slice_expression 
-        (identifier) 
-        (range (binary_expression (identifier) (int_literal)))))))
+        (binary_expression 
+          (identifier) (int_literal))))))

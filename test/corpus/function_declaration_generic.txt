@@ -14,7 +14,7 @@ fn hello_world<T>(mut s []T, i int, words ...Text) ? {}
       (parameter_declaration
         (identifier) 
         (array_type (type_identifier)))
-      (parameter_declaration (identifier) (builtin_type))
+      (parameter_declaration (identifier) (type_identifier))
       (parameter_declaration 
         (identifier) 
         (variadic_type (type_identifier))))

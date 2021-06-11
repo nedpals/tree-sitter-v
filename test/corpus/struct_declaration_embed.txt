@@ -19,4 +19,4 @@ struct Stmt {
           (module_identifier) (type_identifier)))
       (struct_field_declaration (type_identifier))
       (struct_field_declaration
-        (field_identifier) (builtin_type)))))
+        (field_identifier) (type_identifier)))))

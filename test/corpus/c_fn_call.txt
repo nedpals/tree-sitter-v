@@ -8,7 +8,8 @@ C.abc(123)
 
 (source_file
   (call_expression
-    (language_spec)
-    (identifier)
+    (binded_identifier
+      (language_spec)
+      (identifier))
     (argument_list
     	(int_literal))))
