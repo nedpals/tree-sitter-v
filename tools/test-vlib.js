@@ -29,7 +29,10 @@ function walkAndReportErrors(node, file) {
     if (currentNode.hasError()) {
       errors.push({ 
         file: file, 
-        range: [currentNode.startIndex, currentNode.endIndex] 
+        range: [
+          currentNode.startPosition, 
+          currentNode.endPosition
+        ]
       });
     }
   
@@ -67,10 +70,15 @@ Promise.all(filesToParse.map(parseAndReportErrors))
       if (errors.length != 0) {
         errorCount++;
 
-        process.stderr.write(`[Error] file: ${errors[0].file.padEnd(longestLen)} | errors: ${errors.length}\n`);
         if (!hideRanges) {
-          process.stderr.write(errors.map((e, i) => `[${e.range.join(', ')}]` + ((i < 4)  ? ' ' : (i % 5 == 0) ? '\n' : ' ')).join(''));
-          process.stderr.write('\n\n');
+          const toText = (pos) => `:${pos.row + 1}:${pos.column + 1}`;
+
+          errors.forEach((e) => {
+            process.stderr.write(`[Error] file: ${e.file + toText(e.range[0])} - ${toText(e.range[1])}\n`);
+          });
+          process.stderr.write('\n');
+        } else {
+          process.stderr.write(`[Error] file: ${errors[0].file.padEnd(longestLen)} | errors: ${errors.length}\n`);
         }
       }
     });
