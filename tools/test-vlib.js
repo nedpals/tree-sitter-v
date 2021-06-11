@@ -49,6 +49,11 @@ async function parseAndReportErrors(file) {
   return walkAndReportErrors(rootNode, path.relative(vFolder, file));
 }
 
+console.log('==============================================');
+console.log(`V folder: ${vFolder}`);
+console.log(`vlib folder: ${vlibFolder}`);
+console.log('==============================================');
+
 Promise.all(filesToParse.map(parseAndReportErrors))
   .then(collection => {
     let hasErrors = false;

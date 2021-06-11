@@ -44,4 +44,4 @@ jobs:
         run: |
           git clone --depth=1 https://github.com/vlang/v vmaster/
       - run: npm install
-      - run: node ./tools/test-vlib.js --hideRanges ./vmaster
+      - run: node ./tools/test-vlib.js ./vmaster --hideRanges
