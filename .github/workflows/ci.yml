@@ -31,3 +31,17 @@ jobs:
           node-version: 14
       - run: npm install
       - run: npm run-script test
+  vlib_test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14
+      - name: Clone & Build vmaster/v
+        run: |
+          git clone --depth=1 https://github.com/vlang/v vmaster/
+      - run: npm install
+      - run: node run ./tools/test-vlib.js --hideRanges ./vmaster
