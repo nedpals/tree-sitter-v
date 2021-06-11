@@ -950,9 +950,13 @@
         ]
       },
       "condition": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "?",
+            "named": false
+          },
           {
             "type": "_expression",
             "named": true

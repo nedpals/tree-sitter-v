@@ -611,7 +611,10 @@ module.exports = grammar({
 
     comptime_if_expression: $ => seq(
       '$if',
-      field('condition', $._expression),
+      field('condition', seq(
+        $._expression,
+        optional('?')
+      )),
       field('consequence', $.block),
       optional(seq(
         '$else',
