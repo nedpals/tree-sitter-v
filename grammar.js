@@ -59,6 +59,7 @@ const
   floatLiteral = choice(decimalFloatLiteral, hexFloatLiteral),
 
   imaginaryLiteral = seq(choice(decimalDigits, intLiteral, floatLiteral), 'i'),
+  overloadable_operators = ['+', '-', '*', '/', '%', '<', '>', '==', '!=', '<=', '>='],
 
   pub_keyword = 'pub',
   mut_keyword = 'mut',
@@ -254,6 +255,14 @@ module.exports = grammar({
       optional(terminator)
     )),
 
+    _function_identifier: $ => prec(1, choice(
+      seq(
+        field('name', $.identifier),
+        field('type_parameters', optional($.type_parameters)),
+      ),
+      ...overloadable_operators.map(o => field('name', alias(o, $.identifier)))
+    )),
+
     // Function / Method
     function_declaration: $ => prec.right(1, seq(
       optional($._attribute_list),
@@ -261,8 +270,7 @@ module.exports = grammar({
       'fn',
       field('receiver', optional($.parameter_list)),
       field('language', optional($.language_spec)),
-      field('name', $.identifier),
-      field('type_parameters', optional($.type_parameters)),
+      $._function_identifier,
       field('parameters', $.parameter_list),
       field('result', optional($._type)),
       field('body', optional($.block))
