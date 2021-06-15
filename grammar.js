@@ -726,7 +726,7 @@ module.exports = grammar({
     // to avoid any "noise" (i guess)
     sql_expression: $ => seq(
       'sql',
-      choice($._expression),
+      optional($._expression),
       $._content_block
     ),
 
