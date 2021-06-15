@@ -671,7 +671,7 @@ module.exports = grammar({
 
     for_in_operator: $ => seq(
       field('left', $.identifier_list), 
-      choice('in', '!in'),
+      'in',
       field('right', choice(
         $._expression, 
         alias($._range, $.range
