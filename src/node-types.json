@@ -28,10 +28,6 @@
         "named": true
       },
       {
-        "type": "comptime_if_expression",
-        "named": true
-      },
-      {
         "type": "enum_identifier",
         "named": true
       },
@@ -52,10 +48,6 @@
         "named": true
       },
       {
-        "type": "if_expression",
-        "named": true
-      },
-      {
         "type": "imaginary_literal",
         "named": true
       },
@@ -69,14 +61,6 @@
       },
       {
         "type": "interpreted_string_literal",
-        "named": true
-      },
-      {
-        "type": "lock_expression",
-        "named": true
-      },
-      {
-        "type": "match_expression",
         "named": true
       },
       {
@@ -104,19 +88,11 @@
         "named": true
       },
       {
-        "type": "select_expression",
-        "named": true
-      },
-      {
         "type": "selector_expression",
         "named": true
       },
       {
         "type": "slice_expression",
-        "named": true
-      },
-      {
-        "type": "sql_expression",
         "named": true
       },
       {
@@ -134,10 +110,6 @@
       {
         "type": "unary_expression",
         "named": true
-      },
-      {
-        "type": "unsafe_expression",
-        "named": true
       }
     ]
   },
@@ -154,7 +126,15 @@
         "named": true
       },
       {
+        "type": "comptime_if_expression",
+        "named": true
+      },
+      {
         "type": "dec_statement",
+        "named": true
+      },
+      {
+        "type": "if_expression",
         "named": true
       },
       {
@@ -162,7 +142,27 @@
         "named": true
       },
       {
+        "type": "lock_expression",
+        "named": true
+      },
+      {
+        "type": "match_expression",
+        "named": true
+      },
+      {
+        "type": "select_expression",
+        "named": true
+      },
+      {
         "type": "short_var_declaration",
+        "named": true
+      },
+      {
+        "type": "sql_expression",
+        "named": true
+      },
+      {
+        "type": "unsafe_expression",
         "named": true
       }
     ]
@@ -491,7 +491,7 @@
         ]
       },
       "right": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
           {
@@ -512,6 +512,21 @@
       "types": [
         {
           "type": "attribute_spec",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "attribute_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "attribute_declaration",
           "named": true
         }
       ]
@@ -1156,7 +1171,27 @@
           "named": true
         },
         {
-          "type": "literal_value",
+          "type": "comptime_if_expression",
+          "named": true
+        },
+        {
+          "type": "if_expression",
+          "named": true
+        },
+        {
+          "type": "lock_expression",
+          "named": true
+        },
+        {
+          "type": "match_expression",
+          "named": true
+        },
+        {
+          "type": "sql_expression",
+          "named": true
+        },
+        {
+          "type": "unsafe_expression",
           "named": true
         }
       ]
@@ -1192,7 +1227,7 @@
       "required": true,
       "types": [
         {
-          "type": "attribute_declaration",
+          "type": "attribute_list",
           "named": true
         },
         {
@@ -1299,6 +1334,34 @@
       "types": [
         {
           "type": "_expression",
+          "named": true
+        },
+        {
+          "type": "comptime_if_expression",
+          "named": true
+        },
+        {
+          "type": "if_expression",
+          "named": true
+        },
+        {
+          "type": "lock_expression",
+          "named": true
+        },
+        {
+          "type": "match_expression",
+          "named": true
+        },
+        {
+          "type": "select_expression",
+          "named": true
+        },
+        {
+          "type": "sql_expression",
+          "named": true
+        },
+        {
+          "type": "unsafe_expression",
           "named": true
         }
       ]
@@ -1438,6 +1501,16 @@
     "type": "function_declaration",
     "named": true,
     "fields": {
+      "attributes": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "attribute_list",
+            "named": true
+          }
+        ]
+      },
       "body": {
         "multiple": false,
         "required": false,
@@ -1508,16 +1581,6 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "attribute_declaration",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -1890,15 +1953,22 @@
   {
     "type": "interface_declaration",
     "named": true,
-    "fields": {},
+    "fields": {
+      "attributes": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "attribute_list",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": true,
       "types": [
-        {
-          "type": "attribute_declaration",
-          "named": true
-        },
         {
           "type": "interface_spec_list",
           "named": true
@@ -2006,11 +2076,31 @@
           "named": true
         },
         {
+          "type": "comptime_if_expression",
+          "named": true
+        },
+        {
           "type": "field_identifier",
           "named": true
         },
         {
-          "type": "literal_value",
+          "type": "if_expression",
+          "named": true
+        },
+        {
+          "type": "lock_expression",
+          "named": true
+        },
+        {
+          "type": "match_expression",
+          "named": true
+        },
+        {
+          "type": "sql_expression",
+          "named": true
+        },
+        {
+          "type": "unsafe_expression",
           "named": true
         }
       ]
@@ -2101,7 +2191,7 @@
       },
       "locked_variables": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "expression_list",
@@ -2170,7 +2260,18 @@
   {
     "type": "module_clause",
     "named": true,
-    "fields": {},
+    "fields": {
+      "attributes": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "attribute_list",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": false,
       "required": true,
@@ -2626,7 +2727,7 @@
         ]
       },
       "right": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
           {
@@ -2742,7 +2843,7 @@
     "fields": {},
     "children": {
       "multiple": false,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "_expression",
@@ -2769,15 +2870,22 @@
   {
     "type": "struct_declaration",
     "named": true,
-    "fields": {},
+    "fields": {
+      "attributes": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "attribute_list",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": true,
       "types": [
-        {
-          "type": "attribute_declaration",
-          "named": true
-        },
         {
           "type": "binded_type",
           "named": true
@@ -3353,7 +3461,11 @@
     "named": false
   },
   {
-    "type": "c",
+    "type": "c\"",
+    "named": false
+  },
+  {
+    "type": "c'",
     "named": false
   },
   {
@@ -3497,7 +3609,11 @@
     "named": false
   },
   {
-    "type": "r",
+    "type": "r\"",
+    "named": false
+  },
+  {
+    "type": "r'",
     "named": false
   },
   {
