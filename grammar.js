@@ -79,7 +79,6 @@ module.exports = grammar({
     $._field_identifier,
     $._type_identifier,
     $._string_literal,
-    $._expression_with_blocks
   ],
 
   word: $ => $.identifier,
@@ -558,6 +557,7 @@ module.exports = grammar({
 
     _simple_statement: $ => choice(
       $._expression,
+      $._expression_with_blocks,
       $.inc_statement,
       $.dec_statement,
       $.assignment_statement,
@@ -583,13 +583,19 @@ module.exports = grammar({
     assignment_statement: $ => seq(
       field('left', $.expression_list),
       field('operator', choice(...assignment_operators)),
-      field('right', $.expression_list)
+      field('right', alias(commaSep1(choice(
+        $._expression,
+        $._expression_with_blocks
+      )), $.expression_list))
     ),
 
     short_var_declaration: $ => seq(
       field('left', $.identifier_list),
       ':=',
-      field('right', $.expression_list)
+      field('right', alias(commaSep1(choice(
+        $._expression,
+        $._expression_with_blocks
+      )), $.expression_list))
     ),
 
     break_statement: $ => prec.left(seq('break', optional(alias($.identifier, $.label_name)))),
@@ -752,7 +758,6 @@ module.exports = grammar({
       $.pseudo_comptime_identifier,
       $.relational_operator,
       $.binded_identifier,
-      $._expression_with_blocks
     ),
 
     _expression_with_blocks: $ => choice(
