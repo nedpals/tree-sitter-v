@@ -877,15 +877,23 @@ module.exports = grammar({
       ']'
     )),
 
-    array: $ => prec.right(-1, seq(
-      '[',
-      field('values', repeat(seq(
-        $._expression,
-        optional(',')
-      ))),
-      ']',
-      optional(alias('!', $.fixed_array_indicator))
-    )),
+    fixed_array_indicator: $ => token.immediate('!'),
+
+    // TODO: revisit this later
+    array: $ => prec(PREC.composite_literal, choice(
+      '[]',
+      seq(
+        '[',
+        field('values', repeat(
+          seq(
+            $._expression,
+            optional(',')
+          )
+        )),
+        ']',
+        optional($.fixed_array_indicator)
+      ))
+    ),
 
     type_initializer: $ => prec(PREC.composite_literal, seq(
       field('type', choice(
