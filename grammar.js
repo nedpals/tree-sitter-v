@@ -997,17 +997,11 @@ module.exports = grammar({
       $.interpreted_string_literal
     ),
 
-    raw_string_literal: $ => seq(
-      'r',
-      stringQuotes1($)
-    ),
+    raw_string_literal: $ => stringQuotes1('r', $),
 
-    c_string_literal: $ => seq(
-      'c',
-      choice(
-        seq('\'', repeat(token.immediate(prec(1, /[^$']+/))), '\''),
-        seq('"', repeat(token.immediate(prec(1, /[^$"]+/))), '"')
-      )
+    c_string_literal: $ => choice(
+      seq('c\'', repeat(token.immediate(prec(1, /[^$']+/))), '\''),
+      seq('c"', repeat(token.immediate(prec(1, /[^$"]+/))), '"')
     ),
 
     interpreted_string_literal: $ => stringQuotes($, $.string_interpolation),
@@ -1088,10 +1082,10 @@ function compTime(rule) {
   return seq('$', rule)
 }
 
-function stringQuotes1($) {
+function stringQuotes1(prefix, $) {
   return choice(
     seq(
-      '\'',
+      prefix + '\'',
       repeat(choice(
         token.immediate(prec(1, /[^$'\\]+/)),
         $.escape_sequence,
@@ -1099,7 +1093,7 @@ function stringQuotes1($) {
       '\''
     ),
     seq(
-      '"',
+      prefix + '"',
       repeat(choice(
         token.immediate(prec(1, /[^$"\\]+/)),
         $.escape_sequence,
