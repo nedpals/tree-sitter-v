@@ -95,6 +95,7 @@ module.exports = grammar({
     [$.fn_literal, $.function_type],
     [$.call_expression, $.binary_expression],
     [$.call_expression, $.unary_expression, $.binary_expression],
+    [$.labeled_statement, $.empty_labeled_statement]
   ],
 
   supertypes: $ => [
@@ -928,19 +929,26 @@ module.exports = grammar({
     ),
 
     keyed_element: $ => seq(
-      choice(
-        seq($._expression, ':'),
-        prec(1, seq($._field_identifier, ':'))
-      ),
+      prec(1, seq($._field_identifier, ':')),
       choice(
         $._expression,
-        $.literal_value
+        $.unsafe_expression,
+        $.if_expression,
+        $.match_expression,
+        $.lock_expression,
+        $.sql_expression,
+        $.comptime_if_expression
       )
     ),
 
     element: $ => choice(
       $._expression,
-      $.literal_value
+      $.unsafe_expression,
+      $.if_expression,
+      $.match_expression,
+      $.lock_expression,
+      $.sql_expression,
+      $.comptime_if_expression
     ),
 
     fn_literal: $ => seq(
