@@ -794,7 +794,7 @@ module.exports = grammar({
 
     lock_expression: $ => seq(
       choice('lock', 'rlock'),
-      field('locked_variables', $.expression_list),
+      field('locked_variables', optional($.expression_list)),
       field('body', $.block)
     ),
 

@@ -7,6 +7,8 @@ lock a, b {
 	b--
 }
 
+lock {}
+
 ---
 
 (source_file
@@ -18,7 +20,8 @@ lock a, b {
       (inc_statement
         (identifier))
       (dec_statement
-        (identifier)))))
+         (identifier)))) 
+    (lock_expression (block)))
 
 ===
 Read Lock Statement
