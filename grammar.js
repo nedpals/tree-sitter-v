@@ -921,7 +921,11 @@ module.exports = grammar({
       '{',
       optional(
         repeat(seq(
-          choice($.element, $.keyed_element, $.decomposed_element),
+          choice(
+            $.keyed_element, 
+            alias($._element, $.element), 
+            $.decomposed_element
+          ),
           optional(choice(',', terminator))
         )
       )),
@@ -929,19 +933,17 @@ module.exports = grammar({
     ),
 
     keyed_element: $ => seq(
-      prec(1, seq($._field_identifier, ':')),
-      choice(
-        $._expression,
-        $.unsafe_expression,
-        $.if_expression,
-        $.match_expression,
-        $.lock_expression,
-        $.sql_expression,
-        $.comptime_if_expression
-      )
+      // NOTE: expand list of expressions
+      // that can be used as keys.
+      prec(1, seq(choice(
+        $._field_identifier,
+        $.interpreted_string_literal,
+        $.int_literal
+      ), ':')),
+      $._element
     ),
 
-    element: $ => choice(
+    _element: $ => choice(
       $._expression,
       $.unsafe_expression,
       $.if_expression,
