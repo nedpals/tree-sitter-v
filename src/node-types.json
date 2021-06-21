@@ -114,31 +114,15 @@
     ]
   },
   {
-    "type": "_simple_statement",
+    "type": "_expression_with_blocks",
     "named": true,
     "subtypes": [
-      {
-        "type": "_expression",
-        "named": true
-      },
-      {
-        "type": "assignment_statement",
-        "named": true
-      },
       {
         "type": "comptime_if_expression",
         "named": true
       },
       {
-        "type": "dec_statement",
-        "named": true
-      },
-      {
         "type": "if_expression",
-        "named": true
-      },
-      {
-        "type": "inc_statement",
         "named": true
       },
       {
@@ -154,15 +138,37 @@
         "named": true
       },
       {
-        "type": "short_var_declaration",
-        "named": true
-      },
-      {
         "type": "sql_expression",
         "named": true
       },
       {
         "type": "unsafe_expression",
+        "named": true
+      }
+    ]
+  },
+  {
+    "type": "_simple_statement",
+    "named": true,
+    "subtypes": [
+      {
+        "type": "_expression",
+        "named": true
+      },
+      {
+        "type": "assignment_statement",
+        "named": true
+      },
+      {
+        "type": "dec_statement",
+        "named": true
+      },
+      {
+        "type": "inc_statement",
+        "named": true
+      },
+      {
+        "type": "short_var_declaration",
         "named": true
       }
     ]
@@ -742,7 +748,23 @@
       "required": false,
       "types": [
         {
+          "type": "_expression_with_blocks",
+          "named": true
+        },
+        {
           "type": "_statement",
+          "named": true
+        },
+        {
+          "type": "c_define_clause",
+          "named": true
+        },
+        {
+          "type": "c_flag_clause",
+          "named": true
+        },
+        {
+          "type": "c_include_clause",
           "named": true
         }
       ]
@@ -1337,31 +1359,7 @@
           "named": true
         },
         {
-          "type": "comptime_if_expression",
-          "named": true
-        },
-        {
-          "type": "if_expression",
-          "named": true
-        },
-        {
-          "type": "lock_expression",
-          "named": true
-        },
-        {
-          "type": "match_expression",
-          "named": true
-        },
-        {
-          "type": "select_expression",
-          "named": true
-        },
-        {
-          "type": "sql_expression",
-          "named": true
-        },
-        {
-          "type": "unsafe_expression",
+          "type": "_expression_with_blocks",
           "named": true
         }
       ]
@@ -2782,6 +2780,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "_expression_with_blocks",
+          "named": true
+        },
         {
           "type": "_statement",
           "named": true
