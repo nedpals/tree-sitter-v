@@ -104,13 +104,16 @@ module.exports = grammar({
     $._simple_type,
     $._statement,
     $._simple_statement,
+    $._expression_with_blocks
   ],
 
   rules: {
     source_file: $ => repeat(seq(
       choice(
         $._top_level_declaration,
-        $._statement
+        $._statement,
+        // NOTE: might remove it later
+        $._expression_with_blocks
       ),
       optional(terminator)
     )),
@@ -509,12 +512,16 @@ module.exports = grammar({
       '}'
     ),
 
-    _statement_list: $ => choice(
-      seq(
+    _statement_list: $ => seq(
+      choice(
         $._statement,
-        repeat(seq(terminator, $._statement)),
-        optional(terminator)
-      )
+        $._expression_with_blocks
+      ),
+      repeat(seq(terminator, choice(
+        $._statement,
+        $._expression_with_blocks
+      ))),
+      optional(terminator)
     ),
 
     _top_level_declaration: $ => choice(
@@ -559,7 +566,6 @@ module.exports = grammar({
 
     _simple_statement: $ => choice(
       $._expression,
-      $._expression_with_blocks,
       $.inc_statement,
       $.dec_statement,
       $.assignment_statement,
