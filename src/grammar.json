@@ -3363,8 +3363,17 @@
           "type": "FIELD",
           "name": "condition",
           "content": {
-            "type": "SYMBOL",
-            "name": "_expression"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "_expression"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_mutable_identifier"
+              }
+            ]
           }
         },
         {

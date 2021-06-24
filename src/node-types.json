@@ -2230,12 +2230,16 @@
     "named": true,
     "fields": {
       "condition": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
           {
             "type": "_expression",
             "named": true
+          },
+          {
+            "type": "mut",
+            "named": false
           }
         ]
       }
