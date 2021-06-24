@@ -712,7 +712,9 @@ module.exports = grammar({
 
     match_expression: $ => seq(
       'match',
-      field('condition', $._expression),
+      field('condition', choice(
+        $._expression, $._mutable_identifier,
+      )),
       '{',
       repeat($.expression_case),
       $.default_case,
