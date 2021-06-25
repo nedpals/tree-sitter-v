@@ -376,6 +376,8 @@ module.exports = grammar({
     
     expression_list: $ => commaSep1($._expression),
 
+    expression_with_blocks_list: $ => commaSep1($._expression_with_blocks),
+
     identifier_list: $ => prec.right(1, commaSep1(choice(
       $.imaginary_literal,
       $._mutable_identifier,
@@ -610,7 +612,10 @@ module.exports = grammar({
 
     continue_statement: $ => prec.left(seq('continue', optional(alias($.identifier, $.label_name)))),
 
-    return_statement: $ => prec.left(seq('return', optional($.expression_list))),
+    return_statement: $ => prec.left(seq('return', optional(choice(
+      $.expression_list,
+      $.expression_with_blocks_list
+    )))),
 
     go_statement: $ => seq('go', $._expression),
 
