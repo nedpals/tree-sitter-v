@@ -1366,6 +1366,21 @@
     }
   },
   {
+    "type": "expression_with_blocks_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "_expression_with_blocks",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "fixed_array_type",
     "named": true,
     "fields": {
@@ -2596,6 +2611,10 @@
       "types": [
         {
           "type": "expression_list",
+          "named": true
+        },
+        {
+          "type": "expression_with_blocks_list",
           "named": true
         }
       ]
