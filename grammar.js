@@ -1042,11 +1042,9 @@ module.exports = grammar({
 
     interpreted_string_literal: $ => stringQuotes($, $.string_interpolation),
 
-    string_interpolation: $ => seq(
-      '$',
-      optional('{'),
-      $._expression,
-      optional('}')
+    string_interpolation: $ => choice(
+      seq('${', $._expression,'}'),
+      seq('$', $._expression),
     ),
 
     escape_sequence: $ => token(

@@ -2,7 +2,7 @@
 Interpreted String Literal with Interpolation
 ===
 
-const a = 'Hello $world! ${hello.hey}'
+const a = 'Hello $world! ${hello.hey} ${path.join('')}'
 
 ---
 
@@ -12,4 +12,11 @@ const a = 'Hello $world! ${hello.hey}'
       (identifier) 
       (interpreted_string_literal
         (string_interpolation (identifier))
-        (string_interpolation (identifier))))))
+        (string_interpolation
+          (selector_expression 
+            (identifier) (identifier))) 
+        (string_interpolation 
+          (call_expression 
+            (selector_expression 
+              (identifier) (identifier)) 
+            (argument_list (interpreted_string_literal))))))))

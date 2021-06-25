@@ -5281,37 +5281,35 @@
       ]
     },
     "string_interpolation": {
-      "type": "SEQ",
+      "type": "CHOICE",
       "members": [
         {
-          "type": "STRING",
-          "value": "$"
-        },
-        {
-          "type": "CHOICE",
+          "type": "SEQ",
           "members": [
             {
               "type": "STRING",
-              "value": "{"
+              "value": "${"
             },
             {
-              "type": "BLANK"
+              "type": "SYMBOL",
+              "name": "_expression"
+            },
+            {
+              "type": "STRING",
+              "value": "}"
             }
           ]
         },
         {
-          "type": "SYMBOL",
-          "name": "_expression"
-        },
-        {
-          "type": "CHOICE",
+          "type": "SEQ",
           "members": [
             {
               "type": "STRING",
-              "value": "}"
+              "value": "$"
             },
             {
-              "type": "BLANK"
+              "type": "SYMBOL",
+              "name": "_expression"
             }
           ]
         }
