@@ -1063,7 +1063,7 @@ module.exports = grammar({
             /x[a-fA-F\d]{2}/,
             /\d{3}/,
             /\r?\n/,
-            /['"abfrntv\\]/
+            /['"abfrntv\$\\]/
           )
         )
       )
@@ -1126,7 +1126,7 @@ function stringQuotes1(prefix, $) {
     seq(
       prefix + '\'',
       repeat(choice(
-        token.immediate(prec(1, /[^$'\\]+/)),
+        token.immediate(prec(1, /[^'\\]+/)),
         $.escape_sequence,
       )),
       '\''
@@ -1134,7 +1134,7 @@ function stringQuotes1(prefix, $) {
     seq(
       prefix + '"',
       repeat(choice(
-        token.immediate(prec(1, /[^$"\\]+/)),
+        token.immediate(prec(1, /[^"\\]+/)),
         $.escape_sequence,
       )),
       '"'
