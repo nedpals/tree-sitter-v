@@ -1047,8 +1047,33 @@ module.exports = grammar({
 
     interpreted_string_literal: $ => stringQuotes($, $.string_interpolation),
 
+    format_flag: $ => token(/[gGeEfFcdoxXpsSc]/),
+
+    format_specifier: $ =>seq(
+      token(':'),
+      choice(
+        $.format_flag,
+        seq(
+          optional(token(/[+-0]/)),
+          $.int_literal,
+          optional(
+            seq(
+              token('.'),
+              $.int_literal,
+            )
+          ),
+          optional($.format_flag)
+        )
+      )
+    ),
+
     string_interpolation: $ => choice(
-      seq('${', $._expression,'}'),
+      seq(
+        '${',
+        $._expression,
+        optional($.format_specifier),
+        '}'
+      ),
       seq('$', $._expression),
     ),
 
