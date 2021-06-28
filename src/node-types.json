@@ -1511,6 +1511,25 @@
     }
   },
   {
+    "type": "format_specifier",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "format_flag",
+          "named": true
+        },
+        {
+          "type": "int_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "function_declaration",
     "named": true,
     "fields": {
@@ -2882,11 +2901,15 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
           "type": "_expression",
+          "named": true
+        },
+        {
+          "type": "format_specifier",
           "named": true
         }
       ]
@@ -3552,6 +3575,10 @@
   {
     "type": "for",
     "named": false
+  },
+  {
+    "type": "format_flag",
+    "named": true
   },
   {
     "type": "go",
