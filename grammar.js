@@ -86,6 +86,8 @@ const fn_keyword = "fn";
 const mut_keyword = "mut";
 const global_keyword = "__global";
 
+const fixed_array_symbol = "!";
+
 module.exports = grammar({
   name: "v",
 
@@ -95,7 +97,9 @@ module.exports = grammar({
     _top_level_statement: ($) =>
       choice($.function_declaration, $.const_declaration),
 
-    _expression: ($) => choice($._single_line_expression),
+    _expression: ($) => choice($._single_line_expression, $.array),
+
+    // _expression_with_blocks: $ => choice(),
 
     _single_line_expression: ($) => choice($.int_literal, $._string_literal),
 
@@ -118,6 +122,17 @@ module.exports = grammar({
       ),
 
     int_literal: ($) => token(int_literal),
+
+    array: ($) =>
+      choice(
+        "[]",
+        seq(
+          "[",
+          field("values", repeat(seq($._expression, optional(",")))),
+          "]",
+          optional(token(fixed_array_symbol))
+        )
+      ),
 
     _string_literal: ($) => choice($.interpreted_string_literal),
 
@@ -147,6 +162,8 @@ module.exports = grammar({
 
     identifier: ($) => seq(letter, repeat(choice(letter, unicode_digit))),
 
+    identifier_list: ($) => comma_sep1(choice($.identifier)),
+
     parameter_declaration: ($) =>
       seq(field("name", $.identifier), field("type", $._type)),
 
@@ -156,7 +173,20 @@ module.exports = grammar({
 
     type_identifier: ($) => choice(...primitive_types),
 
-    block: ($) => seq("{", "}"),
+    block: ($) => seq("{", optional($._statement_list), "}"),
+
+    _statement_list: ($) =>
+      seq(
+        choice($._statement),
+        repeat(seq(terminator, choice($._statement))),
+        optional(terminator)
+      ),
+
+    _statement: ($) => choice($.short_var_declaration, $.assignment_statement),
+
+    short_var_declaration: ($) => assignment_statement_support($, ":="),
+
+    assignment_statement: ($) => assignment_statement_support($, "="),
 
     function_declaration: ($) =>
       seq(
@@ -181,6 +211,25 @@ module.exports = grammar({
       seq(field("name", $.identifier), "=", field("value", $._expression)),
   },
 });
+
+function assignment_statement_support($, symbol) {
+  return seq(
+    field("left", $.identifier_list),
+    symbol,
+    field(
+      "right",
+      alias(
+        comma_sep1(
+          choice(
+            $._expression
+            // $._expression_with_blocks
+          )
+        ),
+        $.expression_list
+      )
+    )
+  );
+}
 
 function comma_sep1(rules) {
   return seq(rules, repeat(seq(",", rules)));
