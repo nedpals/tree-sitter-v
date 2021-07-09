@@ -61,31 +61,13 @@ const int_literal = choice(
   hex_literal
 );
 
-const primitive_types = [
-  "bool",
-  "string",
-  "i8",
-  "i16",
-  "int",
-  "i64",
-  "byte",
-  "u16",
-  "u32",
-  "u64",
-  "rune",
-  "f32",
-  "f64",
-  "voidptr",
-  "size_t",
-  "any",
-];
-
 const pub_keyword = "pub";
 const const_keyword = "const";
 const mut_keyword = "mut";
 const global_keyword = "__global";
 const fn_keyword = "fn";
 const assert_keyword = "assert";
+const as_keyword = "as";
 
 const fixed_array_symbol = "!";
 
@@ -113,6 +95,7 @@ module.exports = grammar({
         $._single_line_expression,
         $.array,
         $.binary_expression,
+        $.as_type_cast_expression,
         $.identifier
       ),
 
@@ -138,6 +121,8 @@ module.exports = grammar({
         )
       );
     },
+
+    as_type_cast_expression: ($) => seq($._expression, as_keyword, $._type),
 
     // _expression_with_blocks: $ => choice(),
 
@@ -212,9 +197,9 @@ module.exports = grammar({
 
     parameter_list: ($) => seq("(", comma_sep($.parameter_declaration), ")"),
 
-    _type: ($) => $.type_identifier,
+    _type: ($) => choice($._type_identifier),
 
-    type_identifier: (_) => choice(...primitive_types),
+    _type_identifier: ($) => alias($.identifier, $.type_identifier),
 
     _statement_list: ($) =>
       seq(
@@ -241,12 +226,14 @@ module.exports = grammar({
     block: ($) => seq("{", optional($._statement_list), "}"),
 
     function_declaration: ($) =>
-      seq(
-        fn_keyword,
-        field("name", $.identifier),
-        $.parameter_list,
-        field("result", optional($._type)),
-        field("body", optional($.block))
+      prec.right(
+        seq(
+          fn_keyword,
+          field("name", $.identifier),
+          $.parameter_list,
+          field("result", optional($._type)),
+          field("body", optional($.block))
+        )
       ),
 
     const_declaration: ($) =>

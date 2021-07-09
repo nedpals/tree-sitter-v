@@ -16,6 +16,10 @@
             "named": true
           },
           {
+            "type": "as_type_cast_expression",
+            "named": true
+          },
+          {
             "type": "binary_expression",
             "named": true
           },
@@ -46,6 +50,45 @@
     }
   },
   {
+    "type": "as_type_cast_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "array",
+          "named": true
+        },
+        {
+          "type": "as_type_cast_expression",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "int_literal",
+          "named": true
+        },
+        {
+          "type": "interpreted_string_literal",
+          "named": true
+        },
+        {
+          "type": "type_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "assert_statement",
     "named": true,
     "fields": {},
@@ -55,6 +98,10 @@
       "types": [
         {
           "type": "array",
+          "named": true
+        },
+        {
+          "type": "as_type_cast_expression",
           "named": true
         },
         {
@@ -112,6 +159,10 @@
         "types": [
           {
             "type": "array",
+            "named": true
+          },
+          {
+            "type": "as_type_cast_expression",
             "named": true
           },
           {
@@ -223,6 +274,10 @@
             "named": true
           },
           {
+            "type": "as_type_cast_expression",
+            "named": true
+          },
+          {
             "type": "binary_expression",
             "named": true
           },
@@ -252,6 +307,10 @@
       "types": [
         {
           "type": "array",
+          "named": true
+        },
+        {
+          "type": "as_type_cast_expression",
           "named": true
         },
         {
@@ -323,6 +382,10 @@
             "named": true
           },
           {
+            "type": "as_type_cast_expression",
+            "named": true
+          },
+          {
             "type": "binary_expression",
             "named": true
           },
@@ -352,6 +415,10 @@
       "types": [
         {
           "type": "array",
+          "named": true
+        },
+        {
+          "type": "as_type_cast_expression",
           "named": true
         },
         {
@@ -552,6 +619,10 @@
           "named": true
         },
         {
+          "type": "as_type_cast_expression",
+          "named": true
+        },
+        {
           "type": "assert_statement",
           "named": true
         },
@@ -603,6 +674,10 @@
           "named": true
         },
         {
+          "type": "as_type_cast_expression",
+          "named": true
+        },
+        {
           "type": "binary_expression",
           "named": true
         },
@@ -624,11 +699,6 @@
         }
       ]
     }
-  },
-  {
-    "type": "type_identifier",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "!=",
@@ -795,19 +865,11 @@
     "named": false
   },
   {
-    "type": "any",
+    "type": "as",
     "named": false
   },
   {
     "type": "assert",
-    "named": false
-  },
-  {
-    "type": "bool",
-    "named": false
-  },
-  {
-    "type": "byte",
     "named": false
   },
   {
@@ -817,14 +879,6 @@
   {
     "type": "escape_sequence",
     "named": true
-  },
-  {
-    "type": "f32",
-    "named": false
-  },
-  {
-    "type": "f64",
-    "named": false
   },
   {
     "type": "fixed_array_indicator",
@@ -839,24 +893,8 @@
     "named": true
   },
   {
-    "type": "i16",
-    "named": false
-  },
-  {
-    "type": "i64",
-    "named": false
-  },
-  {
-    "type": "i8",
-    "named": false
-  },
-  {
     "type": "identifier",
     "named": true
-  },
-  {
-    "type": "int",
-    "named": false
   },
   {
     "type": "int_literal",
@@ -867,32 +905,8 @@
     "named": false
   },
   {
-    "type": "rune",
-    "named": false
-  },
-  {
-    "type": "size_t",
-    "named": false
-  },
-  {
-    "type": "string",
-    "named": false
-  },
-  {
-    "type": "u16",
-    "named": false
-  },
-  {
-    "type": "u32",
-    "named": false
-  },
-  {
-    "type": "u64",
-    "named": false
-  },
-  {
-    "type": "voidptr",
-    "named": false
+    "type": "type_identifier",
+    "named": true
   },
   {
     "type": "{",
