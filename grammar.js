@@ -17,13 +17,13 @@ const assignment_operators = multiplicative_operators
   .map((operator) => operator + "=")
   .concat("=");
 
-const newline = "\n";
-const terminator = newline;
+const newline = choice("\n", "\r", "\r\n");
+const terminator = token(newline);
 
 const unicode_digit = /[0-9]/;
-const unicode_char = /./;
+const unicode_letter = /[a-zA-Zα-ωΑ-Ωµ]/;
 
-const letter = choice(unicode_char, "_");
+const letter = choice(unicode_letter, "_");
 
 const hex_digit = /[0-9a-fA-F]/;
 const octal_digit = /[0-7]/;
@@ -82,9 +82,10 @@ const primitive_types = [
 
 const pub_keyword = "pub";
 const const_keyword = "const";
-const fn_keyword = "fn";
 const mut_keyword = "mut";
 const global_keyword = "__global";
+const fn_keyword = "fn";
+const assert_keyword = "assert";
 
 const fixed_array_symbol = "!";
 
@@ -92,12 +93,50 @@ module.exports = grammar({
   name: "v",
 
   rules: {
-    source_file: ($) => repeat(seq($._top_level_statement, token(terminator))),
+    source_file: ($) =>
+      choice(
+        "",
+        repeat1(
+          seq(
+            choice($._top_level_declaration, $._statement),
+            optional(terminator)
+          )
+        )
+      ),
 
-    _top_level_statement: ($) =>
-      choice($.function_declaration, $.const_declaration),
+    _top_level_declaration: ($) =>
+      choice($.const_declaration, $.function_declaration),
 
-    _expression: ($) => choice($._single_line_expression, $.array),
+    _expression: ($) =>
+      choice(
+        $._single_line_expression,
+        $.array,
+        $.binary_expression,
+        $.identifier
+      ),
+
+    binary_expression: ($) => {
+      const table = [
+        [PREC.multiplicative, choice(...multiplicative_operators)],
+        [PREC.additive, choice(...additive_operators)],
+        [PREC.comparative, choice(...comparative_operators)],
+        [PREC.and, "&&"],
+        [PREC.or, "||"],
+      ];
+
+      return choice(
+        ...table.map(([precedence, operator]) =>
+          prec.left(
+            precedence,
+            seq(
+              field("left", $._expression),
+              field("operator", operator),
+              field("right", $._expression)
+            )
+          )
+        )
+      );
+    },
 
     // _expression_with_blocks: $ => choice(),
 
@@ -123,14 +162,16 @@ module.exports = grammar({
 
     int_literal: ($) => token(int_literal),
 
+    fixed_array_indicator: ($) => token(fixed_array_symbol),
+
     array: ($) =>
       choice(
         "[]",
         seq(
           "[",
-          field("values", repeat(seq($._expression, optional(",")))),
+          field("values", repeat1(seq($._expression, optional(",")))),
           "]",
-          optional(token(fixed_array_symbol))
+          optional($.fixed_array_indicator)
         )
       ),
 
@@ -160,7 +201,8 @@ module.exports = grammar({
         )
       ),
 
-    identifier: ($) => seq(letter, repeat(choice(letter, unicode_digit))),
+    identifier: ($) =>
+      prec.right(seq(letter, repeat(choice(letter, unicode_digit)))),
 
     identifier_list: ($) => comma_sep1(choice($.identifier)),
 
@@ -171,22 +213,31 @@ module.exports = grammar({
 
     _type: ($) => $.type_identifier,
 
-    type_identifier: ($) => choice(...primitive_types),
-
-    block: ($) => seq("{", optional($._statement_list), "}"),
+    type_identifier: (_) => choice(...primitive_types),
 
     _statement_list: ($) =>
       seq(
-        choice($._statement),
-        repeat(seq(terminator, choice($._statement))),
+        $._statement,
+        repeat(seq(optional(terminator), $._statement)),
         optional(terminator)
       ),
 
-    _statement: ($) => choice($.short_var_declaration, $.assignment_statement),
+    _statement: ($) =>
+      choice(
+        $._expression,
+        $.short_var_declaration,
+        $.assignment_statement,
+        $.assert_statement
+      ),
 
     short_var_declaration: ($) => assignment_statement_support($, ":="),
 
-    assignment_statement: ($) => assignment_statement_support($, "="),
+    assignment_statement: ($) =>
+      assignment_statement_support($, choice(...assignment_operators)),
+
+    assert_statement: ($) => seq(assert_keyword, $._expression),
+
+    block: ($) => seq("{", optional($._statement_list), "}"),
 
     function_declaration: ($) =>
       seq(
@@ -200,10 +251,10 @@ module.exports = grammar({
     const_declaration: ($) =>
       seq(
         optional(pub_keyword),
-        "const",
+        const_keyword,
         choice(
           $.const_spec,
-          seq("(", repeat(seq($.const_spec, terminator)), ")")
+          seq("(", repeat1(seq($.const_spec, terminator)), ")")
         )
       ),
 
