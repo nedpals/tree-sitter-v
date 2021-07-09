@@ -68,6 +68,7 @@ const global_keyword = "__global";
 const fn_keyword = "fn";
 const assert_keyword = "assert";
 const as_keyword = "as";
+const asm_keyword = "asm";
 
 const fixed_array_symbol = "!";
 
@@ -197,9 +198,17 @@ module.exports = grammar({
 
     parameter_list: ($) => seq("(", comma_sep($.parameter_declaration), ")"),
 
-    _type: ($) => choice($._type_identifier),
+    _type: ($) => choice($._type_identifier, $.qualified_type),
+
+    qualified_type: ($) =>
+      seq(
+        field("module", $._module_identifier),
+        ".",
+        field("name", $._type_identifier)
+      ),
 
     _type_identifier: ($) => alias($.identifier, $.type_identifier),
+    _module_identifier: ($) => alias($.identifier, $.module_identifier),
 
     _statement_list: ($) =>
       seq(
@@ -213,7 +222,8 @@ module.exports = grammar({
         $._expression,
         $.short_var_declaration,
         $.assignment_statement,
-        $.assert_statement
+        $.assert_statement,
+        $.asm_statement
       ),
 
     short_var_declaration: ($) => assignment_statement_support($, ":="),
@@ -248,6 +258,11 @@ module.exports = grammar({
 
     const_spec: ($) =>
       seq(field("name", $.identifier), "=", field("value", $._expression)),
+
+    asm_statement: ($) => seq(asm_keyword, $.identifier, $._content_block),
+
+    // Loose checking for asm and sql statements
+    _content_block: ($) => seq("{", token.immediate(prec(1, /[^{}]+/)), "}"),
   },
 });
 

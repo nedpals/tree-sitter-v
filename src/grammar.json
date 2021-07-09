@@ -1155,6 +1155,35 @@
         {
           "type": "SYMBOL",
           "name": "_type_identifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "qualified_type"
+        }
+      ]
+    },
+    "qualified_type": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "module",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_module_identifier"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "."
+        },
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_type_identifier"
+          }
         }
       ]
     },
@@ -1166,6 +1195,15 @@
       },
       "named": true,
       "value": "type_identifier"
+    },
+    "_module_identifier": {
+      "type": "ALIAS",
+      "content": {
+        "type": "SYMBOL",
+        "name": "identifier"
+      },
+      "named": true,
+      "value": "module_identifier"
     },
     "_statement_list": {
       "type": "SEQ",
@@ -1262,6 +1300,10 @@
         {
           "type": "SYMBOL",
           "name": "assert_statement"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "asm_statement"
         }
       ]
     },
@@ -1628,6 +1670,47 @@
             "type": "SYMBOL",
             "name": "_expression"
           }
+        }
+      ]
+    },
+    "asm_statement": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "asm"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_content_block"
+        }
+      ]
+    },
+    "_content_block": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "{"
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "PREC",
+            "value": 1,
+            "content": {
+              "type": "PATTERN",
+              "value": "[^{}]+"
+            }
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "}"
         }
       ]
     }
