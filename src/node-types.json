@@ -439,11 +439,6 @@
     }
   },
   {
-    "type": "identifier",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "identifier_list",
     "named": true,
     "fields": {},
@@ -550,7 +545,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "array",
@@ -634,10 +629,6 @@
     "type": "type_identifier",
     "named": true,
     "fields": {}
-  },
-  {
-    "type": "",
-    "named": false
   },
   {
     "type": "!=",
@@ -804,10 +795,6 @@
     "named": false
   },
   {
-    "type": "_",
-    "named": false
-  },
-  {
     "type": "any",
     "named": false
   },
@@ -862,6 +849,10 @@
   {
     "type": "i8",
     "named": false
+  },
+  {
+    "type": "identifier",
+    "named": true
   },
   {
     "type": "int",

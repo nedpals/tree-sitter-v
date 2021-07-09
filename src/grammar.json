@@ -1,13 +1,10 @@
 {
   "name": "v",
+  "word": "identifier",
   "rules": {
     "source_file": {
       "type": "CHOICE",
       "members": [
-        {
-          "type": "STRING",
-          "value": ""
-        },
         {
           "type": "REPEAT1",
           "content": {
@@ -984,8 +981,7 @@
       ]
     },
     "identifier": {
-      "type": "PREC_LEFT",
-      "value": 0,
+      "type": "TOKEN",
       "content": {
         "type": "SEQ",
         "members": [

@@ -92,10 +92,11 @@ const fixed_array_symbol = "!";
 module.exports = grammar({
   name: "v",
 
+  word: ($) => $.identifier,
+
   rules: {
     source_file: ($) =>
       choice(
-        "",
         repeat1(
           seq(
             choice($._top_level_declaration, $._statement),
@@ -202,7 +203,7 @@ module.exports = grammar({
       ),
 
     identifier: ($) =>
-      prec.right(seq(letter, repeat(choice(letter, unicode_digit)))),
+      token(seq(letter, repeat(choice(letter, unicode_digit)))),
 
     identifier_list: ($) => comma_sep1(choice($.identifier)),
 
