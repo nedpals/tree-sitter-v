@@ -1887,21 +1887,6 @@
     }
   },
   {
-    "type": "import_path",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "identifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "import_symbols",
     "named": true,
     "fields": {},
@@ -3603,6 +3588,10 @@
   {
     "type": "import",
     "named": false
+  },
+  {
+    "type": "import_path",
+    "named": true
   },
   {
     "type": "in",

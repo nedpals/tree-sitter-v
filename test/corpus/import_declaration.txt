@@ -7,5 +7,4 @@ import v.ast
 ---
 
 (source_file
-  (import_declaration
-      (import_path (identifier) (identifier))))
+  (import_declaration (import_path)))

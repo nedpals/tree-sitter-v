@@ -172,9 +172,8 @@ module.exports = grammar({
       )),
     )),
 
-    import_path: $ => prec.right(seq(
-      $.identifier, 
-      repeat(seq('.', $.identifier))
+    import_path: $ => token(seq(
+      letter, repeat(choice(letter, unicodeDigit, '.')),
     )),
 
     import_symbols: $ => seq('{', $.import_symbols_list,'}'),
