@@ -16,6 +16,7 @@ const assignment_operators = multiplicative_operators
   .concat(additive_operators)
   .map((operator) => operator + "=")
   .concat("=");
+const unary_operators = ["+", "-", "!", "~", "^", "*", "&", "<-"];
 
 const newline = choice("\n", "\r", "\r\n");
 const terminator = token(newline);
@@ -95,9 +96,19 @@ module.exports = grammar({
       choice(
         $._single_line_expression,
         $.array,
+        $.unary_expression,
         $.binary_expression,
         $.as_type_cast_expression,
         $.identifier
+      ),
+
+    unary_expression: ($) =>
+      prec(
+        PREC.unary,
+        seq(
+          field("operator", choice(...unary_operators)),
+          field("operand", choice($._expression))
+        )
       ),
 
     binary_expression: ($) => {
@@ -154,11 +165,13 @@ module.exports = grammar({
     array: ($) =>
       choice(
         "[]",
-        seq(
-          "[",
-          field("values", repeat1(seq($._expression, optional(",")))),
-          "]",
-          optional($.fixed_array_indicator)
+        prec.right(
+          seq(
+            "[",
+            field("values", repeat1(seq($._expression, optional(",")))),
+            "]",
+            optional($.fixed_array_indicator)
+          )
         )
       ),
 
