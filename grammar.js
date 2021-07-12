@@ -193,6 +193,8 @@ module.exports = grammar({
 
     identifier_list: ($) => comma_sep1(choice($.identifier)),
 
+    expression_list: ($) => comma_sep1(choice($._expression)),
+
     parameter_declaration: ($) =>
       seq(field("name", $.identifier), field("type", $._type)),
 
@@ -270,18 +272,7 @@ function assignment_statement_support($, symbol) {
   return seq(
     field("left", $.identifier_list),
     symbol,
-    field(
-      "right",
-      alias(
-        comma_sep1(
-          choice(
-            $._expression
-            // $._expression_with_blocks
-          )
-        ),
-        $.expression_list
-      )
-    )
+    field("right", $.expression_list)
   );
 }
 
