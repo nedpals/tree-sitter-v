@@ -1,0 +1,57 @@
+===
+Call Expression
+===
+
+fn main() {
+  _likely_(false)
+  _unlikely_(10)
+  typeof('hello')
+  foo(Foo{})
+  dump(a)
+  sizeof(Foo)
+  __offsetof(Foo, breed)
+  opt(1) or {
+    return
+  }
+  generic<string>('test')
+}
+
+---
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameter_list)
+    (block
+      (call_expression 
+        (identifier)
+        (argument_list (false)))
+      (call_expression
+        (identifier)
+        (argument_list (int_literal)))
+      (call_expression
+        (identifier)
+        (argument_list (interpreted_string_literal)))
+      (call_expression
+        (identifier)
+        (argument_list 
+          (type_initializer (type_identifier) (literal_value))))
+      (call_expression 
+        (identifier) 
+        (argument_list (identifier)))
+      (call_expression
+        (identifier)
+        (argument_list (identifier)))
+      (call_expression
+        (identifier)
+        (argument_list (identifier) (identifier)))
+      (call_expression
+        (identifier)
+        (argument_list (int_literal))
+        (option_propagator
+          (or_block
+            (block (return_statement)))))
+      (call_expression
+        (identifier)
+        (type_parameters (type_identifier))
+        (argument_list (interpreted_string_literal))))))

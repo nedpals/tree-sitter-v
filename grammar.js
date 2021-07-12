@@ -6,6 +6,7 @@ const PREC = {
   comparative: 3,
   and: 2,
   or: 1,
+  resolve: 1,
   composite_literal: -1,
 };
 
@@ -70,6 +71,7 @@ const fn_keyword = "fn";
 const assert_keyword = "assert";
 const as_keyword = "as";
 const asm_keyword = "asm";
+const return_keyword = "return";
 
 const fixed_array_symbol = "!";
 
@@ -95,11 +97,12 @@ module.exports = grammar({
     _expression: ($) =>
       choice(
         $._single_line_expression,
+        $.type_initializer,
         $.array,
         $.unary_expression,
         $.binary_expression,
         $.as_type_cast_expression,
-        $.identifier
+        $.call_expression
       ),
 
     unary_expression: ($) =>
@@ -136,9 +139,35 @@ module.exports = grammar({
 
     as_type_cast_expression: ($) => seq($._expression, as_keyword, $._type),
 
+    call_expression: ($) =>
+      prec.right(
+        PREC.primary,
+        seq(
+          field("function", choice($.identifier)),
+          field("type_parameters", optional($.type_parameters)),
+          field("arguments", $.argument_list),
+          optional($.option_propagator)
+        )
+      ),
+
+    option_propagator: ($) => prec.right(choice(token("?"), $.or_block)),
+
+    or_block: ($) => seq("or", $.block),
+
     // _expression_with_blocks: $ => choice(),
 
-    _single_line_expression: ($) => choice($.int_literal, $._string_literal),
+    _single_line_expression: ($) =>
+      prec.left(
+        PREC.resolve,
+        choice(
+          $.identifier,
+          $.int_literal,
+          $._string_literal,
+          $.none,
+          $.true,
+          $.false
+        )
+      ),
 
     escape_sequence: ($) =>
       token(
@@ -157,6 +186,34 @@ module.exports = grammar({
           )
         )
       ),
+
+    none: ($) => "none",
+    true: ($) => "true",
+    false: ($) => "false",
+
+    type_initializer: ($) =>
+      prec(
+        PREC.composite_literal,
+        seq(
+          field(
+            "type",
+            choice(
+              $._type_identifier,
+              // $.binded_type,
+              $.qualified_type
+              // $.pointer_type,
+              // $.array_type,
+              // $.fixed_array_type,
+              // $.map_type,
+              // $.generic_type,
+              // $.channel_type
+            )
+          ),
+          field("body", $.literal_value)
+        )
+      ),
+
+    literal_value: ($) => seq("{", "}"),
 
     int_literal: ($) => token(int_literal),
 
@@ -213,7 +270,22 @@ module.exports = grammar({
 
     parameter_list: ($) => seq("(", comma_sep($.parameter_declaration), ")"),
 
-    _type: ($) => choice($._type_identifier, $.qualified_type),
+    argument_list: ($) =>
+      seq("(", comma_sep(choice($.identifier, $._expression)), ")"),
+
+    _type: ($) => choice($._simple_type, $.option_type, $.multi_return_type),
+
+    option_type: ($) =>
+      prec.right(
+        seq("?", optional(choice($._simple_type, $.multi_return_type)))
+      ),
+
+    multi_return_type: ($) => seq("(", comma_sep1($._simple_type), ")"),
+
+    _simple_type: ($) => choice($._type_identifier, $.qualified_type),
+
+    type_parameters: ($) =>
+      prec(PREC.resolve, seq("<", comma_sep1($._type), ">")),
 
     qualified_type: ($) =>
       seq(
@@ -238,6 +310,7 @@ module.exports = grammar({
         $.short_var_declaration,
         $.assignment_statement,
         $.assert_statement,
+        $.return_statement,
         $.asm_statement
       ),
 
@@ -255,6 +328,7 @@ module.exports = grammar({
         seq(
           fn_keyword,
           field("name", $.identifier),
+          field("type_parameters", optional($.type_parameters)),
           $.parameter_list,
           field("result", optional($._type)),
           field("body", optional($.block))
@@ -278,6 +352,9 @@ module.exports = grammar({
 
     // Loose checking for asm and sql statements
     _content_block: ($) => seq("{", token.immediate(prec(1, /[^{}]+/)), "}"),
+
+    return_statement: ($) =>
+      prec.left(seq(return_keyword, optional(choice($._expression)))),
   },
 });
 
