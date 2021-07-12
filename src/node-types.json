@@ -1216,6 +1216,10 @@
           "named": true
         },
         {
+          "type": "type_declaration",
+          "named": true
+        },
+        {
           "type": "type_initializer",
           "named": true
         },
@@ -1287,6 +1291,48 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "type_declaration",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "type_identifier",
+            "named": true
+          }
+        ]
+      },
+      "type": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "multi_return_type",
+            "named": true
+          },
+          {
+            "type": "option_type",
+            "named": true
+          },
+          {
+            "type": "qualified_type",
+            "named": true
+          },
+          {
+            "type": "type_identifier",
+            "named": true
+          },
+          {
+            "type": "|",
+            "named": false
+          }
+        ]
+      }
     }
   },
   {
@@ -1683,6 +1729,10 @@
   {
     "type": "true",
     "named": true
+  },
+  {
+    "type": "type",
+    "named": false
   },
   {
     "type": "type_identifier",

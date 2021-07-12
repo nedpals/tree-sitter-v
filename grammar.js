@@ -72,6 +72,7 @@ const assert_keyword = "assert";
 const as_keyword = "as";
 const asm_keyword = "asm";
 const return_keyword = "return";
+const type_keyword = "type";
 
 const fixed_array_symbol = "!";
 
@@ -92,7 +93,7 @@ module.exports = grammar({
       ),
 
     _top_level_declaration: ($) =>
-      choice($.const_declaration, $.function_declaration),
+      choice($.const_declaration, $.function_declaration, $.type_declaration),
 
     _expression: ($) =>
       choice(
@@ -355,6 +356,15 @@ module.exports = grammar({
 
     return_statement: ($) =>
       prec.left(seq(return_keyword, optional(choice($._expression)))),
+
+    type_declaration: ($) =>
+      seq(
+        optional(pub_keyword),
+        type_keyword,
+        field("name", $._type_identifier),
+        "=",
+        field("type", seq($._type, repeat(seq("|", $._type))))
+      ),
   },
 });
 
