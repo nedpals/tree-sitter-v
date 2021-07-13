@@ -1787,6 +1787,10 @@
         {
           "type": "SYMBOL",
           "name": "asm_statement"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "go_statement"
         }
       ]
     },
@@ -2230,6 +2234,19 @@
               }
             ]
           }
+        }
+      ]
+    },
+    "go_statement": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "go"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_expression"
         }
       ]
     }

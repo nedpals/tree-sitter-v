@@ -70,6 +70,7 @@ const global_keyword = "__global";
 const fn_keyword = "fn";
 const assert_keyword = "assert";
 const as_keyword = "as";
+const go_keyword = "go";
 const asm_keyword = "asm";
 const return_keyword = "return";
 const type_keyword = "type";
@@ -312,7 +313,8 @@ module.exports = grammar({
         $.assignment_statement,
         $.assert_statement,
         $.return_statement,
-        $.asm_statement
+        $.asm_statement,
+        $.go_statement
       ),
 
     short_var_declaration: ($) => assignment_statement_support($, ":="),
@@ -365,6 +367,8 @@ module.exports = grammar({
         "=",
         field("type", seq($._type, repeat(seq("|", $._type))))
       ),
+
+    go_statement: ($) => seq(go_keyword, $._expression),
   },
 });
 
