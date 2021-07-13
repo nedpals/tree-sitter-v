@@ -540,6 +540,10 @@
           "named": true
         },
         {
+          "type": "empty_labeled_statement",
+          "named": true
+        },
+        {
           "type": "false",
           "named": true
         },
@@ -557,6 +561,10 @@
         },
         {
           "type": "interpreted_string_literal",
+          "named": true
+        },
+        {
+          "type": "labeled_statement",
           "named": true
         },
         {
@@ -711,6 +719,22 @@
           },
           {
             "type": "unary_expression",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "empty_labeled_statement",
+    "named": true,
+    "fields": {
+      "label": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "label_name",
             "named": true
           }
         ]
@@ -956,6 +980,108 @@
         },
         {
           "type": "string_interpolation",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "labeled_statement",
+    "named": true,
+    "fields": {
+      "label": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "label_name",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "array",
+          "named": true
+        },
+        {
+          "type": "as_type_cast_expression",
+          "named": true
+        },
+        {
+          "type": "asm_statement",
+          "named": true
+        },
+        {
+          "type": "assert_statement",
+          "named": true
+        },
+        {
+          "type": "assignment_statement",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "call_expression",
+          "named": true
+        },
+        {
+          "type": "empty_labeled_statement",
+          "named": true
+        },
+        {
+          "type": "false",
+          "named": true
+        },
+        {
+          "type": "go_statement",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "int_literal",
+          "named": true
+        },
+        {
+          "type": "interpreted_string_literal",
+          "named": true
+        },
+        {
+          "type": "labeled_statement",
+          "named": true
+        },
+        {
+          "type": "none",
+          "named": true
+        },
+        {
+          "type": "return_statement",
+          "named": true
+        },
+        {
+          "type": "short_var_declaration",
+          "named": true
+        },
+        {
+          "type": "true",
+          "named": true
+        },
+        {
+          "type": "type_initializer",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
           "named": true
         }
       ]
@@ -1243,6 +1369,10 @@
           "named": true
         },
         {
+          "type": "empty_labeled_statement",
+          "named": true
+        },
+        {
           "type": "false",
           "named": true
         },
@@ -1264,6 +1394,10 @@
         },
         {
           "type": "interpreted_string_literal",
+          "named": true
+        },
+        {
+          "type": "labeled_statement",
           "named": true
         },
         {
@@ -1775,6 +1909,10 @@
   },
   {
     "type": "int_literal",
+    "named": true
+  },
+  {
+    "type": "label_name",
     "named": true
   },
   {

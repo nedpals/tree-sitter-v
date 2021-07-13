@@ -314,7 +314,9 @@ module.exports = grammar({
         $.assert_statement,
         $.return_statement,
         $.asm_statement,
-        $.go_statement
+        $.go_statement,
+        $.labeled_statement,
+        $.empty_labeled_statement
       ),
 
     short_var_declaration: ($) => assignment_statement_support($, ":="),
@@ -369,6 +371,19 @@ module.exports = grammar({
       ),
 
     go_statement: ($) => seq(go_keyword, $._expression),
+
+    labeled_statement: ($) =>
+      prec.right(
+        PREC.resolve,
+        seq(
+          field("label", alias($.identifier, $.label_name)),
+          ":",
+          $._statement
+        )
+      ),
+
+    empty_labeled_statement: ($) =>
+      seq(field("label", alias($.identifier, $.label_name)), ":"),
   },
 });
 
