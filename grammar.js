@@ -74,11 +74,15 @@ const go_keyword = "go";
 const asm_keyword = "asm";
 const return_keyword = "return";
 const type_keyword = "type";
+const for_keyword = "for";
+const in_keyword = "in";
 
 const fixed_array_symbol = "!";
 
 module.exports = grammar({
   name: "v",
+
+  extras: ($) => [$.comment, /\s/],
 
   word: ($) => $.identifier,
 
@@ -169,6 +173,12 @@ module.exports = grammar({
           $.true,
           $.false
         )
+      ),
+
+    // http://stackoverflow.com/questions/13014947/regex-to-match-a-c-style-multiline-comment/36328890#36328890
+    comment: ($) =>
+      token(
+        choice(seq("//", /.*/), seq("/*", /[^*]*\*+([^/*][^*]*\*+)*/, "/"))
       ),
 
     escape_sequence: ($) =>
@@ -308,16 +318,28 @@ module.exports = grammar({
 
     _statement: ($) =>
       choice(
-        $._expression,
-        $.short_var_declaration,
-        $.assignment_statement,
+        $._simple_statement,
         $.assert_statement,
         $.return_statement,
         $.asm_statement,
         $.go_statement,
         $.labeled_statement,
-        $.empty_labeled_statement
+        $.empty_labeled_statement,
+        $.for_statement
       ),
+
+    _simple_statement: ($) =>
+      choice(
+        $._expression,
+        $.inc_statement,
+        $.dec_statement,
+        $.assignment_statement,
+        $.short_var_declaration
+      ),
+
+    inc_statement: ($) => seq($._expression, "++"),
+
+    dec_statement: ($) => seq($._expression, "--"),
 
     short_var_declaration: ($) => assignment_statement_support($, ":="),
 
@@ -384,6 +406,55 @@ module.exports = grammar({
 
     empty_labeled_statement: ($) =>
       seq(field("label", alias($.identifier, $.label_name)), ":"),
+
+    for_statement: ($) =>
+      seq(
+        for_keyword,
+        optional(
+          choice(
+            $.for_in_operator,
+            $._expression, // condition-based for
+            $.cstyle_for_clause
+          )
+        ),
+        field("body", $.block)
+      ),
+
+    for_in_operator: ($) =>
+      seq(
+        field("left", $.identifier_list),
+        in_keyword,
+        field("right", choice($._expression, alias($._range, $.range)))
+      ),
+
+    _range: ($) =>
+      prec.right(
+        PREC.multiplicative,
+        choice(
+          seq(field("start", $._expression), "..", field("end", $._expression)),
+          seq(
+            field("start", $._expression),
+            "..",
+            field("end", optional($._expression))
+          ),
+          seq(
+            field("start", optional($._expression)),
+            "..",
+            field("end", $._expression)
+          )
+        )
+      ),
+
+    cstyle_for_clause: ($) =>
+      prec.right(
+        seq(
+          field("initializer", optional($._simple_statement)),
+          ";",
+          field("condition", optional($._expression)),
+          ";",
+          field("update", optional($._simple_statement))
+        )
+      ),
   },
 });
 
