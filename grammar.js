@@ -282,8 +282,7 @@ module.exports = grammar({
 
     parameter_list: ($) => seq("(", comma_sep($.parameter_declaration), ")"),
 
-    argument_list: ($) =>
-      seq("(", comma_sep(choice($.identifier, $._expression)), ")"),
+    argument_list: ($) => seq("(", comma_sep($._expression), ")"),
 
     _type: ($) => choice($._simple_type, $.option_type, $.multi_return_type),
 
