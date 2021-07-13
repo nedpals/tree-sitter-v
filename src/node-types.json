@@ -681,6 +681,30 @@
     }
   },
   {
+    "type": "channel_type",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "array_type",
+            "named": true
+          },
+          {
+            "type": "qualified_type",
+            "named": true
+          },
+          {
+            "type": "type_identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "const_declaration",
     "named": true,
     "fields": {},
@@ -1500,6 +1524,69 @@
     }
   },
   {
+    "type": "keyed_element",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "array",
+          "named": true
+        },
+        {
+          "type": "as_type_cast_expression",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "call_expression",
+          "named": true
+        },
+        {
+          "type": "false",
+          "named": true
+        },
+        {
+          "type": "field_identifier",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "int_literal",
+          "named": true
+        },
+        {
+          "type": "interpreted_string_literal",
+          "named": true
+        },
+        {
+          "type": "none",
+          "named": true
+        },
+        {
+          "type": "true",
+          "named": true
+        },
+        {
+          "type": "type_initializer",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "labeled_statement",
     "named": true,
     "fields": {
@@ -1616,7 +1703,17 @@
   {
     "type": "literal_value",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "keyed_element",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "multi_return_type",
@@ -2235,6 +2332,10 @@
             "named": true
           },
           {
+            "type": "channel_type",
+            "named": true
+          },
+          {
             "type": "qualified_type",
             "named": true
           },
@@ -2607,6 +2708,10 @@
     "named": false
   },
   {
+    "type": "chan",
+    "named": false
+  },
+  {
     "type": "comment",
     "named": true
   },
@@ -2620,6 +2725,10 @@
   },
   {
     "type": "false",
+    "named": true
+  },
+  {
+    "type": "field_identifier",
     "named": true
   },
   {

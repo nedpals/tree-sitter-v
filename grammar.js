@@ -204,7 +204,7 @@ module.exports = grammar({
     false: ($) => "false",
 
     type_initializer: ($) =>
-      prec(
+      prec.right(
         PREC.composite_literal,
         seq(
           field(
@@ -214,20 +214,27 @@ module.exports = grammar({
               // $.binded_type,
               $.qualified_type,
               // $.pointer_type,
-              $.array_type
+              $.array_type,
               // $.fixed_array_type,
               // $.map_type,
               // $.generic_type,
-              // $.channel_type
+              $.channel_type
             )
           ),
           field("body", $.literal_value)
         )
       ),
 
-    literal_value: ($) => seq("{", "}"),
+    literal_value: ($) =>
+      seq(
+        "{",
+        optional(seq($.keyed_element, repeat(seq(",", $.keyed_element)))),
+        "}"
+      ),
 
-    int_literal: ($) => token(int_literal),
+    keyed_element: ($) => seq($._field_identifier, ":", $._element),
+
+    _element: ($) => choice($._expression),
 
     fixed_array_indicator: ($) => token(fixed_array_symbol),
 
@@ -250,6 +257,13 @@ module.exports = grammar({
     array_type: ($) => seq("[]", field("element", $._simple_type)),
 
     variadic_type: ($) => seq("...", $._simple_type),
+
+    channel_type: ($) => seq("chan", field("value", $._simple_type)),
+
+    generic_type: ($) =>
+      seq(choice($.qualified_type, $._type_identifier), $.type_parameters),
+
+    int_literal: ($) => token(int_literal),
 
     _string_literal: ($) => choice($.interpreted_string_literal),
 
@@ -320,7 +334,10 @@ module.exports = grammar({
       ),
 
     _type_identifier: ($) => alias($.identifier, $.type_identifier),
+
     _module_identifier: ($) => alias($.identifier, $.module_identifier),
+
+    _field_identifier: ($) => alias($.identifier, $.field_identifier),
 
     _statement_list: ($) =>
       seq(
