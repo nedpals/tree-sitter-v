@@ -212,9 +212,9 @@ module.exports = grammar({
             choice(
               $._type_identifier,
               // $.binded_type,
-              $.qualified_type
+              $.qualified_type,
               // $.pointer_type,
-              // $.array_type,
+              $.array_type
               // $.fixed_array_type,
               // $.map_type,
               // $.generic_type,
@@ -232,17 +232,24 @@ module.exports = grammar({
     fixed_array_indicator: ($) => token(fixed_array_symbol),
 
     array: ($) =>
-      choice(
-        "[]",
-        prec.right(
-          seq(
-            "[",
-            field("values", repeat1(seq($._expression, optional(",")))),
-            "]",
-            optional($.fixed_array_indicator)
+      prec(
+        PREC.composite_literal,
+        choice(
+          "[]",
+          prec.right(
+            seq(
+              "[",
+              field("values", repeat1(seq($._expression, optional(",")))),
+              "]",
+              optional($.fixed_array_indicator)
+            )
           )
         )
       ),
+
+    array_type: ($) => seq("[]", field("element", $._simple_type)),
+
+    variadic_type: ($) => seq("...", $._simple_type),
 
     _string_literal: ($) => choice($.interpreted_string_literal),
 
@@ -273,12 +280,18 @@ module.exports = grammar({
     identifier: ($) =>
       token(seq(letter, repeat(choice(letter, unicode_digit)))),
 
-    identifier_list: ($) => comma_sep1(choice($.identifier)),
+    _mutable_identifier: ($) => seq(mut_keyword, $.identifier),
+
+    identifier_list: ($) =>
+      comma_sep1(choice($.identifier, $._mutable_identifier)),
 
     expression_list: ($) => comma_sep1(choice($._expression)),
 
     parameter_declaration: ($) =>
-      seq(field("name", $.identifier), field("type", $._type)),
+      seq(
+        field("name", choice($.identifier, $._mutable_identifier)),
+        field("type", choice($._type, $.variadic_type))
+      ),
 
     parameter_list: ($) => seq("(", comma_sep($.parameter_declaration), ")"),
 
@@ -293,7 +306,8 @@ module.exports = grammar({
 
     multi_return_type: ($) => seq("(", comma_sep1($._simple_type), ")"),
 
-    _simple_type: ($) => choice($._type_identifier, $.qualified_type),
+    _simple_type: ($) =>
+      choice($._type_identifier, $.qualified_type, $.array_type),
 
     type_parameters: ($) =>
       prec(PREC.resolve, seq("<", comma_sep1($._type), ">")),
