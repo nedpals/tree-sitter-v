@@ -36,6 +36,10 @@
           "named": true
         },
         {
+          "type": "if_expression",
+          "named": true
+        },
+        {
           "type": "int_literal",
           "named": true
         },
@@ -100,6 +104,10 @@
           },
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expression",
             "named": true
           },
           {
@@ -209,6 +217,10 @@
           "named": true
         },
         {
+          "type": "if_expression",
+          "named": true
+        },
+        {
           "type": "int_literal",
           "named": true
         },
@@ -307,6 +319,10 @@
           "named": true
         },
         {
+          "type": "if_expression",
+          "named": true
+        },
+        {
           "type": "int_literal",
           "named": true
         },
@@ -393,6 +409,10 @@
           },
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expression",
             "named": true
           },
           {
@@ -536,6 +556,10 @@
             "named": true
           },
           {
+            "type": "if_expression",
+            "named": true
+          },
+          {
             "type": "int_literal",
             "named": true
           },
@@ -629,6 +653,10 @@
         },
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "if_expression",
           "named": true
         },
         {
@@ -810,6 +838,10 @@
             "named": true
           },
           {
+            "type": "if_expression",
+            "named": true
+          },
+          {
             "type": "int_literal",
             "named": true
           },
@@ -871,6 +903,10 @@
           },
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expression",
             "named": true
           },
           {
@@ -937,6 +973,10 @@
           },
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expression",
             "named": true
           },
           {
@@ -1014,6 +1054,10 @@
             "named": true
           },
           {
+            "type": "if_expression",
+            "named": true
+          },
+          {
             "type": "inc_statement",
             "named": true
           },
@@ -1083,6 +1127,10 @@
         },
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "if_expression",
           "named": true
         },
         {
@@ -1162,6 +1210,10 @@
         },
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "if_expression",
           "named": true
         },
         {
@@ -1299,6 +1351,10 @@
             "named": true
           },
           {
+            "type": "if_expression",
+            "named": true
+          },
+          {
             "type": "int_literal",
             "named": true
           },
@@ -1383,6 +1439,10 @@
         },
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "if_expression",
           "named": true
         },
         {
@@ -1544,6 +1604,10 @@
           "named": true
         },
         {
+          "type": "if_expression",
+          "named": true
+        },
+        {
           "type": "int_literal",
           "named": true
         },
@@ -1601,6 +1665,108 @@
     }
   },
   {
+    "type": "if_expression",
+    "named": true,
+    "fields": {
+      "alternative": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "block",
+            "named": true
+          },
+          {
+            "type": "if_expression",
+            "named": true
+          }
+        ]
+      },
+      "condition": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "array",
+            "named": true
+          },
+          {
+            "type": "as_type_cast_expression",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "call_expression",
+            "named": true
+          },
+          {
+            "type": "false",
+            "named": true
+          },
+          {
+            "type": "fn_literal",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expression",
+            "named": true
+          },
+          {
+            "type": "int_literal",
+            "named": true
+          },
+          {
+            "type": "interpreted_string_literal",
+            "named": true
+          },
+          {
+            "type": "none",
+            "named": true
+          },
+          {
+            "type": "true",
+            "named": true
+          },
+          {
+            "type": "type_initializer",
+            "named": true
+          },
+          {
+            "type": "unary_expression",
+            "named": true
+          }
+        ]
+      },
+      "consequence": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "block",
+            "named": true
+          }
+        ]
+      },
+      "initializer": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "short_var_declaration",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "inc_statement",
     "named": true,
     "fields": {},
@@ -1634,6 +1800,10 @@
         },
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "if_expression",
           "named": true
         },
         {
@@ -1720,6 +1890,10 @@
         },
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "if_expression",
           "named": true
         },
         {
@@ -1826,6 +2000,10 @@
         },
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "if_expression",
           "named": true
         },
         {
@@ -2191,6 +2369,10 @@
             "named": true
           },
           {
+            "type": "if_expression",
+            "named": true
+          },
+          {
             "type": "int_literal",
             "named": true
           },
@@ -2246,6 +2428,10 @@
           },
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expression",
             "named": true
           },
           {
@@ -2310,6 +2496,10 @@
         },
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "if_expression",
           "named": true
         },
         {
@@ -2442,6 +2632,10 @@
           "named": true
         },
         {
+          "type": "if_expression",
+          "named": true
+        },
+        {
           "type": "inc_statement",
           "named": true
         },
@@ -2526,6 +2720,10 @@
         },
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "if_expression",
           "named": true
         },
         {
@@ -2716,6 +2914,10 @@
           },
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expression",
             "named": true
           },
           {
@@ -3032,6 +3234,10 @@
     "named": false
   },
   {
+    "type": "else",
+    "named": false
+  },
+  {
     "type": "escape_sequence",
     "named": true
   },
@@ -3066,6 +3272,10 @@
   {
     "type": "identifier",
     "named": true
+  },
+  {
+    "type": "if",
+    "named": false
   },
   {
     "type": "in",

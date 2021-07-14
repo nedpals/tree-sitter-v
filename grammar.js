@@ -109,7 +109,8 @@ module.exports = grammar({
         $.binary_expression,
         $.as_type_cast_expression,
         $.call_expression,
-        $.fn_literal
+        $.fn_literal,
+        $._expression_with_blocks
       ),
 
     unary_expression: ($) =>
@@ -161,7 +162,7 @@ module.exports = grammar({
 
     or_block: ($) => seq("or", $.block),
 
-    // _expression_with_blocks: $ => choice(),
+    _expression_with_blocks: ($) => choice($.if_expression),
 
     _single_line_expression: ($) =>
       prec.left(
@@ -473,10 +474,13 @@ module.exports = grammar({
       ),
 
     for_in_operator: ($) =>
-      seq(
-        field("left", $.identifier_list),
-        in_keyword,
-        field("right", choice($._expression, alias($._range, $.range)))
+      prec.right(
+        PREC.primary,
+        seq(
+          field("left", $.identifier_list),
+          in_keyword,
+          field("right", choice($._expression, alias($._range, $.range)))
+        )
       ),
 
     _range: ($) =>
@@ -505,6 +509,19 @@ module.exports = grammar({
           field("condition", optional($._expression)),
           ";",
           field("update", optional($._simple_statement))
+        )
+      ),
+
+    if_expression: ($) =>
+      seq(
+        "if",
+        choice(
+          field("condition", $._expression),
+          field("initializer", $.short_var_declaration)
+        ),
+        field("consequence", $.block),
+        optional(
+          seq("else", field("alternative", choice($.block, $.if_expression)))
         )
       ),
   },
