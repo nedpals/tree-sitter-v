@@ -1243,7 +1243,18 @@
   {
     "type": "enum_declaration",
     "named": true,
-    "fields": {},
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "type_identifier",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": true,
@@ -1254,10 +1265,6 @@
         },
         {
           "type": "enum_member_declaration_list",
-          "named": true
-        },
-        {
-          "type": "type_identifier",
           "named": true
         }
       ]
@@ -1980,18 +1987,24 @@
             "named": true
           }
         ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "type_identifier",
+            "named": true
+          }
+        ]
       }
     },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
           "type": "interface_spec_list",
-          "named": true
-        },
-        {
-          "type": "type_identifier",
           "named": true
         }
       ]
@@ -2913,26 +2926,32 @@
             "named": true
           }
         ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "binded_type",
+            "named": true
+          },
+          {
+            "type": "generic_type",
+            "named": true
+          },
+          {
+            "type": "type_identifier",
+            "named": true
+          }
+        ]
       }
     },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
-          "type": "binded_type",
-          "named": true
-        },
-        {
-          "type": "generic_type",
-          "named": true
-        },
-        {
           "type": "struct_field_declaration_list",
-          "named": true
-        },
-        {
-          "type": "type_identifier",
           "named": true
         }
       ]

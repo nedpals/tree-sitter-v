@@ -1700,11 +1700,15 @@
           "value": "enum"
         },
         {
-          "type": "PREC_DYNAMIC",
-          "value": -1,
+          "type": "FIELD",
+          "name": "name",
           "content": {
-            "type": "SYMBOL",
-            "name": "_type_identifier"
+            "type": "PREC_DYNAMIC",
+            "value": -1,
+            "content": {
+              "type": "SYMBOL",
+              "name": "_type_identifier"
+            }
           }
         },
         {
@@ -1854,24 +1858,28 @@
           "value": "struct"
         },
         {
-          "type": "PREC_DYNAMIC",
-          "value": -1,
+          "type": "FIELD",
+          "name": "name",
           "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "binded_type"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "_type_identifier"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "generic_type"
-              }
-            ]
+            "type": "PREC_DYNAMIC",
+            "value": -1,
+            "content": {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "binded_type"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "_type_identifier"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "generic_type"
+                }
+              ]
+            }
           }
         },
         {
@@ -2109,11 +2117,15 @@
           "value": "interface"
         },
         {
-          "type": "PREC_DYNAMIC",
-          "value": -1,
+          "type": "FIELD",
+          "name": "name",
           "content": {
-            "type": "SYMBOL",
-            "name": "_type_identifier"
+            "type": "PREC_DYNAMIC",
+            "value": -1,
+            "content": {
+              "type": "SYMBOL",
+              "name": "_type_identifier"
+            }
           }
         },
         {

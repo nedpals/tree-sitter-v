@@ -388,7 +388,7 @@ module.exports = grammar({
       optional($.attribute_list),
       optional(pub_keyword),
       'enum',
-      prec.dynamic(-1, $._type_identifier),
+      field('name', prec.dynamic(-1, $._type_identifier)),
       $.enum_member_declaration_list
     ),
 
@@ -421,7 +421,7 @@ module.exports = grammar({
       field('attributes', optional($.attribute_list)),
       optional(pub_keyword),
       'struct',
-      prec.dynamic(-1, choice($.binded_type, $._type_identifier, $.generic_type)),
+      field('name', prec.dynamic(-1, choice($.binded_type, $._type_identifier, $.generic_type))),
       $.struct_field_declaration_list,
     ),
 
@@ -469,7 +469,7 @@ module.exports = grammar({
       field('attributes', optional($.attribute_list)),
       optional(pub_keyword),
       'interface',
-      prec.dynamic(-1, $._type_identifier),
+      field('name', prec.dynamic(-1, $._type_identifier)),
       $.interface_spec_list
     ),
 
