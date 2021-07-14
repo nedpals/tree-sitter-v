@@ -1,4 +1,5 @@
 const PREC = {
+  attributes: 8,
   primary: 7,
   unary: 6,
   multiplicative: 5,
@@ -396,6 +397,7 @@ module.exports = grammar({
     function_declaration: ($) =>
       prec.right(
         seq(
+          field("attributes", optional($.attribute_list)),
           fn_keyword,
           field("name", $.identifier),
           field("type_parameters", optional($.type_parameters)),
@@ -524,6 +526,25 @@ module.exports = grammar({
           seq("else", field("alternative", choice($.block, $.if_expression)))
         )
       ),
+
+    attribute_spec: ($) =>
+      prec(
+        PREC.attributes,
+        choice(
+          choice(alias("unsafe", $.identifier), $.identifier),
+          seq(
+            field("name", choice(alias("unsafe", $.identifier), $.identifier)),
+            ":",
+            field("value", choice($._string_literal, $.identifier))
+          )
+        )
+      ),
+
+    attribute_declaration: ($) =>
+      seq("[", seq($.attribute_spec, repeat(seq(";", $.attribute_spec))), "]"),
+
+    attribute_list: ($) =>
+      repeat1(seq($.attribute_declaration, optional(terminator))),
   },
 });
 
