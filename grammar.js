@@ -108,7 +108,8 @@ module.exports = grammar({
         $.unary_expression,
         $.binary_expression,
         $.as_type_cast_expression,
-        $.call_expression
+        $.call_expression,
+        $.fn_literal
       ),
 
     unary_expression: ($) =>
@@ -258,6 +259,8 @@ module.exports = grammar({
 
     variadic_type: ($) => seq("...", $._simple_type),
 
+    pointer_type: ($) => prec(PREC.unary, seq("&", $._simple_type)),
+
     map_type: ($) =>
       seq("map[", field("key", $._simple_type), "]", field("value", $._type)),
 
@@ -321,7 +324,12 @@ module.exports = grammar({
     multi_return_type: ($) => seq("(", comma_sep1($._simple_type), ")"),
 
     _simple_type: ($) =>
-      choice($._type_identifier, $.qualified_type, $.array_type),
+      choice(
+        $._type_identifier,
+        $.qualified_type,
+        $.pointer_type,
+        $.array_type
+      ),
 
     type_parameters: ($) =>
       prec(
@@ -356,6 +364,7 @@ module.exports = grammar({
         $.return_statement,
         $.asm_statement,
         $.go_statement,
+        $.goto_statement,
         $.labeled_statement,
         $.empty_labeled_statement,
         $.for_statement
@@ -395,6 +404,14 @@ module.exports = grammar({
         )
       ),
 
+    fn_literal: ($) =>
+      seq(
+        "fn",
+        field("parameters", $.parameter_list),
+        field("result", optional($._type)),
+        field("body", $.block)
+      ),
+
     const_declaration: ($) =>
       seq(
         optional(pub_keyword),
@@ -426,6 +443,8 @@ module.exports = grammar({
       ),
 
     go_statement: ($) => seq(go_keyword, $._expression),
+
+    goto_statement: ($) => seq("goto", alias($.identifier, $.label_name)),
 
     labeled_statement: ($) =>
       prec.right(
