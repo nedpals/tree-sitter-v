@@ -429,7 +429,7 @@
     },
     "call_expression": {
       "type": "PREC_RIGHT",
-      "value": 7,
+      "value": 3,
       "content": {
         "type": "SEQ",
         "members": [
@@ -1809,8 +1809,11 @@
         "type": "SEQ",
         "members": [
           {
-            "type": "STRING",
-            "value": "<"
+            "type": "IMMEDIATE_TOKEN",
+            "content": {
+              "type": "STRING",
+              "value": "<"
+            }
           },
           {
             "type": "SEQ",
@@ -1838,8 +1841,11 @@
             ]
           },
           {
-            "type": "STRING",
-            "value": ">"
+            "type": "IMMEDIATE_TOKEN",
+            "content": {
+              "type": "STRING",
+              "value": ">"
+            }
           }
         ]
       }

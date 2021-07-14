@@ -147,7 +147,7 @@ module.exports = grammar({
 
     call_expression: ($) =>
       prec.right(
-        PREC.primary,
+        PREC.comparative,
         seq(
           field("function", choice($.identifier)),
           field("type_parameters", optional($.type_parameters)),
@@ -324,7 +324,10 @@ module.exports = grammar({
       choice($._type_identifier, $.qualified_type, $.array_type),
 
     type_parameters: ($) =>
-      prec(PREC.resolve, seq("<", comma_sep1($._type), ">")),
+      prec(
+        PREC.resolve,
+        seq(token.immediate("<"), comma_sep1($._type), token.immediate(">"))
+      ),
 
     qualified_type: ($) =>
       seq(
