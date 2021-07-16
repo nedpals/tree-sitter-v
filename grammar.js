@@ -77,6 +77,9 @@ const return_keyword = "return";
 const type_keyword = "type";
 const for_keyword = "for";
 const in_keyword = "in";
+const struct_keyword = "struct";
+const enum_keyword = "enum";
+const interface_keyword = "interface";
 
 const fixed_array_symbol = "!";
 
@@ -99,7 +102,14 @@ module.exports = grammar({
       ),
 
     _top_level_declaration: ($) =>
-      choice($.const_declaration, $.function_declaration, $.type_declaration),
+      choice(
+        $.const_declaration,
+        $.function_declaration,
+        $.type_declaration,
+        $.struct_declaration,
+        $.enum_declaration,
+        $.interface_declaration
+      ),
 
     _expression: ($) =>
       choice(
@@ -350,7 +360,8 @@ module.exports = grammar({
 
     _module_identifier: ($) => alias($.identifier, $.module_identifier),
 
-    _field_identifier: ($) => alias($.identifier, $.field_identifier),
+    _field_identifier: ($) =>
+      prec(PREC.resolve, alias($.identifier, $.field_identifier)),
 
     _statement_list: ($) =>
       seq(
@@ -398,6 +409,7 @@ module.exports = grammar({
       prec.right(
         seq(
           field("attributes", optional($.attribute_list)),
+          optional(pub_keyword),
           fn_keyword,
           field("name", $.identifier),
           field("type_parameters", optional($.type_parameters)),
@@ -545,6 +557,120 @@ module.exports = grammar({
 
     attribute_list: ($) =>
       repeat1(seq($.attribute_declaration, optional(terminator))),
+
+    struct_declaration: ($) =>
+      seq(
+        field("attributes", optional($.attribute_list)),
+        optional(pub_keyword),
+        struct_keyword,
+        $._type,
+        $.struct_field_declaration_list
+      ),
+
+    struct_field_declaration_list: ($) =>
+      seq(
+        "{",
+        repeat(
+          seq(
+            choice($.struct_field_scope, $.struct_field_declaration),
+            optional(terminator)
+          )
+        ),
+        "}"
+      ),
+
+    struct_field_scope: ($) =>
+      seq(
+        choice(
+          pub_keyword,
+          mut_keyword,
+          seq(pub_keyword, mut_keyword),
+          global_keyword
+        ),
+        ":"
+      ),
+
+    struct_field_declaration: ($) =>
+      prec.right(
+        choice(
+          seq(
+            field("name", $._field_identifier),
+            field("type", $._type),
+            field("attributes", optional($.attribute_declaration)),
+            optional(seq("=", field("default_value", $._expression))),
+            optional(terminator)
+          ),
+          field(
+            "type",
+            seq(
+              choice($._type_identifier, $.qualified_type),
+              optional(terminator)
+            )
+          )
+        )
+      ),
+
+    enum_declaration: ($) =>
+      seq(
+        optional($.attribute_list),
+        optional(pub_keyword),
+        enum_keyword,
+        $._type_identifier,
+        $.enum_member_declaration_list
+      ),
+
+    enum_member_declaration_list: ($) =>
+      seq(
+        "{",
+        optional(seq(repeat(seq($.enum_member, optional(terminator))))),
+        "}"
+      ),
+
+    enum_member: ($) =>
+      seq(
+        field("name", $.identifier),
+        optional(seq("=", field("value", $.int_literal)))
+      ),
+
+    enum_identifier: ($) => seq(".", field("field_name", $.identifier)),
+
+    interface_declaration: ($) =>
+      seq(
+        field("attributes", optional($.attribute_list)),
+        optional(pub_keyword),
+        interface_keyword,
+        $._type_identifier,
+        $.interface_spec_list
+      ),
+
+    interface_spec_list: ($) =>
+      seq(
+        "{",
+        optional(
+          repeat(
+            seq(
+              choice(
+                $.struct_field_declaration,
+                $.interface_spec,
+                $.interface_field_scope
+              ),
+              optional(terminator)
+            )
+          )
+        ),
+        "}"
+      ),
+
+    interface_field_scope: ($) => seq(mut_keyword + ":"),
+
+    interface_spec: ($) =>
+      prec.right(
+        seq(
+          field("name", $._field_identifier),
+          field("parameters", $.parameter_list),
+          field("result", optional($._type))
+        )
+      ),
   },
 });
 
