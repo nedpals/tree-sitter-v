@@ -785,6 +785,77 @@
     }
   },
   {
+    "type": "c_define_clause",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "c_flag_clause",
+    "named": true,
+    "fields": {
+      "flag": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "-",
+            "named": false
+          },
+          {
+            "type": "_",
+            "named": false
+          }
+        ]
+      },
+      "platform": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "c_include_clause",
+    "named": true,
+    "fields": {
+      "path": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "c_include_path_string",
+            "named": true
+          },
+          {
+            "type": "interpreted_string_literal",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "c_include_path_string",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "call_expression",
     "named": true,
     "fields": {
@@ -3133,6 +3204,18 @@
           "named": true
         },
         {
+          "type": "c_define_clause",
+          "named": true
+        },
+        {
+          "type": "c_flag_clause",
+          "named": true
+        },
+        {
+          "type": "c_include_clause",
+          "named": true
+        },
+        {
           "type": "call_expression",
           "named": true
         },
@@ -3803,6 +3886,18 @@
     "named": false
   },
   {
+    "type": "#define",
+    "named": false
+  },
+  {
+    "type": "#flag",
+    "named": false
+  },
+  {
+    "type": "#include",
+    "named": false
+  },
+  {
     "type": "$",
     "named": false
   },
@@ -3984,6 +4079,10 @@
   },
   {
     "type": "^=",
+    "named": false
+  },
+  {
+    "type": "_",
     "named": false
   },
   {

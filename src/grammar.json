@@ -69,6 +69,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "_c_directive"
+        },
+        {
+          "type": "SYMBOL",
           "name": "function_declaration"
         },
         {
@@ -4132,6 +4136,198 @@
           }
         ]
       }
+    },
+    "_c_directive": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "c_include_clause"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "c_flag_clause"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "c_define_clause"
+        }
+      ]
+    },
+    "c_include_clause": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "#include"
+        },
+        {
+          "type": "FIELD",
+          "name": "path",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "interpreted_string_literal"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "c_include_path_string"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "c_include_path_string": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "<"
+        },
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "REPEAT",
+                "content": {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "PATTERN",
+                      "value": "[^>\\n]"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": "\\>"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "STRING",
+          "value": ">"
+        }
+      ]
+    },
+    "c_flag_clause": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "#flag"
+        },
+        {
+          "type": "FIELD",
+          "name": "platform",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "identifier"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "flag",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": "-"
+                  },
+                  {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "PATTERN",
+                        "value": "[a-zA-Zα-ωΑ-Ωµ]"
+                      },
+                      {
+                        "type": "STRING",
+                        "value": "_"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "TOKEN",
+            "content": {
+              "type": "PREC",
+              "value": -1,
+              "content": {
+                "type": "REPEAT1",
+                "content": {
+                  "type": "PATTERN",
+                  "value": ".|\\\\\\r?\\n"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "c_define_clause": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "#define"
+        },
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "TOKEN",
+            "content": {
+              "type": "PREC",
+              "value": -1,
+              "content": {
+                "type": "REPEAT1",
+                "content": {
+                  "type": "PATTERN",
+                  "value": ".|\\\\\\r?\\n"
+                }
+              }
+            }
+          }
+        }
+      ]
     }
   },
   "extras": [

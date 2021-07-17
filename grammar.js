@@ -120,6 +120,7 @@ module.exports = grammar({
       choice(
         $.const_declaration,
         $.global_var_declaration,
+        $._c_directive,
         $.function_declaration,
         $.type_declaration,
         $.struct_declaration,
@@ -728,6 +729,37 @@ module.exports = grammar({
           field("parameters", $.parameter_list),
           field("result", optional($._type))
         )
+      ),
+
+    _c_directive: ($) =>
+      choice($.c_include_clause, $.c_flag_clause, $.c_define_clause),
+
+    c_include_clause: ($) =>
+      seq(
+        "#include",
+        field(
+          "path",
+          choice($.interpreted_string_literal, $.c_include_path_string)
+        )
+      ),
+
+    // Taken from: https://github.com/tree-sitter/tree-sitter-c/blob/master/grammar.js#L937
+    c_include_path_string: ($) =>
+      seq("<", token(seq(repeat(choice(/[^>\n]/, "\\>")))), ">"),
+
+    c_flag_clause: ($) =>
+      seq(
+        "#flag",
+        field("platform", optional($.identifier)),
+        field("flag", optional(seq("-", letter))),
+        field("value", token(prec(-1, repeat1(/.|\\\r?\n/))))
+      ),
+
+    c_define_clause: ($) =>
+      seq(
+        "#define",
+        field("name", $.identifier),
+        field("value", token(prec(-1, repeat1(/.|\\\r?\n/))))
       ),
   },
 });
