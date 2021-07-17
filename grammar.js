@@ -117,6 +117,7 @@ module.exports = grammar({
     _top_level_declaration: ($) =>
       choice(
         $.const_declaration,
+        $.global_var_declaration,
         $.function_declaration,
         $.type_declaration,
         $.struct_declaration,
@@ -452,6 +453,30 @@ module.exports = grammar({
         field("result", optional($._type)),
         field("body", $.block)
       ),
+
+    global_var_declaration: ($) =>
+      seq(
+        global_keyword,
+        choice(
+          $._global_var_spec,
+          $.global_var_type_initializer,
+          seq(
+            "(",
+            repeat(
+              seq(
+                choice($._global_var_spec, $.global_var_type_initializer),
+                terminator
+              )
+            ),
+            ")"
+          )
+        )
+      ),
+
+    _global_var_spec: ($) => alias($.const_spec, $.global_var_spec),
+
+    global_var_type_initializer: ($) =>
+      seq(field("name", $.identifier), field("type", $._type)),
 
     const_declaration: ($) =>
       seq(

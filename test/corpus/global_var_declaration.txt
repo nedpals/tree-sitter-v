@@ -1,0 +1,39 @@
+===
+Global Variables
+===
+
+__global x = bool(true)
+__global y f32
+__global ()
+__global (
+	spam string
+	foo  = int(5)
+)
+__global (
+	a int
+)
+
+---
+
+(source_file 
+  (global_var_declaration 
+    (global_var_spec 
+      (identifier) 
+      (call_expression 
+        (identifier) 
+        (argument_list (true))))) 
+    (global_var_declaration 
+      (global_var_type_initializer 
+        (identifier) (type_identifier))) 
+    (global_var_declaration) 
+    (global_var_declaration 
+      (global_var_type_initializer 
+        (identifier) (type_identifier)) 
+      (global_var_spec 
+        (identifier) 
+        (call_expression 
+          (identifier)
+          (argument_list (int_literal))))) 
+    (global_var_declaration 
+      (global_var_type_initializer 
+        (identifier) (type_identifier))))
