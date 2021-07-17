@@ -706,6 +706,10 @@
           "named": true
         },
         {
+          "type": "defer_statement",
+          "named": true
+        },
+        {
           "type": "empty_labeled_statement",
           "named": true
         },
@@ -1237,6 +1241,21 @@
         },
         {
           "type": "unary_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "defer_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "block",
           "named": true
         }
       ]
@@ -2468,6 +2487,10 @@
           "named": true
         },
         {
+          "type": "defer_statement",
+          "named": true
+        },
+        {
           "type": "empty_labeled_statement",
           "named": true
         },
@@ -3119,6 +3142,10 @@
         },
         {
           "type": "dec_statement",
+          "named": true
+        },
+        {
+          "type": "defer_statement",
           "named": true
         },
         {
@@ -3988,6 +4015,10 @@
     "named": false
   },
   {
+    "type": "defer",
+    "named": false
+  },
+  {
     "type": "else",
     "named": false
   },
@@ -4098,6 +4129,10 @@
   {
     "type": "type_identifier",
     "named": true
+  },
+  {
+    "type": "unsafe",
+    "named": false
   },
   {
     "type": "{",

@@ -93,6 +93,8 @@ const in_keyword = "in";
 const struct_keyword = "struct";
 const enum_keyword = "enum";
 const interface_keyword = "interface";
+const defer_keyword = "defer";
+const unsafe_keyword = "unsafe";
 
 const fixed_array_symbol = "!";
 
@@ -395,6 +397,7 @@ module.exports = grammar({
         $.goto_statement,
         $.labeled_statement,
         $.empty_labeled_statement,
+        $.defer_statement,
         $.for_statement
       ),
 
@@ -419,6 +422,10 @@ module.exports = grammar({
     assert_statement: ($) => seq(assert_keyword, $._expression),
 
     block: ($) => seq("{", optional($._statement_list), "}"),
+
+    defer_statement: ($) => seq(defer_keyword, $.block),
+
+    unsafe_expression: ($) => seq(unsafe_keyword, $.block),
 
     overloadable_operator: ($) => choice(...overloadable_operators),
 
