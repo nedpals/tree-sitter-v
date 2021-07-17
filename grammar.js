@@ -19,6 +19,19 @@ const assignment_operators = multiplicative_operators
   .map((operator) => operator + "=")
   .concat("=");
 const unary_operators = ["+", "-", "!", "~", "^", "*", "&", "<-"];
+const overloadable_operators = [
+  "+",
+  "-",
+  "*",
+  "/",
+  "%",
+  "<",
+  ">",
+  "==",
+  "!=",
+  "<=",
+  ">=",
+].map((operator) => token(operator));
 
 const newline = choice("\n", "\r", "\r\n");
 const terminator = token(newline);
@@ -340,7 +353,8 @@ module.exports = grammar({
         $._type_identifier,
         $.qualified_type,
         $.pointer_type,
-        $.array_type
+        $.array_type,
+        $.function_type
       ),
 
     type_parameters: ($) =>
@@ -405,17 +419,29 @@ module.exports = grammar({
 
     block: ($) => seq("{", optional($._statement_list), "}"),
 
+    overloadable_operator: ($) => choice(...overloadable_operators),
+
     function_declaration: ($) =>
       prec.right(
         seq(
           field("attributes", optional($.attribute_list)),
           optional(pub_keyword),
           fn_keyword,
-          field("name", $.identifier),
+          field("receiver", optional($.parameter_list)),
+          field("name", choice($.identifier, $.overloadable_operator)),
           field("type_parameters", optional($.type_parameters)),
-          $.parameter_list,
+          field("parameters", $.parameter_list),
           field("result", optional($._type)),
           field("body", optional($.block))
+        )
+      ),
+
+    function_type: ($) =>
+      prec.right(
+        seq(
+          "fn",
+          field("parameters", $.parameter_list),
+          field("result", optional($._type))
         )
       ),
 

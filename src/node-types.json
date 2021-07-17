@@ -161,6 +161,10 @@
             "named": true
           },
           {
+            "type": "function_type",
+            "named": true
+          },
+          {
             "type": "pointer_type",
             "named": true
           },
@@ -210,6 +214,10 @@
         },
         {
           "type": "fn_literal",
+          "named": true
+        },
+        {
+          "type": "function_type",
           "named": true
         },
         {
@@ -831,6 +839,10 @@
             "named": true
           },
           {
+            "type": "function_type",
+            "named": true
+          },
+          {
             "type": "pointer_type",
             "named": true
           },
@@ -1415,6 +1427,10 @@
             "named": true
           },
           {
+            "type": "function_type",
+            "named": true
+          },
+          {
             "type": "multi_return_type",
             "named": true
           },
@@ -1656,6 +1672,30 @@
           {
             "type": "identifier",
             "named": true
+          },
+          {
+            "type": "overloadable_operator",
+            "named": true
+          }
+        ]
+      },
+      "parameters": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "parameter_list",
+            "named": true
+          }
+        ]
+      },
+      "receiver": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "parameter_list",
+            "named": true
           }
         ]
       },
@@ -1665,6 +1705,10 @@
         "types": [
           {
             "type": "array_type",
+            "named": true
+          },
+          {
+            "type": "function_type",
             "named": true
           },
           {
@@ -1699,16 +1743,56 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "parameter_list",
-          "named": true
-        }
-      ]
+    }
+  },
+  {
+    "type": "function_type",
+    "named": true,
+    "fields": {
+      "parameters": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "parameter_list",
+            "named": true
+          }
+        ]
+      },
+      "result": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "array_type",
+            "named": true
+          },
+          {
+            "type": "function_type",
+            "named": true
+          },
+          {
+            "type": "multi_return_type",
+            "named": true
+          },
+          {
+            "type": "option_type",
+            "named": true
+          },
+          {
+            "type": "pointer_type",
+            "named": true
+          },
+          {
+            "type": "qualified_type",
+            "named": true
+          },
+          {
+            "type": "type_identifier",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -2045,6 +2129,10 @@
             "named": true
           },
           {
+            "type": "function_type",
+            "named": true
+          },
+          {
             "type": "multi_return_type",
             "named": true
           },
@@ -2335,6 +2423,10 @@
             "named": true
           },
           {
+            "type": "function_type",
+            "named": true
+          },
+          {
             "type": "pointer_type",
             "named": true
           },
@@ -2354,6 +2446,10 @@
         "types": [
           {
             "type": "array_type",
+            "named": true
+          },
+          {
+            "type": "function_type",
             "named": true
           },
           {
@@ -2390,6 +2486,10 @@
       "types": [
         {
           "type": "array_type",
+          "named": true
+        },
+        {
+          "type": "function_type",
           "named": true
         },
         {
@@ -2435,6 +2535,10 @@
           "named": true
         },
         {
+          "type": "function_type",
+          "named": true
+        },
+        {
           "type": "multi_return_type",
           "named": true
         },
@@ -2469,6 +2573,11 @@
     }
   },
   {
+    "type": "overloadable_operator",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "parameter_declaration",
     "named": true,
     "fields": {
@@ -2492,6 +2601,10 @@
         "types": [
           {
             "type": "array_type",
+            "named": true
+          },
+          {
+            "type": "function_type",
             "named": true
           },
           {
@@ -2547,6 +2660,10 @@
       "types": [
         {
           "type": "array_type",
+          "named": true
+        },
+        {
+          "type": "function_type",
           "named": true
         },
         {
@@ -3047,6 +3164,10 @@
           "named": true
         },
         {
+          "type": "function_type",
+          "named": true
+        },
+        {
           "type": "multi_return_type",
           "named": true
         },
@@ -3168,6 +3289,10 @@
             "named": true
           },
           {
+            "type": "function_type",
+            "named": true
+          },
+          {
             "type": "multi_return_type",
             "named": true
           },
@@ -3235,6 +3360,10 @@
         "types": [
           {
             "type": "array_type",
+            "named": true
+          },
+          {
+            "type": "function_type",
             "named": true
           },
           {
@@ -3317,6 +3446,10 @@
       "types": [
         {
           "type": "array_type",
+          "named": true
+        },
+        {
+          "type": "function_type",
           "named": true
         },
         {
@@ -3458,6 +3591,10 @@
       "types": [
         {
           "type": "array_type",
+          "named": true
+        },
+        {
+          "type": "function_type",
           "named": true
         },
         {

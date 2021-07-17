@@ -1,0 +1,19 @@
+===
+Function Type
+===
+
+type Handler = fn (req Req, res &Res) ?string
+
+---
+
+(source_file
+  (type_declaration
+    (type_identifier)
+    (function_type
+      (parameter_list
+        (parameter_declaration
+          (identifier) (type_identifier))
+        (parameter_declaration
+          (identifier)
+          (pointer_type (type_identifier))))
+      (option_type (type_identifier)))))

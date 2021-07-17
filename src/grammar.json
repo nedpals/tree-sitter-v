@@ -1869,6 +1869,10 @@
         {
           "type": "SYMBOL",
           "name": "array_type"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "function_type"
         }
       ]
     },
@@ -2282,6 +2286,88 @@
         }
       ]
     },
+    "overloadable_operator": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "+"
+          }
+        },
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "-"
+          }
+        },
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "*"
+          }
+        },
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "/"
+          }
+        },
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "%"
+          }
+        },
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "<"
+          }
+        },
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": ">"
+          }
+        },
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "=="
+          }
+        },
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "!="
+          }
+        },
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "<="
+          }
+        },
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": ">="
+          }
+        }
+      ]
+    },
     "function_declaration": {
       "type": "PREC_RIGHT",
       "value": 0,
@@ -2322,10 +2408,35 @@
           },
           {
             "type": "FIELD",
+            "name": "receiver",
+            "content": {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "parameter_list"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            }
+          },
+          {
+            "type": "FIELD",
             "name": "name",
             "content": {
-              "type": "SYMBOL",
-              "name": "identifier"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "identifier"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "overloadable_operator"
+                }
+              ]
             }
           },
           {
@@ -2345,8 +2456,12 @@
             }
           },
           {
-            "type": "SYMBOL",
-            "name": "parameter_list"
+            "type": "FIELD",
+            "name": "parameters",
+            "content": {
+              "type": "SYMBOL",
+              "name": "parameter_list"
+            }
           },
           {
             "type": "FIELD",
@@ -2373,6 +2488,43 @@
                 {
                   "type": "SYMBOL",
                   "name": "block"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "function_type": {
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "fn"
+          },
+          {
+            "type": "FIELD",
+            "name": "parameters",
+            "content": {
+              "type": "SYMBOL",
+              "name": "parameter_list"
+            }
+          },
+          {
+            "type": "FIELD",
+            "name": "result",
+            "content": {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "_type"
                 },
                 {
                   "type": "BLANK"
