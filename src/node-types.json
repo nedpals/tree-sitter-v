@@ -2800,6 +2800,32 @@
     }
   },
   {
+    "type": "module_clause",
+    "named": true,
+    "fields": {
+      "attributes": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "attribute_list",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "module_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "multi_return_type",
     "named": true,
     "fields": {},
@@ -3379,6 +3405,10 @@
         },
         {
           "type": "labeled_statement",
+          "named": true
+        },
+        {
+          "type": "module_clause",
           "named": true
         },
         {

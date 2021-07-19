@@ -94,6 +94,10 @@
         {
           "type": "SYMBOL",
           "name": "import_declaration"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "module_clause"
         }
       ]
     },

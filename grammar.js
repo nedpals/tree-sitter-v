@@ -127,7 +127,8 @@ module.exports = grammar({
         $.struct_declaration,
         $.enum_declaration,
         $.interface_declaration,
-        $.import_declaration
+        $.import_declaration,
+        $.module_clause
       ),
 
     _expression: ($) =>
