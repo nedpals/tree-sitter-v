@@ -2232,6 +2232,88 @@
     }
   },
   {
+    "type": "import_alias",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "module_identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "import_declaration",
+    "named": true,
+    "fields": {
+      "alias": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "import_alias",
+            "named": true
+          }
+        ]
+      },
+      "path": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "import_path",
+            "named": true
+          }
+        ]
+      },
+      "symbols": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "import_symbols",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "import_symbols",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "import_symbols_list",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "import_symbols_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "inc_statement",
     "named": true,
     "fields": {},
@@ -3276,6 +3358,10 @@
           "named": true
         },
         {
+          "type": "import_declaration",
+          "named": true
+        },
+        {
           "type": "inc_statement",
           "named": true
         },
@@ -4166,6 +4252,14 @@
     "named": false
   },
   {
+    "type": "import",
+    "named": false
+  },
+  {
+    "type": "import_path",
+    "named": true
+  },
+  {
     "type": "in",
     "named": false
   },
@@ -4183,6 +4277,10 @@
   },
   {
     "type": "map[",
+    "named": false
+  },
+  {
+    "type": "module",
     "named": false
   },
   {

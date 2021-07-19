@@ -95,6 +95,7 @@ const enum_keyword = "enum";
 const interface_keyword = "interface";
 const defer_keyword = "defer";
 const unsafe_keyword = "unsafe";
+const import_keyword = "import";
 
 const fixed_array_symbol = "!";
 
@@ -125,7 +126,8 @@ module.exports = grammar({
         $.type_declaration,
         $.struct_declaration,
         $.enum_declaration,
-        $.interface_declaration
+        $.interface_declaration,
+        $.import_declaration
       ),
 
     _expression: ($) =>
@@ -368,10 +370,13 @@ module.exports = grammar({
       ),
 
     qualified_type: ($) =>
-      seq(
-        field("module", $._module_identifier),
-        ".",
-        field("name", $._type_identifier)
+      prec(
+        PREC.composite_literal,
+        seq(
+          field("module", $._module_identifier),
+          ".",
+          field("name", $._type_identifier)
+        )
       ),
 
     _type_identifier: ($) => alias($.identifier, $.type_identifier),
@@ -745,7 +750,11 @@ module.exports = grammar({
 
     // Taken from: https://github.com/tree-sitter/tree-sitter-c/blob/master/grammar.js#L937
     c_include_path_string: ($) =>
-      seq("<", token(seq(repeat(choice(/[^>\n]/, "\\>")))), ">"),
+      seq(
+        token.immediate("<"),
+        token(seq(repeat(choice(/[^>\n]/, "\\>"))))
+        // token.immediate(">")
+      ),
 
     c_flag_clause: ($) =>
       seq(
@@ -761,6 +770,37 @@ module.exports = grammar({
         field("name", $.identifier),
         field("value", token(prec(-1, repeat1(/.|\\\r?\n/))))
       ),
+
+    module_clause: ($) =>
+      seq(
+        field("attributes", optional($.attribute_list)),
+        "module",
+        $._module_identifier
+      ),
+
+    import_declaration: ($) =>
+      prec.right(
+        PREC.resolve,
+        seq(
+          import_keyword,
+          field("path", $.import_path),
+          optional(
+            choice(
+              field("alias", $.import_alias),
+              field("symbols", $.import_symbols)
+            )
+          )
+        )
+      ),
+
+    import_path: ($) =>
+      token(seq(letter, repeat(choice(letter, unicode_digit, ".")))),
+
+    import_symbols: ($) => seq("{", $.import_symbols_list, "}"),
+
+    import_symbols_list: ($) => comma_sep1($.identifier),
+
+    import_alias: ($) => seq("as", field("name", $._module_identifier)),
   },
 });
 
