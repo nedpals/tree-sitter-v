@@ -1,0 +1,13 @@
+=============
+JS Function Definition
+=============
+
+fn JS.abc()
+
+---
+
+(source_file
+  (function_declaration
+    (language_spec)
+    (identifier)
+    (parameter_list)))

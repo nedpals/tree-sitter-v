@@ -184,7 +184,7 @@ module.exports = grammar({
       prec.right(
         PREC.comparative,
         seq(
-          field("function", choice($.identifier)),
+          field("function", choice($.identifier, $.binded_identifier)),
           field("type_parameters", optional($.type_parameters)),
           field("arguments", $.argument_list),
           optional($.option_propagator)
@@ -365,6 +365,8 @@ module.exports = grammar({
 
     _mutable_identifier: ($) => seq(mut_keyword, $.identifier),
 
+    binded_identifier: ($) => seq($.language_spec, $.identifier),
+
     identifier_list: ($) =>
       comma_sep1(choice($.identifier, $._mutable_identifier)),
 
@@ -488,6 +490,7 @@ module.exports = grammar({
           optional(pub_keyword),
           fn_keyword,
           field("receiver", optional($.parameter_list)),
+          field("langauge", optional($.language_spec)),
           field("name", choice($.identifier, $.overloadable_operator)),
           field("type_parameters", optional($.type_parameters)),
           field("parameters", $.parameter_list),
@@ -512,6 +515,8 @@ module.exports = grammar({
         field("result", optional($._type)),
         field("body", $.block)
       ),
+
+    language_spec: ($) => seq(field("language", choice("C", "JS")), "."),
 
     global_var_declaration: ($) =>
       seq(
