@@ -437,7 +437,8 @@ module.exports = grammar({
         $.labeled_statement,
         $.empty_labeled_statement,
         $.defer_statement,
-        $.for_statement
+        $.for_statement,
+        $.send_statement
       ),
 
     _simple_statement: ($) =>
@@ -452,6 +453,16 @@ module.exports = grammar({
     inc_statement: ($) => seq($._expression, "++"),
 
     dec_statement: ($) => seq($._expression, "--"),
+
+    send_statement: ($) =>
+      prec(
+        PREC.unary,
+        seq(
+          field("channel", $._expression),
+          "<-",
+          field("value", $._expression)
+        )
+      ),
 
     short_var_declaration: ($) => assignment_statement_support($, ":="),
 
