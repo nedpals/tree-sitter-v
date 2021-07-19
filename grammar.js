@@ -138,6 +138,8 @@ module.exports = grammar({
         $.array,
         $.unary_expression,
         $.binary_expression,
+        $.index_expression,
+        $.slice_expression,
         $.as_type_cast_expression,
         $.call_expression,
         $.fn_literal,
@@ -621,6 +623,24 @@ module.exports = grammar({
             field("end", $._expression)
           )
         )
+      ),
+
+    index_expression: ($) =>
+      prec.right(
+        PREC.primary,
+        seq(
+          field("operand", $._expression),
+          "[",
+          field("index", $._expression),
+          "]",
+          optional($.option_propagator)
+        )
+      ),
+
+    slice_expression: ($) =>
+      prec(
+        PREC.primary,
+        seq(field("operand", $._expression), "[", $._range, "]")
       ),
 
     cstyle_for_clause: ($) =>
