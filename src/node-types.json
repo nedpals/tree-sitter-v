@@ -52,6 +52,10 @@
           "named": true
         },
         {
+          "type": "rune_literal",
+          "named": true
+        },
+        {
           "type": "true",
           "named": true
         },
@@ -120,6 +124,10 @@
           },
           {
             "type": "none",
+            "named": true
+          },
+          {
+            "type": "rune_literal",
             "named": true
           },
           {
@@ -257,6 +265,10 @@
           "named": true
         },
         {
+          "type": "rune_literal",
+          "named": true
+        },
+        {
           "type": "true",
           "named": true
         },
@@ -340,6 +352,10 @@
         },
         {
           "type": "none",
+          "named": true
+        },
+        {
+          "type": "rune_literal",
           "named": true
         },
         {
@@ -506,6 +522,10 @@
             "named": true
           },
           {
+            "type": "rune_literal",
+            "named": true
+          },
+          {
             "type": "true",
             "named": true
           },
@@ -650,6 +670,10 @@
             "named": true
           },
           {
+            "type": "rune_literal",
+            "named": true
+          },
+          {
             "type": "true",
             "named": true
           },
@@ -763,6 +787,10 @@
         },
         {
           "type": "return_statement",
+          "named": true
+        },
+        {
+          "type": "rune_literal",
           "named": true
         },
         {
@@ -1011,6 +1039,10 @@
             "named": true
           },
           {
+            "type": "rune_literal",
+            "named": true
+          },
+          {
             "type": "true",
             "named": true
           },
@@ -1076,6 +1108,10 @@
           },
           {
             "type": "none",
+            "named": true
+          },
+          {
+            "type": "rune_literal",
             "named": true
           },
           {
@@ -1150,6 +1186,10 @@
           },
           {
             "type": "none",
+            "named": true
+          },
+          {
+            "type": "rune_literal",
             "named": true
           },
           {
@@ -1231,6 +1271,10 @@
             "named": true
           },
           {
+            "type": "rune_literal",
+            "named": true
+          },
+          {
             "type": "short_var_declaration",
             "named": true
           },
@@ -1300,6 +1344,10 @@
         },
         {
           "type": "none",
+          "named": true
+        },
+        {
+          "type": "rune_literal",
           "named": true
         },
         {
@@ -1465,6 +1513,10 @@
           "named": true
         },
         {
+          "type": "rune_literal",
+          "named": true
+        },
+        {
           "type": "true",
           "named": true
         },
@@ -1611,6 +1663,10 @@
             "named": true
           },
           {
+            "type": "rune_literal",
+            "named": true
+          },
+          {
             "type": "true",
             "named": true
           },
@@ -1695,6 +1751,10 @@
         },
         {
           "type": "none",
+          "named": true
+        },
+        {
+          "type": "rune_literal",
           "named": true
         },
         {
@@ -1967,6 +2027,10 @@
             "named": true
           },
           {
+            "type": "rune_literal",
+            "named": true
+          },
+          {
             "type": "true",
             "named": true
           },
@@ -2085,6 +2149,10 @@
           "named": true
         },
         {
+          "type": "rune_literal",
+          "named": true
+        },
+        {
           "type": "true",
           "named": true
         },
@@ -2193,6 +2261,10 @@
           },
           {
             "type": "none",
+            "named": true
+          },
+          {
+            "type": "rune_literal",
             "named": true
           },
           {
@@ -2363,6 +2435,10 @@
         },
         {
           "type": "none",
+          "named": true
+        },
+        {
+          "type": "rune_literal",
           "named": true
         },
         {
@@ -2574,6 +2650,10 @@
           "named": true
         },
         {
+          "type": "rune_literal",
+          "named": true
+        },
+        {
           "type": "true",
           "named": true
         },
@@ -2697,6 +2777,10 @@
         },
         {
           "type": "return_statement",
+          "named": true
+        },
+        {
+          "type": "rune_literal",
           "named": true
         },
         {
@@ -3109,6 +3193,10 @@
             "named": true
           },
           {
+            "type": "rune_literal",
+            "named": true
+          },
+          {
             "type": "true",
             "named": true
           },
@@ -3168,6 +3256,10 @@
           },
           {
             "type": "none",
+            "named": true
+          },
+          {
+            "type": "rune_literal",
             "named": true
           },
           {
@@ -3236,6 +3328,10 @@
         },
         {
           "type": "none",
+          "named": true
+        },
+        {
+          "type": "rune_literal",
           "named": true
         },
         {
@@ -3420,6 +3516,10 @@
           "named": true
         },
         {
+          "type": "rune_literal",
+          "named": true
+        },
+        {
           "type": "short_var_declaration",
           "named": true
         },
@@ -3500,6 +3600,10 @@
         },
         {
           "type": "none",
+          "named": true
+        },
+        {
+          "type": "rune_literal",
           "named": true
         },
         {
@@ -3631,6 +3735,10 @@
           },
           {
             "type": "none",
+            "named": true
+          },
+          {
+            "type": "rune_literal",
             "named": true
           },
           {
@@ -3902,6 +4010,10 @@
           },
           {
             "type": "none",
+            "named": true
+          },
+          {
+            "type": "rune_literal",
             "named": true
           },
           {
@@ -4340,6 +4452,10 @@
   {
     "type": "return",
     "named": false
+  },
+  {
+    "type": "rune_literal",
+    "named": true
   },
   {
     "type": "struct",

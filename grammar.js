@@ -202,6 +202,7 @@ module.exports = grammar({
           $.identifier,
           $.int_literal,
           $._string_literal,
+          $.rune_literal,
           $.none,
           $.true,
           $.false
@@ -299,6 +300,37 @@ module.exports = grammar({
     channel_type: ($) => seq("chan", field("value", $._simple_type)),
 
     int_literal: ($) => token(int_literal),
+
+    rune_literal: ($) =>
+      token(
+        seq(
+          "`",
+          choice(
+            /[^'\\]/,
+            seq(
+              "\\",
+              choice(
+                seq("x", hex_digit, hex_digit),
+                seq(octal_digit, octal_digit, octal_digit),
+                seq("u", hex_digit, hex_digit, hex_digit, hex_digit),
+                seq(
+                  "U",
+                  hex_digit,
+                  hex_digit,
+                  hex_digit,
+                  hex_digit,
+                  hex_digit,
+                  hex_digit,
+                  hex_digit,
+                  hex_digit
+                ),
+                seq(choice("a", "b", "f", "n", "r", "t", "v", "\\", "'", '"'))
+              )
+            )
+          ),
+          "`"
+        )
+      ),
 
     _string_literal: ($) => choice($.interpreted_string_literal),
 
