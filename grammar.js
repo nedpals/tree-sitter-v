@@ -415,6 +415,9 @@ module.exports = grammar({
         )
       ),
 
+    generic_type: ($) =>
+      seq(choice($.qualified_type, $._type_identifier), $.type_parameters),
+
     qualified_type: ($) =>
       prec(
         PREC.composite_literal,
@@ -707,7 +710,7 @@ module.exports = grammar({
           field("attributes", optional($.attribute_list)),
           optional(pub_keyword),
           struct_keyword,
-          choice($._type, $.binded_type),
+          choice($._type, $.binded_type, $.generic_type),
           $.struct_field_declaration_list
         )
       ),

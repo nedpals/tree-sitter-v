@@ -2187,6 +2187,28 @@
         ]
       }
     },
+    "generic_type": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "qualified_type"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_type_identifier"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "type_parameters"
+        }
+      ]
+    },
     "qualified_type": {
       "type": "PREC",
       "value": -1,
@@ -3967,6 +3989,10 @@
               {
                 "type": "SYMBOL",
                 "name": "binded_type"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "generic_type"
               }
             ]
           },
