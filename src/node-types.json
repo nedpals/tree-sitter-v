@@ -3071,17 +3071,13 @@
           }
         ]
       },
-      "type": {
-        "multiple": true,
+      "types": {
+        "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "_type",
+            "type": "type_list",
             "named": true
-          },
-          {
-            "type": "|",
-            "named": false
           }
         ]
       }
@@ -3143,6 +3139,21 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "type_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "_type",
+          "named": true
+        }
+      ]
     }
   },
   {

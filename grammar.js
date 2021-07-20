@@ -300,10 +300,12 @@ module.exports = grammar({
       'type',
       field('name', $._type_identifier),
       '=',
-      field('type', seq(
-        $._type,
-        repeat(seq('|', $._type))
-      ))
+      field('types', $.type_list)
+    ),
+
+    type_list: $ => seq(
+      $._type,
+      repeat(seq('|', $._type))
     ),
 
     _type: $ => choice(
