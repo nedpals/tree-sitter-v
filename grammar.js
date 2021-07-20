@@ -394,6 +394,7 @@ module.exports = grammar({
     _simple_type: ($) =>
       choice(
         $._type_identifier,
+        $.binded_type,
         $.qualified_type,
         $.pointer_type,
         $.array_type,
@@ -404,6 +405,14 @@ module.exports = grammar({
       prec(
         PREC.resolve,
         seq(token.immediate("<"), comma_sep1($._type), token.immediate(">"))
+      ),
+
+    binded_type: ($) =>
+      prec.right(
+        seq(
+          field("language", $.language_spec),
+          field("name", $._type_identifier)
+        )
       ),
 
     qualified_type: ($) =>
@@ -692,12 +701,15 @@ module.exports = grammar({
       repeat1(seq($.attribute_declaration, optional(terminator))),
 
     struct_declaration: ($) =>
-      seq(
-        field("attributes", optional($.attribute_list)),
-        optional(pub_keyword),
-        struct_keyword,
-        $._type,
-        $.struct_field_declaration_list
+      prec(
+        PREC.resolve,
+        seq(
+          field("attributes", optional($.attribute_list)),
+          optional(pub_keyword),
+          struct_keyword,
+          choice($._type, $.binded_type),
+          $.struct_field_declaration_list
+        )
       ),
 
     struct_field_declaration_list: ($) =>
