@@ -4599,21 +4599,25 @@
             "type": "SEQ",
             "members": [
               {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "SYMBOL",
-                    "name": "_field_identifier"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "interpreted_string_literal"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "int_literal"
-                  }
-                ]
+                "type": "FIELD",
+                "name": "key",
+                "content": {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "_field_identifier"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "interpreted_string_literal"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "int_literal"
+                    }
+                  ]
+                }
               },
               {
                 "type": "STRING",
@@ -4623,8 +4627,12 @@
           }
         },
         {
-          "type": "SYMBOL",
-          "name": "_element"
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_element"
+          }
         }
       ]
     },

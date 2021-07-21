@@ -968,12 +968,12 @@ module.exports = grammar({
     keyed_element: $ => seq(
       // NOTE: expand list of expressions
       // that can be used as keys.
-      prec(1, seq(choice(
+      prec(1, seq(field('key', choice(
         $._field_identifier,
         $.interpreted_string_literal,
         $.int_literal
-      ), ':')),
-      $._element
+      )), ':')),
+      field('value', $._element)
     ),
 
     _element: $ => choice(
