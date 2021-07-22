@@ -202,7 +202,12 @@ module.exports = grammar({
     or_block: ($) => seq("or", $.block),
 
     _expression_with_blocks: ($) =>
-      choice($.if_expression, $.match_expression, $.select_expression),
+      choice(
+        $.if_expression,
+        $.match_expression,
+        $.select_expression,
+        $.sql_expression
+      ),
 
     _single_line_expression: ($) =>
       prec.left(
@@ -578,6 +583,11 @@ module.exports = grammar({
       seq(field("name", $.identifier), "=", field("value", $._expression)),
 
     asm_statement: ($) => seq(asm_keyword, $.identifier, $._content_block),
+
+    // NOTE: this should be put into a separate grammar
+    // to avoid any "noise" (i guess)
+    sql_expression: ($) =>
+      seq("sql", optional($._expression), $._content_block),
 
     // Loose checking for asm and sql statements
     _content_block: ($) => seq("{", token.immediate(prec(1, /[^{}]+/)), "}"),

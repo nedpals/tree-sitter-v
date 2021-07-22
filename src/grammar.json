@@ -597,6 +597,10 @@
         {
           "type": "SYMBOL",
           "name": "select_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "sql_expression"
         }
       ]
     },
@@ -3228,6 +3232,31 @@
         {
           "type": "SYMBOL",
           "name": "identifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_content_block"
+        }
+      ]
+    },
+    "sql_expression": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "sql"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_expression"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "SYMBOL",
