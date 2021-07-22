@@ -833,12 +833,8 @@ module.exports = grammar({
       ),
 
     // Taken from: https://github.com/tree-sitter/tree-sitter-c/blob/master/grammar.js#L937
-    c_include_path_string: ($) =>
-      seq(
-        token.immediate("<"),
-        token(seq(repeat(choice(/[^>\n]/, "\\>"))))
-        // token.immediate(">")
-      ),
+    c_include_path_string: (_) =>
+      token(seq("<", repeat(choice(/[^>\n]/, "\\>")), ">")),
 
     c_flag_clause: ($) =>
       seq(
@@ -906,14 +902,27 @@ function comma_sep(rule) {
 
 function quoted_string($, rule) {
   return choice(
-    ...["'", '"'].map((quote) =>
-      seq(
-        quote,
-        repeat(
-          choice(token.immediate(prec(1, /[^$'\\]+/)), $.escape_sequence, rule)
-        ),
-        quote
-      )
+    seq(
+      "'",
+      repeat(
+        choice(
+          token.immediate(prec(PREC.resolve, /[^$'\\]+/)),
+          $.escape_sequence,
+          rule
+        )
+      ),
+      "'"
+    ),
+    seq(
+      '"',
+      repeat(
+        choice(
+          token.immediate(prec(PREC.resolve, /[^$"\\]+/)),
+          $.escape_sequence,
+          rule
+        )
+      ),
+      '"'
     )
   );
 }

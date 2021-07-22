@@ -1557,7 +1557,7 @@
                       "value": 1,
                       "content": {
                         "type": "PATTERN",
-                        "value": "[^$'\\\\]+"
+                        "value": "[^$\"\\\\]+"
                       }
                     }
                   },
@@ -4628,40 +4628,36 @@
       ]
     },
     "c_include_path_string": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "IMMEDIATE_TOKEN",
-          "content": {
+      "type": "TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
             "type": "STRING",
             "value": "<"
-          }
-        },
-        {
-          "type": "TOKEN",
-          "content": {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "REPEAT",
-                "content": {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "PATTERN",
-                      "value": "[^>\\n]"
-                    },
-                    {
-                      "type": "STRING",
-                      "value": "\\>"
-                    }
-                  ]
+          },
+          {
+            "type": "REPEAT",
+            "content": {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "PATTERN",
+                  "value": "[^>\\n]"
+                },
+                {
+                  "type": "STRING",
+                  "value": "\\>"
                 }
-              }
-            ]
+              ]
+            }
+          },
+          {
+            "type": "STRING",
+            "value": ">"
           }
-        }
-      ]
+        ]
+      }
     },
     "c_flag_clause": {
       "type": "SEQ",

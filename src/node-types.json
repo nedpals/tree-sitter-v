@@ -992,11 +992,6 @@
     }
   },
   {
-    "type": "c_include_path_string",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "call_expression",
     "named": true,
     "fields": {
@@ -5300,6 +5295,10 @@
   {
     "type": "assert",
     "named": false
+  },
+  {
+    "type": "c_include_path_string",
+    "named": true
   },
   {
     "type": "chan",
