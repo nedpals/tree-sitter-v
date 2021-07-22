@@ -490,6 +490,10 @@
                 {
                   "type": "SYMBOL",
                   "name": "binded_identifier"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "comptime_identifier"
                 }
               ]
             }
@@ -532,6 +536,19 @@
           }
         ]
       }
+    },
+    "comptime_identifier": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "$"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        }
+      ]
     },
     "option_propagator": {
       "type": "PREC_RIGHT",

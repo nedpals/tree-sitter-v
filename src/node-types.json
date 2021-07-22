@@ -1042,6 +1042,10 @@
             "named": true
           },
           {
+            "type": "comptime_identifier",
+            "named": true
+          },
+          {
             "type": "identifier",
             "named": true
           }
@@ -1103,6 +1107,21 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "comptime_identifier",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
     }
   },
   {

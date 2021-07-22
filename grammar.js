@@ -185,12 +185,17 @@ module.exports = grammar({
       prec.right(
         PREC.comparative,
         seq(
-          field("function", choice($.identifier, $.binded_identifier)),
+          field(
+            "function",
+            choice($.identifier, $.binded_identifier, $.comptime_identifier)
+          ),
           field("type_parameters", optional($.type_parameters)),
           field("arguments", $.argument_list),
           optional($.option_propagator)
         )
       ),
+
+    comptime_identifier: ($) => comp_time($.identifier),
 
     option_propagator: ($) => prec.right(choice(token("?"), $.or_block)),
 
@@ -899,6 +904,10 @@ module.exports = grammar({
     default_case: ($) => seq("else", field("consequence", $.block)),
   },
 });
+
+function comp_time(rule) {
+  return seq("$", rule);
+}
 
 function assignment_statement_support($, symbol) {
   return seq(
