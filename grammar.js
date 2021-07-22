@@ -201,7 +201,8 @@ module.exports = grammar({
 
     or_block: ($) => seq("or", $.block),
 
-    _expression_with_blocks: ($) => choice($.if_expression, $.match_expression),
+    _expression_with_blocks: ($) =>
+      choice($.if_expression, $.match_expression, $.select_expression),
 
     _single_line_expression: ($) =>
       prec.left(
@@ -211,6 +212,7 @@ module.exports = grammar({
           $.int_literal,
           $._string_literal,
           $.rune_literal,
+          $.pseudo_comptime_identifier,
           $.none,
           $.true,
           $.false
@@ -433,6 +435,8 @@ module.exports = grammar({
           field("name", $._type_identifier)
         )
       ),
+
+    pseudo_comptime_identifier: ($) => seq("@", $.identifier),
 
     _type_identifier: ($) => alias($.identifier, $.type_identifier),
 
@@ -902,6 +906,14 @@ module.exports = grammar({
       seq(field("value", $.expression_list), field("consequence", $.block)),
 
     default_case: ($) => seq("else", field("consequence", $.block)),
+
+    select_expression: ($) =>
+      seq("select", "{", repeat($.select_branch), $.select_default_branch, "}"),
+
+    select_branch: ($) => seq($._statement, $.block),
+
+    select_default_branch: ($) =>
+      seq(choice(prec(PREC.primary, seq(">", $._expression)), "else"), $.block),
   },
 });
 
