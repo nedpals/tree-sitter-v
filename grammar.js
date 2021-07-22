@@ -96,6 +96,7 @@ const interface_keyword = "interface";
 const defer_keyword = "defer";
 const unsafe_keyword = "unsafe";
 const import_keyword = "import";
+const match_keyword = "match";
 
 const fixed_array_symbol = "!";
 
@@ -195,7 +196,7 @@ module.exports = grammar({
 
     or_block: ($) => seq("or", $.block),
 
-    _expression_with_blocks: ($) => choice($.if_expression),
+    _expression_with_blocks: ($) => choice($.if_expression, $.match_expression),
 
     _single_line_expression: ($) =>
       prec.left(
@@ -881,6 +882,21 @@ module.exports = grammar({
     import_symbols_list: ($) => comma_sep1($.identifier),
 
     import_alias: ($) => seq("as", field("name", $._module_identifier)),
+
+    match_expression: ($) =>
+      seq(
+        match_keyword,
+        field("condition", choice($._expression, $._mutable_identifier)),
+        "{",
+        repeat($.expression_case),
+        $.default_case,
+        "}"
+      ),
+
+    expression_case: ($) =>
+      seq(field("value", $.expression_list), field("consequence", $.block)),
+
+    default_case: ($) => seq("else", field("consequence", $.block)),
   },
 });
 

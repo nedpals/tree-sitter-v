@@ -1,0 +1,31 @@
+===
+Match Expression
+===
+
+fn main() {
+  match a {
+    'test', '123' {}
+    'xd' {}
+    else {}
+  }
+}
+
+---
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameter_list)
+    (block
+      (match_expression
+        (identifier)
+        (expression_case 
+          (expression_list 
+            (interpreted_string_literal)
+            (interpreted_string_literal))
+          (block))
+        (expression_case 
+          (expression_list 
+            (interpreted_string_literal))
+          (block))
+        (default_case (block))))))
