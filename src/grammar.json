@@ -158,6 +158,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "selector_expression"
+        },
+        {
+          "type": "SYMBOL",
           "name": "_expression_with_blocks"
         }
       ]
@@ -801,6 +805,10 @@
           {
             "type": "SYMBOL",
             "name": "pseudo_comptime_identifier"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "enum_identifier"
           },
           {
             "type": "SYMBOL",
@@ -4110,8 +4118,17 @@
             "type": "FIELD",
             "name": "operand",
             "content": {
-              "type": "SYMBOL",
-              "name": "_expression"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "_expression"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "type_identifier"
+                }
+              ]
             }
           },
           {

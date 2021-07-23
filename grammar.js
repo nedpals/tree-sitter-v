@@ -176,6 +176,7 @@ module.exports = grammar({
         $.call_expression,
         $.special_call_expression,
         $.fn_literal,
+        $.selector_expression,
         $._expression_with_blocks
       ),
 
@@ -286,6 +287,7 @@ module.exports = grammar({
           $._string_literal,
           $.rune_literal,
           $.pseudo_comptime_identifier,
+          $.enum_identifier,
           $.none,
           $.true,
           $.false
@@ -779,7 +781,7 @@ module.exports = grammar({
       prec(
         PREC.primary,
         seq(
-          field("operand", $._expression),
+          field("operand", choice($._expression, $.type_identifier)),
           token.immediate("."),
           field(
             "field",
