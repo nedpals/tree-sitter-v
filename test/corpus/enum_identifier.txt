@@ -30,10 +30,12 @@ fn main() {
                 (field_identifier) 
                   (enum_identifier (identifier)))))))
       (short_var_declaration
-        (identifier_list (identifier))
+        (identifier_list
+          (identifier))
         (expression_list
-          (selector_expression
-            (type_identifier) (identifier))))
+          (enum_identifier
+            (type_identifier)
+            (identifier))))
       (assignment_statement
         (identifier_list (identifier))
         (expression_list

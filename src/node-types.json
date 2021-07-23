@@ -2284,6 +2284,16 @@
             "named": true
           }
         ]
+      },
+      "type": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "type_identifier",
+            "named": true
+          }
+        ]
       }
     }
   },
@@ -5893,10 +5903,6 @@
           },
           {
             "type": "type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "type_identifier",
             "named": true
           },
           {

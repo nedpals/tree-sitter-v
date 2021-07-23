@@ -781,7 +781,7 @@ module.exports = grammar({
       prec(
         PREC.primary,
         seq(
-          field("operand", choice($._expression, $.type_identifier)),
+          field("operand", $._expression),
           token.immediate("."),
           field(
             "field",
@@ -935,7 +935,12 @@ module.exports = grammar({
         optional(seq("=", field("value", $.int_literal)))
       ),
 
-    enum_identifier: ($) => seq(".", field("field_name", $.identifier)),
+    enum_identifier: ($) =>
+      seq(
+        optional(field("type", $.type_identifier)),
+        ".",
+        field("field_name", $.identifier)
+      ),
 
     interface_declaration: ($) =>
       seq(
