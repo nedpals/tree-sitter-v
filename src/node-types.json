@@ -7678,11 +7678,19 @@
             "named": true
           },
           {
+            "type": "binded_type",
+            "named": true
+          },
+          {
             "type": "builtin_type",
             "named": true
           },
           {
             "type": "channel_type",
+            "named": true
+          },
+          {
+            "type": "generic_type",
             "named": true
           },
           {

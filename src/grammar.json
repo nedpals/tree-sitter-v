@@ -946,6 +946,14 @@
                 },
                 {
                   "type": "SYMBOL",
+                  "name": "generic_type"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "_binded_type"
+                },
+                {
+                  "type": "SYMBOL",
                   "name": "qualified_type"
                 },
                 {
