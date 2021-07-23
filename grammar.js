@@ -227,7 +227,12 @@ module.exports = grammar({
         seq(
           field(
             "function",
-            choice($.identifier, $.binded_identifier, $.comptime_identifier)
+            choice(
+              $.identifier,
+              $.binded_identifier,
+              $.comptime_identifier,
+              $.selector_expression
+            )
           ),
           field("type_parameters", optional($.type_parameters)),
           field("arguments", $.argument_list),
@@ -263,12 +268,16 @@ module.exports = grammar({
     or_block: ($) => seq("or", $.block),
 
     _expression_with_blocks: ($) =>
-      choice(
-        $.if_expression,
-        $.match_expression,
-        $.select_expression,
-        $.sql_expression,
-        $.lock_expression
+      prec(
+        PREC.resolve,
+        choice(
+          $.if_expression,
+          $.match_expression,
+          $.select_expression,
+          $.sql_expression,
+          $.lock_expression,
+          $.unsafe_expression
+        )
       ),
 
     _single_line_expression: ($) =>
@@ -345,9 +354,21 @@ module.exports = grammar({
       ),
 
     keyed_element: ($) =>
-      seq(choice($._field_identifier, $._string_literal), ":", $._element),
+      seq(
+        field("key", choice($._field_identifier, $._string_literal)),
+        ":",
+        field("value", $._element)
+      ),
 
-    _element: ($) => choice($._expression),
+    _element: ($) =>
+      choice(
+        $._expression,
+        $.unsafe_expression,
+        $.if_expression,
+        $.match_expression,
+        $.lock_expression,
+        $.sql_expression
+      ),
 
     fixed_array_indicator: ($) => token(fixed_array_symbol),
 
@@ -510,13 +531,10 @@ module.exports = grammar({
       seq(choice($.qualified_type, $.type_identifier), $.type_parameters),
 
     qualified_type: ($) =>
-      prec(
-        PREC.composite_literal,
-        seq(
-          field("module", $._module_identifier),
-          ".",
-          field("name", $.type_identifier)
-        )
+      seq(
+        field("module", $._module_identifier),
+        token.immediate("."),
+        field("name", $.type_identifier)
       ),
 
     type_placeholder: ($) => token(unicode_letter_upper),
@@ -749,7 +767,7 @@ module.exports = grammar({
         PREC.primary,
         seq(
           field("operand", $._expression),
-          ".",
+          token.immediate("."),
           field(
             "field",
             choice(

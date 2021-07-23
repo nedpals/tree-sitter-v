@@ -535,6 +535,10 @@
                 {
                   "type": "SYMBOL",
                   "name": "comptime_identifier"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "selector_expression"
                 }
               ]
             }
@@ -744,29 +748,37 @@
       ]
     },
     "_expression_with_blocks": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "if_expression"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "match_expression"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "select_expression"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "sql_expression"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "lock_expression"
-        }
-      ]
+      "type": "PREC",
+      "value": 1,
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "if_expression"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "match_expression"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "select_expression"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "sql_expression"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "lock_expression"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "unsafe_expression"
+          }
+        ]
+      }
     },
     "_single_line_expression": {
       "type": "PREC_LEFT",
@@ -1008,25 +1020,33 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "_field_identifier"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "_string_literal"
-            }
-          ]
+          "type": "FIELD",
+          "name": "key",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "_field_identifier"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_string_literal"
+              }
+            ]
+          }
         },
         {
           "type": "STRING",
           "value": ":"
         },
         {
-          "type": "SYMBOL",
-          "name": "_element"
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_element"
+          }
         }
       ]
     },
@@ -1036,6 +1056,26 @@
         {
           "type": "SYMBOL",
           "name": "_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "unsafe_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "if_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "match_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "lock_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "sql_expression"
         }
       ]
     },
@@ -2575,33 +2615,32 @@
       ]
     },
     "qualified_type": {
-      "type": "PREC",
-      "value": -1,
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "FIELD",
-            "name": "module",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_module_identifier"
-            }
-          },
-          {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "module",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_module_identifier"
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
             "type": "STRING",
             "value": "."
-          },
-          {
-            "type": "FIELD",
-            "name": "name",
-            "content": {
-              "type": "SYMBOL",
-              "name": "type_identifier"
-            }
           }
-        ]
-      }
+        },
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "type_identifier"
+          }
+        }
+      ]
     },
     "type_placeholder": {
       "type": "TOKEN",
@@ -4034,8 +4073,11 @@
             }
           },
           {
-            "type": "STRING",
-            "value": "."
+            "type": "IMMEDIATE_TOKEN",
+            "content": {
+              "type": "STRING",
+              "value": "."
+            }
           },
           {
             "type": "FIELD",
