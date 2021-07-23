@@ -830,7 +830,7 @@ module.exports = grammar({
         field(
           "name",
           prec.dynamic(
-            -1,
+            PREC.composite_literal,
             choice($.type_identifier, $._binded_type, $.generic_type)
           )
         ),
@@ -963,14 +963,20 @@ module.exports = grammar({
         "#flag",
         field("platform", optional($.identifier)),
         field("flag", optional(seq("-", letter))),
-        field("value", token(prec(-1, repeat1(/.|\\\r?\n/))))
+        field(
+          "value",
+          token(prec(PREC.composite_literal, repeat1(/.|\\\r?\n/)))
+        )
       ),
 
     c_define_clause: ($) =>
       seq(
         "#define",
         field("name", alias($._old_identifier, $.identifier)),
-        field("value", token(prec(-1, repeat1(/.|\\\r?\n/))))
+        field(
+          "value",
+          token(prec(PREC.composite_literal, repeat1(/.|\\\r?\n/)))
+        )
       ),
 
     module_clause: ($) =>
