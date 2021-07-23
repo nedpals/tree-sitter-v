@@ -255,6 +255,9 @@ module.exports = grammar({
 
     comptime_identifier: ($) => comp_time($.identifier),
 
+    comptime_selector_expression: ($) =>
+      comp_time(seq("(", $.selector_expression, ")")),
+
     option_propagator: ($) => prec.right(choice(token("?"), $.or_block)),
 
     or_block: ($) => seq("or", $.block),
@@ -744,7 +747,18 @@ module.exports = grammar({
     selector_expression: ($) =>
       prec(
         PREC.primary,
-        seq(field("operand", $._expression), ".", field("field", $.identifier))
+        seq(
+          field("operand", $._expression),
+          ".",
+          field(
+            "field",
+            choice(
+              $.identifier,
+              $.selector_expression,
+              $.comptime_selector_expression
+            )
+          )
+        )
       ),
 
     index_expression: ($) =>

@@ -1357,6 +1357,21 @@
     }
   },
   {
+    "type": "comptime_selector_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "selector_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "const_declaration",
     "named": true,
     "fields": {},
@@ -5377,7 +5392,15 @@
         "required": true,
         "types": [
           {
+            "type": "comptime_selector_expression",
+            "named": true
+          },
+          {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "selector_expression",
             "named": true
           }
         ]
