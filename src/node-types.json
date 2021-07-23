@@ -5471,171 +5471,11 @@
       "required": true,
       "types": [
         {
-          "type": "array",
-          "named": true
-        },
-        {
-          "type": "as_type_cast_expression",
-          "named": true
-        },
-        {
-          "type": "asm_statement",
-          "named": true
-        },
-        {
-          "type": "assert_statement",
-          "named": true
-        },
-        {
-          "type": "assignment_statement",
-          "named": true
-        },
-        {
-          "type": "binary_expression",
-          "named": true
-        },
-        {
           "type": "block",
           "named": true
         },
         {
-          "type": "call_expression",
-          "named": true
-        },
-        {
-          "type": "dec_statement",
-          "named": true
-        },
-        {
-          "type": "defer_statement",
-          "named": true
-        },
-        {
-          "type": "empty_labeled_statement",
-          "named": true
-        },
-        {
-          "type": "enum_identifier",
-          "named": true
-        },
-        {
-          "type": "false",
-          "named": true
-        },
-        {
-          "type": "fn_literal",
-          "named": true
-        },
-        {
-          "type": "for_statement",
-          "named": true
-        },
-        {
-          "type": "go_statement",
-          "named": true
-        },
-        {
-          "type": "goto_statement",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "if_expression",
-          "named": true
-        },
-        {
-          "type": "inc_statement",
-          "named": true
-        },
-        {
-          "type": "index_expression",
-          "named": true
-        },
-        {
-          "type": "int_literal",
-          "named": true
-        },
-        {
-          "type": "interpreted_string_literal",
-          "named": true
-        },
-        {
-          "type": "labeled_statement",
-          "named": true
-        },
-        {
-          "type": "lock_expression",
-          "named": true
-        },
-        {
-          "type": "match_expression",
-          "named": true
-        },
-        {
-          "type": "none",
-          "named": true
-        },
-        {
-          "type": "pseudo_comptime_identifier",
-          "named": true
-        },
-        {
-          "type": "return_statement",
-          "named": true
-        },
-        {
-          "type": "rune_literal",
-          "named": true
-        },
-        {
-          "type": "select_expression",
-          "named": true
-        },
-        {
-          "type": "selector_expression",
-          "named": true
-        },
-        {
-          "type": "send_statement",
-          "named": true
-        },
-        {
           "type": "short_var_declaration",
-          "named": true
-        },
-        {
-          "type": "slice_expression",
-          "named": true
-        },
-        {
-          "type": "special_call_expression",
-          "named": true
-        },
-        {
-          "type": "sql_expression",
-          "named": true
-        },
-        {
-          "type": "true",
-          "named": true
-        },
-        {
-          "type": "type_cast_expression",
-          "named": true
-        },
-        {
-          "type": "type_initializer",
-          "named": true
-        },
-        {
-          "type": "unary_expression",
-          "named": true
-        },
-        {
-          "type": "unsafe_expression",
           "named": true
         }
       ]
@@ -5767,7 +5607,18 @@
   {
     "type": "select_expression",
     "named": true,
-    "fields": {},
+    "fields": {
+      "selected_variables": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "expression_list",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": true,

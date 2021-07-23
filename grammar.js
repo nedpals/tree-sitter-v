@@ -1066,12 +1066,22 @@ module.exports = grammar({
     default_case: ($) => seq("else", field("consequence", $.block)),
 
     select_expression: ($) =>
-      seq("select", "{", repeat($.select_branch), $.select_default_branch, "}"),
+      seq(
+        "select",
+        field("selected_variables", optional($.expression_list)),
+        "{",
+        repeat($.select_branch),
+        $.select_default_branch,
+        "}"
+      ),
 
-    select_branch: ($) => seq($._statement, $.block),
+    select_branch: ($) => seq(choice($.short_var_declaration), $.block),
 
     select_default_branch: ($) =>
-      seq(choice(prec(PREC.primary, seq(">", $._expression)), "else"), $.block),
+      seq(
+        choice(prec(PREC.primary, seq(optional(">"), $._expression)), "else"),
+        $.block
+      ),
 
     lock_expression: ($) =>
       seq(
