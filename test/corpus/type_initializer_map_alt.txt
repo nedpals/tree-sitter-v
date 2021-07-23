@@ -17,7 +17,7 @@ fn main() {
         (identifier_list (identifier))
         (expression_list
           (type_initializer
-            (type_identifier)
+            (builtin_type)
             (literal_value
               (keyed_element 
                 (interpreted_string_literal) 

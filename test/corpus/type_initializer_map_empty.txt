@@ -17,5 +17,5 @@ fn main() {
         (identifier_list (identifier))
         (expression_list
           (type_initializer 
-            (map_type (type_identifier) (type_identifier))
+            (map_type (builtin_type) (builtin_type))
             (literal_value)))))))

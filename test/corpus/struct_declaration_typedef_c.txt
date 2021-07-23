@@ -10,5 +10,5 @@ struct C.sqlite3 {}
   (struct_declaration
     (binded_type
       (language_spec)
-      (type_identifier))
+      (identifier))
     (struct_field_declaration_list)))

@@ -2,7 +2,7 @@
 Goto Statement
 ===
 
-goto Foo 
+goto foo 
 
 ---
 

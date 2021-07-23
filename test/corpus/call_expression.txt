@@ -8,8 +8,6 @@ fn main() {
   typeof('hello')
   foo(Foo{})
   dump(a)
-  sizeof(Foo)
-  __offsetof(Foo, breed)
   opt(1) or {
     return
   }
@@ -41,17 +39,50 @@ fn main() {
         (argument_list (identifier)))
       (call_expression
         (identifier)
-        (argument_list (identifier)))
-      (call_expression
-        (identifier)
-        (argument_list (identifier) (identifier)))
-      (call_expression
-        (identifier)
         (argument_list (int_literal))
         (option_propagator
           (or_block
             (block (return_statement)))))
       (call_expression
         (identifier)
-        (type_parameters (type_identifier))
+        (type_parameters (builtin_type))
         (argument_list (interpreted_string_literal))))))
+
+===
+Special Call Expression
+===
+
+fn main() {
+  sizeof(Foo)
+  __offsetof(Foo, breed)
+  json.decode(Test, "{}") or { eprintln(err) }
+}
+
+---
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameter_list)
+    (block
+      (special_call_expression 
+        (identifier)
+        (special_argument_list 
+          (type_identifier)))
+      (special_call_expression
+        (identifier)
+        (special_argument_list 
+          (type_identifier)
+          (identifier)))
+      (special_call_expression
+        (selector_expression
+          (identifier) (identifier))
+        (special_argument_list 
+          (type_identifier)
+          (interpreted_string_literal))
+        (option_propagator
+          (or_block 
+            (block
+              (call_expression 
+                (identifier)
+                (argument_list (identifier))))))))))

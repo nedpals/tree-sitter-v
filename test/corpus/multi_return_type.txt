@@ -12,12 +12,12 @@ fn hello2() ?(int, f32) {}
     (identifier)
     (parameter_list)
     (multi_return_type
-      (type_identifier) (type_identifier))
+      (builtin_type) (builtin_type))
     (block))
   (function_declaration
     (identifier)
     (parameter_list)
     (option_type
       (multi_return_type
-        (type_identifier) (type_identifier)))
+        (builtin_type) (builtin_type)))
     (block)))

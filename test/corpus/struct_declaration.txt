@@ -8,7 +8,7 @@ pub:
   foo string [json:'foo'] = 'hey'
   bar int = 10
 pub mut:
-  baz i32
+  baz int
 __global:
   blu i64
 }
@@ -20,19 +20,19 @@ __global:
     (type_identifier)
     (struct_field_declaration_list
       (struct_field_declaration
-        (field_identifier) (type_identifier))
+        (field_identifier) (builtin_type))
       (struct_field_scope)
       (struct_field_declaration
         (field_identifier) 
-        (type_identifier)
+        (builtin_type)
         (attribute_declaration
           (attribute_spec (identifier) (interpreted_string_literal)))
         (interpreted_string_literal))
       (struct_field_declaration
-        (field_identifier) (type_identifier) (int_literal))
+        (field_identifier) (builtin_type) (int_literal))
       (struct_field_scope)
       (struct_field_declaration
-        (field_identifier) (type_identifier))
+        (field_identifier) (builtin_type))
       (struct_field_scope)
       (struct_field_declaration
-        (field_identifier) (type_identifier)))))
+        (field_identifier) (builtin_type)))))

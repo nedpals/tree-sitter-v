@@ -38,6 +38,8 @@ const terminator = token(newline);
 
 const unicode_digit = /[0-9]/;
 const unicode_letter = /[a-zA-Zα-ωΑ-Ωµ]/;
+const unicode_letter_lower = /[a-zα-ωµ]/;
+const unicode_letter_upper = /[A-ZΑ-Ω]/;
 
 const letter = choice(unicode_letter, "_");
 
@@ -97,6 +99,33 @@ const defer_keyword = "defer";
 const unsafe_keyword = "unsafe";
 const import_keyword = "import";
 const match_keyword = "match";
+const builtin_type_keywords = [
+  "voidptr",
+  "byteptr",
+  "charptr",
+  "i8",
+  "i16",
+  "int",
+  "i64",
+  "byte",
+  "u16",
+  "u32",
+  "u64",
+  "f32",
+  "f64",
+  "char",
+  "bool",
+  "string",
+  "rune",
+  "array",
+  "map",
+  "chan",
+  "size_t",
+  "float_literal",
+  "int_literal",
+  "thread",
+  "IError",
+];
 
 const fixed_array_symbol = "!";
 
@@ -139,10 +168,13 @@ module.exports = grammar({
         $.array,
         $.unary_expression,
         $.binary_expression,
+        $.selector_expression,
         $.index_expression,
         $.slice_expression,
+        $.type_cast_expression,
         $.as_type_cast_expression,
         $.call_expression,
+        $.special_call_expression,
         $.fn_literal,
         $._expression_with_blocks
       ),
@@ -181,6 +213,14 @@ module.exports = grammar({
 
     as_type_cast_expression: ($) => seq($._expression, as_keyword, $._type),
 
+    type_cast_expression: ($) =>
+      seq(
+        field("type", $._simple_type),
+        "(",
+        field("operand", $._expression),
+        ")"
+      ),
+
     call_expression: ($) =>
       prec.right(
         PREC.comparative,
@@ -191,6 +231,24 @@ module.exports = grammar({
           ),
           field("type_parameters", optional($.type_parameters)),
           field("arguments", $.argument_list),
+          optional($.option_propagator)
+        )
+      ),
+
+    special_argument_list: ($) =>
+      seq(
+        "(",
+        choice($._simple_type, $.option_type),
+        optional(seq(",", $._expression)),
+        ")"
+      ),
+
+    special_call_expression: ($) =>
+      prec.right(
+        PREC.comparative,
+        seq(
+          field("function", choice($.identifier, $.selector_expression)),
+          field("arguments", $.special_argument_list),
           optional($.option_propagator)
         )
       ),
@@ -260,8 +318,10 @@ module.exports = grammar({
           field(
             "type",
             choice(
-              $._type_identifier,
-              // $.binded_type,
+              $.builtin_type,
+              $.type_identifier,
+              $.type_placeholder,
+              // $._binded_type,
               $.qualified_type,
               // $.pointer_type,
               $.array_type,
@@ -375,11 +435,23 @@ module.exports = grammar({
       ),
 
     identifier: ($) =>
+      token(
+        seq(
+          choice(unicode_letter_lower, "_"),
+          repeat(choice(letter, unicode_digit))
+        )
+      ),
+
+    _old_identifier: ($) =>
       token(seq(letter, repeat(choice(letter, unicode_digit)))),
 
     _mutable_identifier: ($) => seq(mut_keyword, $.identifier),
 
-    binded_identifier: ($) => seq($.language_spec, $.identifier),
+    binded_identifier: ($) =>
+      seq(
+        field("language", $.language_spec),
+        field("name", alias($._old_identifier, $.identifier))
+      ),
 
     identifier_list: ($) =>
       comma_sep1(choice($.identifier, $._mutable_identifier)),
@@ -389,7 +461,7 @@ module.exports = grammar({
     parameter_declaration: ($) =>
       seq(
         field("name", choice($.identifier, $._mutable_identifier)),
-        field("type", choice($._type, $.variadic_type))
+        field("type", choice($._simple_type, $.option_type, $.variadic_type))
       ),
 
     parameter_list: ($) => seq("(", comma_sep($.parameter_declaration), ")"),
@@ -407,8 +479,10 @@ module.exports = grammar({
 
     _simple_type: ($) =>
       choice(
-        $._type_identifier,
-        $.binded_type,
+        $.builtin_type,
+        $.type_identifier,
+        $.type_placeholder,
+        $._binded_type,
         $.qualified_type,
         $.pointer_type,
         $.array_type,
@@ -418,19 +492,19 @@ module.exports = grammar({
     type_parameters: ($) =>
       prec(
         PREC.resolve,
-        seq(token.immediate("<"), comma_sep1($._type), token.immediate(">"))
-      ),
-
-    binded_type: ($) =>
-      prec.right(
         seq(
-          field("language", $.language_spec),
-          field("name", $._type_identifier)
+          token.immediate("<"),
+          comma_sep1($._simple_type),
+          token.immediate(">")
         )
       ),
 
+    builtin_type: ($) => choice(...builtin_type_keywords),
+
+    _binded_type: ($) => alias($.binded_identifier, $.binded_type),
+
     generic_type: ($) =>
-      seq(choice($.qualified_type, $._type_identifier), $.type_parameters),
+      seq(choice($.qualified_type, $.type_identifier), $.type_parameters),
 
     qualified_type: ($) =>
       prec(
@@ -438,18 +512,21 @@ module.exports = grammar({
         seq(
           field("module", $._module_identifier),
           ".",
-          field("name", $._type_identifier)
+          field("name", $.type_identifier)
         )
       ),
 
-    pseudo_comptime_identifier: ($) => seq("@", $.identifier),
+    type_placeholder: ($) => token(unicode_letter_upper),
 
-    _type_identifier: ($) => alias($.identifier, $.type_identifier),
+    pseudo_comptime_identifier: ($) =>
+      seq("@", alias($._old_identifier, $.identifier)),
+
+    type_identifier: ($) =>
+      token(seq(unicode_letter_upper, repeat1(choice(letter, unicode_digit)))),
 
     _module_identifier: ($) => alias($.identifier, $.module_identifier),
 
-    _field_identifier: ($) =>
-      prec(PREC.resolve, alias($.identifier, $.field_identifier)),
+    _field_identifier: ($) => alias($.identifier, $.field_identifier),
 
     _statement_list: ($) =>
       seq(
@@ -544,7 +621,8 @@ module.exports = grammar({
         field("body", $.block)
       ),
 
-    language_spec: ($) => seq(field("language", choice("C", "JS")), "."),
+    language_spec: ($) =>
+      seq(field("language", choice("C", "JS")), token.immediate(".")),
 
     global_var_declaration: ($) =>
       seq(
@@ -600,9 +678,9 @@ module.exports = grammar({
       seq(
         optional(pub_keyword),
         type_keyword,
-        field("name", $._type_identifier),
+        field("name", $.type_identifier),
         "=",
-        field("type", seq($._type, repeat(seq("|", $._type))))
+        field("type", seq($._simple_type, repeat(seq("|", $._simple_type))))
       ),
 
     go_statement: ($) => seq(go_keyword, $._expression),
@@ -661,6 +739,12 @@ module.exports = grammar({
             field("end", $._expression)
           )
         )
+      ),
+
+    selector_expression: ($) =>
+      prec(
+        PREC.primary,
+        seq(field("operand", $._expression), ".", field("field", $.identifier))
       ),
 
     index_expression: ($) =>
@@ -725,15 +809,18 @@ module.exports = grammar({
       repeat1(seq($.attribute_declaration, optional(terminator))),
 
     struct_declaration: ($) =>
-      prec(
-        PREC.resolve,
-        seq(
-          field("attributes", optional($.attribute_list)),
-          optional(pub_keyword),
-          struct_keyword,
-          choice($._type, $.binded_type, $.generic_type),
-          $.struct_field_declaration_list
-        )
+      seq(
+        field("attributes", optional($.attribute_list)),
+        optional(pub_keyword),
+        struct_keyword,
+        field(
+          "name",
+          prec.dynamic(
+            -1,
+            choice($.type_identifier, $._binded_type, $.generic_type)
+          )
+        ),
+        $.struct_field_declaration_list
       ),
 
     struct_field_declaration_list: ($) =>
@@ -764,7 +851,7 @@ module.exports = grammar({
         choice(
           seq(
             field("name", $._field_identifier),
-            field("type", $._type),
+            field("type", choice($._simple_type, $.option_type)),
             field("attributes", optional($.attribute_declaration)),
             optional(seq("=", field("default_value", $._expression))),
             optional(terminator)
@@ -772,7 +859,7 @@ module.exports = grammar({
           field(
             "type",
             seq(
-              choice($._type_identifier, $.qualified_type),
+              choice($.type_identifier, $.qualified_type),
               optional(terminator)
             )
           )
@@ -784,7 +871,7 @@ module.exports = grammar({
         optional($.attribute_list),
         optional(pub_keyword),
         enum_keyword,
-        $._type_identifier,
+        field("name", $.type_identifier),
         $.enum_member_declaration_list
       ),
 
@@ -808,7 +895,7 @@ module.exports = grammar({
         field("attributes", optional($.attribute_list)),
         optional(pub_keyword),
         interface_keyword,
-        $._type_identifier,
+        field("name", $.type_identifier),
         $.interface_spec_list
       ),
 
@@ -868,7 +955,7 @@ module.exports = grammar({
     c_define_clause: ($) =>
       seq(
         "#define",
-        field("name", $.identifier),
+        field("name", alias($._old_identifier, $.identifier)),
         field("value", token(prec(-1, repeat1(/.|\\\r?\n/))))
       ),
 
@@ -899,7 +986,8 @@ module.exports = grammar({
 
     import_symbols: ($) => seq("{", $.import_symbols_list, "}"),
 
-    import_symbols_list: ($) => comma_sep1($.identifier),
+    import_symbols_list: ($) =>
+      comma_sep1(choice($.identifier, alias($.type_identifier, $.identifier))),
 
     import_alias: ($) => seq("as", field("name", $._module_identifier)),
 

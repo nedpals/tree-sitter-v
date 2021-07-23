@@ -42,10 +42,10 @@ interface Speaker {}
     (identifier) 
     (parameter_list 
       (parameter_declaration 
-        (identifier) (type_identifier)) 
+        (identifier) (builtin_type)) 
       (parameter_declaration 
-        (identifier) (type_identifier))) 
-    (type_identifier)
+        (identifier) (builtin_type))) 
+    (builtin_type)
     (block)) 
   (enum_declaration 
     (attribute_list

@@ -12,5 +12,5 @@ fn abc(i int) f64
     (parameter_list
       (parameter_declaration
         (identifier)
-	      (type_identifier))) 
-    (type_identifier)))
+	      (builtin_type))) 
+    (builtin_type)))
