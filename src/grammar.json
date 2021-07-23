@@ -748,37 +748,33 @@
       ]
     },
     "_expression_with_blocks": {
-      "type": "PREC",
-      "value": 1,
-      "content": {
-        "type": "CHOICE",
-        "members": [
-          {
-            "type": "SYMBOL",
-            "name": "if_expression"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "match_expression"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "select_expression"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "sql_expression"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "lock_expression"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "unsafe_expression"
-          }
-        ]
-      }
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "if_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "match_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "select_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "sql_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "lock_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "unsafe_expression"
+        }
+      ]
     },
     "_single_line_expression": {
       "type": "PREC_LEFT",
@@ -978,37 +974,67 @@
           "value": "{"
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "SYMBOL",
-                  "name": "keyed_element"
-                },
-                {
-                  "type": "REPEAT",
-                  "content": {
-                    "type": "SEQ",
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "keyed_element"
+                  },
+                  {
+                    "type": "ALIAS",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "_element"
+                    },
+                    "named": true,
+                    "value": "element"
+                  }
+                ]
+              },
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "CHOICE",
                     "members": [
                       {
                         "type": "STRING",
                         "value": ","
                       },
                       {
-                        "type": "SYMBOL",
-                        "name": "keyed_element"
+                        "type": "TOKEN",
+                        "content": {
+                          "type": "CHOICE",
+                          "members": [
+                            {
+                              "type": "STRING",
+                              "value": "\n"
+                            },
+                            {
+                              "type": "STRING",
+                              "value": "\r"
+                            },
+                            {
+                              "type": "STRING",
+                              "value": "\r\n"
+                            }
+                          ]
+                        }
                       }
                     ]
+                  },
+                  {
+                    "type": "BLANK"
                   }
-                }
-              ]
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
+                ]
+              }
+            ]
+          }
         },
         {
           "type": "STRING",
@@ -1020,25 +1046,37 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "FIELD",
-          "name": "key",
+          "type": "PREC",
+          "value": 1,
           "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "_field_identifier"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "_string_literal"
-              }
-            ]
+            "type": "FIELD",
+            "name": "name",
+            "content": {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "_field_identifier"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "_string_literal"
+                    }
+                  ]
+                },
+                {
+                  "type": "IMMEDIATE_TOKEN",
+                  "content": {
+                    "type": "STRING",
+                    "value": ":"
+                  }
+                }
+              ]
+            }
           }
-        },
-        {
-          "type": "STRING",
-          "value": ":"
         },
         {
           "type": "FIELD",
@@ -1051,33 +1089,37 @@
       ]
     },
     "_element": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "_expression"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "unsafe_expression"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "if_expression"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "match_expression"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "lock_expression"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "sql_expression"
-        }
-      ]
+      "type": "PREC",
+      "value": 1,
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "_expression"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "unsafe_expression"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "if_expression"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "match_expression"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "lock_expression"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "sql_expression"
+          }
+        ]
+      }
     },
     "fixed_array_indicator": {
       "type": "TOKEN",

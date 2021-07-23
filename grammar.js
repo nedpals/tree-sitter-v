@@ -268,16 +268,13 @@ module.exports = grammar({
     or_block: ($) => seq("or", $.block),
 
     _expression_with_blocks: ($) =>
-      prec(
-        PREC.resolve,
-        choice(
-          $.if_expression,
-          $.match_expression,
-          $.select_expression,
-          $.sql_expression,
-          $.lock_expression,
-          $.unsafe_expression
-        )
+      choice(
+        $.if_expression,
+        $.match_expression,
+        $.select_expression,
+        $.sql_expression,
+        $.lock_expression,
+        $.unsafe_expression
       ),
 
     _single_line_expression: ($) =>
@@ -349,25 +346,41 @@ module.exports = grammar({
     literal_value: ($) =>
       seq(
         "{",
-        optional(seq($.keyed_element, repeat(seq(",", $.keyed_element)))),
+        repeat(
+          seq(
+            choice($.keyed_element, alias($._element, $.element)),
+            optional(choice(",", terminator))
+          )
+        ),
         "}"
       ),
 
     keyed_element: ($) =>
       seq(
-        field("key", choice($._field_identifier, $._string_literal)),
-        ":",
+        prec(
+          PREC.resolve,
+          field(
+            "name",
+            seq(
+              choice($._field_identifier, $._string_literal),
+              token.immediate(":")
+            )
+          )
+        ),
         field("value", $._element)
       ),
 
     _element: ($) =>
-      choice(
-        $._expression,
-        $.unsafe_expression,
-        $.if_expression,
-        $.match_expression,
-        $.lock_expression,
-        $.sql_expression
+      prec(
+        PREC.resolve,
+        choice(
+          $._expression,
+          $.unsafe_expression,
+          $.if_expression,
+          $.match_expression,
+          $.lock_expression,
+          $.sql_expression
+        )
       ),
 
     fixed_array_indicator: ($) => token(fixed_array_symbol),
