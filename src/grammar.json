@@ -601,6 +601,10 @@
         {
           "type": "SYMBOL",
           "name": "sql_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "lock_expression"
         }
       ]
     },
@@ -5186,6 +5190,48 @@
         {
           "type": "SYMBOL",
           "name": "block"
+        }
+      ]
+    },
+    "lock_expression": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "lock"
+            },
+            {
+              "type": "STRING",
+              "value": "rlock"
+            }
+          ]
+        },
+        {
+          "type": "FIELD",
+          "name": "locked_variables",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "expression_list"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "body",
+          "content": {
+            "type": "SYMBOL",
+            "name": "block"
+          }
         }
       ]
     }

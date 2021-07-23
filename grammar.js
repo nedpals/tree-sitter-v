@@ -206,7 +206,8 @@ module.exports = grammar({
         $.if_expression,
         $.match_expression,
         $.select_expression,
-        $.sql_expression
+        $.sql_expression,
+        $.lock_expression
       ),
 
     _single_line_expression: ($) =>
@@ -924,6 +925,13 @@ module.exports = grammar({
 
     select_default_branch: ($) =>
       seq(choice(prec(PREC.primary, seq(">", $._expression)), "else"), $.block),
+
+    lock_expression: ($) =>
+      seq(
+        choice("lock", "rlock"),
+        field("locked_variables", optional($.expression_list)),
+        field("body", $.block)
+      ),
   },
 });
 
