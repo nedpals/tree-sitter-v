@@ -232,7 +232,8 @@ module.exports = grammar({
               $.identifier,
               $.binded_identifier,
               $.comptime_identifier,
-              $.selector_expression
+              $.selector_expression,
+              $.comptime_selector_expression
             )
           ),
           field("type_parameters", optional($.type_parameters)),
@@ -788,6 +789,7 @@ module.exports = grammar({
             "field",
             choice(
               $.identifier,
+              $.comptime_identifier,
               $.selector_expression,
               $.comptime_selector_expression
             )

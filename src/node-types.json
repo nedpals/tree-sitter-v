@@ -1326,6 +1326,10 @@
             "named": true
           },
           {
+            "type": "comptime_selector_expression",
+            "named": true
+          },
+          {
             "type": "identifier",
             "named": true
           },
@@ -5642,6 +5646,10 @@
         "multiple": false,
         "required": true,
         "types": [
+          {
+            "type": "comptime_identifier",
+            "named": true
+          },
           {
             "type": "comptime_selector_expression",
             "named": true

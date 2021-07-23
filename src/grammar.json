@@ -543,6 +543,10 @@
                 {
                   "type": "SYMBOL",
                   "name": "selector_expression"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "comptime_selector_expression"
                 }
               ]
             }
@@ -4146,6 +4150,10 @@
                 {
                   "type": "SYMBOL",
                   "name": "identifier"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "comptime_identifier"
                 },
                 {
                   "type": "SYMBOL",
