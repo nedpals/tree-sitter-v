@@ -785,6 +785,10 @@
         {
           "type": "SYMBOL",
           "name": "unsafe_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "comptime_if_expression"
         }
       ]
     },
@@ -2967,6 +2971,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "comptime_for_statement"
+        },
+        {
+          "type": "SYMBOL",
           "name": "send_statement"
         }
       ]
@@ -4032,6 +4040,27 @@
         }
       ]
     },
+    "comptime_for_statement": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "$for"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "for_in_operator"
+        },
+        {
+          "type": "FIELD",
+          "name": "body",
+          "content": {
+            "type": "SYMBOL",
+            "name": "block"
+          }
+        }
+      ]
+    },
     "for_in_operator": {
       "type": "PREC",
       "value": 7,
@@ -4441,23 +4470,41 @@
           "type": "FIELD",
           "name": "condition",
           "content": {
-            "type": "SEQ",
+            "type": "CHOICE",
             "members": [
+              {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "identifier"
+                  },
+                  {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "STRING",
+                        "value": "?"
+                      },
+                      {
+                        "type": "BLANK"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "ALIAS",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "_generic_type_is_expression"
+                },
+                "named": true,
+                "value": "is_expression"
+              },
               {
                 "type": "SYMBOL",
                 "name": "_expression"
-              },
-              {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "STRING",
-                    "value": "?"
-                  },
-                  {
-                    "type": "BLANK"
-                  }
-                ]
               }
             ]
           }
@@ -4626,6 +4673,53 @@
         ]
       }
     },
+    "_generic_type_is_expression": {
+      "type": "PREC_LEFT",
+      "value": 3,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "FIELD",
+            "name": "left",
+            "content": {
+              "type": "SYMBOL",
+              "name": "type_placeholder"
+            }
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "is"
+              },
+              {
+                "type": "STRING",
+                "value": "!is"
+              }
+            ]
+          },
+          {
+            "type": "FIELD",
+            "name": "right",
+            "content": {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "option_type"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "_simple_type"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
     "is_expression": {
       "type": "PREC_LEFT",
       "value": 3,
@@ -4657,8 +4751,17 @@
             "type": "FIELD",
             "name": "right",
             "content": {
-              "type": "SYMBOL",
-              "name": "_type"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "option_type"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "_simple_type"
+                }
+              ]
             }
           }
         ]

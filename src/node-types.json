@@ -110,6 +110,10 @@
     "named": true,
     "subtypes": [
       {
+        "type": "comptime_if_expression",
+        "named": true
+      },
+      {
         "type": "if_expression",
         "named": true
       },
@@ -213,6 +217,10 @@
       },
       {
         "type": "assert_statement",
+        "named": true
+      },
+      {
+        "type": "comptime_for_statement",
         "named": true
       },
       {
@@ -797,6 +805,32 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "comptime_for_statement",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "block",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "for_in_operator",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -1941,6 +1975,10 @@
           {
             "type": "_expression",
             "named": true
+          },
+          {
+            "type": "type_placeholder",
+            "named": true
           }
         ]
       },
@@ -1949,7 +1987,11 @@
         "required": true,
         "types": [
           {
-            "type": "_type",
+            "type": "_simple_type",
+            "named": true
+          },
+          {
+            "type": "option_type",
             "named": true
           }
         ]
@@ -3194,6 +3236,10 @@
     "named": false
   },
   {
+    "type": "$for",
+    "named": false
+  },
+  {
     "type": "$if",
     "named": false
   },
@@ -3547,11 +3593,11 @@
   },
   {
     "type": "int_literal",
-    "named": false
+    "named": true
   },
   {
     "type": "int_literal",
-    "named": true
+    "named": false
   },
   {
     "type": "interface",

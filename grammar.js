@@ -286,7 +286,8 @@ module.exports = grammar({
         $.select_expression,
         $.sql_expression,
         $.lock_expression,
-        $.unsafe_expression
+        $.unsafe_expression,
+        $.comptime_if_expression
       ),
 
     _single_line_expression: ($) =>
@@ -608,6 +609,7 @@ module.exports = grammar({
         $.empty_labeled_statement,
         $.defer_statement,
         $.for_statement,
+        $.comptime_for_statement,
         $.send_statement
       ),
 
@@ -774,6 +776,9 @@ module.exports = grammar({
         field("body", $.block)
       ),
 
+    comptime_for_statement: ($) =>
+      seq("$for", $.for_in_operator, field("body", $.block)),
+
     for_in_operator: ($) =>
       prec(
         PREC.primary,
@@ -863,7 +868,14 @@ module.exports = grammar({
     comptime_if_expression: ($) =>
       seq(
         "$if",
-        field("condition", seq($._expression, optional("?"))),
+        field(
+          "condition",
+          choice(
+            seq($.identifier, optional("?")),
+            alias($._generic_type_is_expression, $.is_expression),
+            $._expression
+          )
+        ),
         field("consequence", alias($._comptime_block, $.block)),
         optional(
           seq(
@@ -901,13 +913,24 @@ module.exports = grammar({
           field("right", $._expression)
         )
       ),
+
+    _generic_type_is_expression: ($) =>
+      prec.left(
+        PREC.comparative,
+        seq(
+          field("left", $.type_placeholder),
+          choice(is_keyword, "!" + is_keyword),
+          field("right", choice($.option_type, $._simple_type))
+        )
+      ),
+
     is_expression: ($) =>
       prec.left(
         PREC.comparative,
         seq(
           field("left", $._expression),
           choice(is_keyword, "!" + is_keyword),
-          field("right", $._type)
+          field("right", choice($.option_type, $._simple_type))
         )
       ),
 
