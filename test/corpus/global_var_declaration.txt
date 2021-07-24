@@ -19,21 +19,21 @@ __global (
   (global_var_declaration 
     (global_var_spec 
       (identifier) 
-      (call_expression 
-        (identifier) 
-        (argument_list (true))))) 
+      (type_cast_expression 
+        (builtin_type) 
+        (true)))) 
     (global_var_declaration 
       (global_var_type_initializer 
-        (identifier) (type_identifier))) 
+        (identifier) (builtin_type))) 
     (global_var_declaration) 
     (global_var_declaration 
       (global_var_type_initializer 
-        (identifier) (type_identifier)) 
+        (identifier) (builtin_type)) 
       (global_var_spec 
         (identifier) 
-        (call_expression 
-          (identifier)
-          (argument_list (int_literal))))) 
+        (type_cast_expression 
+          (builtin_type)
+          (int_literal)))) 
     (global_var_declaration 
       (global_var_type_initializer 
-        (identifier) (type_identifier))))
+        (identifier) (builtin_type))))

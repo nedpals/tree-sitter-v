@@ -1,9 +1,9 @@
 ===
-Empty map Initializer
+Binded Type Initializer
 ===
 
 fn main() {
-  test := map[string]int{}
+  t := C.TSPoint{1, 2}
 }
 
 ---
@@ -17,5 +17,7 @@ fn main() {
         (identifier_list (identifier))
         (expression_list
           (type_initializer 
-            (map_type (builtin_type) (builtin_type))
-            (literal_value)))))))
+            (binded_type (language_spec) (identifier))
+            (literal_value
+              (element (int_literal))
+              (element (int_literal)))))))))

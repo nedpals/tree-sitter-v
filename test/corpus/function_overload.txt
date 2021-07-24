@@ -11,7 +11,7 @@ fn (t Test) == (t Test) Test {}
     (parameter_list 
       (parameter_declaration 
         (identifier) (type_identifier))) 
-    (identifier)
+    (overloadable_operator)
     (parameter_list 
       (parameter_declaration 
         (identifier) (type_identifier))) 

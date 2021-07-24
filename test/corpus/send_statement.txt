@@ -12,7 +12,7 @@ ch <- n
     (identifier_list (identifier)) 
     (expression_list 
       (type_initializer 
-        (channel_type (type_identifier)) 
+        (channel_type (builtin_type)) 
         (literal_value 
           (keyed_element 
             (field_identifier) (int_literal))))))

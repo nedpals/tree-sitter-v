@@ -4,7 +4,7 @@ Defer Statement
 
 fn main() {
   defer {
-    something.lol()
+    function_call()
   }
 }
 
@@ -17,6 +17,6 @@ fn main() {
     (block
       (defer_statement
         (block
-          (call_expression 
-            (selector_expression (identifier) (identifier)) 
+          (call_expression
+            (identifier)
             (argument_list)))))))

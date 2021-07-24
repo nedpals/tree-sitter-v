@@ -12,7 +12,7 @@ $for field in App.fields {
   (comptime_for_statement
     (for_in_operator
       (identifier_list (identifier))
-      (selector_expression (identifier) (identifier)))
+      (type_selector_expression (type_identifier) (identifier)))
     (block
       (call_expression
         (identifier)

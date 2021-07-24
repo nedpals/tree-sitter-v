@@ -36,5 +36,5 @@ fn main() {
     (parameter_list) 
     (block 
       (assignment_statement 
-        (expression_list (identifier)) 
+        (identifier_list (identifier)) 
         (expression_list (array))))))
