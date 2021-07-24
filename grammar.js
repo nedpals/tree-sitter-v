@@ -743,8 +743,11 @@ module.exports = grammar({
         type_keyword,
         field("name", $.type_identifier),
         "=",
-        field("type", seq($._simple_type, repeat(seq("|", $._simple_type))))
+        field("type", $.type_list)
       ),
+
+    type_list: ($) =>
+      seq($._simple_type, repeat(seq("|", $._simple_type))),
 
     go_statement: ($) => seq(go_keyword, $._expression),
 

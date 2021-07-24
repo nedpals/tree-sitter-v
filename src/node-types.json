@@ -2977,16 +2977,12 @@
         ]
       },
       "type": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "_simple_type",
+            "type": "type_list",
             "named": true
-          },
-          {
-            "type": "|",
-            "named": false
           }
         ]
       }
@@ -3056,6 +3052,21 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "type_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "_simple_type",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -3593,11 +3604,11 @@
   },
   {
     "type": "int_literal",
-    "named": true
+    "named": false
   },
   {
     "type": "int_literal",
-    "named": false
+    "named": true
   },
   {
     "type": "interface",

@@ -8,4 +8,5 @@ type Text = string
 
 (source_file
   (type_declaration 
-    (type_identifier) (builtin_type)))
+    (type_identifier) 
+    (type_list (builtin_type))))
