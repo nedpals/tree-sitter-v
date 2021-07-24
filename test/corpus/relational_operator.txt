@@ -4,7 +4,7 @@ Relation Operator
 
 foo := hello !in foo 
 if foo in bar {}
-println(boo !is foo)
+println(boo !is Foo)
 
 ---
 
@@ -22,4 +22,4 @@ println(boo !is foo)
     (identifier) 
     (argument_list 
       (is_expression 
-        (identifier) (identifier)))))
+        (identifier) (type_identifier)))))

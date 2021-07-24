@@ -849,6 +849,36 @@ module.exports = grammar({
         )
       ),
 
+    _comptime_block: ($) =>
+      seq(
+        "{",
+        optional(
+          repeat(
+            seq(choice($._statement, $._c_directive), optional(terminator))
+          )
+        ),
+        "}"
+      ),
+
+    comptime_if_expression: ($) =>
+      seq(
+        "$if",
+        field("condition", seq($._expression, optional("?"))),
+        field("consequence", alias($._comptime_block, $.block)),
+        optional(
+          seq(
+            "$else",
+            field(
+              "alternative",
+              choice(
+                alias($._comptime_block, $.block),
+                $.comptime_if_expression
+              )
+            )
+          )
+        )
+      ),
+
     if_expression: ($) =>
       seq(
         "if",
@@ -877,7 +907,7 @@ module.exports = grammar({
         seq(
           field("left", $._expression),
           choice(is_keyword, "!" + is_keyword),
-          field("right", $._expression)
+          field("right", $._type)
         )
       ),
 

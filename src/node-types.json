@@ -1,5 +1,273 @@
 [
   {
+    "type": "_expression",
+    "named": true,
+    "subtypes": [
+      {
+        "type": "_expression_with_blocks",
+        "named": true
+      },
+      {
+        "type": "array",
+        "named": true
+      },
+      {
+        "type": "as_type_cast_expression",
+        "named": true
+      },
+      {
+        "type": "binary_expression",
+        "named": true
+      },
+      {
+        "type": "call_expression",
+        "named": true
+      },
+      {
+        "type": "enum_identifier",
+        "named": true
+      },
+      {
+        "type": "false",
+        "named": true
+      },
+      {
+        "type": "fixed_array",
+        "named": true
+      },
+      {
+        "type": "fn_literal",
+        "named": true
+      },
+      {
+        "type": "identifier",
+        "named": true
+      },
+      {
+        "type": "in_expression",
+        "named": true
+      },
+      {
+        "type": "index_expression",
+        "named": true
+      },
+      {
+        "type": "int_literal",
+        "named": true
+      },
+      {
+        "type": "interpreted_string_literal",
+        "named": true
+      },
+      {
+        "type": "is_expression",
+        "named": true
+      },
+      {
+        "type": "none",
+        "named": true
+      },
+      {
+        "type": "pseudo_comptime_identifier",
+        "named": true
+      },
+      {
+        "type": "rune_literal",
+        "named": true
+      },
+      {
+        "type": "selector_expression",
+        "named": true
+      },
+      {
+        "type": "slice_expression",
+        "named": true
+      },
+      {
+        "type": "special_call_expression",
+        "named": true
+      },
+      {
+        "type": "true",
+        "named": true
+      },
+      {
+        "type": "type_cast_expression",
+        "named": true
+      },
+      {
+        "type": "type_initializer",
+        "named": true
+      },
+      {
+        "type": "unary_expression",
+        "named": true
+      }
+    ]
+  },
+  {
+    "type": "_expression_with_blocks",
+    "named": true,
+    "subtypes": [
+      {
+        "type": "if_expression",
+        "named": true
+      },
+      {
+        "type": "lock_expression",
+        "named": true
+      },
+      {
+        "type": "match_expression",
+        "named": true
+      },
+      {
+        "type": "select_expression",
+        "named": true
+      },
+      {
+        "type": "sql_expression",
+        "named": true
+      },
+      {
+        "type": "unsafe_expression",
+        "named": true
+      }
+    ]
+  },
+  {
+    "type": "_simple_statement",
+    "named": true,
+    "subtypes": [
+      {
+        "type": "_expression",
+        "named": true
+      },
+      {
+        "type": "assignment_statement",
+        "named": true
+      },
+      {
+        "type": "dec_statement",
+        "named": true
+      },
+      {
+        "type": "inc_statement",
+        "named": true
+      },
+      {
+        "type": "short_var_declaration",
+        "named": true
+      }
+    ]
+  },
+  {
+    "type": "_simple_type",
+    "named": true,
+    "subtypes": [
+      {
+        "type": "array_type",
+        "named": true
+      },
+      {
+        "type": "binded_type",
+        "named": true
+      },
+      {
+        "type": "builtin_type",
+        "named": true
+      },
+      {
+        "type": "function_type",
+        "named": true
+      },
+      {
+        "type": "pointer_type",
+        "named": true
+      },
+      {
+        "type": "qualified_type",
+        "named": true
+      },
+      {
+        "type": "type_identifier",
+        "named": true
+      },
+      {
+        "type": "type_placeholder",
+        "named": true
+      }
+    ]
+  },
+  {
+    "type": "_statement",
+    "named": true,
+    "subtypes": [
+      {
+        "type": "_simple_statement",
+        "named": true
+      },
+      {
+        "type": "asm_statement",
+        "named": true
+      },
+      {
+        "type": "assert_statement",
+        "named": true
+      },
+      {
+        "type": "defer_statement",
+        "named": true
+      },
+      {
+        "type": "empty_labeled_statement",
+        "named": true
+      },
+      {
+        "type": "for_statement",
+        "named": true
+      },
+      {
+        "type": "go_statement",
+        "named": true
+      },
+      {
+        "type": "goto_statement",
+        "named": true
+      },
+      {
+        "type": "labeled_statement",
+        "named": true
+      },
+      {
+        "type": "return_statement",
+        "named": true
+      },
+      {
+        "type": "send_statement",
+        "named": true
+      }
+    ]
+  },
+  {
+    "type": "_type",
+    "named": true,
+    "subtypes": [
+      {
+        "type": "_simple_type",
+        "named": true
+      },
+      {
+        "type": "multi_return_type",
+        "named": true
+      },
+      {
+        "type": "option_type",
+        "named": true
+      }
+    ]
+  },
+  {
     "type": "argument_list",
     "named": true,
     "fields": {},
@@ -8,123 +276,7 @@
       "required": false,
       "types": [
         {
-          "type": "array",
-          "named": true
-        },
-        {
-          "type": "as_type_cast_expression",
-          "named": true
-        },
-        {
-          "type": "binary_expression",
-          "named": true
-        },
-        {
-          "type": "call_expression",
-          "named": true
-        },
-        {
-          "type": "enum_identifier",
-          "named": true
-        },
-        {
-          "type": "false",
-          "named": true
-        },
-        {
-          "type": "fixed_array",
-          "named": true
-        },
-        {
-          "type": "fn_literal",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "if_expression",
-          "named": true
-        },
-        {
-          "type": "in_expression",
-          "named": true
-        },
-        {
-          "type": "index_expression",
-          "named": true
-        },
-        {
-          "type": "int_literal",
-          "named": true
-        },
-        {
-          "type": "interpreted_string_literal",
-          "named": true
-        },
-        {
-          "type": "is_expression",
-          "named": true
-        },
-        {
-          "type": "lock_expression",
-          "named": true
-        },
-        {
-          "type": "match_expression",
-          "named": true
-        },
-        {
-          "type": "none",
-          "named": true
-        },
-        {
-          "type": "pseudo_comptime_identifier",
-          "named": true
-        },
-        {
-          "type": "rune_literal",
-          "named": true
-        },
-        {
-          "type": "select_expression",
-          "named": true
-        },
-        {
-          "type": "selector_expression",
-          "named": true
-        },
-        {
-          "type": "slice_expression",
-          "named": true
-        },
-        {
-          "type": "special_call_expression",
-          "named": true
-        },
-        {
-          "type": "sql_expression",
-          "named": true
-        },
-        {
-          "type": "true",
-          "named": true
-        },
-        {
-          "type": "type_cast_expression",
-          "named": true
-        },
-        {
-          "type": "type_initializer",
-          "named": true
-        },
-        {
-          "type": "unary_expression",
-          "named": true
-        },
-        {
-          "type": "unsafe_expression",
+          "type": "_expression",
           "named": true
         }
       ]
@@ -143,123 +295,7 @@
             "named": false
           },
           {
-            "type": "array",
-            "named": true
-          },
-          {
-            "type": "as_type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "binary_expression",
-            "named": true
-          },
-          {
-            "type": "call_expression",
-            "named": true
-          },
-          {
-            "type": "enum_identifier",
-            "named": true
-          },
-          {
-            "type": "false",
-            "named": true
-          },
-          {
-            "type": "fixed_array",
-            "named": true
-          },
-          {
-            "type": "fn_literal",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "if_expression",
-            "named": true
-          },
-          {
-            "type": "in_expression",
-            "named": true
-          },
-          {
-            "type": "index_expression",
-            "named": true
-          },
-          {
-            "type": "int_literal",
-            "named": true
-          },
-          {
-            "type": "interpreted_string_literal",
-            "named": true
-          },
-          {
-            "type": "is_expression",
-            "named": true
-          },
-          {
-            "type": "lock_expression",
-            "named": true
-          },
-          {
-            "type": "match_expression",
-            "named": true
-          },
-          {
-            "type": "none",
-            "named": true
-          },
-          {
-            "type": "pseudo_comptime_identifier",
-            "named": true
-          },
-          {
-            "type": "rune_literal",
-            "named": true
-          },
-          {
-            "type": "select_expression",
-            "named": true
-          },
-          {
-            "type": "selector_expression",
-            "named": true
-          },
-          {
-            "type": "slice_expression",
-            "named": true
-          },
-          {
-            "type": "special_call_expression",
-            "named": true
-          },
-          {
-            "type": "sql_expression",
-            "named": true
-          },
-          {
-            "type": "true",
-            "named": true
-          },
-          {
-            "type": "type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "type_initializer",
-            "named": true
-          },
-          {
-            "type": "unary_expression",
-            "named": true
-          },
-          {
-            "type": "unsafe_expression",
+            "type": "_expression",
             "named": true
           }
         ]
@@ -275,35 +311,7 @@
         "required": true,
         "types": [
           {
-            "type": "array_type",
-            "named": true
-          },
-          {
-            "type": "binded_type",
-            "named": true
-          },
-          {
-            "type": "builtin_type",
-            "named": true
-          },
-          {
-            "type": "function_type",
-            "named": true
-          },
-          {
-            "type": "pointer_type",
-            "named": true
-          },
-          {
-            "type": "qualified_type",
-            "named": true
-          },
-          {
-            "type": "type_identifier",
-            "named": true
-          },
-          {
-            "type": "type_placeholder",
+            "type": "_simple_type",
             "named": true
           }
         ]
@@ -319,163 +327,11 @@
       "required": true,
       "types": [
         {
-          "type": "array",
+          "type": "_expression",
           "named": true
         },
         {
-          "type": "array_type",
-          "named": true
-        },
-        {
-          "type": "as_type_cast_expression",
-          "named": true
-        },
-        {
-          "type": "binary_expression",
-          "named": true
-        },
-        {
-          "type": "binded_type",
-          "named": true
-        },
-        {
-          "type": "builtin_type",
-          "named": true
-        },
-        {
-          "type": "call_expression",
-          "named": true
-        },
-        {
-          "type": "enum_identifier",
-          "named": true
-        },
-        {
-          "type": "false",
-          "named": true
-        },
-        {
-          "type": "fixed_array",
-          "named": true
-        },
-        {
-          "type": "fn_literal",
-          "named": true
-        },
-        {
-          "type": "function_type",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "if_expression",
-          "named": true
-        },
-        {
-          "type": "in_expression",
-          "named": true
-        },
-        {
-          "type": "index_expression",
-          "named": true
-        },
-        {
-          "type": "int_literal",
-          "named": true
-        },
-        {
-          "type": "interpreted_string_literal",
-          "named": true
-        },
-        {
-          "type": "is_expression",
-          "named": true
-        },
-        {
-          "type": "lock_expression",
-          "named": true
-        },
-        {
-          "type": "match_expression",
-          "named": true
-        },
-        {
-          "type": "multi_return_type",
-          "named": true
-        },
-        {
-          "type": "none",
-          "named": true
-        },
-        {
-          "type": "option_type",
-          "named": true
-        },
-        {
-          "type": "pointer_type",
-          "named": true
-        },
-        {
-          "type": "pseudo_comptime_identifier",
-          "named": true
-        },
-        {
-          "type": "qualified_type",
-          "named": true
-        },
-        {
-          "type": "rune_literal",
-          "named": true
-        },
-        {
-          "type": "select_expression",
-          "named": true
-        },
-        {
-          "type": "selector_expression",
-          "named": true
-        },
-        {
-          "type": "slice_expression",
-          "named": true
-        },
-        {
-          "type": "special_call_expression",
-          "named": true
-        },
-        {
-          "type": "sql_expression",
-          "named": true
-        },
-        {
-          "type": "true",
-          "named": true
-        },
-        {
-          "type": "type_cast_expression",
-          "named": true
-        },
-        {
-          "type": "type_identifier",
-          "named": true
-        },
-        {
-          "type": "type_initializer",
-          "named": true
-        },
-        {
-          "type": "type_placeholder",
-          "named": true
-        },
-        {
-          "type": "unary_expression",
-          "named": true
-        },
-        {
-          "type": "unsafe_expression",
+          "type": "_type",
           "named": true
         }
       ]
@@ -505,123 +361,7 @@
       "required": true,
       "types": [
         {
-          "type": "array",
-          "named": true
-        },
-        {
-          "type": "as_type_cast_expression",
-          "named": true
-        },
-        {
-          "type": "binary_expression",
-          "named": true
-        },
-        {
-          "type": "call_expression",
-          "named": true
-        },
-        {
-          "type": "enum_identifier",
-          "named": true
-        },
-        {
-          "type": "false",
-          "named": true
-        },
-        {
-          "type": "fixed_array",
-          "named": true
-        },
-        {
-          "type": "fn_literal",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "if_expression",
-          "named": true
-        },
-        {
-          "type": "in_expression",
-          "named": true
-        },
-        {
-          "type": "index_expression",
-          "named": true
-        },
-        {
-          "type": "int_literal",
-          "named": true
-        },
-        {
-          "type": "interpreted_string_literal",
-          "named": true
-        },
-        {
-          "type": "is_expression",
-          "named": true
-        },
-        {
-          "type": "lock_expression",
-          "named": true
-        },
-        {
-          "type": "match_expression",
-          "named": true
-        },
-        {
-          "type": "none",
-          "named": true
-        },
-        {
-          "type": "pseudo_comptime_identifier",
-          "named": true
-        },
-        {
-          "type": "rune_literal",
-          "named": true
-        },
-        {
-          "type": "select_expression",
-          "named": true
-        },
-        {
-          "type": "selector_expression",
-          "named": true
-        },
-        {
-          "type": "slice_expression",
-          "named": true
-        },
-        {
-          "type": "special_call_expression",
-          "named": true
-        },
-        {
-          "type": "sql_expression",
-          "named": true
-        },
-        {
-          "type": "true",
-          "named": true
-        },
-        {
-          "type": "type_cast_expression",
-          "named": true
-        },
-        {
-          "type": "type_initializer",
-          "named": true
-        },
-        {
-          "type": "unary_expression",
-          "named": true
-        },
-        {
-          "type": "unsafe_expression",
+          "type": "_expression",
           "named": true
         }
       ]
@@ -732,123 +472,7 @@
         "required": true,
         "types": [
           {
-            "type": "array",
-            "named": true
-          },
-          {
-            "type": "as_type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "binary_expression",
-            "named": true
-          },
-          {
-            "type": "call_expression",
-            "named": true
-          },
-          {
-            "type": "enum_identifier",
-            "named": true
-          },
-          {
-            "type": "false",
-            "named": true
-          },
-          {
-            "type": "fixed_array",
-            "named": true
-          },
-          {
-            "type": "fn_literal",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "if_expression",
-            "named": true
-          },
-          {
-            "type": "in_expression",
-            "named": true
-          },
-          {
-            "type": "index_expression",
-            "named": true
-          },
-          {
-            "type": "int_literal",
-            "named": true
-          },
-          {
-            "type": "interpreted_string_literal",
-            "named": true
-          },
-          {
-            "type": "is_expression",
-            "named": true
-          },
-          {
-            "type": "lock_expression",
-            "named": true
-          },
-          {
-            "type": "match_expression",
-            "named": true
-          },
-          {
-            "type": "none",
-            "named": true
-          },
-          {
-            "type": "pseudo_comptime_identifier",
-            "named": true
-          },
-          {
-            "type": "rune_literal",
-            "named": true
-          },
-          {
-            "type": "select_expression",
-            "named": true
-          },
-          {
-            "type": "selector_expression",
-            "named": true
-          },
-          {
-            "type": "slice_expression",
-            "named": true
-          },
-          {
-            "type": "special_call_expression",
-            "named": true
-          },
-          {
-            "type": "sql_expression",
-            "named": true
-          },
-          {
-            "type": "true",
-            "named": true
-          },
-          {
-            "type": "type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "type_initializer",
-            "named": true
-          },
-          {
-            "type": "unary_expression",
-            "named": true
-          },
-          {
-            "type": "unsafe_expression",
+            "type": "_expression",
             "named": true
           }
         ]
@@ -940,123 +564,7 @@
         "required": true,
         "types": [
           {
-            "type": "array",
-            "named": true
-          },
-          {
-            "type": "as_type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "binary_expression",
-            "named": true
-          },
-          {
-            "type": "call_expression",
-            "named": true
-          },
-          {
-            "type": "enum_identifier",
-            "named": true
-          },
-          {
-            "type": "false",
-            "named": true
-          },
-          {
-            "type": "fixed_array",
-            "named": true
-          },
-          {
-            "type": "fn_literal",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "if_expression",
-            "named": true
-          },
-          {
-            "type": "in_expression",
-            "named": true
-          },
-          {
-            "type": "index_expression",
-            "named": true
-          },
-          {
-            "type": "int_literal",
-            "named": true
-          },
-          {
-            "type": "interpreted_string_literal",
-            "named": true
-          },
-          {
-            "type": "is_expression",
-            "named": true
-          },
-          {
-            "type": "lock_expression",
-            "named": true
-          },
-          {
-            "type": "match_expression",
-            "named": true
-          },
-          {
-            "type": "none",
-            "named": true
-          },
-          {
-            "type": "pseudo_comptime_identifier",
-            "named": true
-          },
-          {
-            "type": "rune_literal",
-            "named": true
-          },
-          {
-            "type": "select_expression",
-            "named": true
-          },
-          {
-            "type": "selector_expression",
-            "named": true
-          },
-          {
-            "type": "slice_expression",
-            "named": true
-          },
-          {
-            "type": "special_call_expression",
-            "named": true
-          },
-          {
-            "type": "sql_expression",
-            "named": true
-          },
-          {
-            "type": "true",
-            "named": true
-          },
-          {
-            "type": "type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "type_initializer",
-            "named": true
-          },
-          {
-            "type": "unary_expression",
-            "named": true
-          },
-          {
-            "type": "unsafe_expression",
+            "type": "_expression",
             "named": true
           }
         ]
@@ -1124,179 +632,19 @@
       "required": false,
       "types": [
         {
-          "type": "array",
+          "type": "_statement",
           "named": true
         },
         {
-          "type": "as_type_cast_expression",
+          "type": "c_define_clause",
           "named": true
         },
         {
-          "type": "asm_statement",
+          "type": "c_flag_clause",
           "named": true
         },
         {
-          "type": "assert_statement",
-          "named": true
-        },
-        {
-          "type": "assignment_statement",
-          "named": true
-        },
-        {
-          "type": "binary_expression",
-          "named": true
-        },
-        {
-          "type": "call_expression",
-          "named": true
-        },
-        {
-          "type": "dec_statement",
-          "named": true
-        },
-        {
-          "type": "defer_statement",
-          "named": true
-        },
-        {
-          "type": "empty_labeled_statement",
-          "named": true
-        },
-        {
-          "type": "enum_identifier",
-          "named": true
-        },
-        {
-          "type": "false",
-          "named": true
-        },
-        {
-          "type": "fixed_array",
-          "named": true
-        },
-        {
-          "type": "fn_literal",
-          "named": true
-        },
-        {
-          "type": "for_statement",
-          "named": true
-        },
-        {
-          "type": "go_statement",
-          "named": true
-        },
-        {
-          "type": "goto_statement",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "if_expression",
-          "named": true
-        },
-        {
-          "type": "in_expression",
-          "named": true
-        },
-        {
-          "type": "inc_statement",
-          "named": true
-        },
-        {
-          "type": "index_expression",
-          "named": true
-        },
-        {
-          "type": "int_literal",
-          "named": true
-        },
-        {
-          "type": "interpreted_string_literal",
-          "named": true
-        },
-        {
-          "type": "is_expression",
-          "named": true
-        },
-        {
-          "type": "labeled_statement",
-          "named": true
-        },
-        {
-          "type": "lock_expression",
-          "named": true
-        },
-        {
-          "type": "match_expression",
-          "named": true
-        },
-        {
-          "type": "none",
-          "named": true
-        },
-        {
-          "type": "pseudo_comptime_identifier",
-          "named": true
-        },
-        {
-          "type": "return_statement",
-          "named": true
-        },
-        {
-          "type": "rune_literal",
-          "named": true
-        },
-        {
-          "type": "select_expression",
-          "named": true
-        },
-        {
-          "type": "selector_expression",
-          "named": true
-        },
-        {
-          "type": "send_statement",
-          "named": true
-        },
-        {
-          "type": "short_var_declaration",
-          "named": true
-        },
-        {
-          "type": "slice_expression",
-          "named": true
-        },
-        {
-          "type": "special_call_expression",
-          "named": true
-        },
-        {
-          "type": "sql_expression",
-          "named": true
-        },
-        {
-          "type": "true",
-          "named": true
-        },
-        {
-          "type": "type_cast_expression",
-          "named": true
-        },
-        {
-          "type": "type_initializer",
-          "named": true
-        },
-        {
-          "type": "unary_expression",
-          "named": true
-        },
-        {
-          "type": "unsafe_expression",
+          "type": "c_include_clause",
           "named": true
         }
       ]
@@ -1444,35 +792,7 @@
         "required": true,
         "types": [
           {
-            "type": "array_type",
-            "named": true
-          },
-          {
-            "type": "binded_type",
-            "named": true
-          },
-          {
-            "type": "builtin_type",
-            "named": true
-          },
-          {
-            "type": "function_type",
-            "named": true
-          },
-          {
-            "type": "pointer_type",
-            "named": true
-          },
-          {
-            "type": "qualified_type",
-            "named": true
-          },
-          {
-            "type": "type_identifier",
-            "named": true
-          },
-          {
-            "type": "type_placeholder",
+            "type": "_simple_type",
             "named": true
           }
         ]
@@ -1492,6 +812,50 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "comptime_if_expression",
+    "named": true,
+    "fields": {
+      "alternative": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "block",
+            "named": true
+          },
+          {
+            "type": "comptime_if_expression",
+            "named": true
+          }
+        ]
+      },
+      "condition": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "?",
+            "named": false
+          },
+          {
+            "type": "_expression",
+            "named": true
+          }
+        ]
+      },
+      "consequence": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "block",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -1543,123 +907,7 @@
         "required": true,
         "types": [
           {
-            "type": "array",
-            "named": true
-          },
-          {
-            "type": "as_type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "binary_expression",
-            "named": true
-          },
-          {
-            "type": "call_expression",
-            "named": true
-          },
-          {
-            "type": "enum_identifier",
-            "named": true
-          },
-          {
-            "type": "false",
-            "named": true
-          },
-          {
-            "type": "fixed_array",
-            "named": true
-          },
-          {
-            "type": "fn_literal",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "if_expression",
-            "named": true
-          },
-          {
-            "type": "in_expression",
-            "named": true
-          },
-          {
-            "type": "index_expression",
-            "named": true
-          },
-          {
-            "type": "int_literal",
-            "named": true
-          },
-          {
-            "type": "interpreted_string_literal",
-            "named": true
-          },
-          {
-            "type": "is_expression",
-            "named": true
-          },
-          {
-            "type": "lock_expression",
-            "named": true
-          },
-          {
-            "type": "match_expression",
-            "named": true
-          },
-          {
-            "type": "none",
-            "named": true
-          },
-          {
-            "type": "pseudo_comptime_identifier",
-            "named": true
-          },
-          {
-            "type": "rune_literal",
-            "named": true
-          },
-          {
-            "type": "select_expression",
-            "named": true
-          },
-          {
-            "type": "selector_expression",
-            "named": true
-          },
-          {
-            "type": "slice_expression",
-            "named": true
-          },
-          {
-            "type": "special_call_expression",
-            "named": true
-          },
-          {
-            "type": "sql_expression",
-            "named": true
-          },
-          {
-            "type": "true",
-            "named": true
-          },
-          {
-            "type": "type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "type_initializer",
-            "named": true
-          },
-          {
-            "type": "unary_expression",
-            "named": true
-          },
-          {
-            "type": "unsafe_expression",
+            "type": "_expression",
             "named": true
           }
         ]
@@ -1675,123 +923,7 @@
         "required": false,
         "types": [
           {
-            "type": "array",
-            "named": true
-          },
-          {
-            "type": "as_type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "binary_expression",
-            "named": true
-          },
-          {
-            "type": "call_expression",
-            "named": true
-          },
-          {
-            "type": "enum_identifier",
-            "named": true
-          },
-          {
-            "type": "false",
-            "named": true
-          },
-          {
-            "type": "fixed_array",
-            "named": true
-          },
-          {
-            "type": "fn_literal",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "if_expression",
-            "named": true
-          },
-          {
-            "type": "in_expression",
-            "named": true
-          },
-          {
-            "type": "index_expression",
-            "named": true
-          },
-          {
-            "type": "int_literal",
-            "named": true
-          },
-          {
-            "type": "interpreted_string_literal",
-            "named": true
-          },
-          {
-            "type": "is_expression",
-            "named": true
-          },
-          {
-            "type": "lock_expression",
-            "named": true
-          },
-          {
-            "type": "match_expression",
-            "named": true
-          },
-          {
-            "type": "none",
-            "named": true
-          },
-          {
-            "type": "pseudo_comptime_identifier",
-            "named": true
-          },
-          {
-            "type": "rune_literal",
-            "named": true
-          },
-          {
-            "type": "select_expression",
-            "named": true
-          },
-          {
-            "type": "selector_expression",
-            "named": true
-          },
-          {
-            "type": "slice_expression",
-            "named": true
-          },
-          {
-            "type": "special_call_expression",
-            "named": true
-          },
-          {
-            "type": "sql_expression",
-            "named": true
-          },
-          {
-            "type": "true",
-            "named": true
-          },
-          {
-            "type": "type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "type_initializer",
-            "named": true
-          },
-          {
-            "type": "unary_expression",
-            "named": true
-          },
-          {
-            "type": "unsafe_expression",
+            "type": "_expression",
             "named": true
           }
         ]
@@ -1801,139 +933,7 @@
         "required": false,
         "types": [
           {
-            "type": "array",
-            "named": true
-          },
-          {
-            "type": "as_type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "assignment_statement",
-            "named": true
-          },
-          {
-            "type": "binary_expression",
-            "named": true
-          },
-          {
-            "type": "call_expression",
-            "named": true
-          },
-          {
-            "type": "dec_statement",
-            "named": true
-          },
-          {
-            "type": "enum_identifier",
-            "named": true
-          },
-          {
-            "type": "false",
-            "named": true
-          },
-          {
-            "type": "fixed_array",
-            "named": true
-          },
-          {
-            "type": "fn_literal",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "if_expression",
-            "named": true
-          },
-          {
-            "type": "in_expression",
-            "named": true
-          },
-          {
-            "type": "inc_statement",
-            "named": true
-          },
-          {
-            "type": "index_expression",
-            "named": true
-          },
-          {
-            "type": "int_literal",
-            "named": true
-          },
-          {
-            "type": "interpreted_string_literal",
-            "named": true
-          },
-          {
-            "type": "is_expression",
-            "named": true
-          },
-          {
-            "type": "lock_expression",
-            "named": true
-          },
-          {
-            "type": "match_expression",
-            "named": true
-          },
-          {
-            "type": "none",
-            "named": true
-          },
-          {
-            "type": "pseudo_comptime_identifier",
-            "named": true
-          },
-          {
-            "type": "rune_literal",
-            "named": true
-          },
-          {
-            "type": "select_expression",
-            "named": true
-          },
-          {
-            "type": "selector_expression",
-            "named": true
-          },
-          {
-            "type": "short_var_declaration",
-            "named": true
-          },
-          {
-            "type": "slice_expression",
-            "named": true
-          },
-          {
-            "type": "special_call_expression",
-            "named": true
-          },
-          {
-            "type": "sql_expression",
-            "named": true
-          },
-          {
-            "type": "true",
-            "named": true
-          },
-          {
-            "type": "type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "type_initializer",
-            "named": true
-          },
-          {
-            "type": "unary_expression",
-            "named": true
-          },
-          {
-            "type": "unsafe_expression",
+            "type": "_simple_statement",
             "named": true
           }
         ]
@@ -1943,139 +943,7 @@
         "required": false,
         "types": [
           {
-            "type": "array",
-            "named": true
-          },
-          {
-            "type": "as_type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "assignment_statement",
-            "named": true
-          },
-          {
-            "type": "binary_expression",
-            "named": true
-          },
-          {
-            "type": "call_expression",
-            "named": true
-          },
-          {
-            "type": "dec_statement",
-            "named": true
-          },
-          {
-            "type": "enum_identifier",
-            "named": true
-          },
-          {
-            "type": "false",
-            "named": true
-          },
-          {
-            "type": "fixed_array",
-            "named": true
-          },
-          {
-            "type": "fn_literal",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "if_expression",
-            "named": true
-          },
-          {
-            "type": "in_expression",
-            "named": true
-          },
-          {
-            "type": "inc_statement",
-            "named": true
-          },
-          {
-            "type": "index_expression",
-            "named": true
-          },
-          {
-            "type": "int_literal",
-            "named": true
-          },
-          {
-            "type": "interpreted_string_literal",
-            "named": true
-          },
-          {
-            "type": "is_expression",
-            "named": true
-          },
-          {
-            "type": "lock_expression",
-            "named": true
-          },
-          {
-            "type": "match_expression",
-            "named": true
-          },
-          {
-            "type": "none",
-            "named": true
-          },
-          {
-            "type": "pseudo_comptime_identifier",
-            "named": true
-          },
-          {
-            "type": "rune_literal",
-            "named": true
-          },
-          {
-            "type": "select_expression",
-            "named": true
-          },
-          {
-            "type": "selector_expression",
-            "named": true
-          },
-          {
-            "type": "short_var_declaration",
-            "named": true
-          },
-          {
-            "type": "slice_expression",
-            "named": true
-          },
-          {
-            "type": "special_call_expression",
-            "named": true
-          },
-          {
-            "type": "sql_expression",
-            "named": true
-          },
-          {
-            "type": "true",
-            "named": true
-          },
-          {
-            "type": "type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "type_initializer",
-            "named": true
-          },
-          {
-            "type": "unary_expression",
-            "named": true
-          },
-          {
-            "type": "unsafe_expression",
+            "type": "_simple_statement",
             "named": true
           }
         ]
@@ -2091,123 +959,7 @@
       "required": true,
       "types": [
         {
-          "type": "array",
-          "named": true
-        },
-        {
-          "type": "as_type_cast_expression",
-          "named": true
-        },
-        {
-          "type": "binary_expression",
-          "named": true
-        },
-        {
-          "type": "call_expression",
-          "named": true
-        },
-        {
-          "type": "enum_identifier",
-          "named": true
-        },
-        {
-          "type": "false",
-          "named": true
-        },
-        {
-          "type": "fixed_array",
-          "named": true
-        },
-        {
-          "type": "fn_literal",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "if_expression",
-          "named": true
-        },
-        {
-          "type": "in_expression",
-          "named": true
-        },
-        {
-          "type": "index_expression",
-          "named": true
-        },
-        {
-          "type": "int_literal",
-          "named": true
-        },
-        {
-          "type": "interpreted_string_literal",
-          "named": true
-        },
-        {
-          "type": "is_expression",
-          "named": true
-        },
-        {
-          "type": "lock_expression",
-          "named": true
-        },
-        {
-          "type": "match_expression",
-          "named": true
-        },
-        {
-          "type": "none",
-          "named": true
-        },
-        {
-          "type": "pseudo_comptime_identifier",
-          "named": true
-        },
-        {
-          "type": "rune_literal",
-          "named": true
-        },
-        {
-          "type": "select_expression",
-          "named": true
-        },
-        {
-          "type": "selector_expression",
-          "named": true
-        },
-        {
-          "type": "slice_expression",
-          "named": true
-        },
-        {
-          "type": "special_call_expression",
-          "named": true
-        },
-        {
-          "type": "sql_expression",
-          "named": true
-        },
-        {
-          "type": "true",
-          "named": true
-        },
-        {
-          "type": "type_cast_expression",
-          "named": true
-        },
-        {
-          "type": "type_initializer",
-          "named": true
-        },
-        {
-          "type": "unary_expression",
-          "named": true
-        },
-        {
-          "type": "unsafe_expression",
+          "type": "_expression",
           "named": true
         }
       ]
@@ -2253,63 +1005,15 @@
       "required": true,
       "types": [
         {
-          "type": "array",
+          "type": "_expression",
           "named": true
         },
         {
-          "type": "as_type_cast_expression",
-          "named": true
-        },
-        {
-          "type": "binary_expression",
-          "named": true
-        },
-        {
-          "type": "call_expression",
-          "named": true
-        },
-        {
-          "type": "enum_identifier",
-          "named": true
-        },
-        {
-          "type": "false",
-          "named": true
-        },
-        {
-          "type": "fixed_array",
-          "named": true
-        },
-        {
-          "type": "fn_literal",
-          "named": true
-        },
-        {
-          "type": "identifier",
+          "type": "comptime_if_expression",
           "named": true
         },
         {
           "type": "if_expression",
-          "named": true
-        },
-        {
-          "type": "in_expression",
-          "named": true
-        },
-        {
-          "type": "index_expression",
-          "named": true
-        },
-        {
-          "type": "int_literal",
-          "named": true
-        },
-        {
-          "type": "interpreted_string_literal",
-          "named": true
-        },
-        {
-          "type": "is_expression",
           "named": true
         },
         {
@@ -2321,51 +1025,7 @@
           "named": true
         },
         {
-          "type": "none",
-          "named": true
-        },
-        {
-          "type": "pseudo_comptime_identifier",
-          "named": true
-        },
-        {
-          "type": "rune_literal",
-          "named": true
-        },
-        {
-          "type": "select_expression",
-          "named": true
-        },
-        {
-          "type": "selector_expression",
-          "named": true
-        },
-        {
-          "type": "slice_expression",
-          "named": true
-        },
-        {
-          "type": "special_call_expression",
-          "named": true
-        },
-        {
           "type": "sql_expression",
-          "named": true
-        },
-        {
-          "type": "true",
-          "named": true
-        },
-        {
-          "type": "type_cast_expression",
-          "named": true
-        },
-        {
-          "type": "type_initializer",
-          "named": true
-        },
-        {
-          "type": "unary_expression",
           "named": true
         },
         {
@@ -2523,123 +1183,7 @@
       "required": true,
       "types": [
         {
-          "type": "array",
-          "named": true
-        },
-        {
-          "type": "as_type_cast_expression",
-          "named": true
-        },
-        {
-          "type": "binary_expression",
-          "named": true
-        },
-        {
-          "type": "call_expression",
-          "named": true
-        },
-        {
-          "type": "enum_identifier",
-          "named": true
-        },
-        {
-          "type": "false",
-          "named": true
-        },
-        {
-          "type": "fixed_array",
-          "named": true
-        },
-        {
-          "type": "fn_literal",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "if_expression",
-          "named": true
-        },
-        {
-          "type": "in_expression",
-          "named": true
-        },
-        {
-          "type": "index_expression",
-          "named": true
-        },
-        {
-          "type": "int_literal",
-          "named": true
-        },
-        {
-          "type": "interpreted_string_literal",
-          "named": true
-        },
-        {
-          "type": "is_expression",
-          "named": true
-        },
-        {
-          "type": "lock_expression",
-          "named": true
-        },
-        {
-          "type": "match_expression",
-          "named": true
-        },
-        {
-          "type": "none",
-          "named": true
-        },
-        {
-          "type": "pseudo_comptime_identifier",
-          "named": true
-        },
-        {
-          "type": "rune_literal",
-          "named": true
-        },
-        {
-          "type": "select_expression",
-          "named": true
-        },
-        {
-          "type": "selector_expression",
-          "named": true
-        },
-        {
-          "type": "slice_expression",
-          "named": true
-        },
-        {
-          "type": "special_call_expression",
-          "named": true
-        },
-        {
-          "type": "sql_expression",
-          "named": true
-        },
-        {
-          "type": "true",
-          "named": true
-        },
-        {
-          "type": "type_cast_expression",
-          "named": true
-        },
-        {
-          "type": "type_initializer",
-          "named": true
-        },
-        {
-          "type": "unary_expression",
-          "named": true
-        },
-        {
-          "type": "unsafe_expression",
+          "type": "_expression",
           "named": true
         }
       ]
@@ -2658,123 +1202,7 @@
             "named": false
           },
           {
-            "type": "array",
-            "named": true
-          },
-          {
-            "type": "as_type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "binary_expression",
-            "named": true
-          },
-          {
-            "type": "call_expression",
-            "named": true
-          },
-          {
-            "type": "enum_identifier",
-            "named": true
-          },
-          {
-            "type": "false",
-            "named": true
-          },
-          {
-            "type": "fixed_array",
-            "named": true
-          },
-          {
-            "type": "fn_literal",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "if_expression",
-            "named": true
-          },
-          {
-            "type": "in_expression",
-            "named": true
-          },
-          {
-            "type": "index_expression",
-            "named": true
-          },
-          {
-            "type": "int_literal",
-            "named": true
-          },
-          {
-            "type": "interpreted_string_literal",
-            "named": true
-          },
-          {
-            "type": "is_expression",
-            "named": true
-          },
-          {
-            "type": "lock_expression",
-            "named": true
-          },
-          {
-            "type": "match_expression",
-            "named": true
-          },
-          {
-            "type": "none",
-            "named": true
-          },
-          {
-            "type": "pseudo_comptime_identifier",
-            "named": true
-          },
-          {
-            "type": "rune_literal",
-            "named": true
-          },
-          {
-            "type": "select_expression",
-            "named": true
-          },
-          {
-            "type": "selector_expression",
-            "named": true
-          },
-          {
-            "type": "slice_expression",
-            "named": true
-          },
-          {
-            "type": "special_call_expression",
-            "named": true
-          },
-          {
-            "type": "sql_expression",
-            "named": true
-          },
-          {
-            "type": "true",
-            "named": true
-          },
-          {
-            "type": "type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "type_initializer",
-            "named": true
-          },
-          {
-            "type": "unary_expression",
-            "named": true
-          },
-          {
-            "type": "unsafe_expression",
+            "type": "_expression",
             "named": true
           }
         ]
@@ -2805,35 +1233,7 @@
         "required": true,
         "types": [
           {
-            "type": "array_type",
-            "named": true
-          },
-          {
-            "type": "binded_type",
-            "named": true
-          },
-          {
-            "type": "builtin_type",
-            "named": true
-          },
-          {
-            "type": "function_type",
-            "named": true
-          },
-          {
-            "type": "pointer_type",
-            "named": true
-          },
-          {
-            "type": "qualified_type",
-            "named": true
-          },
-          {
-            "type": "type_identifier",
-            "named": true
-          },
-          {
-            "type": "type_placeholder",
+            "type": "_simple_type",
             "named": true
           }
         ]
@@ -2883,43 +1283,7 @@
         "required": false,
         "types": [
           {
-            "type": "array_type",
-            "named": true
-          },
-          {
-            "type": "binded_type",
-            "named": true
-          },
-          {
-            "type": "builtin_type",
-            "named": true
-          },
-          {
-            "type": "function_type",
-            "named": true
-          },
-          {
-            "type": "multi_return_type",
-            "named": true
-          },
-          {
-            "type": "option_type",
-            "named": true
-          },
-          {
-            "type": "pointer_type",
-            "named": true
-          },
-          {
-            "type": "qualified_type",
-            "named": true
-          },
-          {
-            "type": "type_identifier",
-            "named": true
-          },
-          {
-            "type": "type_placeholder",
+            "type": "_type",
             "named": true
           }
         ]
@@ -2945,127 +1309,11 @@
         "required": true,
         "types": [
           {
-            "type": "array",
-            "named": true
-          },
-          {
-            "type": "as_type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "binary_expression",
-            "named": true
-          },
-          {
-            "type": "call_expression",
-            "named": true
-          },
-          {
-            "type": "enum_identifier",
-            "named": true
-          },
-          {
-            "type": "false",
-            "named": true
-          },
-          {
-            "type": "fixed_array",
-            "named": true
-          },
-          {
-            "type": "fn_literal",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "if_expression",
-            "named": true
-          },
-          {
-            "type": "in_expression",
-            "named": true
-          },
-          {
-            "type": "index_expression",
-            "named": true
-          },
-          {
-            "type": "int_literal",
-            "named": true
-          },
-          {
-            "type": "interpreted_string_literal",
-            "named": true
-          },
-          {
-            "type": "is_expression",
-            "named": true
-          },
-          {
-            "type": "lock_expression",
-            "named": true
-          },
-          {
-            "type": "match_expression",
-            "named": true
-          },
-          {
-            "type": "none",
-            "named": true
-          },
-          {
-            "type": "pseudo_comptime_identifier",
+            "type": "_expression",
             "named": true
           },
           {
             "type": "range",
-            "named": true
-          },
-          {
-            "type": "rune_literal",
-            "named": true
-          },
-          {
-            "type": "select_expression",
-            "named": true
-          },
-          {
-            "type": "selector_expression",
-            "named": true
-          },
-          {
-            "type": "slice_expression",
-            "named": true
-          },
-          {
-            "type": "special_call_expression",
-            "named": true
-          },
-          {
-            "type": "sql_expression",
-            "named": true
-          },
-          {
-            "type": "true",
-            "named": true
-          },
-          {
-            "type": "type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "type_initializer",
-            "named": true
-          },
-          {
-            "type": "unary_expression",
-            "named": true
-          },
-          {
-            "type": "unsafe_expression",
             "named": true
           }
         ]
@@ -3092,19 +1340,7 @@
       "required": false,
       "types": [
         {
-          "type": "array",
-          "named": true
-        },
-        {
-          "type": "as_type_cast_expression",
-          "named": true
-        },
-        {
-          "type": "binary_expression",
-          "named": true
-        },
-        {
-          "type": "call_expression",
+          "type": "_expression",
           "named": true
         },
         {
@@ -3112,111 +1348,7 @@
           "named": true
         },
         {
-          "type": "enum_identifier",
-          "named": true
-        },
-        {
-          "type": "false",
-          "named": true
-        },
-        {
-          "type": "fixed_array",
-          "named": true
-        },
-        {
-          "type": "fn_literal",
-          "named": true
-        },
-        {
           "type": "for_in_operator",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "if_expression",
-          "named": true
-        },
-        {
-          "type": "in_expression",
-          "named": true
-        },
-        {
-          "type": "index_expression",
-          "named": true
-        },
-        {
-          "type": "int_literal",
-          "named": true
-        },
-        {
-          "type": "interpreted_string_literal",
-          "named": true
-        },
-        {
-          "type": "is_expression",
-          "named": true
-        },
-        {
-          "type": "lock_expression",
-          "named": true
-        },
-        {
-          "type": "match_expression",
-          "named": true
-        },
-        {
-          "type": "none",
-          "named": true
-        },
-        {
-          "type": "pseudo_comptime_identifier",
-          "named": true
-        },
-        {
-          "type": "rune_literal",
-          "named": true
-        },
-        {
-          "type": "select_expression",
-          "named": true
-        },
-        {
-          "type": "selector_expression",
-          "named": true
-        },
-        {
-          "type": "slice_expression",
-          "named": true
-        },
-        {
-          "type": "special_call_expression",
-          "named": true
-        },
-        {
-          "type": "sql_expression",
-          "named": true
-        },
-        {
-          "type": "true",
-          "named": true
-        },
-        {
-          "type": "type_cast_expression",
-          "named": true
-        },
-        {
-          "type": "type_initializer",
-          "named": true
-        },
-        {
-          "type": "unary_expression",
-          "named": true
-        },
-        {
-          "type": "unsafe_expression",
           "named": true
         }
       ]
@@ -3314,43 +1446,7 @@
         "required": false,
         "types": [
           {
-            "type": "array_type",
-            "named": true
-          },
-          {
-            "type": "binded_type",
-            "named": true
-          },
-          {
-            "type": "builtin_type",
-            "named": true
-          },
-          {
-            "type": "function_type",
-            "named": true
-          },
-          {
-            "type": "multi_return_type",
-            "named": true
-          },
-          {
-            "type": "option_type",
-            "named": true
-          },
-          {
-            "type": "pointer_type",
-            "named": true
-          },
-          {
-            "type": "qualified_type",
-            "named": true
-          },
-          {
-            "type": "type_identifier",
-            "named": true
-          },
-          {
-            "type": "type_placeholder",
+            "type": "_type",
             "named": true
           }
         ]
@@ -3386,43 +1482,7 @@
         "required": false,
         "types": [
           {
-            "type": "array_type",
-            "named": true
-          },
-          {
-            "type": "binded_type",
-            "named": true
-          },
-          {
-            "type": "builtin_type",
-            "named": true
-          },
-          {
-            "type": "function_type",
-            "named": true
-          },
-          {
-            "type": "multi_return_type",
-            "named": true
-          },
-          {
-            "type": "option_type",
-            "named": true
-          },
-          {
-            "type": "pointer_type",
-            "named": true
-          },
-          {
-            "type": "qualified_type",
-            "named": true
-          },
-          {
-            "type": "type_identifier",
-            "named": true
-          },
-          {
-            "type": "type_placeholder",
+            "type": "_type",
             "named": true
           }
         ]
@@ -3490,123 +1550,7 @@
         "required": true,
         "types": [
           {
-            "type": "array",
-            "named": true
-          },
-          {
-            "type": "as_type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "binary_expression",
-            "named": true
-          },
-          {
-            "type": "call_expression",
-            "named": true
-          },
-          {
-            "type": "enum_identifier",
-            "named": true
-          },
-          {
-            "type": "false",
-            "named": true
-          },
-          {
-            "type": "fixed_array",
-            "named": true
-          },
-          {
-            "type": "fn_literal",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "if_expression",
-            "named": true
-          },
-          {
-            "type": "in_expression",
-            "named": true
-          },
-          {
-            "type": "index_expression",
-            "named": true
-          },
-          {
-            "type": "int_literal",
-            "named": true
-          },
-          {
-            "type": "interpreted_string_literal",
-            "named": true
-          },
-          {
-            "type": "is_expression",
-            "named": true
-          },
-          {
-            "type": "lock_expression",
-            "named": true
-          },
-          {
-            "type": "match_expression",
-            "named": true
-          },
-          {
-            "type": "none",
-            "named": true
-          },
-          {
-            "type": "pseudo_comptime_identifier",
-            "named": true
-          },
-          {
-            "type": "rune_literal",
-            "named": true
-          },
-          {
-            "type": "select_expression",
-            "named": true
-          },
-          {
-            "type": "selector_expression",
-            "named": true
-          },
-          {
-            "type": "slice_expression",
-            "named": true
-          },
-          {
-            "type": "special_call_expression",
-            "named": true
-          },
-          {
-            "type": "sql_expression",
-            "named": true
-          },
-          {
-            "type": "true",
-            "named": true
-          },
-          {
-            "type": "type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "type_initializer",
-            "named": true
-          },
-          {
-            "type": "unary_expression",
-            "named": true
-          },
-          {
-            "type": "unsafe_expression",
+            "type": "_expression",
             "named": true
           }
         ]
@@ -3632,43 +1576,7 @@
         "required": true,
         "types": [
           {
-            "type": "array_type",
-            "named": true
-          },
-          {
-            "type": "binded_type",
-            "named": true
-          },
-          {
-            "type": "builtin_type",
-            "named": true
-          },
-          {
-            "type": "function_type",
-            "named": true
-          },
-          {
-            "type": "multi_return_type",
-            "named": true
-          },
-          {
-            "type": "option_type",
-            "named": true
-          },
-          {
-            "type": "pointer_type",
-            "named": true
-          },
-          {
-            "type": "qualified_type",
-            "named": true
-          },
-          {
-            "type": "type_identifier",
-            "named": true
-          },
-          {
-            "type": "type_placeholder",
+            "type": "_type",
             "named": true
           }
         ]
@@ -3684,123 +1592,7 @@
       "required": true,
       "types": [
         {
-          "type": "array",
-          "named": true
-        },
-        {
-          "type": "as_type_cast_expression",
-          "named": true
-        },
-        {
-          "type": "binary_expression",
-          "named": true
-        },
-        {
-          "type": "call_expression",
-          "named": true
-        },
-        {
-          "type": "enum_identifier",
-          "named": true
-        },
-        {
-          "type": "false",
-          "named": true
-        },
-        {
-          "type": "fixed_array",
-          "named": true
-        },
-        {
-          "type": "fn_literal",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "if_expression",
-          "named": true
-        },
-        {
-          "type": "in_expression",
-          "named": true
-        },
-        {
-          "type": "index_expression",
-          "named": true
-        },
-        {
-          "type": "int_literal",
-          "named": true
-        },
-        {
-          "type": "interpreted_string_literal",
-          "named": true
-        },
-        {
-          "type": "is_expression",
-          "named": true
-        },
-        {
-          "type": "lock_expression",
-          "named": true
-        },
-        {
-          "type": "match_expression",
-          "named": true
-        },
-        {
-          "type": "none",
-          "named": true
-        },
-        {
-          "type": "pseudo_comptime_identifier",
-          "named": true
-        },
-        {
-          "type": "rune_literal",
-          "named": true
-        },
-        {
-          "type": "select_expression",
-          "named": true
-        },
-        {
-          "type": "selector_expression",
-          "named": true
-        },
-        {
-          "type": "slice_expression",
-          "named": true
-        },
-        {
-          "type": "special_call_expression",
-          "named": true
-        },
-        {
-          "type": "sql_expression",
-          "named": true
-        },
-        {
-          "type": "true",
-          "named": true
-        },
-        {
-          "type": "type_cast_expression",
-          "named": true
-        },
-        {
-          "type": "type_initializer",
-          "named": true
-        },
-        {
-          "type": "unary_expression",
-          "named": true
-        },
-        {
-          "type": "unsafe_expression",
+          "type": "_expression",
           "named": true
         }
       ]
@@ -3859,123 +1651,7 @@
         "required": false,
         "types": [
           {
-            "type": "array",
-            "named": true
-          },
-          {
-            "type": "as_type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "binary_expression",
-            "named": true
-          },
-          {
-            "type": "call_expression",
-            "named": true
-          },
-          {
-            "type": "enum_identifier",
-            "named": true
-          },
-          {
-            "type": "false",
-            "named": true
-          },
-          {
-            "type": "fixed_array",
-            "named": true
-          },
-          {
-            "type": "fn_literal",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "if_expression",
-            "named": true
-          },
-          {
-            "type": "in_expression",
-            "named": true
-          },
-          {
-            "type": "index_expression",
-            "named": true
-          },
-          {
-            "type": "int_literal",
-            "named": true
-          },
-          {
-            "type": "interpreted_string_literal",
-            "named": true
-          },
-          {
-            "type": "is_expression",
-            "named": true
-          },
-          {
-            "type": "lock_expression",
-            "named": true
-          },
-          {
-            "type": "match_expression",
-            "named": true
-          },
-          {
-            "type": "none",
-            "named": true
-          },
-          {
-            "type": "pseudo_comptime_identifier",
-            "named": true
-          },
-          {
-            "type": "rune_literal",
-            "named": true
-          },
-          {
-            "type": "select_expression",
-            "named": true
-          },
-          {
-            "type": "selector_expression",
-            "named": true
-          },
-          {
-            "type": "slice_expression",
-            "named": true
-          },
-          {
-            "type": "special_call_expression",
-            "named": true
-          },
-          {
-            "type": "sql_expression",
-            "named": true
-          },
-          {
-            "type": "true",
-            "named": true
-          },
-          {
-            "type": "type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "type_initializer",
-            "named": true
-          },
-          {
-            "type": "unary_expression",
-            "named": true
-          },
-          {
-            "type": "unsafe_expression",
+            "type": "_expression",
             "named": true
           }
         ]
@@ -4093,123 +1769,7 @@
         "required": true,
         "types": [
           {
-            "type": "array",
-            "named": true
-          },
-          {
-            "type": "as_type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "binary_expression",
-            "named": true
-          },
-          {
-            "type": "call_expression",
-            "named": true
-          },
-          {
-            "type": "enum_identifier",
-            "named": true
-          },
-          {
-            "type": "false",
-            "named": true
-          },
-          {
-            "type": "fixed_array",
-            "named": true
-          },
-          {
-            "type": "fn_literal",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "if_expression",
-            "named": true
-          },
-          {
-            "type": "in_expression",
-            "named": true
-          },
-          {
-            "type": "index_expression",
-            "named": true
-          },
-          {
-            "type": "int_literal",
-            "named": true
-          },
-          {
-            "type": "interpreted_string_literal",
-            "named": true
-          },
-          {
-            "type": "is_expression",
-            "named": true
-          },
-          {
-            "type": "lock_expression",
-            "named": true
-          },
-          {
-            "type": "match_expression",
-            "named": true
-          },
-          {
-            "type": "none",
-            "named": true
-          },
-          {
-            "type": "pseudo_comptime_identifier",
-            "named": true
-          },
-          {
-            "type": "rune_literal",
-            "named": true
-          },
-          {
-            "type": "select_expression",
-            "named": true
-          },
-          {
-            "type": "selector_expression",
-            "named": true
-          },
-          {
-            "type": "slice_expression",
-            "named": true
-          },
-          {
-            "type": "special_call_expression",
-            "named": true
-          },
-          {
-            "type": "sql_expression",
-            "named": true
-          },
-          {
-            "type": "true",
-            "named": true
-          },
-          {
-            "type": "type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "type_initializer",
-            "named": true
-          },
-          {
-            "type": "unary_expression",
-            "named": true
-          },
-          {
-            "type": "unsafe_expression",
+            "type": "_expression",
             "named": true
           }
         ]
@@ -4219,123 +1779,7 @@
         "required": true,
         "types": [
           {
-            "type": "array",
-            "named": true
-          },
-          {
-            "type": "as_type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "binary_expression",
-            "named": true
-          },
-          {
-            "type": "call_expression",
-            "named": true
-          },
-          {
-            "type": "enum_identifier",
-            "named": true
-          },
-          {
-            "type": "false",
-            "named": true
-          },
-          {
-            "type": "fixed_array",
-            "named": true
-          },
-          {
-            "type": "fn_literal",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "if_expression",
-            "named": true
-          },
-          {
-            "type": "in_expression",
-            "named": true
-          },
-          {
-            "type": "index_expression",
-            "named": true
-          },
-          {
-            "type": "int_literal",
-            "named": true
-          },
-          {
-            "type": "interpreted_string_literal",
-            "named": true
-          },
-          {
-            "type": "is_expression",
-            "named": true
-          },
-          {
-            "type": "lock_expression",
-            "named": true
-          },
-          {
-            "type": "match_expression",
-            "named": true
-          },
-          {
-            "type": "none",
-            "named": true
-          },
-          {
-            "type": "pseudo_comptime_identifier",
-            "named": true
-          },
-          {
-            "type": "rune_literal",
-            "named": true
-          },
-          {
-            "type": "select_expression",
-            "named": true
-          },
-          {
-            "type": "selector_expression",
-            "named": true
-          },
-          {
-            "type": "slice_expression",
-            "named": true
-          },
-          {
-            "type": "special_call_expression",
-            "named": true
-          },
-          {
-            "type": "sql_expression",
-            "named": true
-          },
-          {
-            "type": "true",
-            "named": true
-          },
-          {
-            "type": "type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "type_initializer",
-            "named": true
-          },
-          {
-            "type": "unary_expression",
-            "named": true
-          },
-          {
-            "type": "unsafe_expression",
+            "type": "_expression",
             "named": true
           }
         ]
@@ -4351,123 +1795,7 @@
       "required": true,
       "types": [
         {
-          "type": "array",
-          "named": true
-        },
-        {
-          "type": "as_type_cast_expression",
-          "named": true
-        },
-        {
-          "type": "binary_expression",
-          "named": true
-        },
-        {
-          "type": "call_expression",
-          "named": true
-        },
-        {
-          "type": "enum_identifier",
-          "named": true
-        },
-        {
-          "type": "false",
-          "named": true
-        },
-        {
-          "type": "fixed_array",
-          "named": true
-        },
-        {
-          "type": "fn_literal",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "if_expression",
-          "named": true
-        },
-        {
-          "type": "in_expression",
-          "named": true
-        },
-        {
-          "type": "index_expression",
-          "named": true
-        },
-        {
-          "type": "int_literal",
-          "named": true
-        },
-        {
-          "type": "interpreted_string_literal",
-          "named": true
-        },
-        {
-          "type": "is_expression",
-          "named": true
-        },
-        {
-          "type": "lock_expression",
-          "named": true
-        },
-        {
-          "type": "match_expression",
-          "named": true
-        },
-        {
-          "type": "none",
-          "named": true
-        },
-        {
-          "type": "pseudo_comptime_identifier",
-          "named": true
-        },
-        {
-          "type": "rune_literal",
-          "named": true
-        },
-        {
-          "type": "select_expression",
-          "named": true
-        },
-        {
-          "type": "selector_expression",
-          "named": true
-        },
-        {
-          "type": "slice_expression",
-          "named": true
-        },
-        {
-          "type": "special_call_expression",
-          "named": true
-        },
-        {
-          "type": "sql_expression",
-          "named": true
-        },
-        {
-          "type": "true",
-          "named": true
-        },
-        {
-          "type": "type_cast_expression",
-          "named": true
-        },
-        {
-          "type": "type_initializer",
-          "named": true
-        },
-        {
-          "type": "unary_expression",
-          "named": true
-        },
-        {
-          "type": "unsafe_expression",
+          "type": "_expression",
           "named": true
         }
       ]
@@ -4482,123 +1810,7 @@
         "required": true,
         "types": [
           {
-            "type": "array",
-            "named": true
-          },
-          {
-            "type": "as_type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "binary_expression",
-            "named": true
-          },
-          {
-            "type": "call_expression",
-            "named": true
-          },
-          {
-            "type": "enum_identifier",
-            "named": true
-          },
-          {
-            "type": "false",
-            "named": true
-          },
-          {
-            "type": "fixed_array",
-            "named": true
-          },
-          {
-            "type": "fn_literal",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "if_expression",
-            "named": true
-          },
-          {
-            "type": "in_expression",
-            "named": true
-          },
-          {
-            "type": "index_expression",
-            "named": true
-          },
-          {
-            "type": "int_literal",
-            "named": true
-          },
-          {
-            "type": "interpreted_string_literal",
-            "named": true
-          },
-          {
-            "type": "is_expression",
-            "named": true
-          },
-          {
-            "type": "lock_expression",
-            "named": true
-          },
-          {
-            "type": "match_expression",
-            "named": true
-          },
-          {
-            "type": "none",
-            "named": true
-          },
-          {
-            "type": "pseudo_comptime_identifier",
-            "named": true
-          },
-          {
-            "type": "rune_literal",
-            "named": true
-          },
-          {
-            "type": "select_expression",
-            "named": true
-          },
-          {
-            "type": "selector_expression",
-            "named": true
-          },
-          {
-            "type": "slice_expression",
-            "named": true
-          },
-          {
-            "type": "special_call_expression",
-            "named": true
-          },
-          {
-            "type": "sql_expression",
-            "named": true
-          },
-          {
-            "type": "true",
-            "named": true
-          },
-          {
-            "type": "type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "type_initializer",
-            "named": true
-          },
-          {
-            "type": "unary_expression",
-            "named": true
-          },
-          {
-            "type": "unsafe_expression",
+            "type": "_expression",
             "named": true
           }
         ]
@@ -4608,123 +1820,7 @@
         "required": true,
         "types": [
           {
-            "type": "array",
-            "named": true
-          },
-          {
-            "type": "as_type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "binary_expression",
-            "named": true
-          },
-          {
-            "type": "call_expression",
-            "named": true
-          },
-          {
-            "type": "enum_identifier",
-            "named": true
-          },
-          {
-            "type": "false",
-            "named": true
-          },
-          {
-            "type": "fixed_array",
-            "named": true
-          },
-          {
-            "type": "fn_literal",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "if_expression",
-            "named": true
-          },
-          {
-            "type": "in_expression",
-            "named": true
-          },
-          {
-            "type": "index_expression",
-            "named": true
-          },
-          {
-            "type": "int_literal",
-            "named": true
-          },
-          {
-            "type": "interpreted_string_literal",
-            "named": true
-          },
-          {
-            "type": "is_expression",
-            "named": true
-          },
-          {
-            "type": "lock_expression",
-            "named": true
-          },
-          {
-            "type": "match_expression",
-            "named": true
-          },
-          {
-            "type": "none",
-            "named": true
-          },
-          {
-            "type": "pseudo_comptime_identifier",
-            "named": true
-          },
-          {
-            "type": "rune_literal",
-            "named": true
-          },
-          {
-            "type": "select_expression",
-            "named": true
-          },
-          {
-            "type": "selector_expression",
-            "named": true
-          },
-          {
-            "type": "slice_expression",
-            "named": true
-          },
-          {
-            "type": "special_call_expression",
-            "named": true
-          },
-          {
-            "type": "sql_expression",
-            "named": true
-          },
-          {
-            "type": "true",
-            "named": true
-          },
-          {
-            "type": "type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "type_initializer",
-            "named": true
-          },
-          {
-            "type": "unary_expression",
-            "named": true
-          },
-          {
-            "type": "unsafe_expression",
+            "type": "_expression",
             "named": true
           }
         ]
@@ -4811,43 +1907,7 @@
         "required": false,
         "types": [
           {
-            "type": "array_type",
-            "named": true
-          },
-          {
-            "type": "binded_type",
-            "named": true
-          },
-          {
-            "type": "builtin_type",
-            "named": true
-          },
-          {
-            "type": "function_type",
-            "named": true
-          },
-          {
-            "type": "multi_return_type",
-            "named": true
-          },
-          {
-            "type": "option_type",
-            "named": true
-          },
-          {
-            "type": "pointer_type",
-            "named": true
-          },
-          {
-            "type": "qualified_type",
-            "named": true
-          },
-          {
-            "type": "type_identifier",
-            "named": true
-          },
-          {
-            "type": "type_placeholder",
+            "type": "_type",
             "named": true
           }
         ]
@@ -4905,123 +1965,7 @@
         "required": true,
         "types": [
           {
-            "type": "array",
-            "named": true
-          },
-          {
-            "type": "as_type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "binary_expression",
-            "named": true
-          },
-          {
-            "type": "call_expression",
-            "named": true
-          },
-          {
-            "type": "enum_identifier",
-            "named": true
-          },
-          {
-            "type": "false",
-            "named": true
-          },
-          {
-            "type": "fixed_array",
-            "named": true
-          },
-          {
-            "type": "fn_literal",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "if_expression",
-            "named": true
-          },
-          {
-            "type": "in_expression",
-            "named": true
-          },
-          {
-            "type": "index_expression",
-            "named": true
-          },
-          {
-            "type": "int_literal",
-            "named": true
-          },
-          {
-            "type": "interpreted_string_literal",
-            "named": true
-          },
-          {
-            "type": "is_expression",
-            "named": true
-          },
-          {
-            "type": "lock_expression",
-            "named": true
-          },
-          {
-            "type": "match_expression",
-            "named": true
-          },
-          {
-            "type": "none",
-            "named": true
-          },
-          {
-            "type": "pseudo_comptime_identifier",
-            "named": true
-          },
-          {
-            "type": "rune_literal",
-            "named": true
-          },
-          {
-            "type": "select_expression",
-            "named": true
-          },
-          {
-            "type": "selector_expression",
-            "named": true
-          },
-          {
-            "type": "slice_expression",
-            "named": true
-          },
-          {
-            "type": "special_call_expression",
-            "named": true
-          },
-          {
-            "type": "sql_expression",
-            "named": true
-          },
-          {
-            "type": "true",
-            "named": true
-          },
-          {
-            "type": "type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "type_initializer",
-            "named": true
-          },
-          {
-            "type": "unary_expression",
-            "named": true
-          },
-          {
-            "type": "unsafe_expression",
+            "type": "_expression",
             "named": true
           }
         ]
@@ -5031,123 +1975,7 @@
         "required": true,
         "types": [
           {
-            "type": "array",
-            "named": true
-          },
-          {
-            "type": "as_type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "binary_expression",
-            "named": true
-          },
-          {
-            "type": "call_expression",
-            "named": true
-          },
-          {
-            "type": "enum_identifier",
-            "named": true
-          },
-          {
-            "type": "false",
-            "named": true
-          },
-          {
-            "type": "fixed_array",
-            "named": true
-          },
-          {
-            "type": "fn_literal",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "if_expression",
-            "named": true
-          },
-          {
-            "type": "in_expression",
-            "named": true
-          },
-          {
-            "type": "index_expression",
-            "named": true
-          },
-          {
-            "type": "int_literal",
-            "named": true
-          },
-          {
-            "type": "interpreted_string_literal",
-            "named": true
-          },
-          {
-            "type": "is_expression",
-            "named": true
-          },
-          {
-            "type": "lock_expression",
-            "named": true
-          },
-          {
-            "type": "match_expression",
-            "named": true
-          },
-          {
-            "type": "none",
-            "named": true
-          },
-          {
-            "type": "pseudo_comptime_identifier",
-            "named": true
-          },
-          {
-            "type": "rune_literal",
-            "named": true
-          },
-          {
-            "type": "select_expression",
-            "named": true
-          },
-          {
-            "type": "selector_expression",
-            "named": true
-          },
-          {
-            "type": "slice_expression",
-            "named": true
-          },
-          {
-            "type": "special_call_expression",
-            "named": true
-          },
-          {
-            "type": "sql_expression",
-            "named": true
-          },
-          {
-            "type": "true",
-            "named": true
-          },
-          {
-            "type": "type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "type_initializer",
-            "named": true
-          },
-          {
-            "type": "unary_expression",
-            "named": true
-          },
-          {
-            "type": "unsafe_expression",
+            "type": "_type",
             "named": true
           }
         ]
@@ -5181,63 +2009,15 @@
         "required": true,
         "types": [
           {
-            "type": "array",
+            "type": "_expression",
             "named": true
           },
           {
-            "type": "as_type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "binary_expression",
-            "named": true
-          },
-          {
-            "type": "call_expression",
-            "named": true
-          },
-          {
-            "type": "enum_identifier",
-            "named": true
-          },
-          {
-            "type": "false",
-            "named": true
-          },
-          {
-            "type": "fixed_array",
-            "named": true
-          },
-          {
-            "type": "fn_literal",
-            "named": true
-          },
-          {
-            "type": "identifier",
+            "type": "comptime_if_expression",
             "named": true
           },
           {
             "type": "if_expression",
-            "named": true
-          },
-          {
-            "type": "in_expression",
-            "named": true
-          },
-          {
-            "type": "index_expression",
-            "named": true
-          },
-          {
-            "type": "int_literal",
-            "named": true
-          },
-          {
-            "type": "interpreted_string_literal",
-            "named": true
-          },
-          {
-            "type": "is_expression",
             "named": true
           },
           {
@@ -5249,51 +2029,7 @@
             "named": true
           },
           {
-            "type": "none",
-            "named": true
-          },
-          {
-            "type": "pseudo_comptime_identifier",
-            "named": true
-          },
-          {
-            "type": "rune_literal",
-            "named": true
-          },
-          {
-            "type": "select_expression",
-            "named": true
-          },
-          {
-            "type": "selector_expression",
-            "named": true
-          },
-          {
-            "type": "slice_expression",
-            "named": true
-          },
-          {
-            "type": "special_call_expression",
-            "named": true
-          },
-          {
             "type": "sql_expression",
-            "named": true
-          },
-          {
-            "type": "true",
-            "named": true
-          },
-          {
-            "type": "type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "type_initializer",
-            "named": true
-          },
-          {
-            "type": "unary_expression",
             "named": true
           },
           {
@@ -5324,179 +2060,7 @@
       "required": true,
       "types": [
         {
-          "type": "array",
-          "named": true
-        },
-        {
-          "type": "as_type_cast_expression",
-          "named": true
-        },
-        {
-          "type": "asm_statement",
-          "named": true
-        },
-        {
-          "type": "assert_statement",
-          "named": true
-        },
-        {
-          "type": "assignment_statement",
-          "named": true
-        },
-        {
-          "type": "binary_expression",
-          "named": true
-        },
-        {
-          "type": "call_expression",
-          "named": true
-        },
-        {
-          "type": "dec_statement",
-          "named": true
-        },
-        {
-          "type": "defer_statement",
-          "named": true
-        },
-        {
-          "type": "empty_labeled_statement",
-          "named": true
-        },
-        {
-          "type": "enum_identifier",
-          "named": true
-        },
-        {
-          "type": "false",
-          "named": true
-        },
-        {
-          "type": "fixed_array",
-          "named": true
-        },
-        {
-          "type": "fn_literal",
-          "named": true
-        },
-        {
-          "type": "for_statement",
-          "named": true
-        },
-        {
-          "type": "go_statement",
-          "named": true
-        },
-        {
-          "type": "goto_statement",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "if_expression",
-          "named": true
-        },
-        {
-          "type": "in_expression",
-          "named": true
-        },
-        {
-          "type": "inc_statement",
-          "named": true
-        },
-        {
-          "type": "index_expression",
-          "named": true
-        },
-        {
-          "type": "int_literal",
-          "named": true
-        },
-        {
-          "type": "interpreted_string_literal",
-          "named": true
-        },
-        {
-          "type": "is_expression",
-          "named": true
-        },
-        {
-          "type": "labeled_statement",
-          "named": true
-        },
-        {
-          "type": "lock_expression",
-          "named": true
-        },
-        {
-          "type": "match_expression",
-          "named": true
-        },
-        {
-          "type": "none",
-          "named": true
-        },
-        {
-          "type": "pseudo_comptime_identifier",
-          "named": true
-        },
-        {
-          "type": "return_statement",
-          "named": true
-        },
-        {
-          "type": "rune_literal",
-          "named": true
-        },
-        {
-          "type": "select_expression",
-          "named": true
-        },
-        {
-          "type": "selector_expression",
-          "named": true
-        },
-        {
-          "type": "send_statement",
-          "named": true
-        },
-        {
-          "type": "short_var_declaration",
-          "named": true
-        },
-        {
-          "type": "slice_expression",
-          "named": true
-        },
-        {
-          "type": "special_call_expression",
-          "named": true
-        },
-        {
-          "type": "sql_expression",
-          "named": true
-        },
-        {
-          "type": "true",
-          "named": true
-        },
-        {
-          "type": "type_cast_expression",
-          "named": true
-        },
-        {
-          "type": "type_initializer",
-          "named": true
-        },
-        {
-          "type": "unary_expression",
-          "named": true
-        },
-        {
-          "type": "unsafe_expression",
+          "type": "_statement",
           "named": true
         }
       ]
@@ -5576,35 +2140,7 @@
         "required": true,
         "types": [
           {
-            "type": "array_type",
-            "named": true
-          },
-          {
-            "type": "binded_type",
-            "named": true
-          },
-          {
-            "type": "builtin_type",
-            "named": true
-          },
-          {
-            "type": "function_type",
-            "named": true
-          },
-          {
-            "type": "pointer_type",
-            "named": true
-          },
-          {
-            "type": "qualified_type",
-            "named": true
-          },
-          {
-            "type": "type_identifier",
-            "named": true
-          },
-          {
-            "type": "type_placeholder",
+            "type": "_simple_type",
             "named": true
           }
         ]
@@ -5614,43 +2150,7 @@
         "required": true,
         "types": [
           {
-            "type": "array_type",
-            "named": true
-          },
-          {
-            "type": "binded_type",
-            "named": true
-          },
-          {
-            "type": "builtin_type",
-            "named": true
-          },
-          {
-            "type": "function_type",
-            "named": true
-          },
-          {
-            "type": "multi_return_type",
-            "named": true
-          },
-          {
-            "type": "option_type",
-            "named": true
-          },
-          {
-            "type": "pointer_type",
-            "named": true
-          },
-          {
-            "type": "qualified_type",
-            "named": true
-          },
-          {
-            "type": "type_identifier",
-            "named": true
-          },
-          {
-            "type": "type_placeholder",
+            "type": "_type",
             "named": true
           }
         ]
@@ -5666,128 +2166,12 @@
         "required": true,
         "types": [
           {
-            "type": "array",
-            "named": true
-          },
-          {
-            "type": "as_type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "binary_expression",
-            "named": true
-          },
-          {
-            "type": "call_expression",
-            "named": true
-          },
-          {
-            "type": "enum_identifier",
-            "named": true
-          },
-          {
-            "type": "false",
-            "named": true
-          },
-          {
-            "type": "fixed_array",
-            "named": true
-          },
-          {
-            "type": "fn_literal",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "if_expression",
-            "named": true
-          },
-          {
-            "type": "in_expression",
-            "named": true
-          },
-          {
-            "type": "index_expression",
-            "named": true
-          },
-          {
-            "type": "int_literal",
-            "named": true
-          },
-          {
-            "type": "interpreted_string_literal",
-            "named": true
-          },
-          {
-            "type": "is_expression",
-            "named": true
-          },
-          {
-            "type": "lock_expression",
-            "named": true
-          },
-          {
-            "type": "match_expression",
+            "type": "_expression",
             "named": true
           },
           {
             "type": "mut",
             "named": false
-          },
-          {
-            "type": "none",
-            "named": true
-          },
-          {
-            "type": "pseudo_comptime_identifier",
-            "named": true
-          },
-          {
-            "type": "rune_literal",
-            "named": true
-          },
-          {
-            "type": "select_expression",
-            "named": true
-          },
-          {
-            "type": "selector_expression",
-            "named": true
-          },
-          {
-            "type": "slice_expression",
-            "named": true
-          },
-          {
-            "type": "special_call_expression",
-            "named": true
-          },
-          {
-            "type": "sql_expression",
-            "named": true
-          },
-          {
-            "type": "true",
-            "named": true
-          },
-          {
-            "type": "type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "type_initializer",
-            "named": true
-          },
-          {
-            "type": "unary_expression",
-            "named": true
-          },
-          {
-            "type": "unsafe_expression",
-            "named": true
           }
         ]
       }
@@ -5842,35 +2226,7 @@
       "required": true,
       "types": [
         {
-          "type": "array_type",
-          "named": true
-        },
-        {
-          "type": "binded_type",
-          "named": true
-        },
-        {
-          "type": "builtin_type",
-          "named": true
-        },
-        {
-          "type": "function_type",
-          "named": true
-        },
-        {
-          "type": "pointer_type",
-          "named": true
-        },
-        {
-          "type": "qualified_type",
-          "named": true
-        },
-        {
-          "type": "type_identifier",
-          "named": true
-        },
-        {
-          "type": "type_placeholder",
+          "type": "_simple_type",
           "named": true
         }
       ]
@@ -5900,39 +2256,11 @@
       "required": false,
       "types": [
         {
-          "type": "array_type",
-          "named": true
-        },
-        {
-          "type": "binded_type",
-          "named": true
-        },
-        {
-          "type": "builtin_type",
-          "named": true
-        },
-        {
-          "type": "function_type",
+          "type": "_simple_type",
           "named": true
         },
         {
           "type": "multi_return_type",
-          "named": true
-        },
-        {
-          "type": "pointer_type",
-          "named": true
-        },
-        {
-          "type": "qualified_type",
-          "named": true
-        },
-        {
-          "type": "type_identifier",
-          "named": true
-        },
-        {
-          "type": "type_placeholder",
           "named": true
         }
       ]
@@ -5981,39 +2309,11 @@
         "required": true,
         "types": [
           {
-            "type": "array_type",
-            "named": true
-          },
-          {
-            "type": "binded_type",
-            "named": true
-          },
-          {
-            "type": "builtin_type",
-            "named": true
-          },
-          {
-            "type": "function_type",
+            "type": "_simple_type",
             "named": true
           },
           {
             "type": "option_type",
-            "named": true
-          },
-          {
-            "type": "pointer_type",
-            "named": true
-          },
-          {
-            "type": "qualified_type",
-            "named": true
-          },
-          {
-            "type": "type_identifier",
-            "named": true
-          },
-          {
-            "type": "type_placeholder",
             "named": true
           },
           {
@@ -6048,35 +2348,7 @@
       "required": true,
       "types": [
         {
-          "type": "array_type",
-          "named": true
-        },
-        {
-          "type": "binded_type",
-          "named": true
-        },
-        {
-          "type": "builtin_type",
-          "named": true
-        },
-        {
-          "type": "function_type",
-          "named": true
-        },
-        {
-          "type": "pointer_type",
-          "named": true
-        },
-        {
-          "type": "qualified_type",
-          "named": true
-        },
-        {
-          "type": "type_identifier",
-          "named": true
-        },
-        {
-          "type": "type_placeholder",
+          "type": "_simple_type",
           "named": true
         }
       ]
@@ -6132,123 +2404,7 @@
         "required": false,
         "types": [
           {
-            "type": "array",
-            "named": true
-          },
-          {
-            "type": "as_type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "binary_expression",
-            "named": true
-          },
-          {
-            "type": "call_expression",
-            "named": true
-          },
-          {
-            "type": "enum_identifier",
-            "named": true
-          },
-          {
-            "type": "false",
-            "named": true
-          },
-          {
-            "type": "fixed_array",
-            "named": true
-          },
-          {
-            "type": "fn_literal",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "if_expression",
-            "named": true
-          },
-          {
-            "type": "in_expression",
-            "named": true
-          },
-          {
-            "type": "index_expression",
-            "named": true
-          },
-          {
-            "type": "int_literal",
-            "named": true
-          },
-          {
-            "type": "interpreted_string_literal",
-            "named": true
-          },
-          {
-            "type": "is_expression",
-            "named": true
-          },
-          {
-            "type": "lock_expression",
-            "named": true
-          },
-          {
-            "type": "match_expression",
-            "named": true
-          },
-          {
-            "type": "none",
-            "named": true
-          },
-          {
-            "type": "pseudo_comptime_identifier",
-            "named": true
-          },
-          {
-            "type": "rune_literal",
-            "named": true
-          },
-          {
-            "type": "select_expression",
-            "named": true
-          },
-          {
-            "type": "selector_expression",
-            "named": true
-          },
-          {
-            "type": "slice_expression",
-            "named": true
-          },
-          {
-            "type": "special_call_expression",
-            "named": true
-          },
-          {
-            "type": "sql_expression",
-            "named": true
-          },
-          {
-            "type": "true",
-            "named": true
-          },
-          {
-            "type": "type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "type_initializer",
-            "named": true
-          },
-          {
-            "type": "unary_expression",
-            "named": true
-          },
-          {
-            "type": "unsafe_expression",
+            "type": "_expression",
             "named": true
           }
         ]
@@ -6258,123 +2414,7 @@
         "required": false,
         "types": [
           {
-            "type": "array",
-            "named": true
-          },
-          {
-            "type": "as_type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "binary_expression",
-            "named": true
-          },
-          {
-            "type": "call_expression",
-            "named": true
-          },
-          {
-            "type": "enum_identifier",
-            "named": true
-          },
-          {
-            "type": "false",
-            "named": true
-          },
-          {
-            "type": "fixed_array",
-            "named": true
-          },
-          {
-            "type": "fn_literal",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "if_expression",
-            "named": true
-          },
-          {
-            "type": "in_expression",
-            "named": true
-          },
-          {
-            "type": "index_expression",
-            "named": true
-          },
-          {
-            "type": "int_literal",
-            "named": true
-          },
-          {
-            "type": "interpreted_string_literal",
-            "named": true
-          },
-          {
-            "type": "is_expression",
-            "named": true
-          },
-          {
-            "type": "lock_expression",
-            "named": true
-          },
-          {
-            "type": "match_expression",
-            "named": true
-          },
-          {
-            "type": "none",
-            "named": true
-          },
-          {
-            "type": "pseudo_comptime_identifier",
-            "named": true
-          },
-          {
-            "type": "rune_literal",
-            "named": true
-          },
-          {
-            "type": "select_expression",
-            "named": true
-          },
-          {
-            "type": "selector_expression",
-            "named": true
-          },
-          {
-            "type": "slice_expression",
-            "named": true
-          },
-          {
-            "type": "special_call_expression",
-            "named": true
-          },
-          {
-            "type": "sql_expression",
-            "named": true
-          },
-          {
-            "type": "true",
-            "named": true
-          },
-          {
-            "type": "type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "type_initializer",
-            "named": true
-          },
-          {
-            "type": "unary_expression",
-            "named": true
-          },
-          {
-            "type": "unsafe_expression",
+            "type": "_expression",
             "named": true
           }
         ]
@@ -6390,123 +2430,7 @@
       "required": false,
       "types": [
         {
-          "type": "array",
-          "named": true
-        },
-        {
-          "type": "as_type_cast_expression",
-          "named": true
-        },
-        {
-          "type": "binary_expression",
-          "named": true
-        },
-        {
-          "type": "call_expression",
-          "named": true
-        },
-        {
-          "type": "enum_identifier",
-          "named": true
-        },
-        {
-          "type": "false",
-          "named": true
-        },
-        {
-          "type": "fixed_array",
-          "named": true
-        },
-        {
-          "type": "fn_literal",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "if_expression",
-          "named": true
-        },
-        {
-          "type": "in_expression",
-          "named": true
-        },
-        {
-          "type": "index_expression",
-          "named": true
-        },
-        {
-          "type": "int_literal",
-          "named": true
-        },
-        {
-          "type": "interpreted_string_literal",
-          "named": true
-        },
-        {
-          "type": "is_expression",
-          "named": true
-        },
-        {
-          "type": "lock_expression",
-          "named": true
-        },
-        {
-          "type": "match_expression",
-          "named": true
-        },
-        {
-          "type": "none",
-          "named": true
-        },
-        {
-          "type": "pseudo_comptime_identifier",
-          "named": true
-        },
-        {
-          "type": "rune_literal",
-          "named": true
-        },
-        {
-          "type": "select_expression",
-          "named": true
-        },
-        {
-          "type": "selector_expression",
-          "named": true
-        },
-        {
-          "type": "slice_expression",
-          "named": true
-        },
-        {
-          "type": "special_call_expression",
-          "named": true
-        },
-        {
-          "type": "sql_expression",
-          "named": true
-        },
-        {
-          "type": "true",
-          "named": true
-        },
-        {
-          "type": "type_cast_expression",
-          "named": true
-        },
-        {
-          "type": "type_initializer",
-          "named": true
-        },
-        {
-          "type": "unary_expression",
-          "named": true
-        },
-        {
-          "type": "unsafe_expression",
+          "type": "_expression",
           "named": true
         }
       ]
@@ -6540,127 +2464,11 @@
       "required": true,
       "types": [
         {
-          "type": "array",
-          "named": true
-        },
-        {
-          "type": "as_type_cast_expression",
-          "named": true
-        },
-        {
-          "type": "binary_expression",
+          "type": "_expression",
           "named": true
         },
         {
           "type": "block",
-          "named": true
-        },
-        {
-          "type": "call_expression",
-          "named": true
-        },
-        {
-          "type": "enum_identifier",
-          "named": true
-        },
-        {
-          "type": "false",
-          "named": true
-        },
-        {
-          "type": "fixed_array",
-          "named": true
-        },
-        {
-          "type": "fn_literal",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "if_expression",
-          "named": true
-        },
-        {
-          "type": "in_expression",
-          "named": true
-        },
-        {
-          "type": "index_expression",
-          "named": true
-        },
-        {
-          "type": "int_literal",
-          "named": true
-        },
-        {
-          "type": "interpreted_string_literal",
-          "named": true
-        },
-        {
-          "type": "is_expression",
-          "named": true
-        },
-        {
-          "type": "lock_expression",
-          "named": true
-        },
-        {
-          "type": "match_expression",
-          "named": true
-        },
-        {
-          "type": "none",
-          "named": true
-        },
-        {
-          "type": "pseudo_comptime_identifier",
-          "named": true
-        },
-        {
-          "type": "rune_literal",
-          "named": true
-        },
-        {
-          "type": "select_expression",
-          "named": true
-        },
-        {
-          "type": "selector_expression",
-          "named": true
-        },
-        {
-          "type": "slice_expression",
-          "named": true
-        },
-        {
-          "type": "special_call_expression",
-          "named": true
-        },
-        {
-          "type": "sql_expression",
-          "named": true
-        },
-        {
-          "type": "true",
-          "named": true
-        },
-        {
-          "type": "type_cast_expression",
-          "named": true
-        },
-        {
-          "type": "type_initializer",
-          "named": true
-        },
-        {
-          "type": "unary_expression",
-          "named": true
-        },
-        {
-          "type": "unsafe_expression",
           "named": true
         }
       ]
@@ -6727,123 +2535,7 @@
         "required": true,
         "types": [
           {
-            "type": "array",
-            "named": true
-          },
-          {
-            "type": "as_type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "binary_expression",
-            "named": true
-          },
-          {
-            "type": "call_expression",
-            "named": true
-          },
-          {
-            "type": "enum_identifier",
-            "named": true
-          },
-          {
-            "type": "false",
-            "named": true
-          },
-          {
-            "type": "fixed_array",
-            "named": true
-          },
-          {
-            "type": "fn_literal",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "if_expression",
-            "named": true
-          },
-          {
-            "type": "in_expression",
-            "named": true
-          },
-          {
-            "type": "index_expression",
-            "named": true
-          },
-          {
-            "type": "int_literal",
-            "named": true
-          },
-          {
-            "type": "interpreted_string_literal",
-            "named": true
-          },
-          {
-            "type": "is_expression",
-            "named": true
-          },
-          {
-            "type": "lock_expression",
-            "named": true
-          },
-          {
-            "type": "match_expression",
-            "named": true
-          },
-          {
-            "type": "none",
-            "named": true
-          },
-          {
-            "type": "pseudo_comptime_identifier",
-            "named": true
-          },
-          {
-            "type": "rune_literal",
-            "named": true
-          },
-          {
-            "type": "select_expression",
-            "named": true
-          },
-          {
-            "type": "selector_expression",
-            "named": true
-          },
-          {
-            "type": "slice_expression",
-            "named": true
-          },
-          {
-            "type": "special_call_expression",
-            "named": true
-          },
-          {
-            "type": "sql_expression",
-            "named": true
-          },
-          {
-            "type": "true",
-            "named": true
-          },
-          {
-            "type": "type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "type_initializer",
-            "named": true
-          },
-          {
-            "type": "unary_expression",
-            "named": true
-          },
-          {
-            "type": "unsafe_expression",
+            "type": "_expression",
             "named": true
           }
         ]
@@ -6859,123 +2551,7 @@
         "required": true,
         "types": [
           {
-            "type": "array",
-            "named": true
-          },
-          {
-            "type": "as_type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "binary_expression",
-            "named": true
-          },
-          {
-            "type": "call_expression",
-            "named": true
-          },
-          {
-            "type": "enum_identifier",
-            "named": true
-          },
-          {
-            "type": "false",
-            "named": true
-          },
-          {
-            "type": "fixed_array",
-            "named": true
-          },
-          {
-            "type": "fn_literal",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "if_expression",
-            "named": true
-          },
-          {
-            "type": "in_expression",
-            "named": true
-          },
-          {
-            "type": "index_expression",
-            "named": true
-          },
-          {
-            "type": "int_literal",
-            "named": true
-          },
-          {
-            "type": "interpreted_string_literal",
-            "named": true
-          },
-          {
-            "type": "is_expression",
-            "named": true
-          },
-          {
-            "type": "lock_expression",
-            "named": true
-          },
-          {
-            "type": "match_expression",
-            "named": true
-          },
-          {
-            "type": "none",
-            "named": true
-          },
-          {
-            "type": "pseudo_comptime_identifier",
-            "named": true
-          },
-          {
-            "type": "rune_literal",
-            "named": true
-          },
-          {
-            "type": "select_expression",
-            "named": true
-          },
-          {
-            "type": "selector_expression",
-            "named": true
-          },
-          {
-            "type": "slice_expression",
-            "named": true
-          },
-          {
-            "type": "special_call_expression",
-            "named": true
-          },
-          {
-            "type": "sql_expression",
-            "named": true
-          },
-          {
-            "type": "true",
-            "named": true
-          },
-          {
-            "type": "type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "type_initializer",
-            "named": true
-          },
-          {
-            "type": "unary_expression",
-            "named": true
-          },
-          {
-            "type": "unsafe_expression",
+            "type": "_expression",
             "named": true
           }
         ]
@@ -6985,123 +2561,7 @@
         "required": true,
         "types": [
           {
-            "type": "array",
-            "named": true
-          },
-          {
-            "type": "as_type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "binary_expression",
-            "named": true
-          },
-          {
-            "type": "call_expression",
-            "named": true
-          },
-          {
-            "type": "enum_identifier",
-            "named": true
-          },
-          {
-            "type": "false",
-            "named": true
-          },
-          {
-            "type": "fixed_array",
-            "named": true
-          },
-          {
-            "type": "fn_literal",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "if_expression",
-            "named": true
-          },
-          {
-            "type": "in_expression",
-            "named": true
-          },
-          {
-            "type": "index_expression",
-            "named": true
-          },
-          {
-            "type": "int_literal",
-            "named": true
-          },
-          {
-            "type": "interpreted_string_literal",
-            "named": true
-          },
-          {
-            "type": "is_expression",
-            "named": true
-          },
-          {
-            "type": "lock_expression",
-            "named": true
-          },
-          {
-            "type": "match_expression",
-            "named": true
-          },
-          {
-            "type": "none",
-            "named": true
-          },
-          {
-            "type": "pseudo_comptime_identifier",
-            "named": true
-          },
-          {
-            "type": "rune_literal",
-            "named": true
-          },
-          {
-            "type": "select_expression",
-            "named": true
-          },
-          {
-            "type": "selector_expression",
-            "named": true
-          },
-          {
-            "type": "slice_expression",
-            "named": true
-          },
-          {
-            "type": "special_call_expression",
-            "named": true
-          },
-          {
-            "type": "sql_expression",
-            "named": true
-          },
-          {
-            "type": "true",
-            "named": true
-          },
-          {
-            "type": "type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "type_initializer",
-            "named": true
-          },
-          {
-            "type": "unary_expression",
-            "named": true
-          },
-          {
-            "type": "unsafe_expression",
+            "type": "_expression",
             "named": true
           }
         ]
@@ -7143,123 +2603,7 @@
         "required": false,
         "types": [
           {
-            "type": "array",
-            "named": true
-          },
-          {
-            "type": "as_type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "binary_expression",
-            "named": true
-          },
-          {
-            "type": "call_expression",
-            "named": true
-          },
-          {
-            "type": "enum_identifier",
-            "named": true
-          },
-          {
-            "type": "false",
-            "named": true
-          },
-          {
-            "type": "fixed_array",
-            "named": true
-          },
-          {
-            "type": "fn_literal",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "if_expression",
-            "named": true
-          },
-          {
-            "type": "in_expression",
-            "named": true
-          },
-          {
-            "type": "index_expression",
-            "named": true
-          },
-          {
-            "type": "int_literal",
-            "named": true
-          },
-          {
-            "type": "interpreted_string_literal",
-            "named": true
-          },
-          {
-            "type": "is_expression",
-            "named": true
-          },
-          {
-            "type": "lock_expression",
-            "named": true
-          },
-          {
-            "type": "match_expression",
-            "named": true
-          },
-          {
-            "type": "none",
-            "named": true
-          },
-          {
-            "type": "pseudo_comptime_identifier",
-            "named": true
-          },
-          {
-            "type": "rune_literal",
-            "named": true
-          },
-          {
-            "type": "select_expression",
-            "named": true
-          },
-          {
-            "type": "selector_expression",
-            "named": true
-          },
-          {
-            "type": "slice_expression",
-            "named": true
-          },
-          {
-            "type": "special_call_expression",
-            "named": true
-          },
-          {
-            "type": "sql_expression",
-            "named": true
-          },
-          {
-            "type": "true",
-            "named": true
-          },
-          {
-            "type": "type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "type_initializer",
-            "named": true
-          },
-          {
-            "type": "unary_expression",
-            "named": true
-          },
-          {
-            "type": "unsafe_expression",
+            "type": "_expression",
             "named": true
           }
         ]
@@ -7269,123 +2613,7 @@
         "required": true,
         "types": [
           {
-            "type": "array",
-            "named": true
-          },
-          {
-            "type": "as_type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "binary_expression",
-            "named": true
-          },
-          {
-            "type": "call_expression",
-            "named": true
-          },
-          {
-            "type": "enum_identifier",
-            "named": true
-          },
-          {
-            "type": "false",
-            "named": true
-          },
-          {
-            "type": "fixed_array",
-            "named": true
-          },
-          {
-            "type": "fn_literal",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "if_expression",
-            "named": true
-          },
-          {
-            "type": "in_expression",
-            "named": true
-          },
-          {
-            "type": "index_expression",
-            "named": true
-          },
-          {
-            "type": "int_literal",
-            "named": true
-          },
-          {
-            "type": "interpreted_string_literal",
-            "named": true
-          },
-          {
-            "type": "is_expression",
-            "named": true
-          },
-          {
-            "type": "lock_expression",
-            "named": true
-          },
-          {
-            "type": "match_expression",
-            "named": true
-          },
-          {
-            "type": "none",
-            "named": true
-          },
-          {
-            "type": "pseudo_comptime_identifier",
-            "named": true
-          },
-          {
-            "type": "rune_literal",
-            "named": true
-          },
-          {
-            "type": "select_expression",
-            "named": true
-          },
-          {
-            "type": "selector_expression",
-            "named": true
-          },
-          {
-            "type": "slice_expression",
-            "named": true
-          },
-          {
-            "type": "special_call_expression",
-            "named": true
-          },
-          {
-            "type": "sql_expression",
-            "named": true
-          },
-          {
-            "type": "true",
-            "named": true
-          },
-          {
-            "type": "type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "type_initializer",
-            "named": true
-          },
-          {
-            "type": "unary_expression",
-            "named": true
-          },
-          {
-            "type": "unsafe_expression",
+            "type": "_expression",
             "named": true
           }
         ]
@@ -7395,123 +2623,7 @@
         "required": false,
         "types": [
           {
-            "type": "array",
-            "named": true
-          },
-          {
-            "type": "as_type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "binary_expression",
-            "named": true
-          },
-          {
-            "type": "call_expression",
-            "named": true
-          },
-          {
-            "type": "enum_identifier",
-            "named": true
-          },
-          {
-            "type": "false",
-            "named": true
-          },
-          {
-            "type": "fixed_array",
-            "named": true
-          },
-          {
-            "type": "fn_literal",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "if_expression",
-            "named": true
-          },
-          {
-            "type": "in_expression",
-            "named": true
-          },
-          {
-            "type": "index_expression",
-            "named": true
-          },
-          {
-            "type": "int_literal",
-            "named": true
-          },
-          {
-            "type": "interpreted_string_literal",
-            "named": true
-          },
-          {
-            "type": "is_expression",
-            "named": true
-          },
-          {
-            "type": "lock_expression",
-            "named": true
-          },
-          {
-            "type": "match_expression",
-            "named": true
-          },
-          {
-            "type": "none",
-            "named": true
-          },
-          {
-            "type": "pseudo_comptime_identifier",
-            "named": true
-          },
-          {
-            "type": "rune_literal",
-            "named": true
-          },
-          {
-            "type": "select_expression",
-            "named": true
-          },
-          {
-            "type": "selector_expression",
-            "named": true
-          },
-          {
-            "type": "slice_expression",
-            "named": true
-          },
-          {
-            "type": "special_call_expression",
-            "named": true
-          },
-          {
-            "type": "sql_expression",
-            "named": true
-          },
-          {
-            "type": "true",
-            "named": true
-          },
-          {
-            "type": "type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "type_initializer",
-            "named": true
-          },
-          {
-            "type": "unary_expression",
-            "named": true
-          },
-          {
-            "type": "unsafe_expression",
+            "type": "_expression",
             "named": true
           }
         ]
@@ -7524,30 +2636,10 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
-          "type": "array",
-          "named": true
-        },
-        {
-          "type": "as_type_cast_expression",
-          "named": true
-        },
-        {
-          "type": "asm_statement",
-          "named": true
-        },
-        {
-          "type": "assert_statement",
-          "named": true
-        },
-        {
-          "type": "assignment_statement",
-          "named": true
-        },
-        {
-          "type": "binary_expression",
+          "type": "_statement",
           "named": true
         },
         {
@@ -7563,47 +2655,11 @@
           "named": true
         },
         {
-          "type": "call_expression",
-          "named": true
-        },
-        {
           "type": "const_declaration",
           "named": true
         },
         {
-          "type": "dec_statement",
-          "named": true
-        },
-        {
-          "type": "defer_statement",
-          "named": true
-        },
-        {
-          "type": "empty_labeled_statement",
-          "named": true
-        },
-        {
           "type": "enum_declaration",
-          "named": true
-        },
-        {
-          "type": "enum_identifier",
-          "named": true
-        },
-        {
-          "type": "false",
-          "named": true
-        },
-        {
-          "type": "fixed_array",
-          "named": true
-        },
-        {
-          "type": "fn_literal",
-          "named": true
-        },
-        {
-          "type": "for_statement",
           "named": true
         },
         {
@@ -7615,39 +2671,7 @@
           "named": true
         },
         {
-          "type": "go_statement",
-          "named": true
-        },
-        {
-          "type": "goto_statement",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "if_expression",
-          "named": true
-        },
-        {
           "type": "import_declaration",
-          "named": true
-        },
-        {
-          "type": "in_expression",
-          "named": true
-        },
-        {
-          "type": "inc_statement",
-          "named": true
-        },
-        {
-          "type": "index_expression",
-          "named": true
-        },
-        {
-          "type": "int_literal",
           "named": true
         },
         {
@@ -7655,71 +2679,7 @@
           "named": true
         },
         {
-          "type": "interpreted_string_literal",
-          "named": true
-        },
-        {
-          "type": "is_expression",
-          "named": true
-        },
-        {
-          "type": "labeled_statement",
-          "named": true
-        },
-        {
-          "type": "lock_expression",
-          "named": true
-        },
-        {
-          "type": "match_expression",
-          "named": true
-        },
-        {
           "type": "module_clause",
-          "named": true
-        },
-        {
-          "type": "none",
-          "named": true
-        },
-        {
-          "type": "pseudo_comptime_identifier",
-          "named": true
-        },
-        {
-          "type": "return_statement",
-          "named": true
-        },
-        {
-          "type": "rune_literal",
-          "named": true
-        },
-        {
-          "type": "select_expression",
-          "named": true
-        },
-        {
-          "type": "selector_expression",
-          "named": true
-        },
-        {
-          "type": "send_statement",
-          "named": true
-        },
-        {
-          "type": "short_var_declaration",
-          "named": true
-        },
-        {
-          "type": "slice_expression",
-          "named": true
-        },
-        {
-          "type": "special_call_expression",
-          "named": true
-        },
-        {
-          "type": "sql_expression",
           "named": true
         },
         {
@@ -7727,27 +2687,7 @@
           "named": true
         },
         {
-          "type": "true",
-          "named": true
-        },
-        {
-          "type": "type_cast_expression",
-          "named": true
-        },
-        {
           "type": "type_declaration",
-          "named": true
-        },
-        {
-          "type": "type_initializer",
-          "named": true
-        },
-        {
-          "type": "unary_expression",
-          "named": true
-        },
-        {
-          "type": "unsafe_expression",
           "named": true
         }
       ]
@@ -7762,159 +2702,15 @@
       "required": true,
       "types": [
         {
-          "type": "array",
+          "type": "_expression",
           "named": true
         },
         {
-          "type": "array_type",
-          "named": true
-        },
-        {
-          "type": "as_type_cast_expression",
-          "named": true
-        },
-        {
-          "type": "binary_expression",
-          "named": true
-        },
-        {
-          "type": "binded_type",
-          "named": true
-        },
-        {
-          "type": "builtin_type",
-          "named": true
-        },
-        {
-          "type": "call_expression",
-          "named": true
-        },
-        {
-          "type": "enum_identifier",
-          "named": true
-        },
-        {
-          "type": "false",
-          "named": true
-        },
-        {
-          "type": "fixed_array",
-          "named": true
-        },
-        {
-          "type": "fn_literal",
-          "named": true
-        },
-        {
-          "type": "function_type",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "if_expression",
-          "named": true
-        },
-        {
-          "type": "in_expression",
-          "named": true
-        },
-        {
-          "type": "index_expression",
-          "named": true
-        },
-        {
-          "type": "int_literal",
-          "named": true
-        },
-        {
-          "type": "interpreted_string_literal",
-          "named": true
-        },
-        {
-          "type": "is_expression",
-          "named": true
-        },
-        {
-          "type": "lock_expression",
-          "named": true
-        },
-        {
-          "type": "match_expression",
-          "named": true
-        },
-        {
-          "type": "none",
+          "type": "_simple_type",
           "named": true
         },
         {
           "type": "option_type",
-          "named": true
-        },
-        {
-          "type": "pointer_type",
-          "named": true
-        },
-        {
-          "type": "pseudo_comptime_identifier",
-          "named": true
-        },
-        {
-          "type": "qualified_type",
-          "named": true
-        },
-        {
-          "type": "rune_literal",
-          "named": true
-        },
-        {
-          "type": "select_expression",
-          "named": true
-        },
-        {
-          "type": "selector_expression",
-          "named": true
-        },
-        {
-          "type": "slice_expression",
-          "named": true
-        },
-        {
-          "type": "special_call_expression",
-          "named": true
-        },
-        {
-          "type": "sql_expression",
-          "named": true
-        },
-        {
-          "type": "true",
-          "named": true
-        },
-        {
-          "type": "type_cast_expression",
-          "named": true
-        },
-        {
-          "type": "type_identifier",
-          "named": true
-        },
-        {
-          "type": "type_initializer",
-          "named": true
-        },
-        {
-          "type": "type_placeholder",
-          "named": true
-        },
-        {
-          "type": "unary_expression",
-          "named": true
-        },
-        {
-          "type": "unsafe_expression",
           "named": true
         }
       ]
@@ -7969,123 +2765,7 @@
       "required": false,
       "types": [
         {
-          "type": "array",
-          "named": true
-        },
-        {
-          "type": "as_type_cast_expression",
-          "named": true
-        },
-        {
-          "type": "binary_expression",
-          "named": true
-        },
-        {
-          "type": "call_expression",
-          "named": true
-        },
-        {
-          "type": "enum_identifier",
-          "named": true
-        },
-        {
-          "type": "false",
-          "named": true
-        },
-        {
-          "type": "fixed_array",
-          "named": true
-        },
-        {
-          "type": "fn_literal",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "if_expression",
-          "named": true
-        },
-        {
-          "type": "in_expression",
-          "named": true
-        },
-        {
-          "type": "index_expression",
-          "named": true
-        },
-        {
-          "type": "int_literal",
-          "named": true
-        },
-        {
-          "type": "interpreted_string_literal",
-          "named": true
-        },
-        {
-          "type": "is_expression",
-          "named": true
-        },
-        {
-          "type": "lock_expression",
-          "named": true
-        },
-        {
-          "type": "match_expression",
-          "named": true
-        },
-        {
-          "type": "none",
-          "named": true
-        },
-        {
-          "type": "pseudo_comptime_identifier",
-          "named": true
-        },
-        {
-          "type": "rune_literal",
-          "named": true
-        },
-        {
-          "type": "select_expression",
-          "named": true
-        },
-        {
-          "type": "selector_expression",
-          "named": true
-        },
-        {
-          "type": "slice_expression",
-          "named": true
-        },
-        {
-          "type": "special_call_expression",
-          "named": true
-        },
-        {
-          "type": "sql_expression",
-          "named": true
-        },
-        {
-          "type": "true",
-          "named": true
-        },
-        {
-          "type": "type_cast_expression",
-          "named": true
-        },
-        {
-          "type": "type_initializer",
-          "named": true
-        },
-        {
-          "type": "unary_expression",
-          "named": true
-        },
-        {
-          "type": "unsafe_expression",
+          "type": "_expression",
           "named": true
         }
       ]
@@ -8100,127 +2780,11 @@
       "required": true,
       "types": [
         {
-          "type": "array",
-          "named": true
-        },
-        {
-          "type": "as_type_cast_expression",
-          "named": true
-        },
-        {
-          "type": "binary_expression",
-          "named": true
-        },
-        {
-          "type": "call_expression",
-          "named": true
-        },
-        {
-          "type": "enum_identifier",
-          "named": true
-        },
-        {
-          "type": "false",
-          "named": true
-        },
-        {
-          "type": "fixed_array",
-          "named": true
-        },
-        {
-          "type": "fn_literal",
+          "type": "_expression",
           "named": true
         },
         {
           "type": "format_specifier",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "if_expression",
-          "named": true
-        },
-        {
-          "type": "in_expression",
-          "named": true
-        },
-        {
-          "type": "index_expression",
-          "named": true
-        },
-        {
-          "type": "int_literal",
-          "named": true
-        },
-        {
-          "type": "interpreted_string_literal",
-          "named": true
-        },
-        {
-          "type": "is_expression",
-          "named": true
-        },
-        {
-          "type": "lock_expression",
-          "named": true
-        },
-        {
-          "type": "match_expression",
-          "named": true
-        },
-        {
-          "type": "none",
-          "named": true
-        },
-        {
-          "type": "pseudo_comptime_identifier",
-          "named": true
-        },
-        {
-          "type": "rune_literal",
-          "named": true
-        },
-        {
-          "type": "select_expression",
-          "named": true
-        },
-        {
-          "type": "selector_expression",
-          "named": true
-        },
-        {
-          "type": "slice_expression",
-          "named": true
-        },
-        {
-          "type": "special_call_expression",
-          "named": true
-        },
-        {
-          "type": "sql_expression",
-          "named": true
-        },
-        {
-          "type": "true",
-          "named": true
-        },
-        {
-          "type": "type_cast_expression",
-          "named": true
-        },
-        {
-          "type": "type_initializer",
-          "named": true
-        },
-        {
-          "type": "unary_expression",
-          "named": true
-        },
-        {
-          "type": "unsafe_expression",
           "named": true
         }
       ]
@@ -8289,123 +2853,7 @@
         "required": false,
         "types": [
           {
-            "type": "array",
-            "named": true
-          },
-          {
-            "type": "as_type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "binary_expression",
-            "named": true
-          },
-          {
-            "type": "call_expression",
-            "named": true
-          },
-          {
-            "type": "enum_identifier",
-            "named": true
-          },
-          {
-            "type": "false",
-            "named": true
-          },
-          {
-            "type": "fixed_array",
-            "named": true
-          },
-          {
-            "type": "fn_literal",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "if_expression",
-            "named": true
-          },
-          {
-            "type": "in_expression",
-            "named": true
-          },
-          {
-            "type": "index_expression",
-            "named": true
-          },
-          {
-            "type": "int_literal",
-            "named": true
-          },
-          {
-            "type": "interpreted_string_literal",
-            "named": true
-          },
-          {
-            "type": "is_expression",
-            "named": true
-          },
-          {
-            "type": "lock_expression",
-            "named": true
-          },
-          {
-            "type": "match_expression",
-            "named": true
-          },
-          {
-            "type": "none",
-            "named": true
-          },
-          {
-            "type": "pseudo_comptime_identifier",
-            "named": true
-          },
-          {
-            "type": "rune_literal",
-            "named": true
-          },
-          {
-            "type": "select_expression",
-            "named": true
-          },
-          {
-            "type": "selector_expression",
-            "named": true
-          },
-          {
-            "type": "slice_expression",
-            "named": true
-          },
-          {
-            "type": "special_call_expression",
-            "named": true
-          },
-          {
-            "type": "sql_expression",
-            "named": true
-          },
-          {
-            "type": "true",
-            "named": true
-          },
-          {
-            "type": "type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "type_initializer",
-            "named": true
-          },
-          {
-            "type": "unary_expression",
-            "named": true
-          },
-          {
-            "type": "unsafe_expression",
+            "type": "_expression",
             "named": true
           }
         ]
@@ -8425,39 +2873,23 @@
         "required": true,
         "types": [
           {
-            "type": "array_type",
-            "named": true
+            "type": "\n",
+            "named": false
           },
           {
-            "type": "binded_type",
-            "named": true
+            "type": "\r",
+            "named": false
           },
           {
-            "type": "builtin_type",
-            "named": true
+            "type": "\r\n",
+            "named": false
           },
           {
-            "type": "function_type",
+            "type": "_simple_type",
             "named": true
           },
           {
             "type": "option_type",
-            "named": true
-          },
-          {
-            "type": "pointer_type",
-            "named": true
-          },
-          {
-            "type": "qualified_type",
-            "named": true
-          },
-          {
-            "type": "type_identifier",
-            "named": true
-          },
-          {
-            "type": "type_placeholder",
             "named": true
           }
         ]
@@ -8497,123 +2929,7 @@
         "required": true,
         "types": [
           {
-            "type": "array",
-            "named": true
-          },
-          {
-            "type": "as_type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "binary_expression",
-            "named": true
-          },
-          {
-            "type": "call_expression",
-            "named": true
-          },
-          {
-            "type": "enum_identifier",
-            "named": true
-          },
-          {
-            "type": "false",
-            "named": true
-          },
-          {
-            "type": "fixed_array",
-            "named": true
-          },
-          {
-            "type": "fn_literal",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "if_expression",
-            "named": true
-          },
-          {
-            "type": "in_expression",
-            "named": true
-          },
-          {
-            "type": "index_expression",
-            "named": true
-          },
-          {
-            "type": "int_literal",
-            "named": true
-          },
-          {
-            "type": "interpreted_string_literal",
-            "named": true
-          },
-          {
-            "type": "is_expression",
-            "named": true
-          },
-          {
-            "type": "lock_expression",
-            "named": true
-          },
-          {
-            "type": "match_expression",
-            "named": true
-          },
-          {
-            "type": "none",
-            "named": true
-          },
-          {
-            "type": "pseudo_comptime_identifier",
-            "named": true
-          },
-          {
-            "type": "rune_literal",
-            "named": true
-          },
-          {
-            "type": "select_expression",
-            "named": true
-          },
-          {
-            "type": "selector_expression",
-            "named": true
-          },
-          {
-            "type": "slice_expression",
-            "named": true
-          },
-          {
-            "type": "special_call_expression",
-            "named": true
-          },
-          {
-            "type": "sql_expression",
-            "named": true
-          },
-          {
-            "type": "true",
-            "named": true
-          },
-          {
-            "type": "type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "type_initializer",
-            "named": true
-          },
-          {
-            "type": "unary_expression",
-            "named": true
-          },
-          {
-            "type": "unsafe_expression",
+            "type": "_expression",
             "named": true
           }
         ]
@@ -8623,35 +2939,7 @@
         "required": true,
         "types": [
           {
-            "type": "array_type",
-            "named": true
-          },
-          {
-            "type": "binded_type",
-            "named": true
-          },
-          {
-            "type": "builtin_type",
-            "named": true
-          },
-          {
-            "type": "function_type",
-            "named": true
-          },
-          {
-            "type": "pointer_type",
-            "named": true
-          },
-          {
-            "type": "qualified_type",
-            "named": true
-          },
-          {
-            "type": "type_identifier",
-            "named": true
-          },
-          {
-            "type": "type_placeholder",
+            "type": "_simple_type",
             "named": true
           }
         ]
@@ -8677,35 +2965,7 @@
         "required": true,
         "types": [
           {
-            "type": "array_type",
-            "named": true
-          },
-          {
-            "type": "binded_type",
-            "named": true
-          },
-          {
-            "type": "builtin_type",
-            "named": true
-          },
-          {
-            "type": "function_type",
-            "named": true
-          },
-          {
-            "type": "pointer_type",
-            "named": true
-          },
-          {
-            "type": "qualified_type",
-            "named": true
-          },
-          {
-            "type": "type_identifier",
-            "named": true
-          },
-          {
-            "type": "type_placeholder",
+            "type": "_simple_type",
             "named": true
           },
           {
@@ -8791,35 +3051,7 @@
       "required": true,
       "types": [
         {
-          "type": "array_type",
-          "named": true
-        },
-        {
-          "type": "binded_type",
-          "named": true
-        },
-        {
-          "type": "builtin_type",
-          "named": true
-        },
-        {
-          "type": "function_type",
-          "named": true
-        },
-        {
-          "type": "pointer_type",
-          "named": true
-        },
-        {
-          "type": "qualified_type",
-          "named": true
-        },
-        {
-          "type": "type_identifier",
-          "named": true
-        },
-        {
-          "type": "type_placeholder",
+          "type": "_simple_type",
           "named": true
         }
       ]
@@ -8834,123 +3066,7 @@
         "required": true,
         "types": [
           {
-            "type": "array",
-            "named": true
-          },
-          {
-            "type": "as_type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "binary_expression",
-            "named": true
-          },
-          {
-            "type": "call_expression",
-            "named": true
-          },
-          {
-            "type": "enum_identifier",
-            "named": true
-          },
-          {
-            "type": "false",
-            "named": true
-          },
-          {
-            "type": "fixed_array",
-            "named": true
-          },
-          {
-            "type": "fn_literal",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "if_expression",
-            "named": true
-          },
-          {
-            "type": "in_expression",
-            "named": true
-          },
-          {
-            "type": "index_expression",
-            "named": true
-          },
-          {
-            "type": "int_literal",
-            "named": true
-          },
-          {
-            "type": "interpreted_string_literal",
-            "named": true
-          },
-          {
-            "type": "is_expression",
-            "named": true
-          },
-          {
-            "type": "lock_expression",
-            "named": true
-          },
-          {
-            "type": "match_expression",
-            "named": true
-          },
-          {
-            "type": "none",
-            "named": true
-          },
-          {
-            "type": "pseudo_comptime_identifier",
-            "named": true
-          },
-          {
-            "type": "rune_literal",
-            "named": true
-          },
-          {
-            "type": "select_expression",
-            "named": true
-          },
-          {
-            "type": "selector_expression",
-            "named": true
-          },
-          {
-            "type": "slice_expression",
-            "named": true
-          },
-          {
-            "type": "special_call_expression",
-            "named": true
-          },
-          {
-            "type": "sql_expression",
-            "named": true
-          },
-          {
-            "type": "true",
-            "named": true
-          },
-          {
-            "type": "type_cast_expression",
-            "named": true
-          },
-          {
-            "type": "type_initializer",
-            "named": true
-          },
-          {
-            "type": "unary_expression",
-            "named": true
-          },
-          {
-            "type": "unsafe_expression",
+            "type": "_expression",
             "named": true
           }
         ]
@@ -9019,39 +3135,23 @@
       "required": true,
       "types": [
         {
-          "type": "array_type",
-          "named": true
-        },
-        {
-          "type": "binded_type",
-          "named": true
-        },
-        {
-          "type": "builtin_type",
-          "named": true
-        },
-        {
-          "type": "function_type",
-          "named": true
-        },
-        {
-          "type": "pointer_type",
-          "named": true
-        },
-        {
-          "type": "qualified_type",
-          "named": true
-        },
-        {
-          "type": "type_identifier",
-          "named": true
-        },
-        {
-          "type": "type_placeholder",
+          "type": "_simple_type",
           "named": true
         }
       ]
     }
+  },
+  {
+    "type": "\n",
+    "named": false
+  },
+  {
+    "type": "\r",
+    "named": false
+  },
+  {
+    "type": "\r\n",
+    "named": false
   },
   {
     "type": "!",
@@ -9087,6 +3187,14 @@
   },
   {
     "type": "$",
+    "named": false
+  },
+  {
+    "type": "$else",
+    "named": false
+  },
+  {
+    "type": "$if",
     "named": false
   },
   {
