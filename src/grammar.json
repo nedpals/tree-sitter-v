@@ -816,7 +816,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "enum_identifier"
+            "name": "type_selector_expression"
           },
           {
             "type": "SYMBOL",
@@ -5276,7 +5276,7 @@
         }
       ]
     },
-    "enum_identifier": {
+    "type_selector_expression": {
       "type": "SEQ",
       "members": [
         {

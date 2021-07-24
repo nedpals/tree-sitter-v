@@ -298,7 +298,7 @@ module.exports = grammar({
           $._string_literal,
           $.rune_literal,
           $.pseudo_comptime_identifier,
-          $.enum_identifier,
+          $.type_selector_expression,
           $.none,
           $.true,
           $.false
@@ -1010,7 +1010,7 @@ module.exports = grammar({
         optional(seq("=", field("value", $.int_literal)))
       ),
 
-    enum_identifier: ($) =>
+    type_selector_expression: ($) =>
       seq(
         optional(field("type", $.type_identifier)),
         ".",
