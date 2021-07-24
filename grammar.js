@@ -166,6 +166,7 @@ module.exports = grammar({
         $._single_line_expression,
         $.type_initializer,
         $.array,
+        $.fixed_array,
         $.unary_expression,
         $.binary_expression,
         $.selector_expression,
@@ -336,9 +337,9 @@ module.exports = grammar({
               $.generic_type,
               $._binded_type,
               $.qualified_type,
-              // $.pointer_type,
+              $.pointer_type,
               $.array_type,
-              // $.fixed_array_type,
+              $.fixed_array_type,
               $.map_type,
               $.channel_type
             )
@@ -389,23 +390,31 @@ module.exports = grammar({
 
     fixed_array_indicator: ($) => token(fixed_array_symbol),
 
-    array: ($) =>
-      prec(
-        PREC.composite_literal,
-        choice(
-          "[]",
-          prec.right(
-            seq(
-              "[",
-              field("values", repeat1(seq($._expression, optional(",")))),
-              "]",
-              optional($.fixed_array_indicator)
-            )
-          )
-        )
+    array: ($) => choice(token("[]"), $._non_empty_array),
+
+    fixed_array: ($) =>
+      prec.right(
+        PREC.resolve,
+        seq($._non_empty_array, $.fixed_array_indicator)
       ),
 
-    array_type: ($) => seq("[]", field("element", $._simple_type)),
+    _non_empty_array: ($) =>
+      seq(
+        "[",
+        field("values", repeat1(seq($._expression, optional(",")))),
+        "]"
+      ),
+
+    fixed_array_type: ($) =>
+      seq(
+        "[",
+        field("size", choice($.int_literal, $.identifier)),
+        "]",
+        field("element", $._simple_type)
+      ),
+
+    array_type: ($) =>
+      prec(PREC.resolve, seq("[]", field("element", $._simple_type))),
 
     variadic_type: ($) => seq("...", $._simple_type),
 
