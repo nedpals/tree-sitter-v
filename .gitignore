@@ -1,6 +1,12 @@
+# Avoid including irrelevant files
 node_modules/
 *.log
 build/
+.vscode
+package-lock.json
+
+# Ignore local files used for testing and development
 hello.v
 src/binding.v
 wasm/
+grammar (old).js

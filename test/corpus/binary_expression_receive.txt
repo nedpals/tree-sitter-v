@@ -8,6 +8,6 @@ test = <- foo
 
 (source_file 
   (assignment_statement 
-    (expression_list (identifier)) 
+    (identifier_list (identifier)) 
     (expression_list 
       (unary_expression (identifier)))))

@@ -19,5 +19,5 @@ mut:
       (interface_spec 
         (field_identifier)
         (parameter_list
-          (parameter_declaration (identifier) (type_identifier)))
-        (type_identifier)))))
+          (parameter_declaration (identifier) (builtin_type)))
+        (builtin_type)))))

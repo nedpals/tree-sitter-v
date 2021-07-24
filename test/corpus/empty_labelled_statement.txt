@@ -3,7 +3,7 @@ Empty Labeled Statement
 ===
 
 fn main() {
-  label:
+  testlabel:
 }
 
 ---

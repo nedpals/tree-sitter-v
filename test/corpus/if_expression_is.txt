@@ -16,5 +16,5 @@ fn main() {
     (parameter_list)
     (block
       (if_expression
-        (relational_operator (identifier) (identifier))
+        (is_expression (identifier) (builtin_type))
         (block (comment))))))

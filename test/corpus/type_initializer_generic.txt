@@ -19,6 +19,6 @@ fn main() {
           (type_initializer 
             (generic_type
               (type_identifier)
-              (type_parameters (type_identifier)))
+              (type_parameters (builtin_type)))
             (literal_value
               (keyed_element (field_identifier) (interpreted_string_literal)))))))))

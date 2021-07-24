@@ -18,7 +18,7 @@ fn main() {
         (identifier_list (identifier))
         (expression_list
           (type_initializer
-            (array_type (type_identifier))
+            (array_type (builtin_type))
             (literal_value
               (keyed_element (field_identifier) (int_literal))
               (keyed_element (field_identifier) (int_literal))

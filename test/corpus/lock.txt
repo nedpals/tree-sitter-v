@@ -60,8 +60,8 @@ x := rlock a, b { a + b }
     (expression_list
       (lock_expression
         (expression_list
-	  (identifier)
-	  (identifier))
+          (identifier)
+          (identifier))
 	(block
 	  (binary_expression
 	    (identifier)

@@ -19,7 +19,7 @@ fn main() {
       (call_expression
         (identifier)
         (argument_list 
-          (enum_identifier (identifier))))
+          (type_selector_expression (identifier))))
       (short_var_declaration
         (identifier_list (identifier))
         (expression_list
@@ -28,13 +28,15 @@ fn main() {
             (literal_value
               (keyed_element
                 (field_identifier) 
-                  (enum_identifier (identifier)))))))
+                  (type_selector_expression (identifier)))))))
       (short_var_declaration
+        (identifier_list
+          (identifier))
+        (expression_list
+          (type_selector_expression
+            (type_identifier)
+            (identifier))))
+      (assignment_statement
         (identifier_list (identifier))
         (expression_list
-          (selector_expression
-            (identifier) (identifier))))
-      (assignment_statement
-        (expression_list (identifier))
-        (expression_list
-          (enum_identifier (identifier)))))))
+          (type_selector_expression (identifier)))))))

@@ -6,7 +6,7 @@ $if windows {}
 
 $if gc_boehm ? {} $else $if foo {} $else {}
 
-$if T is foo {}
+$if T is Foo {}
 
 ---
 
@@ -21,6 +21,6 @@ $if T is foo {}
       (block) 
       (block))) 
     (comptime_if_expression 
-      (relational_operator 
-        (identifier) (identifier)) 
+      (is_expression 
+        (type_placeholder) (type_identifier)) 
       (block)))

@@ -8,7 +8,9 @@
     "url": "https://github.com/nedpals/tree-sitter-v.git"
   },
   "scripts": {
-    "test": "tree-sitter test"
+    "test": "tree-sitter test",
+    "generate": "tree-sitter generate",
+    "parse": "tree-sitter parse"
   },
   "homepage": "https://github.com/nedpals/tree-sitter-v#readme",
   "dependencies": {

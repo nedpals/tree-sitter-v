@@ -16,4 +16,4 @@ fn main() {
       (short_var_declaration
         (identifier_list (identifier))
         (expression_list
-          (array (int_literal) (fixed_array_indicator)))))))
+          (fixed_array (int_literal) (fixed_array_indicator)))))))

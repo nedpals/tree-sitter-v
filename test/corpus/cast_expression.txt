@@ -16,7 +16,6 @@ fn main() {
       (short_var_declaration
         (identifier_list (identifier))
         (expression_list
-          (unary_expression
-            (call_expression
-              (identifier)
-              (argument_list (identifier)))))))))
+          (type_cast_expression
+            (pointer_type (builtin_type))
+            (identifier)))))))
