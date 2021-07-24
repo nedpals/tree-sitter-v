@@ -33,8 +33,7 @@ const overloadable_operators = [
   ">=",
 ].map((operator) => token(operator));
 
-const newline = choice("\n", "\r", "\r\n");
-const terminator = token(newline);
+const terminator = choice("\n", "\r", "\r\n");
 
 const unicode_digit = /[0-9]/;
 const unicode_letter = /[a-zA-Zα-ωΑ-Ωµ]/;
@@ -92,6 +91,7 @@ const return_keyword = "return";
 const type_keyword = "type";
 const for_keyword = "for";
 const in_keyword = "in";
+const is_keyword = "is";
 const struct_keyword = "struct";
 const enum_keyword = "enum";
 const interface_keyword = "interface";
@@ -136,14 +136,21 @@ module.exports = grammar({
 
   word: ($) => $.identifier,
 
+  supertypes: ($) => [
+    $._expression,
+    $._type,
+    $._simple_type,
+    $._statement,
+    $._simple_statement,
+    $._expression_with_blocks,
+  ],
+
   rules: {
     source_file: ($) =>
-      choice(
-        repeat1(
-          seq(
-            choice($._top_level_declaration, $._statement),
-            optional(terminator)
-          )
+      repeat(
+        seq(
+          choice($._top_level_declaration, $._statement),
+          optional(terminator)
         )
       ),
 
@@ -169,6 +176,8 @@ module.exports = grammar({
         $.fixed_array,
         $.unary_expression,
         $.binary_expression,
+        $.in_expression,
+        $.is_expression,
         $.selector_expression,
         $.index_expression,
         $.slice_expression,
@@ -382,6 +391,7 @@ module.exports = grammar({
           $._expression,
           $.unsafe_expression,
           $.if_expression,
+          $.comptime_if_expression,
           $.match_expression,
           $.lock_expression,
           $.sql_expression
@@ -504,9 +514,13 @@ module.exports = grammar({
       ),
 
     identifier_list: ($) =>
-      comma_sep1(choice($.identifier, $._mutable_identifier)),
+      prec(
+        PREC.primary,
+        comma_sep1(choice($.identifier, $._mutable_identifier))
+      ),
 
-    expression_list: ($) => comma_sep1(choice($._expression)),
+    expression_list: ($) =>
+      prec(PREC.resolve, comma_sep1(choice($._expression))),
 
     parameter_declaration: ($) =>
       seq(
@@ -761,7 +775,7 @@ module.exports = grammar({
       ),
 
     for_in_operator: ($) =>
-      prec.right(
+      prec(
         PREC.primary,
         seq(
           field("left", $.identifier_list),
@@ -845,6 +859,25 @@ module.exports = grammar({
         field("consequence", $.block),
         optional(
           seq("else", field("alternative", choice($.block, $.if_expression)))
+        )
+      ),
+
+    in_expression: ($) =>
+      prec.left(
+        PREC.comparative,
+        seq(
+          field("left", $._expression),
+          choice(in_keyword, "!" + in_keyword),
+          field("right", $._expression)
+        )
+      ),
+    is_expression: ($) =>
+      prec.left(
+        PREC.comparative,
+        seq(
+          field("left", $._expression),
+          choice(is_keyword, "!" + is_keyword),
+          field("right", $._expression)
         )
       ),
 
