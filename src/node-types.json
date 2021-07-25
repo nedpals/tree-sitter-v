@@ -1632,6 +1632,14 @@
         {
           "type": "identifier",
           "named": true
+        },
+        {
+          "type": "index_expression",
+          "named": true
+        },
+        {
+          "type": "selector_expression",
+          "named": true
         }
       ]
     }

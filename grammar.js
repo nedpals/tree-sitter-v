@@ -517,7 +517,25 @@ module.exports = grammar({
     identifier_list: ($) =>
       prec(
         PREC.primary,
-        comma_sep1(choice($.identifier, $._mutable_identifier))
+        seq(
+          choice($.identifier, $._mutable_identifier), 
+          repeat(prec(2, 
+              seq(
+                ",",
+                choice($.identifier, $._mutable_identifier)
+              )
+          ))
+        )
+      ),
+
+    _assignable_identifier_list: ($) =>
+      prec(
+        PREC.primary,
+        comma_sep1(choice(
+          $.identifier, 
+          $.selector_expression,
+          $.index_expression
+        ))
       ),
 
     expression_list: ($) =>
@@ -637,10 +655,19 @@ module.exports = grammar({
         )
       ),
 
-    short_var_declaration: ($) => assignment_statement_support($, ":="),
+    short_var_declaration: ($) => 
+      seq(
+        field("left", $.identifier_list),
+        ":=",
+        field("right", $.expression_list)
+      ),
 
     assignment_statement: ($) =>
-      assignment_statement_support($, choice(...assignment_operators)),
+      seq(
+        field("left", alias($._assignable_identifier_list, $.identifier_list)),
+        choice(...assignment_operators),
+        field("right", $.expression_list)
+      ),
 
     assert_statement: ($) => seq(assert_keyword, $._expression),
 
@@ -1195,14 +1222,6 @@ module.exports = grammar({
 
 function comp_time(rule) {
   return seq("$", rule);
-}
-
-function assignment_statement_support($, symbol) {
-  return seq(
-    field("left", $.identifier_list),
-    symbol,
-    field("right", $.expression_list)
-  );
 }
 
 function comma_sep1(rules) {
