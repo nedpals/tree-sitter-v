@@ -1,5 +1,5 @@
 ===
-Enum Identifier
+Type Selector Expression / Enum Identifier
 ===
 
 fn main() {

@@ -1,5 +1,5 @@
 ===
-Fixed Array Initializer
+Fixed Array
 ===
 
 fn main() {

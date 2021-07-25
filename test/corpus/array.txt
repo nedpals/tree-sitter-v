@@ -1,5 +1,5 @@
 ===
-Array Initializer with Values
+Array with Values
 ===
 
 fn main() {
@@ -21,7 +21,7 @@ fn main() {
             (interpreted_string_literal)))))))
 
 ===
-Array Initializer with no values
+Array with no values
 ===
 
 fn main() {
