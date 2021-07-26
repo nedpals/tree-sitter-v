@@ -9,6 +9,7 @@ struct Foo {}
 a := [1]
 
 [hey: 'hello']
+[if foo ?]
 pub fn memdup(src voidptr, sz int) voidptr {}
 
 [test; hello]
@@ -38,7 +39,10 @@ interface Speaker {}
       (attribute_declaration 
         (attribute_spec 
           (identifier)
-          (interpreted_string_literal))))
+          (interpreted_string_literal)))
+      (attribute_declaration 
+        (attribute_spec 
+          (identifier))))
     (identifier) 
     (parameter_list 
       (parameter_declaration 

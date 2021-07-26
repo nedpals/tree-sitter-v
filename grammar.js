@@ -990,6 +990,7 @@ module.exports = grammar({
       prec(
         PREC.attributes,
         choice(
+          seq("if", $.identifier, optional("?")),
           choice(alias("unsafe", $.identifier), $.identifier),
           seq(
             field("name", choice(alias("unsafe", $.identifier), $.identifier)),
