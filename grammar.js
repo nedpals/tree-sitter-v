@@ -594,7 +594,7 @@ module.exports = grammar({
         )
       ),
 
-    builtin_type: ($) => choice(...builtin_type_keywords),
+    builtin_type: ($) => prec.right(choice(...builtin_type_keywords)),
 
     _binded_type: ($) => alias($.binded_identifier, $.binded_type),
 
