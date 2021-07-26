@@ -978,15 +978,15 @@
                 },
                 {
                   "type": "SYMBOL",
-                  "name": "fixed_array_type"
-                },
-                {
-                  "type": "SYMBOL",
                   "name": "map_type"
                 },
                 {
                   "type": "SYMBOL",
                   "name": "channel_type"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "fixed_array_type"
                 }
               ]
             }
@@ -2050,11 +2050,8 @@
                       "type": "SEQ",
                       "members": [
                         {
-                          "type": "TOKEN",
-                          "content": {
-                            "type": "STRING",
-                            "value": "."
-                          }
+                          "type": "STRING",
+                          "value": "."
                         },
                         {
                           "type": "SYMBOL",
@@ -2605,6 +2602,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "generic_type"
+        },
+        {
+          "type": "SYMBOL",
           "name": "_binded_type"
         },
         {
@@ -2618,6 +2619,14 @@
         {
           "type": "SYMBOL",
           "name": "array_type"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "map_type"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "channel_type"
         },
         {
           "type": "SYMBOL",
@@ -2674,109 +2683,113 @@
       }
     },
     "builtin_type": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "voidptr"
-        },
-        {
-          "type": "STRING",
-          "value": "byteptr"
-        },
-        {
-          "type": "STRING",
-          "value": "charptr"
-        },
-        {
-          "type": "STRING",
-          "value": "i8"
-        },
-        {
-          "type": "STRING",
-          "value": "i16"
-        },
-        {
-          "type": "STRING",
-          "value": "int"
-        },
-        {
-          "type": "STRING",
-          "value": "i64"
-        },
-        {
-          "type": "STRING",
-          "value": "byte"
-        },
-        {
-          "type": "STRING",
-          "value": "u16"
-        },
-        {
-          "type": "STRING",
-          "value": "u32"
-        },
-        {
-          "type": "STRING",
-          "value": "u64"
-        },
-        {
-          "type": "STRING",
-          "value": "f32"
-        },
-        {
-          "type": "STRING",
-          "value": "f64"
-        },
-        {
-          "type": "STRING",
-          "value": "char"
-        },
-        {
-          "type": "STRING",
-          "value": "bool"
-        },
-        {
-          "type": "STRING",
-          "value": "string"
-        },
-        {
-          "type": "STRING",
-          "value": "rune"
-        },
-        {
-          "type": "STRING",
-          "value": "array"
-        },
-        {
-          "type": "STRING",
-          "value": "map"
-        },
-        {
-          "type": "STRING",
-          "value": "chan"
-        },
-        {
-          "type": "STRING",
-          "value": "size_t"
-        },
-        {
-          "type": "STRING",
-          "value": "float_literal"
-        },
-        {
-          "type": "STRING",
-          "value": "int_literal"
-        },
-        {
-          "type": "STRING",
-          "value": "thread"
-        },
-        {
-          "type": "STRING",
-          "value": "IError"
-        }
-      ]
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "voidptr"
+          },
+          {
+            "type": "STRING",
+            "value": "byteptr"
+          },
+          {
+            "type": "STRING",
+            "value": "charptr"
+          },
+          {
+            "type": "STRING",
+            "value": "i8"
+          },
+          {
+            "type": "STRING",
+            "value": "i16"
+          },
+          {
+            "type": "STRING",
+            "value": "int"
+          },
+          {
+            "type": "STRING",
+            "value": "i64"
+          },
+          {
+            "type": "STRING",
+            "value": "byte"
+          },
+          {
+            "type": "STRING",
+            "value": "u16"
+          },
+          {
+            "type": "STRING",
+            "value": "u32"
+          },
+          {
+            "type": "STRING",
+            "value": "u64"
+          },
+          {
+            "type": "STRING",
+            "value": "f32"
+          },
+          {
+            "type": "STRING",
+            "value": "f64"
+          },
+          {
+            "type": "STRING",
+            "value": "char"
+          },
+          {
+            "type": "STRING",
+            "value": "bool"
+          },
+          {
+            "type": "STRING",
+            "value": "string"
+          },
+          {
+            "type": "STRING",
+            "value": "rune"
+          },
+          {
+            "type": "STRING",
+            "value": "array"
+          },
+          {
+            "type": "STRING",
+            "value": "map"
+          },
+          {
+            "type": "STRING",
+            "value": "chan"
+          },
+          {
+            "type": "STRING",
+            "value": "size_t"
+          },
+          {
+            "type": "STRING",
+            "value": "float_literal"
+          },
+          {
+            "type": "STRING",
+            "value": "int_literal"
+          },
+          {
+            "type": "STRING",
+            "value": "thread"
+          },
+          {
+            "type": "STRING",
+            "value": "IError"
+          }
+        ]
+      }
     },
     "_binded_type": {
       "type": "ALIAS",
@@ -2821,11 +2834,8 @@
           }
         },
         {
-          "type": "IMMEDIATE_TOKEN",
-          "content": {
-            "type": "STRING",
-            "value": "."
-          }
+          "type": "STRING",
+          "value": "."
         },
         {
           "type": "FIELD",
@@ -4290,11 +4300,8 @@
             }
           },
           {
-            "type": "IMMEDIATE_TOKEN",
-            "content": {
-              "type": "STRING",
-              "value": "."
-            }
+            "type": "STRING",
+            "value": "."
           },
           {
             "type": "FIELD",
@@ -4309,10 +4316,6 @@
                 {
                   "type": "SYMBOL",
                   "name": "comptime_identifier"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "selector_expression"
                 },
                 {
                   "type": "SYMBOL",
@@ -6305,7 +6308,13 @@
   "conflicts": [],
   "precedences": [],
   "externals": [],
-  "inline": [],
+  "inline": [
+    "_type",
+    "_string_literal",
+    "_field_identifier",
+    "_module_identifier",
+    "_top_level_declaration"
+  ],
   "supertypes": [
     "_expression",
     "_type",

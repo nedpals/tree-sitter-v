@@ -497,7 +497,7 @@ module.exports = grammar({
           seq(
             optional(token(/[+-0]/)),
             $.int_literal,
-            optional(seq(token("."), $.int_literal)),
+            optional(seq(".", $.int_literal)),
             optional($.format_flag)
           )
         )
@@ -604,7 +604,7 @@ module.exports = grammar({
     qualified_type: ($) =>
       seq(
         field("module", $._module_identifier),
-        token.immediate("."),
+        ".",
         field("name", $.type_identifier)
       ),
 
@@ -854,7 +854,7 @@ module.exports = grammar({
         PREC.primary,
         seq(
           field("operand", $._expression),
-          token.immediate("."),
+          ".",
           field(
             "field",
             choice(
