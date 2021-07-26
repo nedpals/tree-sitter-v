@@ -511,6 +511,17 @@ module.exports = grammar({
         )
       ),
 
+    // Some of the syntaxes in V are restricted
+    // to be in a single line. That's why an identifier
+    // immediate token is created to solve this concern.
+    immediate_identifier: ($) =>
+      token.immediate(
+        seq(
+          choice(unicode_letter_lower),
+          repeat(choice(letter, unicode_digit, "_"))
+        )
+      ),
+
     _old_identifier: ($) =>
       token(seq(letter, repeat(choice(letter, unicode_digit)))),
 
@@ -1160,7 +1171,8 @@ module.exports = grammar({
       seq(
         field("attributes", optional($.attribute_list)),
         "module",
-        $._module_identifier
+        " ",
+        alias($.immediate_identifier, $.module_identifier)
       ),
 
     import_declaration: ($) =>
@@ -1168,25 +1180,34 @@ module.exports = grammar({
         PREC.resolve,
         seq(
           import_keyword,
+          // Adds a space in order to avoid import_path
+          // getting parsed on other lines
+          " ",
           field("path", $.import_path),
           optional(
-            choice(
-              field("alias", $.import_alias),
-              field("symbols", $.import_symbols)
+            seq(
+              // Same as well for aliases and symbols. Although
+              // the contents inside the braces are allowed as per testing.
+              " ",
+              choice(
+                field("alias", $.import_alias),
+                field("symbols", $.import_symbols)
+              )
             )
           )
         )
       ),
 
     import_path: ($) =>
-      token(seq(letter, repeat(choice(letter, unicode_digit, ".")))),
+      token.immediate(seq(letter, repeat(choice(letter, unicode_digit, ".")))),
 
-    import_symbols: ($) => seq("{", $.import_symbols_list, "}"),
+    import_symbols: ($) => seq(token.immediate("{"), optional($.import_symbols_list), "}"),
 
     import_symbols_list: ($) =>
       comma_sep1(choice($.identifier, alias($.type_identifier, $.identifier))),
 
-    import_alias: ($) => seq("as", field("name", $._module_identifier)),
+    import_alias: ($) => 
+      seq("as", " ", field("name", alias($.immediate_identifier, $.module_identifier))),
 
     match_expression: ($) =>
       seq(

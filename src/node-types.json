@@ -1764,7 +1764,7 @@
     "fields": {},
     "children": {
       "multiple": false,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "import_symbols_list",
@@ -3216,6 +3216,10 @@
   },
   {
     "type": "\r\n",
+    "named": false
+  },
+  {
+    "type": " ",
     "named": false
   },
   {
