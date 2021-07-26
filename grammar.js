@@ -136,6 +136,14 @@ module.exports = grammar({
 
   word: ($) => $.identifier,
 
+  inline: ($) => [
+    $._type,
+    $._string_literal,
+    $._field_identifier,
+    $._module_identifier,
+    $._top_level_declaration
+  ],
+
   supertypes: ($) => [
     $._expression,
     $._type,
