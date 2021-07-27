@@ -230,7 +230,7 @@ module.exports = grammar({
       );
     },
 
-    as_type_cast_expression: ($) => seq($._expression, as_keyword, $._type),
+    as_type_cast_expression: ($) => seq($._expression, as_keyword, $._simple_type),
 
     type_cast_expression: ($) =>
       seq(
