@@ -4,6 +4,7 @@ const glob = require('glob');
 const path = require('path');
 const fs = require('fs');
 const { promisify } = require('util');
+const chalk = require('chalk');
 
 const vFolder = process.argv[2] || null;
 const hideRanges = process.argv[3] == '--hideRanges' || false; 
@@ -58,11 +59,11 @@ console.log(`vlib folder: ${vlibFolder}`);
 console.log('==============================================');
 
 Promise.all(filesToParse.map(parseAndReportErrors))
-  .then(collection => {
+  .then((collection) => {
     let hasErrors = false;
     let errorCount = 0;
 
-    collection.forEach(errors => {
+    collection.forEach((errors, i) => {
       if (!hasErrors && errors.length != 0) {
         hasErrors = true;
       }
@@ -78,8 +79,10 @@ Promise.all(filesToParse.map(parseAndReportErrors))
           });
           process.stderr.write('\n');
         } else {
-          process.stderr.write(`[Error] file: ${errors[0].file.padEnd(longestLen)} | errors: ${errors.length}\n`);
+          process.stderr.write(`${chalk.red`[Error]`} file: ${errors[0].file.padEnd(longestLen)} | errors: ${errors.length}\n`);
         }
+      } else if (hideRanges) {
+        process.stderr.write(`${chalk.green`[Pass ]`} file: ${(path.relative(vFolder, filesToParse[i])).padEnd(longestLen)} | errors: ${errors.length}\n`);
       }
     });
 
