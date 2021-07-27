@@ -166,7 +166,28 @@
         },
         {
           "type": "SYMBOL",
+          "name": "parenthesized_expression"
+        },
+        {
+          "type": "SYMBOL",
           "name": "_expression_with_blocks"
+        }
+      ]
+    },
+    "parenthesized_expression": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_expression"
+        },
+        {
+          "type": "STRING",
+          "value": ")"
         }
       ]
     },
@@ -487,7 +508,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_type"
+          "name": "_simple_type"
         }
       ]
     },
@@ -5088,6 +5109,10 @@
                 {
                   "type": "SYMBOL",
                   "name": "type_identifier"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "builtin_type"
                 },
                 {
                   "type": "SYMBOL",

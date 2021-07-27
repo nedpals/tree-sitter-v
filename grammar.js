@@ -195,8 +195,11 @@ module.exports = grammar({
         $.special_call_expression,
         $.fn_literal,
         $.selector_expression,
+        $.parenthesized_expression,
         $._expression_with_blocks
       ),
+
+    parenthesized_expression: ($) => seq("(", $._expression, ")"),
 
     unary_expression: ($) =>
       prec(

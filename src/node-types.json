@@ -64,6 +64,10 @@
         "named": true
       },
       {
+        "type": "parenthesized_expression",
+        "named": true
+      },
+      {
         "type": "pseudo_comptime_identifier",
         "named": true
       },
@@ -351,7 +355,7 @@
           "named": true
         },
         {
-          "type": "_type",
+          "type": "_simple_type",
           "named": true
         }
       ]
@@ -2354,6 +2358,21 @@
     }
   },
   {
+    "type": "parenthesized_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "pointer_type",
     "named": true,
     "fields": {},
@@ -2820,6 +2839,10 @@
         "types": [
           {
             "type": "binded_type",
+            "named": true
+          },
+          {
+            "type": "builtin_type",
             "named": true
           },
           {
