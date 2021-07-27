@@ -20,6 +20,10 @@
         "named": true
       },
       {
+        "type": "c_string_literal",
+        "named": true
+      },
+      {
         "type": "call_expression",
         "named": true
       },
@@ -69,6 +73,10 @@
       },
       {
         "type": "pseudo_comptime_identifier",
+        "named": true
+      },
+      {
+        "type": "raw_string_literal",
         "named": true
       },
       {
@@ -466,11 +474,19 @@
         "required": false,
         "types": [
           {
+            "type": "c_string_literal",
+            "named": true
+          },
+          {
             "type": "identifier",
             "named": true
           },
           {
             "type": "interpreted_string_literal",
+            "named": true
+          },
+          {
+            "type": "raw_string_literal",
             "named": true
           }
         ]
@@ -751,6 +767,25 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "c_string_literal",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "escape_sequence",
+          "named": true
+        },
+        {
+          "type": "string_interpolation",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -2037,11 +2072,19 @@
             "named": false
           },
           {
+            "type": "c_string_literal",
+            "named": true
+          },
+          {
             "type": "field_identifier",
             "named": true
           },
           {
             "type": "interpreted_string_literal",
+            "named": true
+          },
+          {
+            "type": "raw_string_literal",
             "named": true
           }
         ]
@@ -2453,6 +2496,11 @@
         ]
       }
     }
+  },
+  {
+    "type": "raw_string_literal",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "return_statement",
@@ -3508,6 +3556,14 @@
     "named": false
   },
   {
+    "type": "c\"",
+    "named": false
+  },
+  {
+    "type": "c'",
+    "named": false
+  },
+  {
     "type": "c_include_path_string",
     "named": true
   },
@@ -3685,6 +3741,14 @@
   },
   {
     "type": "pub",
+    "named": false
+  },
+  {
+    "type": "r\"",
+    "named": false
+  },
+  {
+    "type": "r'",
     "named": false
   },
   {

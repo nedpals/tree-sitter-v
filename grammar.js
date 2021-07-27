@@ -480,9 +480,15 @@ module.exports = grammar({
         )
       ),
 
-    _string_literal: ($) => choice($.interpreted_string_literal),
+    _string_literal: ($) => choice(
+      $.c_string_literal,
+      $.raw_string_literal,
+      $.interpreted_string_literal
+    ),
 
-    interpreted_string_literal: ($) => quoted_string($, $.string_interpolation),
+    c_string_literal: ($) => quoted_string($, "c", $.string_interpolation),
+    raw_string_literal: ($) => quoted_string1($, "r"),
+    interpreted_string_literal: ($) => quoted_string($, "", $.string_interpolation),
 
     string_interpolation: ($) =>
       choice(
@@ -927,9 +933,8 @@ module.exports = grammar({
         field(
           "condition",
           choice(
-            seq($.identifier, optional("?")),
             alias($._generic_type_is_expression, $.is_expression),
-            $._expression
+            seq($._expression, optional("?"))
           )
         ),
         field("consequence", alias($._comptime_block, $.block)),
@@ -1274,10 +1279,25 @@ function comma_sep(rule) {
   return optional(comma_sep1(rule));
 }
 
-function quoted_string($, rule) {
+function quoted_string1($, prefix, rule) {
   return choice(
     seq(
-      "'",
+      prefix + "'",
+      repeat(token.immediate(prec(PREC.resolve, /[^$']+/))),
+      "'"
+    ),
+    seq(
+      prefix + '"',
+      repeat(token.immediate(prec(PREC.resolve, /[^$"]+/))),
+      '"'
+    )
+  );
+}
+
+function quoted_string($, prefix, rule) {
+  return choice(
+    seq(
+      prefix + "'",
       repeat(
         choice(
           token.immediate(prec(PREC.resolve, /[^$'\\]+/)),
@@ -1288,7 +1308,7 @@ function quoted_string($, rule) {
       "'"
     ),
     seq(
-      '"',
+      prefix + '"',
       repeat(
         choice(
           token.immediate(prec(PREC.resolve, /[^$"\\]+/)),
