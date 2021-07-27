@@ -8,7 +8,5 @@ struct JS.Document {}
 
 (source_file
   (struct_declaration
-    (binded_type 
-      (language_spec)
-      (identifier))
+    (binded_type (identifier))
     (struct_field_declaration_list)))

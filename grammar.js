@@ -529,7 +529,8 @@ module.exports = grammar({
 
     binded_identifier: ($) =>
       seq(
-        field("language", $.language_spec),
+        field("language", choice("C", "JS")),
+        token.immediate("."),
         field("name", alias($._old_identifier, $.identifier))
       ),
 
@@ -607,7 +608,7 @@ module.exports = grammar({
 
     builtin_type: ($) => prec.right(choice(...builtin_type_keywords)),
 
-    _binded_type: ($) => alias($.binded_identifier, $.binded_type),
+    _binded_type: ($) => prec.right(alias($.binded_identifier, $.binded_type)),
 
     generic_type: ($) =>
       seq(choice($.qualified_type, $.type_identifier), $.type_parameters),
@@ -708,8 +709,11 @@ module.exports = grammar({
           optional(pub_keyword),
           fn_keyword,
           field("receiver", optional($.parameter_list)),
-          field("langauge", optional($.language_spec)),
-          field("name", choice($.identifier, $.overloadable_operator)),
+          field("name", choice(
+            $.binded_identifier, 
+            $.identifier, 
+            $.overloadable_operator
+          )),
           field("type_parameters", optional($.type_parameters)),
           field("parameters", $.parameter_list),
           field("result", optional($._type)),
@@ -733,9 +737,6 @@ module.exports = grammar({
         field("result", optional($._type)),
         field("body", $.block)
       ),
-
-    language_spec: ($) =>
-      seq(field("language", choice("C", "JS")), token.immediate(".")),
 
     global_var_declaration: ($) =>
       seq(

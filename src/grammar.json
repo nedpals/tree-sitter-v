@@ -2240,8 +2240,24 @@
           "type": "FIELD",
           "name": "language",
           "content": {
-            "type": "SYMBOL",
-            "name": "language_spec"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "C"
+              },
+              {
+                "type": "STRING",
+                "value": "JS"
+              }
+            ]
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "."
           }
         },
         {
@@ -2838,13 +2854,17 @@
       }
     },
     "_binded_type": {
-      "type": "ALIAS",
+      "type": "PREC_RIGHT",
+      "value": 0,
       "content": {
-        "type": "SYMBOL",
-        "name": "binded_identifier"
-      },
-      "named": true,
-      "value": "binded_type"
+        "type": "ALIAS",
+        "content": {
+          "type": "SYMBOL",
+          "name": "binded_identifier"
+        },
+        "named": true,
+        "value": "binded_type"
+      }
     },
     "generic_type": {
       "type": "SEQ",
@@ -3483,26 +3503,14 @@
           },
           {
             "type": "FIELD",
-            "name": "langauge",
+            "name": "name",
             "content": {
               "type": "CHOICE",
               "members": [
                 {
                   "type": "SYMBOL",
-                  "name": "language_spec"
+                  "name": "binded_identifier"
                 },
-                {
-                  "type": "BLANK"
-                }
-              ]
-            }
-          },
-          {
-            "type": "FIELD",
-            "name": "name",
-            "content": {
-              "type": "CHOICE",
-              "members": [
                 {
                   "type": "SYMBOL",
                   "name": "identifier"
@@ -3647,35 +3655,6 @@
           "content": {
             "type": "SYMBOL",
             "name": "block"
-          }
-        }
-      ]
-    },
-    "language_spec": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "FIELD",
-          "name": "language",
-          "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "STRING",
-                "value": "C"
-              },
-              {
-                "type": "STRING",
-                "value": "JS"
-              }
-            ]
-          }
-        },
-        {
-          "type": "IMMEDIATE_TOKEN",
-          "content": {
-            "type": "STRING",
-            "value": "."
           }
         }
       ]

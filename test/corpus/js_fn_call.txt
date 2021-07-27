@@ -8,8 +8,5 @@ JS.abc(123)
 
 (source_file
   (call_expression
-    (binded_identifier
-      (language_spec)
-      (identifier))
-    (argument_list
-        (int_literal))))
+    (binded_identifier (identifier))
+    (argument_list (int_literal))))

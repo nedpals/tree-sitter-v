@@ -8,6 +8,5 @@ fn JS.abc()
 
 (source_file
   (function_declaration
-    (language_spec)
-    (identifier)
+    (binded_identifier (identifier))
     (parameter_list)))

@@ -600,8 +600,12 @@
         "required": true,
         "types": [
           {
-            "type": "language_spec",
-            "named": true
+            "type": "C",
+            "named": false
+          },
+          {
+            "type": "JS",
+            "named": false
           }
         ]
       },
@@ -626,8 +630,12 @@
         "required": true,
         "types": [
           {
-            "type": "language_spec",
-            "named": true
+            "type": "C",
+            "named": false
+          },
+          {
+            "type": "JS",
+            "named": false
           }
         ]
       },
@@ -1417,20 +1425,14 @@
           }
         ]
       },
-      "langauge": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "language_spec",
-            "named": true
-          }
-        ]
-      },
       "name": {
         "multiple": false,
         "required": true,
         "types": [
+          {
+            "type": "binded_identifier",
+            "named": true
+          },
           {
             "type": "identifier",
             "named": true
@@ -2100,26 +2102,6 @@
           "named": true
         }
       ]
-    }
-  },
-  {
-    "type": "language_spec",
-    "named": true,
-    "fields": {
-      "language": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "C",
-            "named": false
-          },
-          {
-            "type": "JS",
-            "named": false
-          }
-        ]
-      }
     }
   },
   {
@@ -3620,11 +3602,11 @@
   },
   {
     "type": "int_literal",
-    "named": true
+    "named": false
   },
   {
     "type": "int_literal",
-    "named": false
+    "named": true
   },
   {
     "type": "interface",
