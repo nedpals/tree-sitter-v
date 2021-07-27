@@ -1016,7 +1016,13 @@ module.exports = grammar({
           "name",
           prec.dynamic(
             PREC.composite_literal,
-            choice($.type_identifier, $._binded_type, $.generic_type)
+            choice(
+              $.type_identifier, 
+              // in order to parse builtin
+              $.builtin_type, 
+              $._binded_type, 
+              $.generic_type
+            )
           )
         ),
         $.struct_field_declaration_list
