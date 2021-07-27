@@ -1,0 +1,17 @@
+===
+Mutable function argument
+===
+
+block(mut d, d.x)
+
+---
+
+(source_file
+  (call_expression
+    (identifier)
+    (argument_list
+      (mutable_expression
+        (identifier))
+      (selector_expression
+        (identifier)
+        (identifier)))))

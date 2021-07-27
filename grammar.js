@@ -141,7 +141,7 @@ module.exports = grammar({
     $._string_literal,
     $._field_identifier,
     $._module_identifier,
-    $._top_level_declaration
+    $._top_level_declaration,
   ],
 
   supertypes: ($) => [
@@ -233,7 +233,8 @@ module.exports = grammar({
       );
     },
 
-    as_type_cast_expression: ($) => seq($._expression, as_keyword, $._simple_type),
+    as_type_cast_expression: ($) =>
+      seq($._expression, as_keyword, $._simple_type),
 
     type_cast_expression: ($) =>
       seq(
@@ -480,15 +481,17 @@ module.exports = grammar({
         )
       ),
 
-    _string_literal: ($) => choice(
-      $.c_string_literal,
-      $.raw_string_literal,
-      $.interpreted_string_literal
-    ),
+    _string_literal: ($) =>
+      choice(
+        $.c_string_literal,
+        $.raw_string_literal,
+        $.interpreted_string_literal
+      ),
 
     c_string_literal: ($) => quoted_string($, "c", $.string_interpolation),
     raw_string_literal: ($) => quoted_string1($, "r"),
-    interpreted_string_literal: ($) => quoted_string($, "", $.string_interpolation),
+    interpreted_string_literal: ($) =>
+      quoted_string($, "", $.string_interpolation),
 
     string_interpolation: ($) =>
       choice(
@@ -536,6 +539,12 @@ module.exports = grammar({
 
     _mutable_identifier: ($) => seq(mut_keyword, $.identifier),
 
+    mutable_expression: ($) =>
+      seq(
+        mut_keyword,
+        choice($.identifier, $.selector_expression, $.index_expression)
+      ),
+
     binded_identifier: ($) =>
       seq(
         field("language", choice("C", "JS")),
@@ -547,24 +556,17 @@ module.exports = grammar({
       prec(
         PREC.primary,
         seq(
-          choice($.identifier, $._mutable_identifier), 
-          repeat(prec(2, 
-              seq(
-                ",",
-                choice($.identifier, $._mutable_identifier)
-              )
-          ))
+          choice($.identifier, $._mutable_identifier),
+          repeat(prec(2, seq(",", choice($.identifier, $._mutable_identifier))))
         )
       ),
 
     _assignable_identifier_list: ($) =>
       prec(
         PREC.primary,
-        comma_sep1(choice(
-          $.identifier, 
-          $.selector_expression,
-          $.index_expression
-        ))
+        comma_sep1(
+          choice($.identifier, $.selector_expression, $.index_expression)
+        )
       ),
 
     expression_list: ($) =>
@@ -579,7 +581,8 @@ module.exports = grammar({
 
     parameter_list: ($) => seq("(", comma_sep($.parameter_declaration), ")"),
 
-    argument_list: ($) => seq("(", comma_sep($._expression), ")"),
+    argument_list: ($) =>
+      seq("(", comma_sep(choice($._expression, $.mutable_expression)), ")"),
 
     _type: ($) => choice($._simple_type, $.option_type, $.multi_return_type),
 
@@ -687,7 +690,7 @@ module.exports = grammar({
         )
       ),
 
-    short_var_declaration: ($) => 
+    short_var_declaration: ($) =>
       seq(
         field("left", $.identifier_list),
         ":=",
@@ -718,11 +721,10 @@ module.exports = grammar({
           optional(pub_keyword),
           fn_keyword,
           field("receiver", optional($.parameter_list)),
-          field("name", choice(
-            $.binded_identifier, 
-            $.identifier, 
-            $.overloadable_operator
-          )),
+          field(
+            "name",
+            choice($.binded_identifier, $.identifier, $.overloadable_operator)
+          ),
           field("type_parameters", optional($.type_parameters)),
           field("parameters", $.parameter_list),
           field("result", optional($._type)),
@@ -806,8 +808,7 @@ module.exports = grammar({
         field("types", $.type_list)
       ),
 
-    type_list: ($) =>
-      seq($._simple_type, repeat(seq("|", $._simple_type))),
+    type_list: ($) => seq($._simple_type, repeat(seq("|", $._simple_type))),
 
     go_statement: ($) => seq(go_keyword, $._expression),
 
@@ -1025,10 +1026,10 @@ module.exports = grammar({
           prec.dynamic(
             PREC.composite_literal,
             choice(
-              $.type_identifier, 
+              $.type_identifier,
               // in order to parse builtin
-              $.builtin_type, 
-              $._binded_type, 
+              $.builtin_type,
+              $._binded_type,
               $.generic_type
             )
           )
@@ -1217,13 +1218,18 @@ module.exports = grammar({
     import_path: ($) =>
       token.immediate(seq(letter, repeat(choice(letter, unicode_digit, ".")))),
 
-    import_symbols: ($) => seq(token.immediate("{"), optional($.import_symbols_list), "}"),
+    import_symbols: ($) =>
+      seq(token.immediate("{"), optional($.import_symbols_list), "}"),
 
     import_symbols_list: ($) =>
       comma_sep1(choice($.identifier, alias($.type_identifier, $.identifier))),
 
-    import_alias: ($) => 
-      seq("as", " ", field("name", alias($.immediate_identifier, $.module_identifier))),
+    import_alias: ($) =>
+      seq(
+        "as",
+        " ",
+        field("name", alias($.immediate_identifier, $.module_identifier))
+      ),
 
     match_expression: ($) =>
       seq(
