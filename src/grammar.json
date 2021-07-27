@@ -2427,6 +2427,10 @@
             {
               "type": "SYMBOL",
               "name": "index_expression"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "slice_expression"
             }
           ]
         }

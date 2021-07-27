@@ -15,3 +15,24 @@ block(mut d, d.x)
       (selector_expression
         (identifier)
         (identifier)))))
+
+===
+Mutable slice expression argument
+===
+
+binary.big_endian_put_u64(mut tmp[8..], len)
+
+
+---
+
+(source_file
+  (call_expression
+    (selector_expression
+      (identifier)
+      (identifier))
+    (argument_list
+      (mutable_expression
+        (slice_expression
+          (identifier)
+          (int_literal)))
+      (identifier))))
