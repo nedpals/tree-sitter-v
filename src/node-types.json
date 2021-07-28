@@ -1539,6 +1539,10 @@
           {
             "type": "parameter_list",
             "named": true
+          },
+          {
+            "type": "type_only_parameter_list",
+            "named": true
           }
         ]
       },
@@ -3166,6 +3170,21 @@
     }
   },
   {
+    "type": "type_only_parameter_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "_simple_type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "type_parameters",
     "named": true,
     "fields": {},
@@ -3712,11 +3731,11 @@
   },
   {
     "type": "int_literal",
-    "named": false
+    "named": true
   },
   {
     "type": "int_literal",
-    "named": true
+    "named": false
   },
   {
     "type": "interface",
