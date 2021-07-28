@@ -678,12 +678,7 @@ module.exports = grammar({
 
     _field_identifier: ($) => alias($.identifier, $.field_identifier),
 
-    _statement_list: ($) =>
-      seq(
-        $._statement,
-        repeat(seq(optional(terminator), $._statement)),
-        optional(terminator)
-      ),
+    _statement_list: ($) => repeat1($._statement),
 
     _statement: ($) =>
       choice(
