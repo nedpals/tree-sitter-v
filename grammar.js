@@ -78,6 +78,25 @@ const int_literal = choice(
   hex_literal
 );
 
+const decimal_exponent = seq(choice('e', 'E'), optional(choice('+', '-')), decimal_digits);
+const decimal_float_literal = choice(
+  seq(decimal_digits, '.', decimal_digits, optional(decimal_exponent)),
+  seq(decimal_digits, decimal_exponent),
+  seq('.', decimal_digits, optional(decimal_exponent)),
+);
+
+const hex_exponent = seq(choice('p', 'P'), optional(choice('+', '-')), decimal_digits);
+const hex_mantissa = choice(
+  seq(optional('_'), hex_digits, '.', optional(hex_digits)),
+  seq(optional('_'), hex_digits),
+  seq('.', hex_digits),
+);
+const hex_float_literal = seq('0', choice('x', 'X'), hex_mantissa, hex_exponent);
+const float_literal = choice(
+  decimal_float_literal, 
+  hex_float_literal
+);
+
 const pub_keyword = "pub";
 const const_keyword = "const";
 const mut_keyword = "mut";
@@ -308,6 +327,7 @@ module.exports = grammar({
         choice(
           $.identifier,
           $.int_literal,
+          $.float_literal,
           $._string_literal,
           $.rune_literal,
           $.pseudo_comptime_identifier,
@@ -449,6 +469,8 @@ module.exports = grammar({
     channel_type: ($) => seq("chan", field("value", $._simple_type)),
 
     int_literal: ($) => token(int_literal),
+
+    float_literal: $ => token(float_literal),
 
     rune_literal: ($) =>
       token(

@@ -36,6 +36,10 @@
         "named": true
       },
       {
+        "type": "float_literal",
+        "named": true
+      },
+      {
         "type": "fn_literal",
         "named": true
       },
@@ -3671,6 +3675,10 @@
   },
   {
     "type": "field_identifier",
+    "named": true
+  },
+  {
+    "type": "float_literal",
     "named": true
   },
   {
