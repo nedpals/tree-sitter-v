@@ -676,6 +676,7 @@ module.exports = grammar({
         $.qualified_type,
         $.pointer_type,
         $.array_type,
+        $.fixed_array_type,
         $.function_type,
         $.generic_type,
         $.map_type,

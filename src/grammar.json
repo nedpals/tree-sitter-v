@@ -3708,6 +3708,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "fixed_array_type"
+        },
+        {
+          "type": "SYMBOL",
           "name": "function_type"
         },
         {
@@ -6088,8 +6092,17 @@
           ]
         },
         {
-          "type": "STRING",
-          "value": "struct"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "struct"
+            },
+            {
+              "type": "STRING",
+              "value": "union"
+            }
+          ]
         },
         {
           "type": "FIELD",

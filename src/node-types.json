@@ -206,6 +206,10 @@
         "named": true
       },
       {
+        "type": "fixed_array_type",
+        "named": true
+      },
+      {
         "type": "function_type",
         "named": true
       },
@@ -3730,11 +3734,11 @@
   },
   {
     "type": "float_literal",
-    "named": false
+    "named": true
   },
   {
     "type": "float_literal",
-    "named": true
+    "named": false
   },
   {
     "type": "fn",
@@ -3930,6 +3934,10 @@
   },
   {
     "type": "u64",
+    "named": false
+  },
+  {
+    "type": "union",
     "named": false
   },
   {
