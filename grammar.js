@@ -121,6 +121,7 @@ const type_keyword = "type";
 const for_keyword = "for";
 const in_keyword = "in";
 const is_keyword = "is";
+const union_keyword = "union";
 const struct_keyword = "struct";
 const enum_keyword = "enum";
 const interface_keyword = "interface";
@@ -1094,7 +1095,7 @@ module.exports = grammar({
       seq(
         field("attributes", optional($.attribute_list)),
         optional(pub_keyword),
-        struct_keyword,
+        choice(struct_keyword, union_keyword),
         field(
           "name",
           prec.dynamic(
