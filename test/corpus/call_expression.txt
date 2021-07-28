@@ -12,6 +12,7 @@ fn main() {
     return
   }
   generic<string>('test')
+  mcache.add(f, vmod_file: '', vmod_folder: f)
 }
 
 ---
@@ -46,7 +47,16 @@ fn main() {
       (call_expression
         (identifier)
         (type_parameters (builtin_type))
-        (argument_list (interpreted_string_literal))))))
+        (argument_list (interpreted_string_literal))) 
+      (call_expression 
+        (selector_expression 
+          (identifier) (identifier)) 
+        (argument_list 
+          (identifier) 
+          (keyed_element 
+            (field_identifier) (interpreted_string_literal)) 
+          (keyed_element 
+            (field_identifier) (identifier)))))))
 
 ===
 Special Call Expression

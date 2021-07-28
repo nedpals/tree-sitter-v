@@ -312,6 +312,10 @@
           "named": true
         },
         {
+          "type": "keyed_element",
+          "named": true
+        },
+        {
           "type": "mutable_expression",
           "named": true
         }

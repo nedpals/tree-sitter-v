@@ -588,7 +588,7 @@ module.exports = grammar({
       prec(PREC.resolve, seq("(", comma_sep($.parameter_declaration), ")")),
 
     argument_list: ($) =>
-      seq("(", comma_sep(choice($._expression, $.mutable_expression)), ")"),
+      seq("(", comma_sep(choice($._expression, $.mutable_expression, $.keyed_element)), ")"),
 
     _type: ($) => choice($._simple_type, $.option_type, $.multi_return_type),
 

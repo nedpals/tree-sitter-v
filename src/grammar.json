@@ -2742,6 +2742,10 @@
                     {
                       "type": "SYMBOL",
                       "name": "mutable_expression"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "keyed_element"
                     }
                   ]
                 },
@@ -2764,6 +2768,10 @@
                           {
                             "type": "SYMBOL",
                             "name": "mutable_expression"
+                          },
+                          {
+                            "type": "SYMBOL",
+                            "name": "keyed_element"
                           }
                         ]
                       }
