@@ -820,6 +820,24 @@
         "type": "CHOICE",
         "members": [
           {
+            "type": "ALIAS",
+            "content": {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "array"
+                },
+                {
+                  "type": "STRING",
+                  "value": "string"
+                }
+              ]
+            },
+            "named": true,
+            "value": "identifier"
+          },
+          {
             "type": "SYMBOL",
             "name": "binded_identifier"
           },

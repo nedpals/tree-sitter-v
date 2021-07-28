@@ -335,6 +335,7 @@ module.exports = grammar({
       prec.left(
         PREC.resolve,
         choice(
+          alias(choice("array", "string"), $.identifier),
           $.binded_identifier,
           $.identifier,
           $.int_literal,
