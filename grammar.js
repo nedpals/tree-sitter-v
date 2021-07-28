@@ -379,16 +379,19 @@ module.exports = grammar({
     true: ($) => "true",
     false: ($) => "false",
 
-    spread_operator: ($) => 
-      prec.right(PREC.unary, seq(
-        "...", 
-        choice(
-          $.identifier,
-          $.selector_expression,
-          $.index_expression,
-          $.slice_expression
+    spread_operator: ($) =>
+      prec.right(
+        PREC.unary,
+        seq(
+          "...",
+          choice(
+            $.identifier,
+            $.selector_expression,
+            $.index_expression,
+            $.slice_expression
+          )
         )
-      )),
+      ),
 
     type_initializer: ($) =>
       prec(
@@ -421,7 +424,7 @@ module.exports = grammar({
           seq(
             choice(
               $.spread_operator,
-              $.keyed_element, 
+              $.keyed_element,
               alias($._element, $.element)
             ),
             optional(choice(",", terminator))
@@ -644,15 +647,15 @@ module.exports = grammar({
 
     argument_list: ($) =>
       seq(
-        "(", 
+        "(",
         comma_sep(
           choice(
-            $._expression, 
-            $.mutable_expression, 
-            $.keyed_element, 
+            $._expression,
+            $.mutable_expression,
+            $.keyed_element,
             $.spread_operator
           )
-        ), 
+        ),
         ")"
       ),
 
@@ -761,10 +764,13 @@ module.exports = grammar({
       ),
 
     short_var_declaration: ($) =>
-      seq(
-        field("left", $.identifier_list),
-        ":=",
-        field("right", $.expression_list)
+      prec.right(
+        seq(
+          field("left", $.identifier_list),
+          ":=",
+          field("right", $.expression_list),
+          optional(terminator)
+        )
       ),
 
     assignment_statement: ($) =>

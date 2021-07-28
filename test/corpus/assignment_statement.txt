@@ -47,6 +47,7 @@ Pointer Assignment
 
 
 unsafe {
+	mut ap := &u64(a)
 	*ap = size
 }
 
@@ -56,6 +57,14 @@ unsafe {
 (source_file
   (unsafe_expression
     (block
+      (short_var_declaration
+        (identifier_list
+          (identifier))
+        (expression_list
+          (type_cast_expression
+            (pointer_type
+              (builtin_type))
+            (identifier))))
       (assignment_statement
         (identifier_list
           (unary_expression
