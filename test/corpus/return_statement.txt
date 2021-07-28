@@ -1,0 +1,17 @@
+===
+Return Statement
+===
+
+fn foo() int {
+  return 1
+}
+
+---
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameter_list)
+    (builtin_type)
+    (block
+      (return_statement (int_literal)))))

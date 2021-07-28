@@ -797,7 +797,7 @@ module.exports = grammar({
     _content_block: ($) => seq("{", token.immediate(prec(1, /[^{}]+/)), "}"),
 
     return_statement: ($) =>
-      prec.left(seq(return_keyword, optional(choice($._expression)))),
+      prec.right(seq(return_keyword, optional($._expression))),
 
     type_declaration: ($) =>
       seq(
