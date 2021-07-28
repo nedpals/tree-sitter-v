@@ -376,6 +376,17 @@ module.exports = grammar({
     true: ($) => "true",
     false: ($) => "false",
 
+    spread_operator: ($) => 
+      prec.right(PREC.unary, seq(
+        "...", 
+        choice(
+          $.identifier,
+          $.selector_expression,
+          $.index_expression,
+          $.slice_expression
+        )
+      )),
+
     type_initializer: ($) =>
       prec(
         PREC.composite_literal,
@@ -405,7 +416,11 @@ module.exports = grammar({
         "{",
         repeat(
           seq(
-            choice($.keyed_element, alias($._element, $.element)),
+            choice(
+              $.spread_operator,
+              $.keyed_element, 
+              alias($._element, $.element)
+            ),
             optional(choice(",", terminator))
           )
         ),
@@ -626,8 +641,15 @@ module.exports = grammar({
 
     argument_list: ($) =>
       seq(
-        "(",
-        comma_sep(choice($._expression, $.mutable_expression, $.keyed_element)),
+        "(", 
+        comma_sep(
+          choice(
+            $._expression, 
+            $.mutable_expression, 
+            $.keyed_element, 
+            $.spread_operator
+          )
+        ), 
         ")"
       ),
 
