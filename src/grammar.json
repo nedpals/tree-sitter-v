@@ -4220,7 +4220,7 @@
             "members": [
               {
                 "type": "SYMBOL",
-                "name": "_expression"
+                "name": "expression_list"
               },
               {
                 "type": "BLANK"

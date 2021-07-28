@@ -542,7 +542,12 @@ module.exports = grammar({
     mutable_expression: ($) =>
       seq(
         mut_keyword,
-        choice($.identifier, $.selector_expression, $.index_expression, $.slice_expression)
+        choice(
+          $.identifier,
+          $.selector_expression,
+          $.index_expression,
+          $.slice_expression
+        )
       ),
 
     binded_identifier: ($) =>
@@ -579,7 +584,8 @@ module.exports = grammar({
         field("type", choice($._simple_type, $.option_type, $.variadic_type))
       ),
 
-    parameter_list: ($) => prec(1, seq("(", comma_sep($.parameter_declaration), ")")),
+    parameter_list: ($) =>
+      prec(PREC.resolve, seq("(", comma_sep($.parameter_declaration), ")")),
 
     argument_list: ($) =>
       seq("(", comma_sep(choice($._expression, $.mutable_expression)), ")"),
@@ -736,12 +742,15 @@ module.exports = grammar({
       prec.right(
         seq(
           "fn",
-          field("parameters", choice($.parameter_list, $.type_only_parameter_list)),
+          field(
+            "parameters",
+            choice($.parameter_list, $.type_only_parameter_list)
+          ),
           field("result", optional($._type))
         )
       ),
 
-    type_only_parameter_list: ($) => 
+    type_only_parameter_list: ($) =>
       seq("(", comma_sep($._simple_type, $.option_type, $.variadic_type), ")"),
 
     fn_literal: ($) =>
@@ -800,7 +809,7 @@ module.exports = grammar({
     _content_block: ($) => seq("{", token.immediate(prec(1, /[^{}]+/)), "}"),
 
     return_statement: ($) =>
-      prec.right(seq(return_keyword, optional($._expression))),
+      prec.right(seq(return_keyword, optional($.expression_list))),
 
     type_declaration: ($) =>
       seq(

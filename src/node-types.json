@@ -2546,7 +2546,7 @@
       "required": false,
       "types": [
         {
-          "type": "_expression",
+          "type": "expression_list",
           "named": true
         }
       ]
