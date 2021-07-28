@@ -7199,8 +7199,16 @@
           }
         },
         {
-          "type": "SYMBOL",
-          "name": "default_case"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "default_case"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "STRING",

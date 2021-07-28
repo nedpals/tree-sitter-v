@@ -1277,7 +1277,7 @@ module.exports = grammar({
         field("condition", choice($._expression, $._mutable_identifier)),
         "{",
         repeat($.expression_case),
-        $.default_case,
+        optional($.default_case),
         "}"
       ),
 
