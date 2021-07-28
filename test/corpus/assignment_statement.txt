@@ -40,3 +40,26 @@ fn main() {
         (expression_list
           (int_literal)
           (int_literal))))))
+
+===
+Pointer Assignment
+===
+
+
+unsafe {
+	*ap = size
+}
+
+
+---
+
+(source_file
+  (unsafe_expression
+    (block
+      (assignment_statement
+        (identifier_list
+          (unary_expression
+            (identifier)))
+        (expression_list
+          (identifier))))))
+

@@ -1713,6 +1713,10 @@
         {
           "type": "selector_expression",
           "named": true
+        },
+        {
+          "type": "unary_expression",
+          "named": true
         }
       ]
     }

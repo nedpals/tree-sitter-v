@@ -78,24 +78,34 @@ const int_literal = choice(
   hex_literal
 );
 
-const decimal_exponent = seq(choice('e', 'E'), optional(choice('+', '-')), decimal_digits);
+const decimal_exponent = seq(
+  choice("e", "E"),
+  optional(choice("+", "-")),
+  decimal_digits
+);
 const decimal_float_literal = choice(
-  seq(decimal_digits, '.', decimal_digits, optional(decimal_exponent)),
+  seq(decimal_digits, ".", decimal_digits, optional(decimal_exponent)),
   seq(decimal_digits, decimal_exponent),
-  seq('.', decimal_digits, optional(decimal_exponent)),
+  seq(".", decimal_digits, optional(decimal_exponent))
 );
 
-const hex_exponent = seq(choice('p', 'P'), optional(choice('+', '-')), decimal_digits);
+const hex_exponent = seq(
+  choice("p", "P"),
+  optional(choice("+", "-")),
+  decimal_digits
+);
 const hex_mantissa = choice(
-  seq(optional('_'), hex_digits, '.', optional(hex_digits)),
-  seq(optional('_'), hex_digits),
-  seq('.', hex_digits),
+  seq(optional("_"), hex_digits, ".", optional(hex_digits)),
+  seq(optional("_"), hex_digits),
+  seq(".", hex_digits)
 );
-const hex_float_literal = seq('0', choice('x', 'X'), hex_mantissa, hex_exponent);
-const float_literal = choice(
-  decimal_float_literal, 
-  hex_float_literal
+const hex_float_literal = seq(
+  "0",
+  choice("x", "X"),
+  hex_mantissa,
+  hex_exponent
 );
+const float_literal = choice(decimal_float_literal, hex_float_literal);
 
 const pub_keyword = "pub";
 const const_keyword = "const";
@@ -409,11 +419,7 @@ module.exports = grammar({
           field(
             "name",
             seq(
-              choice(
-                $._field_identifier, 
-                $._string_literal,
-                $.int_literal,
-              ),
+              choice($._field_identifier, $._string_literal, $.int_literal),
               token.immediate(":")
             )
           )
@@ -474,7 +480,7 @@ module.exports = grammar({
 
     int_literal: ($) => token(int_literal),
 
-    float_literal: $ => token(float_literal),
+    float_literal: ($) => token(float_literal),
 
     rune_literal: ($) =>
       token(
@@ -596,7 +602,12 @@ module.exports = grammar({
       prec(
         PREC.primary,
         comma_sep1(
-          choice($.identifier, $.selector_expression, $.index_expression)
+          choice(
+            $.identifier,
+            $.selector_expression,
+            $.index_expression,
+            $.unary_expression
+          )
         )
       ),
 
@@ -614,7 +625,11 @@ module.exports = grammar({
       prec(PREC.resolve, seq("(", comma_sep($.parameter_declaration), ")")),
 
     argument_list: ($) =>
-      seq("(", comma_sep(choice($._expression, $.mutable_expression, $.keyed_element)), ")"),
+      seq(
+        "(",
+        comma_sep(choice($._expression, $.mutable_expression, $.keyed_element)),
+        ")"
+      ),
 
     _type: ($) => choice($._simple_type, $.option_type, $.multi_return_type),
 
@@ -624,7 +639,7 @@ module.exports = grammar({
       ),
 
     multi_return_type: ($) => seq("(", comma_sep1($._simple_type), ")"),
-    
+
     type_list: ($) => comma_sep1($._simple_type),
 
     _simple_type: ($) =>
@@ -1277,7 +1292,10 @@ module.exports = grammar({
       ),
 
     expression_case: ($) =>
-      seq(field("value", choice($.expression_list, $.type_list)), field("consequence", $.block)),
+      seq(
+        field("value", choice($.expression_list, $.type_list)),
+        field("consequence", $.block)
+      ),
 
     default_case: ($) => seq("else", field("consequence", $.block)),
 
@@ -1327,11 +1345,7 @@ function quoted_string1($, prefix, rule) {
       repeat(token.immediate(prec(PREC.resolve, /[^']+/))),
       "'"
     ),
-    seq(
-      prefix + '"',
-      repeat(token.immediate(prec(PREC.resolve, /[^"]+/))),
-      '"'
-    )
+    seq(prefix + '"', repeat(token.immediate(prec(PREC.resolve, /[^"]+/))), '"')
   );
 }
 

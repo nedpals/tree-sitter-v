@@ -3243,6 +3243,10 @@
               {
                 "type": "SYMBOL",
                 "name": "index_expression"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "unary_expression"
               }
             ]
           },
@@ -3269,6 +3273,10 @@
                     {
                       "type": "SYMBOL",
                       "name": "index_expression"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "unary_expression"
                     }
                   ]
                 }
