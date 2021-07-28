@@ -821,6 +821,10 @@
         "members": [
           {
             "type": "SYMBOL",
+            "name": "binded_identifier"
+          },
+          {
+            "type": "SYMBOL",
             "name": "identifier"
           },
           {

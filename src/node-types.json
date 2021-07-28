@@ -20,6 +20,10 @@
         "named": true
       },
       {
+        "type": "binded_identifier",
+        "named": true
+      },
+      {
         "type": "c_string_literal",
         "named": true
       },
