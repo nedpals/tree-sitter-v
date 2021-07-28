@@ -1301,12 +1301,12 @@ function quoted_string1($, prefix, rule) {
   return choice(
     seq(
       prefix + "'",
-      repeat(token.immediate(prec(PREC.resolve, /[^$']+/))),
+      repeat(token.immediate(prec(PREC.resolve, /[^']+/))),
       "'"
     ),
     seq(
       prefix + '"',
-      repeat(token.immediate(prec(PREC.resolve, /[^$"]+/))),
+      repeat(token.immediate(prec(PREC.resolve, /[^"]+/))),
       '"'
     )
   );
