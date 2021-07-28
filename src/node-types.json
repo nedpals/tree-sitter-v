@@ -1248,6 +1248,10 @@
           {
             "type": "expression_list",
             "named": true
+          },
+          {
+            "type": "type_list",
+            "named": true
           }
         ]
       }

@@ -624,6 +624,8 @@ module.exports = grammar({
       ),
 
     multi_return_type: ($) => seq("(", comma_sep1($._simple_type), ")"),
+    
+    type_list: ($) => comma_sep1($._simple_type),
 
     _simple_type: ($) =>
       choice(
@@ -843,10 +845,10 @@ module.exports = grammar({
         type_keyword,
         field("name", $.type_identifier),
         "=",
-        field("types", $.type_list)
+        field("types", alias($.sum_type_list, $.type_list))
       ),
 
-    type_list: ($) => seq($._simple_type, repeat(seq("|", $._simple_type))),
+    sum_type_list: ($) => seq($._simple_type, repeat(seq("|", $._simple_type))),
 
     go_statement: ($) => seq(go_keyword, $._expression),
 
@@ -1280,7 +1282,7 @@ module.exports = grammar({
       ),
 
     expression_case: ($) =>
-      seq(field("value", $.expression_list), field("consequence", $.block)),
+      seq(field("value", choice($.expression_list, $.type_list)), field("consequence", $.block)),
 
     default_case: ($) => seq("else", field("consequence", $.block)),
 
