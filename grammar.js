@@ -409,7 +409,11 @@ module.exports = grammar({
           field(
             "name",
             seq(
-              choice($._field_identifier, $._string_literal),
+              choice(
+                $._field_identifier, 
+                $._string_literal,
+                $.int_literal,
+              ),
               token.immediate(":")
             )
           )

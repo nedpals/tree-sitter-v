@@ -2096,6 +2096,10 @@
             "named": true
           },
           {
+            "type": "int_literal",
+            "named": true
+          },
+          {
             "type": "interpreted_string_literal",
             "named": true
           },
