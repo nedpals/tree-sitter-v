@@ -183,6 +183,11 @@ module.exports = grammar({
     $._expression_with_blocks,
   ],
 
+  conflicts: ($) => [
+    [$.qualified_type, $._expression],
+    [$.fixed_array_type, $._expression]
+  ],
+
   rules: {
     source_file: ($) =>
       repeat(
@@ -208,6 +213,7 @@ module.exports = grammar({
 
     _expression: ($) =>
       choice(
+        $.identifier,
         $._single_line_expression,
         $.type_initializer,
         $.array,
@@ -338,7 +344,6 @@ module.exports = grammar({
         choice(
           alias(choice("array", "string"), $.identifier),
           $.binded_identifier,
-          $.identifier,
           $.int_literal,
           $.float_literal,
           $._string_literal,
@@ -549,7 +554,7 @@ module.exports = grammar({
     string_interpolation: ($) =>
       choice(
         seq("${", $._expression, optional($.format_specifier), "}"),
-        seq("$", $._single_line_expression)
+        seq("$", choice($._single_line_expression, $.identifier))
       ),
 
     format_flag: ($) => token(/[gGeEfFcdoxXpsSc]/),
