@@ -447,9 +447,14 @@ module.exports = grammar({
 
     keyed_element: ($) =>
       seq(
+        $._element_key,
+        field("value", $._expression)
+      ),
+
+    _element_key: ($) =>
+      seq(
         field("name", choice($._field_identifier, $._string_literal, $.int_literal)),
         token.immediate(":"),
-        field("value", $._expression)
       ),
 
     map: ($) => 
@@ -805,7 +810,10 @@ module.exports = grammar({
             choice($.binded_identifier, $.identifier, $.overloadable_operator)
           ),
           field("type_parameters", optional($.type_parameters)),
-          field("parameters", $.parameter_list),
+          field(
+            "parameters",
+            choice($.parameter_list, $.type_only_parameter_list)
+          ),
           field("result", optional($._type)),
           field("body", optional($.block))
         )
@@ -824,7 +832,10 @@ module.exports = grammar({
       ),
 
     type_only_parameter_list: ($) =>
-      seq("(", comma_sep($._simple_type, $.option_type, $.variadic_type), ")"),
+      seq("(", comma_sep($.type_parameter_declaration), ")"),
+
+    type_parameter_declaration: ($) =>
+      field("type", $._simple_type, $.option_type, $.variadic_type),
 
     fn_literal: ($) =>
       seq(
@@ -1304,7 +1315,7 @@ module.exports = grammar({
       token.immediate(seq(letter, repeat(choice(letter, unicode_digit, ".")))),
 
     import_symbols: ($) =>
-      seq(token.immediate("{"), optional($.import_symbols_list), "}"),
+      seq(token.immediate("{"), $.import_symbols_list, "}"),
 
     import_symbols_list: ($) =>
       comma_sep1(choice($.identifier, alias($.type_identifier, $.identifier))),

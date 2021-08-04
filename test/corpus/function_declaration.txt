@@ -19,3 +19,18 @@ fn hello_world(mut s []string, i int, words ...Text) ? {}
         (variadic_type (type_identifier))))
     (option_type)
     (block)))
+
+===
+Function Definition
+===
+
+fn C.PQerrorMessage(voidptr) &byte
+
+---
+
+(source_file 
+  (function_declaration 
+    (binded_identifier (identifier)) 
+    (type_only_parameter_list 
+      (type_parameter_declaration (builtin_type))) 
+    (pointer_type (builtin_type))))

@@ -18,7 +18,7 @@ if (!vFolder) {
 const vlibFolder = path.join(vFolder, 'vlib');
 
 // skip test files for now
-const filesToParse = glob.sync(path.join(vlibFolder, '*', '!(tests)', '!(*_test).v'));
+const filesToParse = glob.sync(path.join(vlibFolder, '*', '!(tests|js)', '!(*_test|*.js).v'));
 const longestLen =  Math.max(...filesToParse.map(f => path.relative(vFolder, f).length));
 
 function walkAndReportErrors(node, file) {

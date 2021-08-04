@@ -1193,6 +1193,23 @@
       "type": "SEQ",
       "members": [
         {
+          "type": "SYMBOL",
+          "name": "_element_key"
+        },
+        {
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_expression"
+          }
+        }
+      ]
+    },
+    "_element_key": {
+      "type": "SEQ",
+      "members": [
+        {
           "type": "FIELD",
           "name": "name",
           "content": {
@@ -1218,14 +1235,6 @@
           "content": {
             "type": "STRING",
             "value": ":"
-          }
-        },
-        {
-          "type": "FIELD",
-          "name": "value",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_expression"
           }
         }
       ]
@@ -4599,8 +4608,17 @@
             "type": "FIELD",
             "name": "parameters",
             "content": {
-              "type": "SYMBOL",
-              "name": "parameter_list"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "parameter_list"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "type_only_parameter_list"
+                }
+              ]
             }
           },
           {
@@ -4699,7 +4717,7 @@
               "members": [
                 {
                   "type": "SYMBOL",
-                  "name": "_simple_type"
+                  "name": "type_parameter_declaration"
                 },
                 {
                   "type": "REPEAT",
@@ -4712,7 +4730,7 @@
                       },
                       {
                         "type": "SYMBOL",
-                        "name": "_simple_type"
+                        "name": "type_parameter_declaration"
                       }
                     ]
                   }
@@ -4729,6 +4747,14 @@
           "value": ")"
         }
       ]
+    },
+    "type_parameter_declaration": {
+      "type": "FIELD",
+      "name": "type",
+      "content": {
+        "type": "SYMBOL",
+        "name": "_simple_type"
+      }
     },
     "fn_literal": {
       "type": "SEQ",
@@ -7181,16 +7207,8 @@
           }
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "import_symbols_list"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
+          "type": "SYMBOL",
+          "name": "import_symbols_list"
         },
         {
           "type": "STRING",
