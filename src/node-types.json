@@ -256,6 +256,10 @@
         "named": true
       },
       {
+        "type": "block",
+        "named": true
+      },
+      {
         "type": "comptime_for_statement",
         "named": true
       },

@@ -98,6 +98,10 @@
       "members": [
         {
           "type": "SYMBOL",
+          "name": "binded_identifier"
+        },
+        {
+          "type": "SYMBOL",
           "name": "identifier"
         },
         {
@@ -843,10 +847,6 @@
           },
           {
             "type": "SYMBOL",
-            "name": "binded_identifier"
-          },
-          {
-            "type": "SYMBOL",
             "name": "int_literal"
           },
           {
@@ -1257,11 +1257,8 @@
             "name": "_non_empty_array"
           },
           {
-            "type": "TOKEN",
-            "content": {
-              "type": "STRING",
-              "value": "!"
-            }
+            "type": "STRING",
+            "value": "!"
           }
         ]
       }
@@ -4070,6 +4067,10 @@
         {
           "type": "SYMBOL",
           "name": "send_statement"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "block"
         }
       ]
     },
@@ -7470,6 +7471,10 @@
     ],
     [
       "fixed_array_type",
+      "_expression"
+    ],
+    [
+      "_binded_type",
       "_expression"
     ]
   ],

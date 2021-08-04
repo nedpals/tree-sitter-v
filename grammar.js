@@ -185,7 +185,8 @@ module.exports = grammar({
 
   conflicts: ($) => [
     [$.qualified_type, $._expression],
-    [$.fixed_array_type, $._expression]
+    [$.fixed_array_type, $._expression],
+    [$._binded_type, $._expression]
   ],
 
   rules: {
@@ -213,6 +214,7 @@ module.exports = grammar({
 
     _expression: ($) =>
       choice(
+        $.binded_identifier,
         $.identifier,
         $._single_line_expression,
         $.type_initializer,
@@ -343,7 +345,6 @@ module.exports = grammar({
         PREC.resolve,
         choice(
           alias(choice("array", "string"), $.identifier),
-          $.binded_identifier,
           $.int_literal,
           $.float_literal,
           $._string_literal,
@@ -727,7 +728,8 @@ module.exports = grammar({
         $.defer_statement,
         $.for_statement,
         $.comptime_for_statement,
-        $.send_statement
+        $.send_statement,
+        $.block
       ),
 
     _simple_statement: ($) =>
