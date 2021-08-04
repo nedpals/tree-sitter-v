@@ -799,7 +799,10 @@ module.exports = grammar({
             choice($.binded_identifier, $.identifier, $.overloadable_operator)
           ),
           field("type_parameters", optional($.type_parameters)),
-          field("parameters", $.parameter_list),
+          field(
+            "parameters",
+            choice($.parameter_list, $.type_only_parameter_list)
+          ),
           field("result", optional($._type)),
           field("body", optional($.block))
         )
@@ -818,7 +821,10 @@ module.exports = grammar({
       ),
 
     type_only_parameter_list: ($) =>
-      seq("(", comma_sep($._simple_type, $.option_type, $.variadic_type), ")"),
+      seq("(", comma_sep($.type_parameter_declaration), ")"),
+
+    type_parameter_declaration: ($) =>
+      field("type", $._simple_type, $.option_type, $.variadic_type),
 
     fn_literal: ($) =>
       seq(

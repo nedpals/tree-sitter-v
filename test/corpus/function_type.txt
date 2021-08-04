@@ -33,7 +33,8 @@ fn test() fn(i int) ?(string, int) {}
         (identifier) 
         (function_type 
           (type_only_parameter_list 
-            (array_type (builtin_type))) 
+            (type_parameter_declaration
+              (array_type (builtin_type)))) 
           (array_type (builtin_type)))) 
       (parameter_declaration 
         (identifier) (builtin_type))) 
