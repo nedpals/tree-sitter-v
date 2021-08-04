@@ -425,46 +425,29 @@ module.exports = grammar({
     literal_value: ($) =>
       seq(
         "{",
-        repeat(
-          seq(
-            choice(
-              $.spread_operator,
-              $.keyed_element,
-              alias($._element, $.element)
-            ),
-            optional(choice(",", terminator))
-          )
+        choice(
+          repeat(
+            seq(
+              choice($.spread_operator, $.keyed_element),
+              optional(choice(",", terminator))
+            )
+          ),
+          // For short struct init syntax
+          repeat(
+            seq(
+              alias($._expression, $.element), 
+              optional(",")
+            )
+          ),
         ),
         "}"
       ),
 
     keyed_element: ($) =>
       seq(
-        prec(
-          PREC.resolve,
-          field(
-            "name",
-            seq(
-              choice($._field_identifier, $._string_literal, $.int_literal),
-              token.immediate(":")
-            )
-          )
-        ),
-        field("value", $._element)
-      ),
-
-    _element: ($) =>
-      prec(
-        PREC.resolve,
-        choice(
-          $._expression,
-          $.unsafe_expression,
-          $.if_expression,
-          $.comptime_if_expression,
-          $.match_expression,
-          $.lock_expression,
-          $.sql_expression
-        )
+        field("name", choice($._field_identifier, $._string_literal, $.int_literal)),
+        token.immediate(":"),
+        field("value", $._expression)
       ),
 
     fixed_array_indicator: ($) => token(fixed_array_symbol),

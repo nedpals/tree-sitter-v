@@ -1114,45 +1114,6 @@
     }
   },
   {
-    "type": "element",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "_expression",
-          "named": true
-        },
-        {
-          "type": "comptime_if_expression",
-          "named": true
-        },
-        {
-          "type": "if_expression",
-          "named": true
-        },
-        {
-          "type": "lock_expression",
-          "named": true
-        },
-        {
-          "type": "match_expression",
-          "named": true
-        },
-        {
-          "type": "sql_expression",
-          "named": true
-        },
-        {
-          "type": "unsafe_expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "empty_labeled_statement",
     "named": true,
     "fields": {
@@ -2100,13 +2061,9 @@
     "named": true,
     "fields": {
       "name": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
-          {
-            "type": ":",
-            "named": false
-          },
           {
             "type": "c_string_literal",
             "named": true
@@ -2135,30 +2092,6 @@
         "types": [
           {
             "type": "_expression",
-            "named": true
-          },
-          {
-            "type": "comptime_if_expression",
-            "named": true
-          },
-          {
-            "type": "if_expression",
-            "named": true
-          },
-          {
-            "type": "lock_expression",
-            "named": true
-          },
-          {
-            "type": "match_expression",
-            "named": true
-          },
-          {
-            "type": "sql_expression",
-            "named": true
-          },
-          {
-            "type": "unsafe_expression",
             "named": true
           }
         ]
