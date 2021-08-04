@@ -450,14 +450,16 @@ module.exports = grammar({
         field("value", $._expression)
       ),
 
-    fixed_array_indicator: ($) => token(fixed_array_symbol),
-
-    array: ($) => choice(token("[]"), $._non_empty_array),
+    array: ($) => 
+      prec.right(
+        PREC.composite_literal,
+        choice(token("[]"), $._non_empty_array)
+      ),
 
     fixed_array: ($) =>
-      prec.right(
-        PREC.resolve,
-        seq($._non_empty_array, $.fixed_array_indicator)
+      prec(
+        PREC.composite_literal,
+        seq($._non_empty_array, fixed_array_symbol)
       ),
 
     _non_empty_array: ($) =>

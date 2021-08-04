@@ -1263,22 +1263,7 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "fixed_array_indicator",
-          "named": true
-        }
-      ]
     }
-  },
-  {
-    "type": "fixed_array_indicator",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "fixed_array_type",
