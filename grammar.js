@@ -992,7 +992,7 @@ module.exports = grammar({
       ),
 
     cstyle_for_clause: ($) =>
-      prec.right(
+      prec.left(
         seq(
           field("initializer", optional($._simple_statement)),
           ";",
