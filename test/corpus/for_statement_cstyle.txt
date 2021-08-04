@@ -26,3 +26,23 @@ fn main() {
           (call_expression 
             (identifier)
             (argument_list (identifier))))))))
+
+===
+C-Style For Statement without Update Statement
+===
+
+for i := 0; i < start_column; {
+	if test {} else {}
+}
+
+---
+
+(source_file
+  (for_statement
+    (cstyle_for_clause
+      (short_var_declaration
+        (identifier_list (identifier))
+        (expression_list (int_literal)))
+      (binary_expression (identifier) (identifier)))
+    (block
+      (if_expression (identifier) (block) (block)))))

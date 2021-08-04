@@ -218,6 +218,7 @@ module.exports = grammar({
         $.identifier,
         $._single_line_expression,
         $.type_initializer,
+        $.map,
         $.array,
         $.fixed_array,
         $.unary_expression,
@@ -454,6 +455,16 @@ module.exports = grammar({
       seq(
         field("name", choice($._field_identifier, $._string_literal, $.int_literal)),
         token.immediate(":"),
+      ),
+
+    map: ($) => 
+      prec(
+        PREC.composite_literal,
+        seq(
+          "{", 
+          field("entries", repeat1(seq($.keyed_element, optional(choice(",", terminator))))), 
+          "}"
+        )
       ),
 
     array: ($) => 
@@ -992,7 +1003,7 @@ module.exports = grammar({
       ),
 
     cstyle_for_clause: ($) =>
-      prec.right(
+      prec.left(
         seq(
           field("initializer", optional($._simple_statement)),
           ";",

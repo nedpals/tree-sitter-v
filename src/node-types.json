@@ -72,6 +72,10 @@
         "named": true
       },
       {
+        "type": "map",
+        "named": true
+      },
+      {
         "type": "none",
         "named": true
       },
@@ -2160,6 +2164,38 @@
         "types": [
           {
             "type": "expression_list",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "map",
+    "named": true,
+    "fields": {
+      "entries": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "\n",
+            "named": false
+          },
+          {
+            "type": "\r",
+            "named": false
+          },
+          {
+            "type": "\r\n",
+            "named": false
+          },
+          {
+            "type": ",",
+            "named": false
+          },
+          {
+            "type": "keyed_element",
             "named": true
           }
         ]
