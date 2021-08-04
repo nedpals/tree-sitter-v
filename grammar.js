@@ -1298,7 +1298,7 @@ module.exports = grammar({
       token.immediate(seq(letter, repeat(choice(letter, unicode_digit, ".")))),
 
     import_symbols: ($) =>
-      seq(token.immediate("{"), optional($.import_symbols_list), "}"),
+      seq(token.immediate("{"), $.import_symbols_list, "}"),
 
     import_symbols_list: ($) =>
       comma_sep1(choice($.identifier, alias($.type_identifier, $.identifier))),
