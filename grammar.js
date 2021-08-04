@@ -446,9 +446,14 @@ module.exports = grammar({
 
     keyed_element: ($) =>
       seq(
+        $._element_key,
+        field("value", $._expression)
+      ),
+
+    _element_key: ($) =>
+      seq(
         field("name", choice($._field_identifier, $._string_literal, $.int_literal)),
         token.immediate(":"),
-        field("value", $._expression)
       ),
 
     array: ($) => 
