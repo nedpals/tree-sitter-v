@@ -186,7 +186,7 @@ module.exports = grammar({
   conflicts: ($) => [
     [$.qualified_type, $._expression],
     [$.fixed_array_type, $._expression],
-    [$._binded_type, $._expression]
+    [$._binded_type, $._expression],
   ],
 
   rules: {
@@ -435,49 +435,43 @@ module.exports = grammar({
             )
           ),
           // For short struct init syntax
-          repeat(
-            seq(
-              alias($._expression, $.element), 
-              optional(",")
-            )
-          ),
+          repeat(seq(alias($._expression, $.element), optional(",")))
         ),
         "}"
       ),
 
-    keyed_element: ($) =>
-      seq(
-        $._element_key,
-        field("value", $._expression)
-      ),
+    keyed_element: ($) => seq($._element_key, field("value", $._expression)),
 
     _element_key: ($) =>
       seq(
-        field("name", choice($._field_identifier, $._string_literal, $.int_literal)),
-        token.immediate(":"),
+        field(
+          "name",
+          choice($._field_identifier, $._string_literal, $.int_literal)
+        ),
+        token.immediate(":")
       ),
 
-    map: ($) => 
+    map: ($) =>
       prec(
         PREC.composite_literal,
         seq(
-          "{", 
-          field("entries", repeat1(seq($.keyed_element, optional(choice(",", terminator))))), 
+          "{",
+          field(
+            "entries",
+            repeat1(seq($.keyed_element, optional(choice(",", terminator))))
+          ),
           "}"
         )
       ),
 
-    array: ($) => 
+    array: ($) =>
       prec.right(
         PREC.composite_literal,
         choice(token("[]"), $._non_empty_array)
       ),
 
     fixed_array: ($) =>
-      prec(
-        PREC.composite_literal,
-        seq($._non_empty_array, fixed_array_symbol)
-      ),
+      prec(PREC.composite_literal, seq($._non_empty_array, fixed_array_symbol)),
 
     _non_empty_array: ($) =>
       seq(
@@ -597,7 +591,11 @@ module.exports = grammar({
     _old_identifier: ($) =>
       token(seq(letter, repeat(choice(letter, unicode_digit)))),
 
-    _mutable_identifier: ($) => seq(mut_keyword, $.identifier),
+    _mutable_identifier: ($) =>
+      prec(
+        PREC.resolve,
+        seq(mut_keyword, choice($.identifier, $.selector_expression))
+      ),
 
     mutable_expression: ($) =>
       seq(
