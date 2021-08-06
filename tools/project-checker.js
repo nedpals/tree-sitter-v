@@ -16,7 +16,11 @@ if (!vProject) {
 }
 
 // skip test files for now
-const filesToParse = glob.sync(path.join(vProject, '!(tests|js)', '!(*_test|*.js).v'));
+const filesToParse = glob.sync(path.join('**', '!(*_test|*_bare|*.js).v'), {
+  ignore: ['+(tests|js)'],
+  cwd: vProject,
+  absolute: true
+}).filter(filePath => !filePath.includes('tests') && !filePath.includes('js'));
 const longestLen =  Math.max(...filesToParse.map(f => path.relative(vProject, f).length));
 
 function walkAndReportErrors(node, file) {
