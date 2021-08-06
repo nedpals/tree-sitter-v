@@ -775,7 +775,6 @@ module.exports = grammar({
           field("left", $.identifier_list),
           ":=",
           field("right", $.expression_list),
-          optional(terminator)
         )
       ),
 
