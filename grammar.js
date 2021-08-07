@@ -668,6 +668,7 @@ module.exports = grammar({
         "(",
         comma_sep(
           choice(
+            alias("{}", $.literal_value),
             $._expression,
             $.mutable_expression,
             $.keyed_element,

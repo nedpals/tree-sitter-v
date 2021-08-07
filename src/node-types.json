@@ -336,6 +336,10 @@
           "named": true
         },
         {
+          "type": "literal_value",
+          "named": true
+        },
+        {
           "type": "mutable_expression",
           "named": true
         },
@@ -3268,6 +3272,10 @@
           },
           {
             "type": "type_identifier",
+            "named": true
+          },
+          {
+            "type": "type_placeholder",
             "named": true
           }
         ]
