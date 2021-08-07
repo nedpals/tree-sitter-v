@@ -1213,7 +1213,7 @@ module.exports = grammar({
 
     type_selector_expression: ($) =>
       seq(
-        optional(field("type", choice($.type_identifier, $.qualified_type))),
+        field("type", optional(choice($.type_placeholder, $.type_identifier, $.qualified_type))),
         ".",
         field("field_name", choice($._reserved_identifier, $.identifier))
       ),
