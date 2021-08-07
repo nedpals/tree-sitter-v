@@ -215,6 +215,7 @@ module.exports = grammar({
 
     _expression: ($) =>
       choice(
+        $._reserved_identifier,
         $.binded_identifier,
         $.identifier,
         $._single_line_expression,
@@ -346,7 +347,6 @@ module.exports = grammar({
       prec.left(
         PREC.resolve,
         choice(
-          alias(choice("array", "string"), $.identifier),
           $.int_literal,
           $.float_literal,
           $._string_literal,
@@ -570,6 +570,9 @@ module.exports = grammar({
         )
       ),
 
+    _reserved_identifier: ($) => 
+      alias(choice("array", "string", "char"), $.identifier),
+
     identifier: ($) =>
       token(
         seq(
@@ -595,7 +598,14 @@ module.exports = grammar({
     _mutable_identifier: ($) =>
       prec(
         PREC.resolve,
-        seq(mut_keyword, choice($.identifier, $.selector_expression))
+        seq(
+          mut_keyword, 
+          choice(
+            $.identifier, 
+            $.selector_expression,
+            $._reserved_identifier
+          )
+        )
       ),
 
     mutable_expression: ($) =>
@@ -631,6 +641,7 @@ module.exports = grammar({
         PREC.primary,
         comma_sep1(
           choice(
+            $._reserved_identifier,
             $.identifier,
             $.selector_expression,
             $.index_expression,
@@ -703,7 +714,7 @@ module.exports = grammar({
         )
       ),
 
-    builtin_type: ($) => prec.right(choice(...builtin_type_keywords)),
+    builtin_type: ($) => prec.right(PREC.resolve, choice(...builtin_type_keywords)),
 
     _binded_type: ($) => prec.right(alias($.binded_identifier, $.binded_type)),
 

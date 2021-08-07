@@ -98,6 +98,10 @@
       "members": [
         {
           "type": "SYMBOL",
+          "name": "_reserved_identifier"
+        },
+        {
+          "type": "SYMBOL",
           "name": "binded_identifier"
         },
         {
@@ -831,24 +835,6 @@
       "content": {
         "type": "CHOICE",
         "members": [
-          {
-            "type": "ALIAS",
-            "content": {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "STRING",
-                  "value": "array"
-                },
-                {
-                  "type": "STRING",
-                  "value": "string"
-                }
-              ]
-            },
-            "named": true,
-            "value": "identifier"
-          },
           {
             "type": "SYMBOL",
             "name": "int_literal"
@@ -3078,6 +3064,28 @@
         }
       ]
     },
+    "_reserved_identifier": {
+      "type": "ALIAS",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "array"
+          },
+          {
+            "type": "STRING",
+            "value": "string"
+          },
+          {
+            "type": "STRING",
+            "value": "char"
+          }
+        ]
+      },
+      "named": true,
+      "value": "identifier"
+    },
     "identifier": {
       "type": "TOKEN",
       "content": {
@@ -3236,6 +3244,10 @@
               {
                 "type": "SYMBOL",
                 "name": "selector_expression"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_reserved_identifier"
               }
             ]
           }
@@ -3380,6 +3392,10 @@
             "members": [
               {
                 "type": "SYMBOL",
+                "name": "_reserved_identifier"
+              },
+              {
+                "type": "SYMBOL",
                 "name": "identifier"
               },
               {
@@ -3408,6 +3424,10 @@
                 {
                   "type": "CHOICE",
                   "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "_reserved_identifier"
+                    },
                     {
                       "type": "SYMBOL",
                       "name": "identifier"
@@ -3864,7 +3884,7 @@
     },
     "builtin_type": {
       "type": "PREC_RIGHT",
-      "value": 0,
+      "value": 1,
       "content": {
         "type": "CHOICE",
         "members": [
