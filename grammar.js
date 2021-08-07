@@ -158,6 +158,7 @@ const builtin_type_keywords = [
 ];
 
 const fixed_array_symbol = "!";
+const string_quotes = ["'", '"'];
 
 module.exports = grammar({
   name: "v",
@@ -1383,38 +1384,27 @@ function comma_sep(rule) {
 
 function quoted_string1($, prefix, rule) {
   return choice(
-    seq(
-      prefix + "'",
-      repeat(token.immediate(prec(PREC.resolve, /[^']+/))),
-      "'"
-    ),
-    seq(prefix + '"', repeat(token.immediate(prec(PREC.resolve, /[^"]+/))), '"')
+    ...string_quotes.map(quote => seq(
+      prefix + quote,
+      repeat(token.immediate(new RegExp(`[^${quote}]+`))),
+      quote
+    ))
   );
 }
 
 function quoted_string($, prefix, rule) {
   return choice(
-    seq(
-      prefix + "'",
+    ...string_quotes.map(quote => seq(
+      prefix + quote,
       repeat(
         choice(
-          token.immediate(prec(PREC.resolve, /[^$'\\]+/)),
+          token.immediate("$("),
+          token.immediate(new RegExp(`[^\$${quote}\\\\]+`)),
           $.escape_sequence,
           rule
         )
       ),
-      "'"
-    ),
-    seq(
-      prefix + '"',
-      repeat(
-        choice(
-          token.immediate(prec(PREC.resolve, /[^$"\\]+/)),
-          $.escape_sequence,
-          rule
-        )
-      ),
-      '"'
-    )
+      quote
+    ))
   );
 }

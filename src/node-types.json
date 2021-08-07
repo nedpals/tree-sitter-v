@@ -3403,6 +3403,10 @@
     "named": false
   },
   {
+    "type": "$(",
+    "named": false
+  },
+  {
     "type": "$else",
     "named": false
   },
