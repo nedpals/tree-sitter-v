@@ -605,7 +605,8 @@ module.exports = grammar({
           $.identifier,
           $.selector_expression,
           $.index_expression,
-          $.slice_expression
+          $.slice_expression,
+          $.unary_expression
         )
       ),
 

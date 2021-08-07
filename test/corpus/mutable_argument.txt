@@ -2,7 +2,7 @@
 Mutable function argument
 ===
 
-block(mut d, d.x)
+block(mut d, mut &a, d.x)
 
 ---
 
@@ -12,6 +12,9 @@ block(mut d, d.x)
     (argument_list
       (mutable_expression
         (identifier))
+      (mutable_expression
+        (unary_expression
+          (identifier)))
       (selector_expression
         (identifier)
         (identifier)))))

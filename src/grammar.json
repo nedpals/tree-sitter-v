@@ -3267,6 +3267,10 @@
             {
               "type": "SYMBOL",
               "name": "slice_expression"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "unary_expression"
             }
           ]
         }
