@@ -845,7 +845,10 @@ module.exports = grammar({
       seq("(", comma_sep($.type_parameter_declaration), ")"),
 
     type_parameter_declaration: ($) =>
-      field("type", $._simple_type, $.option_type, $.variadic_type),
+      seq(
+        optional(mut_keyword),
+        field("type", $._simple_type, $.option_type, $.variadic_type)
+      ),
 
     fn_literal: ($) =>
       seq(

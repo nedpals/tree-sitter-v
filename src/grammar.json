@@ -4765,12 +4765,29 @@
       ]
     },
     "type_parameter_declaration": {
-      "type": "FIELD",
-      "name": "type",
-      "content": {
-        "type": "SYMBOL",
-        "name": "_simple_type"
-      }
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "mut"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "FIELD",
+          "name": "type",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_simple_type"
+          }
+        }
+      ]
     },
     "fn_literal": {
       "type": "SEQ",
