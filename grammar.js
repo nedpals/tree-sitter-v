@@ -1213,9 +1213,9 @@ module.exports = grammar({
 
     type_selector_expression: ($) =>
       seq(
-        optional(field("type", $.type_identifier)),
+        optional(field("type", choice($.type_identifier, $.qualified_type))),
         ".",
-        field("field_name", $.identifier)
+        field("field_name", choice($._reserved_identifier, $.identifier))
       ),
 
     interface_declaration: ($) =>

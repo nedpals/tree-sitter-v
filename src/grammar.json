@@ -6693,8 +6693,17 @@
               "type": "FIELD",
               "name": "type",
               "content": {
-                "type": "SYMBOL",
-                "name": "type_identifier"
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "type_identifier"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "qualified_type"
+                  }
+                ]
               }
             },
             {
@@ -6710,8 +6719,17 @@
           "type": "FIELD",
           "name": "field_name",
           "content": {
-            "type": "SYMBOL",
-            "name": "identifier"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "_reserved_identifier"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "identifier"
+              }
+            ]
           }
         }
       ]
