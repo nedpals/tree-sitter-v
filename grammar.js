@@ -476,11 +476,7 @@ module.exports = grammar({
       prec(PREC.composite_literal, seq($._non_empty_array, fixed_array_symbol)),
 
     _non_empty_array: ($) =>
-      seq(
-        "[",
-        field("values", repeat1(seq($._expression, optional(",")))),
-        "]"
-      ),
+      seq("[", repeat1(seq($._expression, optional(","))), "]"),
 
     fixed_array_type: ($) =>
       seq(
