@@ -950,6 +950,10 @@
                 {
                   "type": "PATTERN",
                   "value": "['\"abfrntv\\$\\\\]"
+                },
+                {
+                  "type": "PATTERN",
+                  "value": "\\S"
                 }
               ]
             }
@@ -2972,6 +2976,14 @@
                 {
                   "type": "SYMBOL",
                   "name": "identifier"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "selector_expression"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "call_expression"
                 }
               ]
             }

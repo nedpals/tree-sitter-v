@@ -377,7 +377,8 @@ module.exports = grammar({
               /x[a-fA-F\d]{2}/,
               /\d{3}/,
               /\r?\n/,
-              /['"abfrntv\$\\]/
+              /['"abfrntv\$\\]/,
+              /\S/
             )
           )
         )
@@ -551,7 +552,12 @@ module.exports = grammar({
     string_interpolation: ($) =>
       choice(
         seq("${", $._expression, optional($.format_specifier), "}"),
-        seq("$", choice($._single_line_expression, $.identifier))
+        seq("$", choice(
+          $._single_line_expression, 
+          $.identifier, 
+          $.selector_expression,
+          $.call_expression
+        ))
       ),
 
     format_flag: ($) => token(/[gGeEfFcdoxXpsSc]/),
