@@ -1303,8 +1303,9 @@ module.exports = grammar({
         field("name", alias($._old_identifier, $.identifier)),
         field(
           "value",
-          token(prec(PREC.composite_literal, repeat1(/.|\\\r?\n/)))
-        )
+          optional(token(prec(PREC.composite_literal, repeat1(/.|\\\r?\n/))))
+        ),
+        terminator
       ),
 
     module_clause: ($) =>

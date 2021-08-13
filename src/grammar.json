@@ -7138,19 +7138,44 @@
           "type": "FIELD",
           "name": "value",
           "content": {
-            "type": "TOKEN",
-            "content": {
-              "type": "PREC",
-              "value": -1,
-              "content": {
-                "type": "REPEAT1",
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "TOKEN",
                 "content": {
-                  "type": "PATTERN",
-                  "value": ".|\\\\\\r?\\n"
+                  "type": "PREC",
+                  "value": -1,
+                  "content": {
+                    "type": "REPEAT1",
+                    "content": {
+                      "type": "PATTERN",
+                      "value": ".|\\\\\\r?\\n"
+                    }
+                  }
                 }
+              },
+              {
+                "type": "BLANK"
               }
-            }
+            ]
           }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "\n"
+            },
+            {
+              "type": "STRING",
+              "value": "\r"
+            },
+            {
+              "type": "STRING",
+              "value": "\r\n"
+            }
+          ]
         }
       ]
     },
