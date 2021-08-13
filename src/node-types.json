@@ -3165,6 +3165,10 @@
         "required": true,
         "types": [
           {
+            "type": "builtin_type",
+            "named": true
+          },
+          {
             "type": "type_identifier",
             "named": true
           }
@@ -3861,11 +3865,11 @@
   },
   {
     "type": "int_literal",
-    "named": true
+    "named": false
   },
   {
     "type": "int_literal",
-    "named": false
+    "named": true
   },
   {
     "type": "interface",
@@ -3997,6 +4001,10 @@
   },
   {
     "type": "u64",
+    "named": false
+  },
+  {
+    "type": "u8",
     "named": false
   },
   {

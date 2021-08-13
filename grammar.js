@@ -138,6 +138,7 @@ const builtin_type_keywords = [
   "int",
   "i64",
   "byte",
+  "u8",
   "u16",
   "u32",
   "u64",
@@ -921,7 +922,7 @@ module.exports = grammar({
       seq(
         optional(pub_keyword),
         type_keyword,
-        field("name", $.type_identifier),
+        field("name", choice($.type_identifier, $.builtin_type)),
         "=",
         field("types", alias($.sum_type_list, $.type_list))
       ),
