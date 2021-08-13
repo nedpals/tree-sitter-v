@@ -10,7 +10,8 @@
   "scripts": {
     "test": "tree-sitter test",
     "generate": "tree-sitter generate",
-    "parse": "tree-sitter parse"
+    "parse": "tree-sitter parse",
+    "parseg": "tree-sitter parse --debug-graph"
   },
   "homepage": "https://github.com/nedpals/tree-sitter-v#readme",
   "dependencies": {
