@@ -1271,7 +1271,12 @@ module.exports = grammar({
       ),
 
     _c_directive: ($) =>
-      choice($.c_include_clause, $.c_flag_clause, $.c_define_clause),
+      choice(
+        $.c_include_clause,
+        $.c_flag_clause,
+        $.c_define_clause,
+        $.c_pkgconfig
+      ),
 
     c_include_clause: ($) =>
       seq(
@@ -1305,6 +1310,13 @@ module.exports = grammar({
           "value",
           optional(token(prec(PREC.composite_literal, repeat1(/.|\\\r?\n/))))
         ),
+        terminator
+      ),
+
+    c_pkgconfig: ($) =>
+      seq(
+        "#pkgconfig",
+        token(prec(PREC.composite_literal, repeat1(/.|\\\r?\n/))),
         terminator
       ),
 

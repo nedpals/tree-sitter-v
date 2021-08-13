@@ -779,6 +779,10 @@
         {
           "type": "c_include_clause",
           "named": true
+        },
+        {
+          "type": "c_pkgconfig",
+          "named": true
         }
       ]
     }
@@ -853,6 +857,11 @@
         ]
       }
     }
+  },
+  {
+    "type": "c_pkgconfig",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "c_string_literal",
@@ -2817,6 +2826,10 @@
           "named": true
         },
         {
+          "type": "c_pkgconfig",
+          "named": true
+        },
+        {
           "type": "const_declaration",
           "named": true
         },
@@ -3456,6 +3469,10 @@
   },
   {
     "type": "#include",
+    "named": false
+  },
+  {
+    "type": "#pkgconfig",
     "named": false
   },
   {
