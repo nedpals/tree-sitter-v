@@ -1293,6 +1293,10 @@
             "named": true
           },
           {
+            "type": "range",
+            "named": true
+          },
+          {
             "type": "type_list",
             "named": true
           }

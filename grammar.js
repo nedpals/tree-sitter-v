@@ -1379,7 +1379,10 @@ module.exports = grammar({
 
     expression_case: ($) =>
       seq(
-        field("value", choice($.expression_list, $.type_list)),
+        field(
+          "value",
+          choice($.expression_list, $.type_list, alias($._range, $.range))
+        ),
         field("consequence", $.block)
       ),
 

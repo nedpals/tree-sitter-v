@@ -44,3 +44,30 @@ fn main() {
           (type_list (array_type (type_identifier))) 
           (block)) 
         (default_case (block))))))
+
+===
+Match with range
+===
+
+match b {
+	0 {}
+	32...126 {}
+	else {}
+}
+
+---
+
+(source_file
+  (match_expression
+    (identifier)
+    (expression_case
+      (expression_list
+        (int_literal))
+      (block))
+    (expression_case
+      (range
+        (int_literal)
+        (float_literal))
+      (block))
+    (default_case
+      (block))))

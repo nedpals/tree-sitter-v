@@ -7542,6 +7542,15 @@
               {
                 "type": "SYMBOL",
                 "name": "type_list"
+              },
+              {
+                "type": "ALIAS",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "_range"
+                },
+                "named": true,
+                "value": "range"
               }
             ]
           }
