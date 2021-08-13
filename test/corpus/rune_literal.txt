@@ -10,3 +10,26 @@ const a = `h`
   (const_declaration
     (const_spec
       (identifier) (rune_literal))))
+
+===
+Unescaped quote
+===
+
+if !(ch == `'` || ch == `"`) {
+}
+
+
+---
+
+(source_file
+  (if_expression
+    (unary_expression
+      (parenthesized_expression
+        (binary_expression
+          (binary_expression
+            (identifier)
+            (rune_literal))
+          (binary_expression
+            (identifier)
+            (rune_literal)))))
+    (block)))

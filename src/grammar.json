@@ -2501,6 +2501,14 @@
                 "value": "[^'\\\\]"
               },
               {
+                "type": "STRING",
+                "value": "'"
+              },
+              {
+                "type": "STRING",
+                "value": "\""
+              },
+              {
                 "type": "SEQ",
                 "members": [
                   {
@@ -2968,6 +2976,22 @@
                 {
                   "type": "SYMBOL",
                   "name": "_single_line_expression"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "_single_line_expression"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "_single_line_expression"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "identifier"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "identifier"
                 },
                 {
                   "type": "SYMBOL",

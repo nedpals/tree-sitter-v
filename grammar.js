@@ -508,6 +508,8 @@ module.exports = grammar({
           "`",
           choice(
             /[^'\\]/,
+            "'",
+            '"',
             seq(
               "\\",
               choice(
@@ -548,12 +550,19 @@ module.exports = grammar({
     string_interpolation: ($) =>
       choice(
         seq("${", $._expression, optional($.format_specifier), "}"),
-        seq("$", choice(
-          $._single_line_expression, 
-          $.identifier, 
-          $.selector_expression,
-          $.call_expression
-        ))
+        seq(
+          "$",
+          choice(
+            $._single_line_expression,
+            $._single_line_expression,
+            $._single_line_expression,
+            $.identifier,
+            $.identifier,
+            $.identifier,
+            $.selector_expression,
+            $.call_expression
+          )
+        )
       ),
 
     format_flag: ($) => token(/[gGeEfFcdoxXpsSc]/),
@@ -572,7 +581,7 @@ module.exports = grammar({
         )
       ),
 
-    _reserved_identifier: ($) => 
+    _reserved_identifier: ($) =>
       alias(choice("array", "string", "char"), $.identifier),
 
     identifier: ($) =>
@@ -601,12 +610,8 @@ module.exports = grammar({
       prec(
         PREC.resolve,
         seq(
-          mut_keyword, 
-          choice(
-            $.identifier, 
-            $.selector_expression,
-            $._reserved_identifier
-          )
+          mut_keyword,
+          choice($.identifier, $.selector_expression, $._reserved_identifier)
         )
       ),
 
@@ -717,7 +722,8 @@ module.exports = grammar({
         )
       ),
 
-    builtin_type: ($) => prec.right(PREC.resolve, choice(...builtin_type_keywords)),
+    builtin_type: ($) =>
+      prec.right(PREC.resolve, choice(...builtin_type_keywords)),
 
     _binded_type: ($) => prec.right(alias($.binded_identifier, $.binded_type)),
 
@@ -790,7 +796,7 @@ module.exports = grammar({
         seq(
           field("left", $.identifier_list),
           ":=",
-          field("right", $.expression_list),
+          field("right", $.expression_list)
         )
       ),
 
@@ -1216,7 +1222,12 @@ module.exports = grammar({
 
     type_selector_expression: ($) =>
       seq(
-        field("type", optional(choice($.type_placeholder, $.type_identifier, $.qualified_type))),
+        field(
+          "type",
+          optional(
+            choice($.type_placeholder, $.type_identifier, $.qualified_type)
+          )
+        ),
         ".",
         field("field_name", choice($._reserved_identifier, $.identifier))
       ),
@@ -1402,27 +1413,31 @@ function comma_sep(rule) {
 
 function quoted_string1($, prefix, rule) {
   return choice(
-    ...string_quotes.map(quote => seq(
-      prefix + quote,
-      repeat(token.immediate(new RegExp(`[^${quote}]+`))),
-      quote
-    ))
+    ...string_quotes.map((quote) =>
+      seq(
+        prefix + quote,
+        repeat(token.immediate(new RegExp(`[^${quote}]+`))),
+        quote
+      )
+    )
   );
 }
 
 function quoted_string($, prefix, rule) {
   return choice(
-    ...string_quotes.map(quote => seq(
-      prefix + quote,
-      repeat(
-        choice(
-          token.immediate("$("),
-          token.immediate(new RegExp(`[^\$${quote}\\\\]+`)),
-          $.escape_sequence,
-          rule
-        )
-      ),
-      quote
-    ))
+    ...string_quotes.map((quote) =>
+      seq(
+        prefix + quote,
+        repeat(
+          choice(
+            token.immediate("$("),
+            token.immediate(new RegExp(`[^\$${quote}\\\\]+`)),
+            $.escape_sequence,
+            rule
+          )
+        ),
+        quote
+      )
+    )
   );
 }
