@@ -2531,6 +2531,10 @@
                     "type": "CHOICE",
                     "members": [
                       {
+                        "type": "STRING",
+                        "value": "0"
+                      },
+                      {
                         "type": "SEQ",
                         "members": [
                           {
