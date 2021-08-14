@@ -1216,6 +1216,14 @@
               {
                 "type": "SYMBOL",
                 "name": "int_literal"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "call_expression"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "selector_expression"
               }
             ]
           }

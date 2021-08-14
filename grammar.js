@@ -449,7 +449,13 @@ module.exports = grammar({
       seq(
         field(
           "name",
-          choice($._field_identifier, $._string_literal, $.int_literal)
+          choice(
+            $._field_identifier, 
+            $._string_literal, 
+            $.int_literal, 
+            $.call_expression,
+            $.selector_expression
+          )
         ),
         token.immediate(":")
       ),
