@@ -520,6 +520,7 @@ module.exports = grammar({
               "\\",
               choice(
                 "0",
+                "`",
                 seq("x", hex_digit, hex_digit),
                 seq(octal_digit, octal_digit, octal_digit),
                 seq("u", hex_digit, hex_digit, hex_digit, hex_digit),

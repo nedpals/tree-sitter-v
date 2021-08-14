@@ -33,3 +33,24 @@ if !(ch == `'` || ch == `"`) {
             (identifier)
             (rune_literal)))))
     (block)))
+  
+===
+\0 and \` rune literals
+===
+
+a := `\0`
+b := `\``
+
+---
+
+(source_file
+  (short_var_declaration
+    (identifier_list
+      (identifier))
+    (expression_list
+      (rune_literal)))
+  (short_var_declaration
+    (identifier_list
+      (identifier))
+    (expression_list
+      (rune_literal))))
