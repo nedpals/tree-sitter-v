@@ -2999,22 +2999,6 @@
                 },
                 {
                   "type": "SYMBOL",
-                  "name": "_single_line_expression"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "_single_line_expression"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "identifier"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "identifier"
-                },
-                {
-                  "type": "SYMBOL",
                   "name": "identifier"
                 },
                 {
@@ -7026,6 +7010,58 @@
               {
                 "type": "SYMBOL",
                 "name": "c_include_path_string"
+              }
+            ]
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "error_message",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": "#"
+                  },
+                  {
+                    "type": "TOKEN",
+                    "content": {
+                      "type": "PREC",
+                      "value": -1,
+                      "content": {
+                        "type": "REPEAT1",
+                        "content": {
+                          "type": "PATTERN",
+                          "value": ".|\\\\\\r?\\n"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "STRING",
+                        "value": "\n"
+                      },
+                      {
+                        "type": "STRING",
+                        "value": "\r"
+                      },
+                      {
+                        "type": "STRING",
+                        "value": "\r\n"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "BLANK"
               }
             ]
           }

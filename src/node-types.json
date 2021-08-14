@@ -842,6 +842,28 @@
     "type": "c_include_clause",
     "named": true,
     "fields": {
+      "error_message": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "\n",
+            "named": false
+          },
+          {
+            "type": "\r",
+            "named": false
+          },
+          {
+            "type": "\r\n",
+            "named": false
+          },
+          {
+            "type": "#",
+            "named": false
+          }
+        ]
+      },
       "path": {
         "multiple": false,
         "required": true,
@@ -3475,6 +3497,10 @@
     "named": false
   },
   {
+    "type": "#",
+    "named": false
+  },
+  {
     "type": "#define",
     "named": false
   },
@@ -3872,11 +3898,11 @@
   },
   {
     "type": "int_literal",
-    "named": false
+    "named": true
   },
   {
     "type": "int_literal",
-    "named": true
+    "named": false
   },
   {
     "type": "interface",

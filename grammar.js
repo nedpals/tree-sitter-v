@@ -1289,6 +1289,16 @@ module.exports = grammar({
         field(
           "path",
           choice($.interpreted_string_literal, $.c_include_path_string)
+        ),
+        field(
+          "error_message",
+          optional(
+            seq(
+              "#",
+              token(prec(PREC.composite_literal, repeat1(/.|\\\r?\n/))),
+              terminator
+            )
+          )
         )
       ),
 
