@@ -454,7 +454,8 @@ module.exports = grammar({
             $._string_literal, 
             $.int_literal, 
             $.call_expression,
-            $.selector_expression
+            $.selector_expression,
+            $.type_selector_expression
           )
         ),
         token.immediate(":")
