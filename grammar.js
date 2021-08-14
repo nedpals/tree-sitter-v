@@ -965,25 +965,27 @@ module.exports = grammar({
         seq(
           field("left", $.identifier_list),
           in_keyword,
-          field("right", choice($._expression, alias($._range, $.range)))
+          field("right", choice($._expression, alias($._definite_range, $.range)))
+        )
+      ),
+
+    _definite_range: ($) =>
+      prec(
+        PREC.multiplicative,
+        seq(
+          field("start", $._expression),
+          "..",
+          field("end", $._expression)
         )
       ),
 
     _range: ($) =>
-      prec.right(
+      prec(
         PREC.multiplicative,
-        choice(
-          seq(field("start", $._expression), "..", field("end", $._expression)),
-          seq(
-            field("start", $._expression),
-            "..",
-            field("end", optional($._expression))
-          ),
-          seq(
-            field("start", optional($._expression)),
-            "..",
-            field("end", $._expression)
-          )
+        seq(
+          field("start", optional($._expression)),
+          "..",
+          field("end", optional($._expression))
         )
       ),
 
@@ -1379,7 +1381,7 @@ module.exports = grammar({
       seq(
         field(
           "value",
-          choice($.expression_list, $.type_list, alias($._range, $.range))
+          choice($.expression_list, $.type_list, alias($._definite_range, $.range))
         ),
         field("consequence", $.block)
       ),
