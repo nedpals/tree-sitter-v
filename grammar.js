@@ -459,10 +459,7 @@ module.exports = grammar({
         PREC.composite_literal,
         seq(
           "{",
-          field(
-            "entries",
-            repeat1(seq($.keyed_element, optional(choice(",", terminator))))
-          ),
+          repeat1(seq($.keyed_element, optional(choice(",", terminator)))),
           "}"
         )
       ),
@@ -1176,7 +1173,7 @@ module.exports = grammar({
           seq(pub_keyword, mut_keyword),
           global_keyword
         ),
-        ":"
+        token.immediate(":")
       ),
 
     struct_field_declaration: ($) =>
