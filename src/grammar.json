@@ -1001,6 +1001,10 @@
               {
                 "type": "SYMBOL",
                 "name": "slice_expression"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "parenthesized_expression"
               }
             ]
           }
@@ -1224,6 +1228,10 @@
               {
                 "type": "SYMBOL",
                 "name": "selector_expression"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "type_selector_expression"
               }
             ]
           }

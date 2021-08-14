@@ -2149,6 +2149,10 @@
           {
             "type": "selector_expression",
             "named": true
+          },
+          {
+            "type": "type_selector_expression",
+            "named": true
           }
         ]
       },
@@ -2940,6 +2944,10 @@
         },
         {
           "type": "index_expression",
+          "named": true
+        },
+        {
+          "type": "parenthesized_expression",
           "named": true
         },
         {
