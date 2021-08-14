@@ -562,10 +562,6 @@ module.exports = grammar({
           "$",
           choice(
             $._single_line_expression,
-            $._single_line_expression,
-            $._single_line_expression,
-            $.identifier,
-            $.identifier,
             $.identifier,
             $.selector_expression,
             $.call_expression
