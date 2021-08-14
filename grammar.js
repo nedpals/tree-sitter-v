@@ -854,7 +854,7 @@ module.exports = grammar({
     type_parameter_declaration: ($) =>
       seq(
         optional(mut_keyword),
-        field("type", $._simple_type, $.option_type, $.variadic_type)
+        field("type", choice($._simple_type, $.option_type, $.variadic_type))
       ),
 
     fn_literal: ($) =>

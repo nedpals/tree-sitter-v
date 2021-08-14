@@ -2558,7 +2558,7 @@
     "fields": {
       "end": {
         "multiple": false,
-        "required": false,
+        "required": true,
         "types": [
           {
             "type": "_expression",
@@ -2568,7 +2568,7 @@
       },
       "start": {
         "multiple": false,
-        "required": false,
+        "required": true,
         "types": [
           {
             "type": "_expression",
@@ -3275,6 +3275,14 @@
         "types": [
           {
             "type": "_simple_type",
+            "named": true
+          },
+          {
+            "type": "option_type",
+            "named": true
+          },
+          {
+            "type": "variadic_type",
             "named": true
           }
         ]
