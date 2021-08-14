@@ -2149,6 +2149,10 @@
           {
             "type": "selector_expression",
             "named": true
+          },
+          {
+            "type": "type_selector_expression",
+            "named": true
           }
         ]
       },
