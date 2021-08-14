@@ -1224,10 +1224,6 @@
               {
                 "type": "SYMBOL",
                 "name": "selector_expression"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "type_selector_expression"
               }
             ]
           }
@@ -5578,15 +5574,6 @@
                 {
                   "type": "SYMBOL",
                   "name": "comptime_selector_expression"
-                },
-                {
-                  "type": "ALIAS",
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "type_identifier"
-                  },
-                  "named": true,
-                  "value": "identifier"
                 }
               ]
             }

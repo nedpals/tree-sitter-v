@@ -1007,8 +1007,7 @@ module.exports = grammar({
             choice(
               $.identifier,
               $.comptime_identifier,
-              $.comptime_selector_expression,
-              alias($.type_identifier, $.identifier)
+              $.comptime_selector_expression
             )
           )
         )
