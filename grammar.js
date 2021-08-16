@@ -129,6 +129,8 @@ const defer_keyword = "defer";
 const unsafe_keyword = "unsafe";
 const import_keyword = "import";
 const match_keyword = "match";
+const lock_keyword = "lock";
+const rlock_keyword = "rlock";
 const builtin_type_keywords = [
   "voidptr",
   "byteptr",
@@ -160,6 +162,33 @@ const builtin_type_keywords = [
 
 const fixed_array_symbol = "!";
 const string_quotes = ["'", '"'];
+const all_keywords = [
+  pub_keyword,
+  const_keyword,
+  mut_keyword,
+  global_keyword,
+  fn_keyword,
+  assert_keyword,
+  as_keyword,
+  go_keyword,
+  asm_keyword,
+  return_keyword,
+  type_keyword,
+  for_keyword,
+  in_keyword,
+  is_keyword,
+  union_keyword,
+  struct_keyword,
+  enum_keyword,
+  interface_keyword,
+  defer_keyword,
+  unsafe_keyword,
+  import_keyword,
+  match_keyword,
+  lock_keyword,
+  rlock_keyword,
+  ...builtin_type_keywords,
+];
 
 module.exports = grammar({
   name: "v",
@@ -473,14 +502,13 @@ module.exports = grammar({
         )
       ),
 
-    array: ($) =>
-      prec.right(
-        PREC.composite_literal,
-        $._non_empty_array
-      ),
+    array: ($) => prec.right(PREC.composite_literal, $._non_empty_array),
 
     fixed_array: ($) =>
-      prec.right(PREC.composite_literal, seq($._non_empty_array, fixed_array_symbol)),
+      prec.right(
+        PREC.composite_literal,
+        seq($._non_empty_array, fixed_array_symbol)
+      ),
 
     _non_empty_array: ($) =>
       seq("[", repeat(seq($._expression, optional(","))), "]"),
@@ -591,9 +619,12 @@ module.exports = grammar({
 
     identifier: ($) =>
       token(
-        seq(
-          choice(unicode_letter_lower, "_"),
-          repeat(choice(letter, unicode_digit))
+        choice(
+          seq(
+            choice(unicode_letter_lower, "_"),
+            repeat(choice(letter, unicode_digit))
+          ),
+          seq("@", choice(...all_keywords))
         )
       ),
 
@@ -745,7 +776,7 @@ module.exports = grammar({
     type_placeholder: ($) => token(unicode_letter_upper),
 
     pseudo_comptime_identifier: ($) =>
-      seq("@", alias($._old_identifier, $.identifier)),
+      seq("@", alias(/[A-Z][A-Z0-9_]+/, $.identifier)),
 
     type_identifier: ($) =>
       token(seq(unicode_letter_upper, repeat1(choice(letter, unicode_digit)))),
@@ -1428,7 +1459,7 @@ module.exports = grammar({
 
     lock_expression: ($) =>
       seq(
-        choice("lock", "rlock"),
+        choice(lock_keyword, rlock_keyword),
         field("locked_variables", optional($.expression_list)),
         field("body", $.block)
       ),

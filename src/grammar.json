@@ -3117,45 +3117,264 @@
     "identifier": {
       "type": "TOKEN",
       "content": {
-        "type": "SEQ",
+        "type": "CHOICE",
         "members": [
           {
-            "type": "CHOICE",
+            "type": "SEQ",
             "members": [
               {
-                "type": "PATTERN",
-                "value": "[a-zα-ωµ]"
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "PATTERN",
+                    "value": "[a-zα-ωµ]"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "_"
+                  }
+                ]
               },
               {
-                "type": "STRING",
-                "value": "_"
+                "type": "REPEAT",
+                "content": {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "CHOICE",
+                      "members": [
+                        {
+                          "type": "PATTERN",
+                          "value": "[a-zA-Zα-ωΑ-Ωµ]"
+                        },
+                        {
+                          "type": "STRING",
+                          "value": "_"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "PATTERN",
+                      "value": "[0-9]"
+                    }
+                  ]
+                }
               }
             ]
           },
           {
-            "type": "REPEAT",
-            "content": {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "PATTERN",
-                      "value": "[a-zA-Zα-ωΑ-Ωµ]"
-                    },
-                    {
-                      "type": "STRING",
-                      "value": "_"
-                    }
-                  ]
-                },
-                {
-                  "type": "PATTERN",
-                  "value": "[0-9]"
-                }
-              ]
-            }
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "@"
+              },
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": "pub"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "const"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "mut"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "__global"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "fn"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "assert"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "as"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "go"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "asm"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "return"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "type"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "for"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "in"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "is"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "union"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "struct"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "enum"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "interface"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "defer"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "unsafe"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "import"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "match"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "lock"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "rlock"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "voidptr"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "byteptr"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "charptr"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "i8"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "i16"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "int"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "i64"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "byte"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "u8"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "u16"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "u32"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "u64"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "f32"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "f64"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "char"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "bool"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "string"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "rune"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "array"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "map"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "chan"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "size_t"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "float_literal"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "int_literal"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "thread"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "IError"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -4118,8 +4337,8 @@
         {
           "type": "ALIAS",
           "content": {
-            "type": "SYMBOL",
-            "name": "_old_identifier"
+            "type": "PATTERN",
+            "value": "[A-Z][A-Z0-9_]+"
           },
           "named": true,
           "value": "identifier"
