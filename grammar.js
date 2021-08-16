@@ -174,6 +174,7 @@ module.exports = grammar({
     $._field_identifier,
     $._module_identifier,
     $._top_level_declaration,
+    $._non_empty_array,
   ],
 
   supertypes: ($) => [
@@ -216,6 +217,7 @@ module.exports = grammar({
 
     _expression: ($) =>
       choice(
+        $.int_literal,
         $._reserved_identifier,
         $.binded_identifier,
         $.identifier,
@@ -348,7 +350,6 @@ module.exports = grammar({
       prec.left(
         PREC.resolve,
         choice(
-          $.int_literal,
           $.float_literal,
           $._string_literal,
           $.rune_literal,
@@ -475,14 +476,14 @@ module.exports = grammar({
     array: ($) =>
       prec.right(
         PREC.composite_literal,
-        choice(token("[]"), $._non_empty_array)
+        $._non_empty_array
       ),
 
     fixed_array: ($) =>
-      prec(PREC.composite_literal, seq($._non_empty_array, fixed_array_symbol)),
+      prec.right(PREC.composite_literal, seq($._non_empty_array, fixed_array_symbol)),
 
     _non_empty_array: ($) =>
-      seq("[", repeat1(seq($._expression, optional(","))), "]"),
+      seq("[", repeat(seq($._expression, optional(","))), "]"),
 
     fixed_array_type: ($) =>
       seq(
@@ -493,7 +494,7 @@ module.exports = grammar({
       ),
 
     array_type: ($) =>
-      prec(PREC.resolve, seq("[]", field("element", $._simple_type))),
+      prec(PREC.resolve, seq("[", "]", field("element", $._simple_type))),
 
     variadic_type: ($) => seq("...", $._simple_type),
 
