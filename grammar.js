@@ -247,6 +247,9 @@ module.exports = grammar({
     _expression: ($) =>
       choice(
         $.int_literal,
+        $.float_literal,
+        $._string_literal,
+        $.rune_literal,
         $._reserved_identifier,
         $.binded_identifier,
         $.identifier,
@@ -379,9 +382,6 @@ module.exports = grammar({
       prec.left(
         PREC.resolve,
         choice(
-          $.float_literal,
-          $._string_literal,
-          $.rune_literal,
           $.pseudo_comptime_identifier,
           $.type_selector_expression,
           $.none,
@@ -897,11 +897,14 @@ module.exports = grammar({
       ),
 
     fn_literal: ($) =>
-      seq(
-        "fn",
-        field("parameters", $.parameter_list),
-        field("result", optional($._type)),
-        field("body", $.block)
+      prec.right(
+        seq(
+          "fn",
+          field("parameters", $.parameter_list),
+          field("result", optional($._type)),
+          field("body", $.block),
+          field("arguments", optional($.argument_list))
+        )
       ),
 
     global_var_declaration: ($) =>
@@ -1014,7 +1017,11 @@ module.exports = grammar({
     _definite_range: ($) =>
       prec(
         PREC.multiplicative,
-        seq(field("start", $._expression), "..", field("end", $._expression))
+        seq(
+          field("start", $._expression),
+          choice("..", "..."),
+          field("end", $._expression)
+        )
       ),
 
     _range: ($) =>
@@ -1022,7 +1029,7 @@ module.exports = grammar({
         PREC.multiplicative,
         seq(
           field("start", optional($._expression)),
-          "..",
+          choice("..", "..."),
           field("end", optional($._expression))
         )
       ),
