@@ -2129,6 +2129,10 @@
             "named": true
           },
           {
+            "type": "none",
+            "named": true
+          },
+          {
             "type": "option_type",
             "named": true
           }

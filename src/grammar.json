@@ -6299,6 +6299,10 @@
                 {
                   "type": "SYMBOL",
                   "name": "_simple_type"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "none"
                 }
               ]
             }

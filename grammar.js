@@ -1148,7 +1148,7 @@ module.exports = grammar({
         seq(
           field("left", $._expression),
           choice(is_keyword, "!" + is_keyword),
-          field("right", choice($.option_type, $._simple_type))
+          field("right", choice($.option_type, $._simple_type, $.none))
         )
       ),
 
