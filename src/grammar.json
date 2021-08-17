@@ -7895,8 +7895,16 @@
           }
         },
         {
-          "type": "SYMBOL",
-          "name": "select_default_branch"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "select_default_branch"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "STRING",

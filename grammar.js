@@ -1446,7 +1446,7 @@ module.exports = grammar({
         field("selected_variables", optional($.expression_list)),
         "{",
         repeat($.select_branch),
-        $.select_default_branch,
+        optional($.select_default_branch),
         "}"
       ),
 
