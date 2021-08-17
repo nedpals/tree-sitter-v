@@ -131,6 +131,7 @@ const import_keyword = "import";
 const match_keyword = "match";
 const lock_keyword = "lock";
 const rlock_keyword = "rlock";
+const select_keyword = "select";
 const builtin_type_keywords = [
   "voidptr",
   "byteptr",
@@ -187,6 +188,7 @@ const all_keywords = [
   match_keyword,
   lock_keyword,
   rlock_keyword,
+  select_keyword,
   ...builtin_type_keywords,
 ];
 
@@ -1227,7 +1229,7 @@ module.exports = grammar({
       prec.right(
         choice(
           seq(
-            field("name", $._field_identifier),
+            field("name", choice($._field_identifier)),
             field("type", choice($._simple_type, $.option_type)),
             field("attributes", optional($.attribute_declaration)),
             optional(seq("=", field("default_value", $._expression))),
@@ -1449,7 +1451,7 @@ module.exports = grammar({
 
     select_expression: ($) =>
       seq(
-        "select",
+        select_keyword,
         field("selected_variables", optional($.expression_list)),
         "{",
         repeat($.select_branch),

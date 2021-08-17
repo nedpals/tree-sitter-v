@@ -3274,6 +3274,10 @@
                   },
                   {
                     "type": "STRING",
+                    "value": "select"
+                  },
+                  {
+                    "type": "STRING",
                     "value": "voidptr"
                   },
                   {
@@ -6716,8 +6720,13 @@
                 "type": "FIELD",
                 "name": "name",
                 "content": {
-                  "type": "SYMBOL",
-                  "name": "_field_identifier"
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "_field_identifier"
+                    }
+                  ]
                 }
               },
               {
