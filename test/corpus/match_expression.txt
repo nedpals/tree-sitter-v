@@ -67,7 +67,7 @@ match b {
     (expression_case
       (range
         (int_literal)
-        (float_literal))
+        (int_literal))
       (block))
     (default_case
       (block))))
