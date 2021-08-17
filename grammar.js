@@ -531,7 +531,8 @@ module.exports = grammar({
     map_type: ($) =>
       seq("map[", field("key", $._simple_type), "]", field("value", $._type)),
 
-    channel_type: ($) => seq("chan", field("value", $._simple_type)),
+    channel_type: ($) =>
+      prec.right(PREC.primary, seq("chan", field("value", $._simple_type))),
 
     int_literal: ($) => token(int_literal),
 
