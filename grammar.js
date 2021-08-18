@@ -794,6 +794,8 @@ module.exports = grammar({
       choice(
         $._simple_statement,
         $.assert_statement,
+        $.continue_statement,
+        $.break_statement,
         $.return_statement,
         $.asm_statement,
         $.go_statement,
@@ -955,6 +957,12 @@ module.exports = grammar({
 
     // Loose checking for asm and sql statements
     _content_block: ($) => seq("{", token.immediate(prec(1, /[^{}]+/)), "}"),
+
+    break_statement: $ => 
+      prec.right(seq('break', optional(alias($.identifier, $.label_name)))),
+
+    continue_statement: $ => 
+      prec.right(seq('continue', optional(alias($.identifier, $.label_name)))),
 
     return_statement: ($) =>
       prec.right(seq(return_keyword, optional($.expression_list))),
