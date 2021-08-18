@@ -1270,7 +1270,7 @@
         "required": false,
         "types": [
           {
-            "type": "int_literal",
+            "type": "_expression",
             "named": true
           }
         ]

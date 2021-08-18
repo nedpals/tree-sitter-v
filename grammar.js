@@ -1264,7 +1264,7 @@ module.exports = grammar({
     enum_member: ($) =>
       seq(
         field("name", $.identifier),
-        optional(seq("=", field("value", $.int_literal)))
+        optional(seq("=", field("value", $._expression)))
       ),
 
     type_selector_expression: ($) =>
