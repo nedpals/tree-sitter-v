@@ -2381,6 +2381,10 @@
           {
             "type": "mut",
             "named": false
+          },
+          {
+            "type": "static",
+            "named": false
           }
         ]
       }
@@ -3966,11 +3970,11 @@
   },
   {
     "type": "int_literal",
-    "named": true
+    "named": false
   },
   {
     "type": "int_literal",
-    "named": false
+    "named": true
   },
   {
     "type": "interface",
@@ -4062,6 +4066,10 @@
   },
   {
     "type": "sql",
+    "named": false
+  },
+  {
+    "type": "static",
     "named": false
   },
   {

@@ -110,6 +110,7 @@ const float_literal = choice(decimal_float_literal, hex_float_literal);
 const pub_keyword = "pub";
 const const_keyword = "const";
 const mut_keyword = "mut";
+const static_keyword = "static";
 const global_keyword = "__global";
 const fn_keyword = "fn";
 const assert_keyword = "assert";
@@ -650,6 +651,7 @@ module.exports = grammar({
         PREC.resolve,
         seq(
           mut_keyword,
+          optional(static_keyword),
           choice($.identifier, $.selector_expression, $._reserved_identifier)
         )
       ),
