@@ -1804,11 +1804,19 @@
       "required": true,
       "types": [
         {
+          "type": "binded_identifier",
+          "named": true
+        },
+        {
           "type": "identifier",
           "named": true
         },
         {
           "type": "index_expression",
+          "named": true
+        },
+        {
+          "type": "parenthesized_expression",
           "named": true
         },
         {

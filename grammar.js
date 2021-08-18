@@ -687,11 +687,13 @@ module.exports = grammar({
         PREC.primary,
         comma_sep1(
           choice(
+            $.binded_identifier,
             $._reserved_identifier,
             $.identifier,
             $.selector_expression,
             $.index_expression,
-            $.unary_expression
+            $.unary_expression,
+            $.parenthesized_expression
           )
         )
       ),
