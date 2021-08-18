@@ -704,7 +704,7 @@ module.exports = grammar({
     parameter_declaration: ($) =>
       seq(
         optional(mut_keyword),
-        field("name", $.identifier),
+        field("name", choice($.identifier, $._reserved_identifier)),
         field("type", choice($._simple_type, $.option_type, $.variadic_type))
       ),
 
@@ -1518,6 +1518,7 @@ function quoted_string($, prefix, rule) {
         repeat(
           choice(
             token.immediate("$("),
+            token.immediate("$%"),
             token.immediate(prec(1, new RegExp(`[^\$${quote}\\\\]+`))),
             $.escape_sequence,
             rule
