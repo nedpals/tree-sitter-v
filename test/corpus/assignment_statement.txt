@@ -17,7 +17,7 @@ fn main() {
     (parameter_list)
     (block
       (assignment_statement
-        (identifier_list
+        (assignable_identifier_list
           (identifier))
         (expression_list
           (int_literal)))
@@ -27,7 +27,7 @@ fn main() {
         (expression_list
           (int_literal)))
       (assignment_statement
-        (identifier_list
+        (assignable_identifier_list
           (identifier)
           (identifier))
         (expression_list

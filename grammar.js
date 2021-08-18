@@ -156,6 +156,7 @@ const builtin_type_keywords = [
   "map",
   "chan",
   "size_t",
+  "size_t",
   "float_literal",
   "int_literal",
   "thread",
@@ -222,6 +223,8 @@ module.exports = grammar({
     [$.qualified_type, $._expression],
     [$.fixed_array_type, $._expression],
     [$._binded_type, $._expression],
+    [$.assignable_identifier_list, $.identifier_list],
+    [$.identifier_list, $._expression],
   ],
 
   rules: {
@@ -395,9 +398,7 @@ module.exports = grammar({
 
     // http://stackoverflow.com/questions/13014947/regex-to-match-a-c-style-multiline-comment/36328890#36328890
     comment: ($) =>
-      token(
-        choice(/\/\/.*/, seq("/*", /[^*]*\*+([^/*][^*]*\*+)*/, "/"))
-      ),
+      token(choice(/\/\/.*/, seq("/*", /[^*]*\*+([^/*][^*]*\*+)*/, "/"))),
 
     escape_sequence: ($) =>
       token(
@@ -678,13 +679,10 @@ module.exports = grammar({
     identifier_list: ($) =>
       prec(
         PREC.primary,
-        seq(
-          choice($.identifier, $._mutable_identifier),
-          repeat(prec(2, seq(",", choice($.identifier, $._mutable_identifier))))
-        )
+        comma_sep1(choice($.identifier, $._mutable_identifier))
       ),
 
-    _assignable_identifier_list: ($) =>
+    assignable_identifier_list: ($) =>
       prec(
         PREC.primary,
         comma_sep1(
@@ -847,7 +845,7 @@ module.exports = grammar({
 
     assignment_statement: ($) =>
       seq(
-        field("left", alias($._assignable_identifier_list, $.identifier_list)),
+        field("left", $.assignable_identifier_list),
         field("operator", choice(...assignment_operators)),
         field("right", $.expression_list)
       ),
@@ -962,11 +960,11 @@ module.exports = grammar({
     // Loose checking for asm and sql statements
     _content_block: ($) => seq("{", token.immediate(prec(1, /[^{}]+/)), "}"),
 
-    break_statement: $ => 
-      prec.right(seq('break', optional(alias($.identifier, $.label_name)))),
+    break_statement: ($) =>
+      prec.right(seq("break", optional(alias($.identifier, $.label_name)))),
 
-    continue_statement: $ => 
-      prec.right(seq('continue', optional(alias($.identifier, $.label_name)))),
+    continue_statement: ($) =>
+      prec.right(seq("continue", optional(alias($.identifier, $.label_name)))),
 
     return_statement: ($) =>
       prec.right(seq(return_keyword, optional($.expression_list))),
@@ -1004,7 +1002,7 @@ module.exports = grammar({
         for_keyword,
         optional(
           choice(
-            $.for_in_operator,
+            prec(PREC.resolve, $.for_in_operator),
             $._expression, // condition-based for
             $.cstyle_for_clause
           )

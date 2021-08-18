@@ -37,6 +37,6 @@ fn main() {
             (type_identifier)
             (identifier))))
       (assignment_statement
-        (identifier_list (identifier))
+        (assignable_identifier_list (identifier))
         (expression_list
           (type_selector_expression (identifier)))))))
