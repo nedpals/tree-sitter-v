@@ -36,3 +36,14 @@ exec('docker container rm -f $(docker container ls -aq)') or {}
       (interpreted_string_literal))
     (option_propagator 
       (or_block (block)))))
+
+===
+Comment inside string Literal
+===
+
+'//'
+
+---
+
+(source_file
+  (interpreted_string_literal))

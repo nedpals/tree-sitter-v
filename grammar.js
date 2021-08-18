@@ -1508,7 +1508,7 @@ function quoted_string($, prefix, rule) {
         repeat(
           choice(
             token.immediate("$("),
-            token.immediate(new RegExp(`[^\$${quote}\\\\]+`)),
+            token.immediate(prec(1, new RegExp(`[^\$${quote}\\\\]+`))),
             $.escape_sequence,
             rule
           )
