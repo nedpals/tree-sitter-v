@@ -34,3 +34,20 @@ fn C.PQerrorMessage(voidptr) &byte
     (type_only_parameter_list 
       (type_parameter_declaration (builtin_type))) 
     (pointer_type (builtin_type))))
+
+===
+Function Declaration with Closures
+===
+
+fn [foo, bar] hello_world() {}
+
+---
+
+(source_file
+  (function_declaration
+    (exposed_variables_list
+      (identifier_list 
+        (identifier) (identifier)))
+    (identifier)
+    (parameter_list)
+    (block)))

@@ -860,6 +860,9 @@ module.exports = grammar({
 
     overloadable_operator: ($) => choice(...overloadable_operators),
 
+    exposed_variables_list: ($) =>
+      seq("[", $.identifier_list,"]"),
+
     function_declaration: ($) =>
       prec.right(
         seq(
@@ -867,6 +870,7 @@ module.exports = grammar({
           optional(pub_keyword),
           fn_keyword,
           field("receiver", optional($.parameter_list)),
+          field("exposed_variables", optional($.exposed_variables_list)),
           field(
             "name",
             choice($.binded_identifier, $.identifier, $.overloadable_operator)
@@ -884,7 +888,7 @@ module.exports = grammar({
     function_type: ($) =>
       prec.right(
         seq(
-          "fn",
+          fn_keyword,
           field(
             "parameters",
             choice($.parameter_list, $.type_only_parameter_list)
@@ -906,6 +910,7 @@ module.exports = grammar({
       prec.right(
         seq(
           "fn",
+          field("exposed_variables", optional($.exposed_variables_list)),
           field("parameters", $.parameter_list),
           field("result", optional($._type)),
           field("body", $.block),
