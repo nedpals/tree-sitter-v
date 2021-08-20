@@ -1299,7 +1299,7 @@ module.exports = grammar({
         field("attributes", optional($.attribute_list)),
         optional(pub_keyword),
         interface_keyword,
-        field("name", $.type_identifier),
+        field("name", choice($.type_identifier, $.generic_type)),
         $.interface_spec_list
       ),
 

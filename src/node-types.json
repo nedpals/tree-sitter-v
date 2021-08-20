@@ -2112,6 +2112,10 @@
         "required": true,
         "types": [
           {
+            "type": "generic_type",
+            "named": true
+          },
+          {
             "type": "type_identifier",
             "named": true
           }
