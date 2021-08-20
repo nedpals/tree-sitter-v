@@ -979,6 +979,7 @@ module.exports = grammar({
         optional(pub_keyword),
         type_keyword,
         field("name", choice($.type_identifier, $.builtin_type)),
+        field("type_parameters", optional($.type_parameters)),
         "=",
         field("types", alias($.sum_type_list, $.type_list))
       ),
