@@ -661,7 +661,19 @@ module.exports = grammar({
       ),
 
     mutable_expression: ($) =>
-      seq(mut_keyword, $._expression),
+      prec(
+        PREC.resolve,
+        seq(
+          mut_keyword, 
+          choice(
+            $.identifier,
+            $.selector_expression,
+            $.index_expression,
+            $.slice_expression,
+            $.unary_expression
+          )
+        )
+      ),
 
     binded_identifier: ($) =>
       seq(
