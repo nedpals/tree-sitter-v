@@ -122,6 +122,8 @@ const type_keyword = "type";
 const for_keyword = "for";
 const in_keyword = "in";
 const is_keyword = "is";
+const if_keyword = "if";
+const else_keyword = "else";
 const union_keyword = "union";
 const struct_keyword = "struct";
 const enum_keyword = "enum";
@@ -177,6 +179,8 @@ const all_keywords = [
   asm_keyword,
   return_keyword,
   type_keyword,
+  if_keyword,
+  else_keyword,
   for_keyword,
   in_keyword,
   is_keyword,
@@ -1120,7 +1124,7 @@ module.exports = grammar({
 
     comptime_if_expression: ($) =>
       seq(
-        "$if",
+        "$" + if_keyword,
         field(
           "condition",
           choice(
@@ -1145,14 +1149,14 @@ module.exports = grammar({
 
     if_expression: ($) =>
       seq(
-        "if",
+        if_keyword,
         choice(
           field("condition", $._expression),
           field("initializer", $.short_var_declaration)
         ),
         field("consequence", $.block),
         optional(
-          seq("else", field("alternative", choice($.block, $.if_expression)))
+          seq(else_keyword, field("alternative", choice($.block, $.if_expression)))
         )
       ),
 
@@ -1190,7 +1194,7 @@ module.exports = grammar({
       prec(
         PREC.attributes,
         choice(
-          seq("if", $.identifier, optional("?")),
+          seq(if_keyword, $.identifier, optional("?")),
           choice(alias("unsafe", $.identifier), $.identifier),
           seq(
             field("name", choice(alias("unsafe", $.identifier), $.identifier)),
@@ -1472,7 +1476,7 @@ module.exports = grammar({
         field("consequence", $.block)
       ),
 
-    default_case: ($) => seq("else", field("consequence", $.block)),
+    default_case: ($) => seq(else_keyword, field("consequence", $.block)),
 
     select_expression: ($) =>
       seq(
@@ -1488,7 +1492,7 @@ module.exports = grammar({
 
     select_default_branch: ($) =>
       seq(
-        choice(prec(PREC.primary, seq(optional(">"), $._expression)), "else"),
+        choice(prec(PREC.primary, seq(optional(">"), $._expression)), else_keyword),
         $.block
       ),
 
