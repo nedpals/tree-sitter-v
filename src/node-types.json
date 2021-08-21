@@ -2229,6 +2229,10 @@
             "named": true
           },
           {
+            "type": "mutable_expression",
+            "named": true
+          },
+          {
             "type": "type_placeholder",
             "named": true
           }
@@ -2512,7 +2516,23 @@
       "required": true,
       "types": [
         {
-          "type": "_expression",
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "index_expression",
+          "named": true
+        },
+        {
+          "type": "selector_expression",
+          "named": true
+        },
+        {
+          "type": "slice_expression",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
           "named": true
         }
       ]

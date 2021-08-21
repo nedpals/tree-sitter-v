@@ -1196,7 +1196,7 @@ module.exports = grammar({
       prec.left(
         PREC.comparative,
         seq(
-          field("left", $._expression),
+          field("left", choice($.mutable_expression, $._expression)),
           choice(is_keyword, "!" + is_keyword),
           field("right", choice($.option_type, $._simple_type, $.none))
         )
