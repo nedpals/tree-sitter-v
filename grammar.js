@@ -268,7 +268,6 @@ module.exports = grammar({
         $.binary_expression,
         $.in_expression,
         $.is_expression,
-        $.selector_expression,
         $.index_expression,
         $.slice_expression,
         $.type_cast_expression,
@@ -1072,7 +1071,8 @@ module.exports = grammar({
             choice(
               $.identifier,
               $.comptime_identifier,
-              $.comptime_selector_expression
+              $.comptime_selector_expression,
+              $.type_identifier
             )
           )
         )
