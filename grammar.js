@@ -711,16 +711,34 @@ module.exports = grammar({
     parameter_list: ($) =>
       prec(PREC.resolve, seq("(", comma_sep($.parameter_declaration), ")")),
 
+    _empty_literal_value: ($) => alias("{}", $.literal_value),
+
     argument_list: ($) =>
       seq(
         "(",
-        comma_sep(
-          choice(
-            alias("{}", $.literal_value),
-            $._expression,
-            $.mutable_expression,
-            $.keyed_element,
-            $.spread_operator
+        optional(
+          seq(
+            choice(
+              $._empty_literal_value,
+              $._expression,
+              $.mutable_expression,
+              $.keyed_element,
+              $.spread_operator
+            ),
+            // TODO: accept terminator as argument separator for now
+            // to avoid complexities in the grammar.
+            // Finalize the syntax with keyed elements (aka struct init fields)
+            repeat(seq(
+              choice(",", terminator),
+              choice(
+                $._empty_literal_value,
+                $._expression,
+                $.mutable_expression,
+                $.keyed_element,
+                $.spread_operator
+              )
+            )),
+            optional(terminator)
           )
         ),
         ")"
