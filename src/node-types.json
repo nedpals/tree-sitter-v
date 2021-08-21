@@ -2845,10 +2845,6 @@
           {
             "type": "identifier",
             "named": true
-          },
-          {
-            "type": "type_identifier",
-            "named": true
           }
         ]
       },

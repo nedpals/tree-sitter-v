@@ -199,15 +199,6 @@
         {
           "type": "SYMBOL",
           "name": "_expression_with_blocks"
-        },
-        {
-          "type": "ALIAS",
-          "content": {
-            "type": "SYMBOL",
-            "name": "qualified_type"
-          },
-          "named": true,
-          "value": "special_selector_expression"
         }
       ]
     },
