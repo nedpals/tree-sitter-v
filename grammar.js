@@ -658,16 +658,7 @@ module.exports = grammar({
       ),
 
     mutable_expression: ($) =>
-      seq(
-        mut_keyword,
-        choice(
-          $.identifier,
-          $.selector_expression,
-          $.index_expression,
-          $.slice_expression,
-          $.unary_expression
-        )
-      ),
+      seq(mut_keyword, $._expression),
 
     binded_identifier: ($) =>
       seq(
@@ -699,7 +690,7 @@ module.exports = grammar({
       ),
 
     expression_list: ($) =>
-      prec(PREC.resolve, comma_sep1(choice($._expression))),
+      prec(PREC.resolve, comma_sep1($._expression)),
 
     parameter_declaration: ($) =>
       seq(

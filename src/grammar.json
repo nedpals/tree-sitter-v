@@ -3568,29 +3568,8 @@
           "value": "mut"
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "identifier"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "selector_expression"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "index_expression"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "slice_expression"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "unary_expression"
-            }
-          ]
+          "type": "SYMBOL",
+          "name": "_expression"
         }
       ]
     },
@@ -3777,13 +3756,8 @@
         "type": "SEQ",
         "members": [
           {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "_expression"
-              }
-            ]
+            "type": "SYMBOL",
+            "name": "_expression"
           },
           {
             "type": "REPEAT",
@@ -3795,13 +3769,8 @@
                   "value": ","
                 },
                 {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "SYMBOL",
-                      "name": "_expression"
-                    }
-                  ]
+                  "type": "SYMBOL",
+                  "name": "_expression"
                 }
               ]
             }
