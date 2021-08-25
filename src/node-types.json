@@ -2532,6 +2532,10 @@
           "named": true
         },
         {
+          "type": "type_initializer",
+          "named": true
+        },
+        {
           "type": "unary_expression",
           "named": true
         }

@@ -664,13 +664,14 @@ module.exports = grammar({
       prec(
         PREC.resolve,
         seq(
-          mut_keyword, 
+          mut_keyword,
           choice(
             $.identifier,
             $.selector_expression,
             $.index_expression,
             $.slice_expression,
-            $.unary_expression
+            $.unary_expression,
+            $.type_initializer
           )
         )
       ),
@@ -704,8 +705,7 @@ module.exports = grammar({
         )
       ),
 
-    expression_list: ($) =>
-      prec(PREC.resolve, comma_sep1($._expression)),
+    expression_list: ($) => prec(PREC.resolve, comma_sep1($._expression)),
 
     parameter_declaration: ($) =>
       seq(
@@ -734,16 +734,18 @@ module.exports = grammar({
             // TODO: accept terminator as argument separator for now
             // to avoid complexities in the grammar.
             // Finalize the syntax with keyed elements (aka struct init fields)
-            repeat(seq(
-              choice(",", terminator),
-              choice(
-                $._empty_literal_value,
-                $._expression,
-                $.mutable_expression,
-                $.keyed_element,
-                $.spread_operator
+            repeat(
+              seq(
+                choice(",", terminator),
+                choice(
+                  $._empty_literal_value,
+                  $._expression,
+                  $.mutable_expression,
+                  $.keyed_element,
+                  $.spread_operator
+                )
               )
-            )),
+            ),
             optional(terminator)
           )
         ),
@@ -884,8 +886,7 @@ module.exports = grammar({
 
     overloadable_operator: ($) => choice(...overloadable_operators),
 
-    exposed_variables_list: ($) =>
-      seq("[", $.identifier_list,"]"),
+    exposed_variables_list: ($) => seq("[", $.identifier_list, "]"),
 
     function_declaration: ($) =>
       prec.right(
@@ -984,7 +985,7 @@ module.exports = grammar({
     // NOTE: this should be put into a separate grammar
     // to avoid any "noise" (i guess)
     sql_expression: ($) =>
-      seq("sql", optional($._expression), $._content_block),
+      prec(PREC.resolve, seq("sql", optional($._expression), $._content_block)),
 
     // Loose checking for asm and sql statements
     _content_block: ($) => seq("{", token.immediate(prec(1, /[^{}]+/)), "}"),
@@ -1167,7 +1168,10 @@ module.exports = grammar({
         ),
         field("consequence", $.block),
         optional(
-          seq(else_keyword, field("alternative", choice($.block, $.if_expression)))
+          seq(
+            else_keyword,
+            field("alternative", choice($.block, $.if_expression))
+          )
         )
       ),
 
@@ -1503,7 +1507,10 @@ module.exports = grammar({
 
     select_default_branch: ($) =>
       seq(
-        choice(prec(PREC.primary, seq(optional(">"), $._expression)), else_keyword),
+        choice(
+          prec(PREC.primary, seq(optional(">"), $._expression)),
+          else_keyword
+        ),
         $.block
       ),
 

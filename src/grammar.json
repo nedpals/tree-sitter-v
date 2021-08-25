@@ -3604,6 +3604,10 @@
               {
                 "type": "SYMBOL",
                 "name": "unary_expression"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "type_initializer"
               }
             ]
           }
@@ -5542,29 +5546,33 @@
       ]
     },
     "sql_expression": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "sql"
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "_expression"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_content_block"
-        }
-      ]
+      "type": "PREC",
+      "value": 1,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "sql"
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "_expression"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_content_block"
+          }
+        ]
+      }
     },
     "_content_block": {
       "type": "SEQ",
