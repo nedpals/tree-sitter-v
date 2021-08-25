@@ -3128,26 +3128,34 @@
       ]
     },
     "_reserved_identifier": {
-      "type": "ALIAS",
+      "type": "PREC_LEFT",
+      "value": 0,
       "content": {
-        "type": "CHOICE",
-        "members": [
-          {
-            "type": "STRING",
-            "value": "array"
-          },
-          {
-            "type": "STRING",
-            "value": "string"
-          },
-          {
-            "type": "STRING",
-            "value": "char"
-          }
-        ]
-      },
-      "named": true,
-      "value": "identifier"
+        "type": "ALIAS",
+        "content": {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "array"
+            },
+            {
+              "type": "STRING",
+              "value": "string"
+            },
+            {
+              "type": "STRING",
+              "value": "char"
+            },
+            {
+              "type": "STRING",
+              "value": "sql"
+            }
+          ]
+        },
+        "named": true,
+        "value": "identifier"
+      }
     },
     "identifier": {
       "type": "TOKEN",

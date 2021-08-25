@@ -623,7 +623,7 @@ module.exports = grammar({
       ),
 
     _reserved_identifier: ($) =>
-      alias(choice("array", "string", "char"), $.identifier),
+      prec.left(alias(choice("array", "string", "char", "sql"), $.identifier)),
 
     identifier: ($) =>
       token(
