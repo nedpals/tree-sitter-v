@@ -623,7 +623,7 @@ module.exports = grammar({
       ),
 
     _reserved_identifier: ($) =>
-      prec.left(alias(choice("array", "string", "char", "sql"), $.identifier)),
+      alias(choice("array", "string", "char", "sql"), $.identifier),
 
     identifier: ($) =>
       token(
@@ -985,7 +985,7 @@ module.exports = grammar({
     // NOTE: this should be put into a separate grammar
     // to avoid any "noise" (i guess)
     sql_expression: ($) =>
-      prec(PREC.resolve, seq("sql", optional($._expression), $._content_block)),
+      prec(PREC.resolve, seq("sql", optional($.identifier), $._content_block)),
 
     // Loose checking for asm and sql statements
     _content_block: ($) => seq("{", token.immediate(prec(1, /[^{}]+/)), "}"),
@@ -1087,6 +1087,7 @@ module.exports = grammar({
             "field",
             choice(
               $.identifier,
+              $._reserved_identifier,
               $.comptime_identifier,
               $.comptime_selector_expression
             )

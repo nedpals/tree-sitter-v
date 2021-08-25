@@ -3122,7 +3122,7 @@
       "required": false,
       "types": [
         {
-          "type": "_expression",
+          "type": "identifier",
           "named": true
         }
       ]
