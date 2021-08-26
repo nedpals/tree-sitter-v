@@ -1555,6 +1555,14 @@ function quoted_string($, prefix, rule) {
         prefix + quote,
         repeat(
           choice(
+            // TODO: not the best solution but we can improve this later
+            alias(
+              choice(
+                token.immediate("$c"),
+                token.immediate("$r"),
+              ),
+              $.string_interpolation
+            ),
             token.immediate("$("),
             token.immediate("$%"),
             token.immediate(prec(1, new RegExp(`[^\$${quote}\\\\]+`))),

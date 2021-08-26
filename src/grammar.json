@@ -2717,6 +2717,30 @@
                 "type": "CHOICE",
                 "members": [
                   {
+                    "type": "ALIAS",
+                    "content": {
+                      "type": "CHOICE",
+                      "members": [
+                        {
+                          "type": "IMMEDIATE_TOKEN",
+                          "content": {
+                            "type": "STRING",
+                            "value": "$c"
+                          }
+                        },
+                        {
+                          "type": "IMMEDIATE_TOKEN",
+                          "content": {
+                            "type": "STRING",
+                            "value": "$r"
+                          }
+                        }
+                      ]
+                    },
+                    "named": true,
+                    "value": "string_interpolation"
+                  },
+                  {
                     "type": "IMMEDIATE_TOKEN",
                     "content": {
                       "type": "STRING",
@@ -2770,6 +2794,30 @@
               "content": {
                 "type": "CHOICE",
                 "members": [
+                  {
+                    "type": "ALIAS",
+                    "content": {
+                      "type": "CHOICE",
+                      "members": [
+                        {
+                          "type": "IMMEDIATE_TOKEN",
+                          "content": {
+                            "type": "STRING",
+                            "value": "$c"
+                          }
+                        },
+                        {
+                          "type": "IMMEDIATE_TOKEN",
+                          "content": {
+                            "type": "STRING",
+                            "value": "$r"
+                          }
+                        }
+                      ]
+                    },
+                    "named": true,
+                    "value": "string_interpolation"
+                  },
                   {
                     "type": "IMMEDIATE_TOKEN",
                     "content": {
@@ -2881,6 +2929,30 @@
                 "type": "CHOICE",
                 "members": [
                   {
+                    "type": "ALIAS",
+                    "content": {
+                      "type": "CHOICE",
+                      "members": [
+                        {
+                          "type": "IMMEDIATE_TOKEN",
+                          "content": {
+                            "type": "STRING",
+                            "value": "$c"
+                          }
+                        },
+                        {
+                          "type": "IMMEDIATE_TOKEN",
+                          "content": {
+                            "type": "STRING",
+                            "value": "$r"
+                          }
+                        }
+                      ]
+                    },
+                    "named": true,
+                    "value": "string_interpolation"
+                  },
+                  {
                     "type": "IMMEDIATE_TOKEN",
                     "content": {
                       "type": "STRING",
@@ -2934,6 +3006,30 @@
               "content": {
                 "type": "CHOICE",
                 "members": [
+                  {
+                    "type": "ALIAS",
+                    "content": {
+                      "type": "CHOICE",
+                      "members": [
+                        {
+                          "type": "IMMEDIATE_TOKEN",
+                          "content": {
+                            "type": "STRING",
+                            "value": "$c"
+                          }
+                        },
+                        {
+                          "type": "IMMEDIATE_TOKEN",
+                          "content": {
+                            "type": "STRING",
+                            "value": "$r"
+                          }
+                        }
+                      ]
+                    },
+                    "named": true,
+                    "value": "string_interpolation"
+                  },
                   {
                     "type": "IMMEDIATE_TOKEN",
                     "content": {
