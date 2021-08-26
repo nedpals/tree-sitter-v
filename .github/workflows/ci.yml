@@ -44,7 +44,9 @@ jobs:
         run: |
           git clone --depth=1 https://github.com/vlang/v vmaster/
       - run: npm install
-      - run: |
+      - name: Run VLib parsing test
+        continue-on-error: true
+        run: |
           node tools/project-checker.js vmaster/vlib/ --hideRanges --json
           echo "REPORT_JSON=$(cat report.json)" >> $GITHUB_ENV
       - name: Extract data from report.json to environment variable.
