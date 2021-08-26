@@ -2,6 +2,7 @@
 V language grammar for [tree-sitter](https://github.com/tree-sitter/tree-sitter)
 
 [![build/test](https://github.com/nedpals/tree-sitter-v/actions/workflows/ci.yml/badge.svg)](https://github.com/nedpals/tree-sitter-v/actions/workflows/ci.yml)
+![report-badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/nedpals/a5d2f238264b49f2c0301eaf799a0e7c/raw/report-badge-data.json)
 
 ## Existing grammars
 This grammar is heavily derived from the following language grammars:
