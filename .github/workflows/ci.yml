@@ -45,19 +45,12 @@ jobs:
           git clone --depth=1 https://github.com/vlang/v vmaster/
       - run: npm install
       - name: Run VLib parsing test
+        id: run_vlib_test
         continue-on-error: true
         run: |
           node tools/project-checker.js vmaster/vlib/ --hideRanges --json
-          echo "REPORT_JSON=$(cat report.json)" >> $GITHUB_ENV
-      - name: Extract data from report.json to environment variable.
-        uses: sergeysova/jq-action@v2
-        id: version
-        with:
-          cmd: 
-            |
-            for s in $(echo "${{ env.REPORT_JSON }}" | jq -r "to_entries|map(\"\(.key)=\(.value|tostring)\")|.[]" ); do
-              echo $s >> $GITHUB_ENV 
-            done
+          REPORT_JSON=`cat report.json`
+          echo "::set-output name=reportJson::$REPORT_JSON"
       - name: Create Report Badge
         uses: schneegans/dynamic-badges-action@v1.1.0
         with:
@@ -65,6 +58,6 @@ jobs:
           gistID: ${{ secrets.TEST_REPORT_GIST_ID }}
           filename: report-badge-data.json
           label: parsed from vlib
-          message: ${{ env.totalPassed }}/${{ env.totalFail }}
+          message: ${{ fromJson(steps.run_vlib_test.outputs.reportJson).totalPassed }}/${{ fromJson(steps.run_vlib_test.outputs.reportJson).totalFail }}
           color: orange
           namedLogo: V
