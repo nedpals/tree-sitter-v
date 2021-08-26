@@ -30,7 +30,7 @@ function walkAndReportErrors(node, file) {
 
   do {
     const currentNode = cursor.currentNode;
-    if (currentNode.hasError()) {
+    if (currentNode.hasError() && (currentNode.type == 'ERROR' || currentNode.isMissing())) {
       errors.push({ 
         file: file, 
         range: [
@@ -39,7 +39,6 @@ function walkAndReportErrors(node, file) {
         ]
       });
     }
-  
     if (currentNode.childCount != 0) {
       for (const childNode of node.children) {
         errors.push(...walkAndReportErrors(childNode, file));
