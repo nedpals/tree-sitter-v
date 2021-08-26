@@ -9,6 +9,7 @@ const argv = require('minimist')(process.argv.slice(2));
 
 const vProject = argv._[0] || null;
 const hideRanges = argv.hideRanges || false; 
+const shouldExportJson = argv.json || false;
 const parser = new Parser();
 parser.setLanguage(V);
 
@@ -89,8 +90,10 @@ Promise.all(filesToParse.map(parseAndReportErrors))
       totalFail: errorCount
     };
   }).then((report) => {
+    const reportJson = JSON.stringify(report);
     const hasErrors = report.totalFail != 0;
     return Promise.all([
+      shouldExportJson ? promisify(fs.writeFile)(path.join(process.cwd(), 'report.json'), reportJson) : Promise.resolve(),
       Promise.resolve(hasErrors)
     ]);
-  }).then(([hasErrors]) => process.exit(+hasErrors));
+  }).then(([_, hasErrors]) => process.exit(+hasErrors));
