@@ -49,8 +49,11 @@ jobs:
         continue-on-error: true
         run: |
           node tools/project-checker.js vmaster/vlib/ --hideRanges --json
-          REPORT_JSON=`cat report.json`
-          echo "::set-output name=reportJson::$REPORT_JSON"
+          REPORT_JSON=$(cat report.json)
+          REPORT_JSON="${REPORT_JSON//'%'/'%25'}"
+          REPORT_JSON="${REPORT_JSON//$'\n'/'%0A'}"
+          REPORT_JSON="${REPORT_JSON//$'\r'/'%0D'}"
+          echo "::set-output name=report_json::${REPORT_JSON}"
       - name: Create Report Badge
         uses: schneegans/dynamic-badges-action@v1.1.0
         with:
@@ -58,6 +61,6 @@ jobs:
           gistID: ${{ secrets.TEST_REPORT_GIST_ID }}
           filename: report-badge-data.json
           label: parsed from vlib
-          message: ${{ fromJson(steps.run_vlib_test.outputs.reportJson).totalPassed }}/${{ fromJson(steps.run_vlib_test.outputs.reportJson).totalFail }}
+          message: ${{ fromJson(steps.run_vlib_test.outputs.report_json).totalPassed }}/${{ fromJson(steps.run_vlib_test.outputs.report_json).totalFail }}
           color: orange
           namedLogo: V
