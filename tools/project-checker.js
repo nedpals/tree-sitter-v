@@ -5,9 +5,10 @@ const path = require('path');
 const fs = require('fs');
 const { promisify } = require('util');
 const chalk = require('chalk');
+const argv = require('minimist')(process.argv.slice(2));
 
-const vProject = process.argv[2] || null;
-const hideRanges = process.argv[3] == '--hideRanges' || false; 
+const vProject = argv._[0] || null;
+const hideRanges = argv.hideRanges || false; 
 const parser = new Parser();
 parser.setLanguage(V);
 
