@@ -61,35 +61,36 @@ console.log('==============================================');
 
 Promise.all(filesToParse.map(parseAndReportErrors))
   .then((collection) => {
-    let hasErrors = false;
     let errorCount = 0;
-
     collection.forEach((errors, i) => {
-      if (!hasErrors && errors.length != 0) {
-        hasErrors = true;
-      }
-
       if (errors.length != 0) {
         errorCount++;
-
-        if (!hideRanges) {
-          const toText = (pos) => `:${pos.row + 1}:${pos.column + 1}`;
-
-          errors.forEach((e) => {
-            process.stderr.write(`[Error] file: ${e.file + toText(e.range[0])} - ${toText(e.range[1])}\n`);
-          });
+      }
+      if (hideRanges) {
+        const outcome = errors.length == 0 ? chalk.green`[Pass ]` : chalk.red`[Error]`;
+        const filepath = errors.length == 0 ? path.relative(vProject, filesToParse[i]) : errors[0].file;
+        process.stderr.write(`${outcome} file: ${filepath.padEnd(longestLen)} | errors: ${errors.length}\n`);
+      } else {
+        const toText = (pos) => `:${pos.row + 1}:${pos.column + 1}`;
+        errors.forEach((e) => {
+          process.stderr.write(`[Error] file: ${e.file + toText(e.range[0])} - ${toText(e.range[1])}\n`);
+        });
+        if (errors.length != 0) {
           process.stderr.write('\n');
-        } else {
-          process.stderr.write(`${chalk.red`[Error]`} file: ${errors[0].file.padEnd(longestLen)} | errors: ${errors.length}\n`);
         }
-      } else if (hideRanges) {
-        process.stderr.write(`${chalk.green`[Pass ]`} file: ${(path.relative(vProject, filesToParse[i])).padEnd(longestLen)} | errors: ${errors.length}\n`);
       }
     });
-
     console.log('==============================================\n\nSummary:')
     console.log(`${errorCount} files were not parsed properly by the Tree-sitter parser.`);
-
-    // 1 if true, 0 if false
-    process.exit(+hasErrors); 
-  });
+    return {
+      dir: vProject,
+      totalFiles: collection.length,
+      totalPassed: collection.length - errorCount,
+      totalFail: errorCount
+    };
+  }).then((report) => {
+    const hasErrors = report.totalFail != 0;
+    return Promise.all([
+      Promise.resolve(hasErrors)
+    ]);
+  }).then(([hasErrors]) => process.exit(+hasErrors));
