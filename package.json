@@ -21,7 +21,7 @@
   "devDependencies": {
     "chalk": "^4.1.1",
     "glob": "^7.1.7",
-    "minimist": "^1.2.5",
+    "minimist": "^1.2.6",
     "tree-sitter": "^0.20.0",
     "tree-sitter-cli": "^0.20.0"
   },
