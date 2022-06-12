@@ -238,6 +238,7 @@ module.exports = grammar({
     $._type,
     $._simple_type,
     $._statement,
+    $._top_level_declaration,
     $._simple_statement,
     $._expression_with_blocks,
   ],
